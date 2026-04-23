@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>媒體報導與行程攻略 | Sky Horse 天馬租車</title>
+  <meta name="description" content="美國租車自駕攻略、名人推薦、媒體採訪與行程建議。落地即取車，專業行程規劃服務。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-base:     #060606;
+      --bg-surface:  #0e0e0e;
+      --bg-elevated: #161616;
+      --bg-card:     #111111;
+      --border:     rgba(255,255,255,0.06);
+      --border-mid:  rgba(255,255,255,0.12);
+      --border-yellow: rgba(255,209,0,0.4);
+      --gold:        #FFDC22;
+      --gold-bright: #F5C94E;
+      --gold-dim:    rgba(232,184,75,0.12);
+      --gold-glow:   rgba(232,184,75,0.08);
+      --ink-primary:   #F2F2F2;
+      --ink-secondary: #8A8A8A;
+      --ink-tertiary:  #4A4A4A;
+      --success: #34C759;
+      --info:    #0A84FF;
+      --font-display: 'Space Grotesk', 'Noto Sans TC', sans-serif;
+      --font-body:    'Noto Sans TC', sans-serif;
+      --font-mono:    'JetBrains Mono', monospace;
+      --r-sm: 6px; --r-md: 10px; --r-lg: 16px; --r-xl: 24px;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-base);
+      color: var(--ink-primary);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg-base); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(6,6,6,0.85);
+      backdrop-filter: blur(24px) saturate(180%);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1280px; margin: 0 auto; padding: 0 40px;
+      height: 64px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px; text-decoration: none;
+    }
+    .nav-logo-mark {
+      width: 36px; height: 36px;
+      background: var(--gold);
+      border-radius: var(--r-sm);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .nav-logo-mark svg { width: 20px; height: 20px; }
+    .nav-logo-text {
+      font-family: var(--font-display);
+      font-size: 15px; font-weight: 600;
+      color: var(--ink-primary); letter-spacing: -0.2px;
+    }
+    .nav-logo-sub {
+      font-size: 10px; font-weight: 400;
+      color: var(--ink-tertiary); letter-spacing: 0.5px;
+      display: block; margin-top: -2px;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 4px;
+    }
+    .nav-links a {
+      font-size: 13px; font-weight: 400;
+      color: var(--ink-secondary);
+      text-decoration: none; padding: 6px 14px;
+      border-radius: var(--r-sm);
+      transition: color 0.15s, background 0.15s;
+      letter-spacing: 0.1px;
+    }
+    .nav-links a:hover { color: var(--ink-primary); background: rgba(255,255,255,0.04); }
+    .nav-links a.active { color: var(--ink-primary); background: rgba(255,255,255,0.06); }
+    .nav-cta {
+      background: var(--gold) !important;
+      color: #060606 !important;
+      font-weight: 600 !important;
+    }
+    .nav-cta:hover { background: var(--gold-bright) !important; }
+
+    /* ── BLOG HERO ── */
+    .blog-hero {
+      padding: 120px 40px 64px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .blog-hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 10px; font-weight: 500;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 20px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .blog-hero-eyebrow::before {
+      content: ''; display: block;
+      width: 20px; height: 1px; background: var(--gold);
+    }
+    .blog-hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 800;
+      letter-spacing: -2px; line-height: 1.1;
+      color: var(--ink-primary);
+      margin-bottom: 16px;
+    }
+    .blog-hero-title strong { color: var(--gold); }
+    .blog-hero-sub {
+      font-size: 16px; font-weight: 300;
+      color: var(--ink-secondary);
+      max-width: 520px; line-height: 1.8;
+      margin-bottom: 40px;
+    }
+
+    /* ── CATEGORY TABS ── */
+    .blog-tabs {
+      display: flex; gap: 8px; flex-wrap: wrap;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 48px;
+    }
+    .blog-tab {
+      font-family: var(--font-display);
+      font-size: 13px; font-weight: 500;
+      color: var(--ink-secondary);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 20px;
+      padding: 7px 18px;
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+      letter-spacing: 0.3px;
+    }
+    .blog-tab:hover {
+      color: var(--ink-primary);
+      border-color: rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.08);
+    }
+    .blog-tab.active {
+      color: #060606;
+      background: var(--gold);
+      border-color: var(--gold);
+      font-weight: 600;
+    }
+    .blog-tab .tab-count {
+      display: inline-block;
+      font-size: 10px;
+      margin-left: 6px;
+      opacity: 0.6;
+    }
+
+    /* ── POSTS GRID ── */
+    .blog-content {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 40px 100px;
+    }
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .post-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      transition: border-color 0.25s, transform 0.25s;
+      display: flex; flex-direction: column;
+    }
+    .post-card:hover {
+      border-color: var(--border-mid);
+      transform: translateY(-4px);
+    }
+    .post-card:hover .post-img img {
+      transform: scale(1.04);
+    }
+    .post-card:hover .post-tag {
+      background: var(--gold);
+      color: #060606;
+      border-color: var(--gold);
+    }
+    .post-img {
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      background: var(--bg-elevated);
+      flex-shrink: 0;
+    }
+    .post-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s var(--ease-out);
+    }
+    .post-body {
+      padding: 24px;
+      display: flex; flex-direction: column;
+      flex: 1; gap: 12px;
+    }
+    .post-title {
+      font-family: var(--font-display);
+      font-size: 14px; font-weight: 700;
+      color: var(--ink-primary);
+      line-height: 1.5;
+      letter-spacing: -0.2px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+    .post-tag {
+      font-family: var(--font-display);
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      color: var(--gold);
+      background: var(--gold-dim);
+      border: 1px solid var(--border-yellow);
+      border-radius: 20px;
+      padding: 2px 8px;
+      flex-shrink: 0;
+      transition: background 0.2s, color 0.2s;
+    }
+    .post-date {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-tertiary);
+    }
+    .post-excerpt {
+      font-size: 13px; font-weight: 300;
+      color: var(--ink-secondary);
+      line-height: 1.7;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .post-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      margin-top: auto;
+    }
+    .post-author {
+      display: flex; align-items: center; gap: 8px;
+    }
+    .post-author-avatar {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--gold-dim);
+      border: 1px solid var(--border-yellow);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display);
+      font-size: 11px; font-weight: 700;
+      color: var(--gold);
+    }
+    .post-author-name {
+      font-size: 12px; font-weight: 500;
+      color: var(--ink-secondary);
+    }
+    .post-read-time {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-tertiary);
+    }
+    .post-read-link {
+      font-family: var(--font-display);
+      font-size: 12px; font-weight: 600;
+      color: var(--gold);
+      display: flex; align-items: center; gap: 4px;
+      transition: gap 0.15s;
+    }
+    .post-read-link:hover { gap: 8px; }
+    .post-read-link svg { width: 14px; height: 14px; }
+
+    /* ── FEATURED POST ── */
+    .featured-post {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      margin-bottom: 40px;
+      transition: border-color 0.25s;
+    }
+    .featured-post:hover { border-color: var(--border-mid); }
+    .featured-post:hover .featured-img img { transform: scale(1.03); }
+    .featured-img {
+      overflow: hidden;
+      background: var(--bg-elevated);
+    }
+    .featured-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s var(--ease-out);
+    }
+    .featured-body {
+      padding: 48px 40px;
+      display: flex; flex-direction: column;
+      justify-content: center; gap: 20px;
+    }
+    .featured-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--font-display);
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: #060606;
+      background: var(--gold);
+      border-radius: 20px;
+      padding: 4px 14px;
+      width: fit-content;
+    }
+    .featured-tag { }
+    .featured-title {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 2.5vw, 32px);
+      font-weight: 800;
+      line-height: 1.2; letter-spacing: -1px;
+      color: var(--ink-primary);
+    }
+    .featured-excerpt {
+      font-size: 14px; font-weight: 300;
+      color: var(--ink-secondary);
+      line-height: 1.8;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .featured-meta {
+      display: flex; align-items: center; gap: 16px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+    .featured-author { display: flex; align-items: center; gap: 8px; }
+    .featured-author-avatar {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--gold-dim);
+      border: 1px solid var(--border-yellow);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display);
+      font-size: 12px; font-weight: 700;
+      color: var(--gold);
+    }
+    .featured-author-info { }
+    .featured-author-name {
+      font-size: 13px; font-weight: 600;
+      color: var(--ink-primary);
+    }
+    .featured-date-time {
+      font-family: var(--font-mono);
+      font-size: 11px; color: var(--ink-tertiary);
+    }
+    .featured-action {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-display);
+      font-size: 13px; font-weight: 700;
+      color: #060606;
+      background: var(--gold);
+      border-radius: var(--r-md);
+      padding: 10px 24px;
+      transition: background 0.15s, gap 0.15s;
+      width: fit-content;
+      margin-top: 8px;
+    }
+    .featured-action:hover { background: var(--gold-bright); gap: 10px; }
+    .featured-action svg { width: 16px; height: 16px; }
+
+    /* ── SECTION DIVIDER ── */
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 10px; font-weight: 500;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--ink-tertiary);
+      margin-bottom: 24px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .section-label::after {
+      content: ''; flex: 1;
+      height: 1px; background: var(--border);
+    }
+
+    /* ── NEWS LETTER ── */
+    .newsletter {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      padding: 56px 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 40px;
+      margin-top: 64px;
+    }
+    .newsletter-left { max-width: 420px; }
+    .newsletter-title {
+      font-family: var(--font-display);
+      font-size: 24px; font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--ink-primary);
+      margin-bottom: 10px;
+    }
+    .newsletter-sub {
+      font-size: 14px; font-weight: 300;
+      color: var(--ink-secondary);
+      line-height: 1.7;
+    }
+    .newsletter-form {
+      display: flex; gap: 10px;
+      flex: 1; max-width: 400px;
+    }
+    .newsletter-input {
+      flex: 1;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--r-md);
+      padding: 12px 16px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: #fff;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .newsletter-input::placeholder { color: rgba(255,255,255,0.25); }
+    .newsletter-input:focus { border-color: rgba(255,220,34,0.5); }
+    .newsletter-btn {
+      background: var(--gold);
+      color: #060606;
+      font-family: var(--font-display);
+      font-size: 13px; font-weight: 700;
+      padding: 12px 24px;
+      border: none; border-radius: var(--r-md);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.15s;
+    }
+    .newsletter-btn:hover { background: var(--gold-bright); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 48px 40px;
+      background: var(--bg-surface);
+    }
+    .footer-inner {
+      max-width: 1280px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 20px;
+    }
+    .footer-brand {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .footer-brand-mark {
+      width: 32px; height: 32px;
+      background: var(--gold);
+      border-radius: var(--r-sm);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .footer-brand-mark svg { width: 18px; height: 18px; }
+    .footer-brand-name {
+      font-family: var(--font-display);
+      font-size: 14px; font-weight: 600;
+      color: var(--ink-primary);
+    }
+    .footer-copy {
+      font-size: 12px; color: var(--ink-tertiary);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .posts-grid { grid-template-columns: repeat(2, 1fr); }
+      .featured-post { grid-template-columns: 1fr; }
+      .featured-img { aspect-ratio: 16/9; }
+      .featured-body { padding: 32px; }
+      .newsletter { flex-direction: column; }
+      .newsletter-form { max-width: 100%; width: 100%; }
+    }
+    @media (max-width: 640px) {
+      .blog-hero { padding: 100px 20px 40px; }
+      .blog-content { padding: 0 20px 80px; }
+      nav .nav-links { display: none; }
+      .posts-grid { grid-template-columns: 1fr; gap: 16px; }
+      .newsletter { padding: 32px 24px; }
+      .newsletter-form { flex-direction: column; }
+      footer { padding: 32px 20px; }
+      .footer-inner { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="image/SkyHorse.svg" alt="Sky Horse 天馬租車" style="height:34px;width:auto;">
+    </a>
+    <div class="nav-links">
+      <a href="index.html">首頁</a>
+      <a href="index.html#cars">車型</a>
+      <a href="#">視頻</a>
+      <a href="blog.html" class="active">行程攻略</a>
+      <a href="#" class="nav-cta">立即預訂</a>
+    </div>
+    <button class="nav-menu-btn" aria-label="Menu" style="display:none">
+      <i data-lucide="menu" style="width:18px;height:18px"></i>
+    </button>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="blog-hero">
+  <div class="blog-hero-eyebrow">Media &amp; Travel Guide</div>
+  <h1 class="blog-hero-title">媒體報導<br><strong>與行程攻略</strong></h1>
+  <p class="blog-hero-sub">
+    名人推薦、媒體採訪與專業自駕攻略。從舊金山到阿拉斯加，行程規劃、租車建議與沿途風景一本掌握。
+  </p>
+
+  <!-- Category Tabs -->
+  <div class="blog-tabs">
+    <button class="blog-tab active" data-category="all">全部文章 <span class="tab-count">12</span></button>
+    <button class="blog-tab" data-category="celebrity">名人推荐 <span class="tab-count">3</span></button>
+    <button class="blog-tab" data-category="guide">自驾攻略 <span class="tab-count">4</span></button>
+    <button class="blog-tab" data-category="rental">租车指南 <span class="tab-count">3</span></button>
+    <button class="blog-tab" data-category="alaska">阿拉斯加专区 <span class="tab-count">2</span></button>
+  </div>
+</section>
+
+<!-- ── POSTS ── -->
+<main class="blog-content">
+
+  <!-- Featured Post -->
+  <article class="featured-post" data-category="alaska">
+    <div class="featured-img">
+      <img src="https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=800&q=80&auto=format&fit=crop" alt="阿拉斯加極光">
+    </div>
+    <div class="featured-body">
+      <div class="featured-badge">
+        <i data-lucide="star" style="width:12px;height:12px"></i> 編輯精選
+      </div>
+      <div class="featured-tag post-tag">阿拉斯加專區</div>
+      <h2 class="featured-title">阿拉斯加自駕完整攻略：從安克拉治到迪納利國家公園</h2>
+      <p class="featured-excerpt">
+        這條路線涵蓋阿拉斯加最經典的自駕風景——極光、冰川、野生動物與千年冰川。租車選擇、行駛注意事項、必停景點與最佳拍攝時間，一次整理給你。
+      </p>
+      <div class="featured-meta">
+        <div class="featured-author">
+          <div class="featured-author-avatar">SH</div>
+          <div class="featured-author-info">
+            <div class="featured-author-name">Sky Horse 編輯部</div>
+            <div class="featured-date-time">2026/4/20 · 12 分鐘閱讀</div>
+          </div>
+        </div>
+      </div>
+      <a href="#" class="featured-action">
+        閱讀全文
+        <i data-lucide="arrow-right"></i>
+      </a>
+    </div>
+  </article>
+
+  <!-- Section label -->
+  <div class="section-label">最新文章</div>
+
+  <!-- Posts Grid -->
+  <div class="posts-grid">
+
+    <!-- Post 1 -->
+    <article class="post-card" data-category="celebrity">
+      <div class="post-img">
+        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80&auto=format&fit=crop" alt="名人推薦">
+      </div>
+      <div class="post-body">
+        <h3 class="post-title">
+          <span class="post-tag">名人推薦</span>
+          Joeman、百靈果、博恩三大 YouTuber 一致推薦的加州租車品牌
+        </h3>
+        <p class="post-excerpt">為什麼這群行程密集的創作者都選 Sky Horse？從接送服務、車款品質到突發狀況處理，真實訪談一次公開。</p>
+        <div class="post-footer">
+          <div class="post-author">
+            <div class="post-author-avatar">SH</div>
+            <span class="post-author-name">編輯部</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <span class="post-read-time">8 分鐘</span>
+            <a href="#" class="post-read-link">閱讀 <i data-lucide="arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Post 2 -->
+    <article class="post-card" data-category="guide">
+      <div class="post-img">
+        <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&q=80&auto=format&fit=crop" alt="一號公路">
+      </div>
+      <div class="post-body">
+        <h3 class="post-title">
+          <span class="post-tag">自駕攻略</span>
+          加州一號公路自駕：分段行程規劃 × 必停景點清單
+        </h3>
+        <p class="post-excerpt">從舊金山到洛杉矶，一號公路怎麼拆成兩天最順？Big Sur 封路即時路況、秘境海灘與懸崖日落，零遺憾行程表。</p>
+        <div class="post-footer">
+          <div class="post-author">
+            <div class="post-author-avatar">SH</div>
+            <span class="post-author-name">編輯部</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <span class="post-read-time">10 分鐘</span>
+            <a href="#" class="post-read-link">閱讀 <i data-lucide="arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Post 3 -->
+    <article class="post-card" data-category="rental">
+      <div class="post-img">
+        <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&q=80&auto=format&fit=crop" alt="租車指南">
+      </div>
+      <div class="post-body">
+        <h3 class="post-title">
+          <span class="post-tag">租車指南</span>
+          美國租車英文不用怕：預訂、取車、保險英文例句大全
+        </h3>
+        <p class="post-excerpt">機場取車遇到狀況怎麼說？保險理賠怎麼處理？備齊機場、海關、加油站常見英文，旅途更順暢。</p>
+        <div class="post-footer">
+          <div class="post-author">
+            <div class="post-author-avatar">SH</div>
+            <span class="post-author-name">編輯部</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <span class="post-read-time">6 分鐘</span>
+            <a href="#" class="post-read-link">閱讀 <i data-lucide="arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Post 4 -->
+    <article class="post-card" data-category="guide">
+      <div class="post-img">
+        <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=600&q=80&auto=format&fit=crop" alt="拉斯維加斯">
+      </div>
+      <div class="post-body">
+        <h3 class="post-title">
+          <span class="post-tag">自駕攻略</span>
+          拉斯維加斯出發三天自駕：死亡谷國家公園行程攻略
+        </h3>
+        <p class="post-excerpt">從紙醉金迷的 Vegas 開進地球最極端的沙漠地形。行車距離、遊客中心資訊、日落拍攝點與高溫行車安全提醒。</p>
+        <div class="post-footer">
+          <div class="post-author">
+            <div class="post-author-avatar">SH</div>
+            <span class="post-author-name">編輯部</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <span class="post-read-time">9 分鐘</span>
+            <a href="#" class="post-read-link">閱讀 <i data-lucide="arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Post 5 -->
+    <article class="post-card" data-category="celebrity">
+      <div class="post-img">
+        <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600&q=80&auto=format&fit=crop" alt="媒體採訪">
+      </div>
+      <div class="post-body">
+        <h3 class="post-title">
+          <span class="post-tag">名人推薦</span>
+          鏡周刊獨家專訪：Sky Horse 如何用服務差異化切入留學租車市場
+        </h3>
+        <p class="post-excerpt">從接送機到行李寄存，Sky Horse 針對留學生族群設計的服務細節，以及品牌如何在加州租車紅海市場中找到定位。</p>
+        <div class="post-footer">
+          <div class="post-author">
+            <div class="post-author-avatar">SH</div>
+            <span class="post-author-name">編輯部</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <span class="post-read-time">7 分鐘</span>
+            <a href="#" class="post-read-link">閱讀 <i data-lucide="arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Post 6 -->
+    <article class="post-card" data-category="rental">
+      <div class="post-img">
+        <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=600&q=80&auto=format&fit=crop" alt="保險">
+      </div>
+      <div class="post-body">
+        <h3 class="post-title">
+          <span class="post-tag">租車指南</span>
+          美國租車保險完整解析：CDW、Liability、PAS 全攻略
+        </h3>
+        <p class="post-excerpt">車行推的保險該不該加？信用卡提供的保險理賠範圍是什麼？台灣旅平險能cover多少？一張圖表看懂所有選項。</p>
+        <div class="post-footer">
+          <div class="post-author">
+            <div class="post-author-avatar">SH</div>
+            <span class="post-author-name">編輯部</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <span class="post-read-time">11 分鐘</span>
+            <a href="#" class="post-read-link">閱讀 <i data-lucide="arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Post 7 -->
+    <article class="post-card" data-category="alaska">
+      <div class="post-img">
+        <img src="https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=600&q=80&auto=format&fit=crop" alt="極光">
+      </div>
+      <div class="post-body">
+        <h3 class="post-title">
+          <span class="post-tag">阿拉斯加專區</span>
+          費爾班克斯追光指南：極光預測、拍攝設定與保暖裝備清單
+        </h3>
+        <p class="post-excerpt">KP指數怎麼看？哪個時間帶運氣最好？手機與相機設定技巧，以及零下三十度自駕的安全準備。</p>
+        <div class="post-footer">
+          <div class="post-author">
+            <div class="post-author-avatar">SH</div>
+            <span class="post-author-name">編輯部</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <span class="post-read-time">8 分鐘</span>
+            <a href="#" class="post-read-link">閱讀 <i data-lucide="arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Post 8 -->
+    <article class="post-card" data-category="guide">
+      <div class="post-img">
+        <img src="https://images.unsplash.com/photo-3975708952083-cf2c7b703bb1?w=600&q=80&auto=format&fit=crop" alt="羚羊谷">
+      </div>
+      <div class="post-body">
+        <h3 class="post-title">
+          <span class="post-tag">自駕攻略</span>
+          羚羊谷與馬蹄灣自駕：停車、門票預約與最佳拍攝時間
+        </h3>
+        <p class="post-excerpt">上下羚羊谷怎麼選？馬蹄灣停車場現在免費嗎？開普通轎車能去嗎？季節性路況與行程串連建議。</p>
+        <div class="post-footer">
+          <div class="post-author">
+            <div class="post-author-avatar">SH</div>
+            <span class="post-author-name">編輯部</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <span class="post-read-time">7 分鐘</span>
+            <a href="#" class="post-read-link">閱讀 <i data-lucide="arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Post 9 -->
+    <article class="post-card" data-category="celebrity">
+      <div class="post-img">
+        <img src="https://images.unsplash.com/photo-1527613426441-4da17471b66d?w=600&q=80&auto=format&fit=crop" alt="名人">
+      </div>
+      <div class="post-body">
+        <h3 class="post-title">
+          <span class="post-tag">名人推薦</span>
+          博恩遠離南北戰爭帶：飛行里程與公路旅行的選擇思考
+        </h3>
+        <p class="post-excerpt">Podcast 主持人博恩的美國自駕經驗談——選擇租車而非機票的理由，沿途最推薦的公路音樂清單，以及他眼中最美的高速公路路段。</p>
+        <div class="post-footer">
+          <div class="post-author">
+            <div class="post-author-avatar">SH</div>
+            <span class="post-author-name">編輯部</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <span class="post-read-time">6 分鐘</span>
+            <a href="#" class="post-read-link">閱讀 <i data-lucide="arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- Newsletter -->
+  <div class="newsletter">
+    <div class="newsletter-left">
+      <div class="newsletter-title">第一時間收到新攻略</div>
+      <div class="newsletter-sub">每週精選自駕路線、租車建議與限定優惠，整理成電子報寄送給你。</div>
+    </div>
+    <form class="newsletter-form" onsubmit="return false;">
+      <input type="email" class="newsletter-input" placeholder="輸入你的電子信箱">
+      <button type="submit" class="newsletter-btn">訂閱</button>
+    </form>
+  </div>
+
+</main>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="image/SkyHorse.svg" alt="Sky Horse" style="height:28px;width:auto;">
+      <div class="footer-brand-name">Sky Horse 天馬租車</div>
+    </div>
+    <div class="footer-copy">&copy; 2026 Sky Horse Auto. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  // Init Lucide icons
+  lucide.createIcons();
+
+  // Category filter
+  const tabs = document.querySelectorAll('.blog-tab');
+  const posts = document.querySelectorAll('.post-card, .featured-post');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const cat = tab.dataset.category;
+      posts.forEach(post => {
+        if (cat === 'all' || post.dataset.category === cat) {
+          post.style.display = '';
+        } else {
+          post.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
