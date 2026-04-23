@@ -818,6 +818,34 @@
       max-width: 1280px;
       margin: 0 auto;
     }
+    .section-view-all-wrap {
+      display: flex;
+      justify-content: center;
+      padding-top: 40px;
+    }
+    .section-view-all {
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 700;
+      color: #060606;
+      background: #FFDC22;
+      text-decoration: none;
+      padding: 12px 26px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: background 0.15s, transform 0.15s;
+      letter-spacing: 0.3px;
+    }
+    .section-view-all:hover {
+      background: #ffe640;
+      transform: translateY(-1px);
+    }
+    .section-view-all svg {
+      width: 12px;
+      height: 12px;
+    }
     .car-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -884,19 +912,6 @@
       color: #FFDC22;
     }
     .car-price span { font-size: 12px; font-weight: 400; color: rgba(255,255,255,0.4); margin-left: 2px; }
-    .car-cta {
-      font-family: var(--font-display);
-      font-size: 12px; font-weight: 700;
-      color: #060606; background: #FFDC22;
-      text-decoration: none;
-      padding: 10px 20px; border-radius: 6px;
-      display: inline-flex; align-items: center; gap: 4px;
-      transition: background 0.15s, transform 0.15s;
-      letter-spacing: 0.3px;
-    }
-    .car-cta:hover { background: #ffe640; transform: translateY(-1px); }
-    .car-cta svg { width: 12px; height: 12px; }
-
     /* ══════════════════════════════════════
        AIRPORTS — Large type editorial
     ══════════════════════════════════════ */
@@ -1267,6 +1282,8 @@
       .cat-card-body { padding: 12px 16px 0; gap: 6px; }
       .cat-card-footer { padding: 8px 16px 16px; }
       .cars-footer { padding: 24px 20px 0; }
+      .section-view-all-wrap { padding-top: 28px; }
+      .section-view-all { padding: 11px 24px; }
       .airports-section { padding: 60px 20px; }
       .airports-grid { grid-template-columns: repeat(2, 1fr); }
       .cta-inner { flex-direction: column; text-align: center; }
@@ -1641,6 +1658,9 @@
       </div>
 
     </div>
+    <div class="section-view-all-wrap">
+      <a href="blog.html" class="section-view-all">查看全部 <i data-lucide="arrow-right"></i></a>
+    </div>
   </div>
 </section>
 
@@ -1750,7 +1770,7 @@
   </div>
 
   <div class="cars-footer">
-    <a href="/fleet.html" class="car-cta">查看全部車款 <i data-lucide="arrow-right"></i></a>
+    <a href="/fleet.html" class="section-view-all">查看全部 <i data-lucide="arrow-right"></i></a>
   </div>
 
 </section>
@@ -2020,6 +2040,14 @@
   document.querySelectorAll('.section-header, .adv-card, .car-card, .airport-card, .celeb-quote-panel, .celeb-mini, .stat-item').forEach(el => {
     el.classList.add('reveal');
     observer.observe(el);
+  });
+
+  // Demo article links
+  document.querySelectorAll('.blog-card').forEach(card => {
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', () => {
+      window.location.href = 'article.html';
+    });
   });
 
   // Booking form → LINE
