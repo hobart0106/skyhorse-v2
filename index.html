@@ -303,8 +303,14 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      flex-wrap: wrap;
+      justify-content: space-between;
       margin-top: 24px;
+    }
+    .blog-cta-primary {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
     }
     .blog-cta-tags {
       display: flex;
@@ -342,10 +348,39 @@
       font-size: 11px;
       color: var(--ink-tertiary);
     }
+    .blog-cta-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-left: auto;
+    }
+    .blog-cta-switch {
+      width: 48px;
+      height: 48px;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background: transparent;
+      cursor: pointer;
+      opacity: 0.86;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .blog-cta-switch:hover {
+      opacity: 1;
+      transform: translateY(-2px);
+    }
+    .blog-cta-switch img {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .blog-cta-switch.is-prev img {
+      transform: rotate(180deg);
+    }
     .blog-cta-media {
       position: relative;
       display: block;
-      border-radius: var(--r-xl);
+      border-radius: 20px;
       overflow: hidden;
       border: 1px solid rgba(255,255,255,0.14);
       background: #080808;
@@ -370,35 +405,6 @@
     .blog-cta-media:hover img {
       transform: scale(1.03);
       filter: brightness(1.08);
-    }
-    .blog-cta-play {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      z-index: 2;
-      transform: translate(-50%, -50%);
-      width: 96px;
-      height: 96px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.92);
-      color: #060606;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 16px 50px rgba(0,0,0,0.35);
-      transition: transform 0.25s var(--ease-out), background 0.25s;
-    }
-    .blog-cta-media:hover .blog-cta-play {
-      transform: translate(-50%, -50%) scale(1.06);
-      background: #fff;
-    }
-    .blog-cta-play svg {
-      width: 40px;
-      height: 40px;
-      margin-left: 4px;
-      fill: currentColor;
-      stroke: currentColor;
-      stroke-width: 2;
     }
     .blog-cta-media-label {
       position: absolute;
@@ -434,10 +440,13 @@
       .blog-cta-content { max-width: none; }
       .blog-cta-sub { margin: 0 auto 20px; }
       .blog-cta-tags { justify-content: center; }
-      .blog-cta-actions { justify-content: center; }
-      .blog-cta-media { border-radius: var(--r-lg); }
-      .blog-cta-play { width: 72px; height: 72px; }
-      .blog-cta-play svg { width: 30px; height: 30px; }
+      .blog-cta-actions {
+        justify-content: center;
+        flex-direction: column;
+      }
+      .blog-cta-primary { justify-content: center; }
+      .blog-cta-controls { justify-content: center; }
+      .blog-cta-media { border-radius: 20px; }
     }
 
     /* Booking Form Section */
@@ -1351,34 +1360,41 @@
     <div class="blog-cta-content">
       <div class="blog-cta-eyebrow">
         <i data-lucide="newspaper" style="width:14px;height:14px"></i>
-        媒體報導與行程攻略
+        <span id="promoEyebrow">優惠合作與旅程攻略</span>
       </div>
-      <h2 class="blog-cta-title">名人體驗｜Joeman 加州體驗<br>平價車款 VS 奢華租車大對決！</h2>
-      <p class="blog-cta-sub">
-        Joeman（九妹）的第一集《Joe是要對決》就是租車的對決，這次整體升級2.0版，不僅車款升級，地點也移到了美國加州，來次不一樣的公路旅行大挑戰！
+      <h2 class="blog-cta-title" id="promoTitle">中華航空合作優惠｜搭機租車<br>85 折，華航旅客專屬美國自駕方案！</h2>
+      <p class="blog-cta-sub" id="promoSub">
+        SkyHorse 與中華航空合作推出旅客專屬租車優惠，搭乘華航前往美國，即可享租車 85 折起。抵達 PHX、LAX、SFO、ONT 等熱門機場後，中文服務協助取還車，讓你的美國公路旅行從落地開始更順暢。
       </p>
-      <div class="blog-cta-tags">
-        <span>名人推薦</span>
-        <span>自駕攻略</span>
-        <span>租車指南</span>
-        <span>阿拉斯加專區</span>
+      <div class="blog-cta-tags" id="promoTags">
+        <span>中華航空</span>
+        <span>租車優惠</span>
+        <span>機場取還車</span>
+        <span>美國自駕</span>
       </div>
       <div class="blog-cta-actions">
-        <a href="blog.html" class="blog-cta-btn">
-          瀏覽全部文章
-          <i data-lucide="arrow-right"></i>
-        </a>
-        <div class="blog-cta-count">精選文章</div>
+        <div class="blog-cta-primary">
+          <a href="blog.html" class="blog-cta-btn" id="promoButton">
+            <span id="promoButtonText">立即查看優惠</span>
+            <i data-lucide="arrow-right"></i>
+          </a>
+          <div class="blog-cta-count" id="promoCount">華航旅客專屬優惠</div>
+        </div>
+        <div class="blog-cta-controls" aria-label="切換優惠資訊">
+          <button class="blog-cta-switch is-prev" type="button" id="promoPrev" aria-label="上一則資訊">
+            <img src="image/action_arrow.svg" alt="">
+          </button>
+          <button class="blog-cta-switch is-next" type="button" id="promoNext" aria-label="下一則資訊">
+            <img src="image/action_arrow.svg" alt="">
+          </button>
+        </div>
       </div>
     </div>
-    <a href="#" class="blog-cta-media" aria-label="觀看 SkyHorse 實測影片">
-      <img src="image/video.png" alt="SkyHorse 租車實測影片縮圖" loading="lazy">
-      <span class="blog-cta-play" aria-hidden="true">
-        <i data-lucide="play"></i>
-      </span>
+    <a href="#" class="blog-cta-media" id="promoMedia" aria-label="查看 SkyHorse 與中華航空合作租車優惠">
+      <img src="image/banner-demo.png" alt="SkyHorse 與中華航空合作租車 85 折優惠" loading="lazy" id="promoImage">
       <span class="blog-cta-media-label">
-        <i data-lucide="video"></i>
-        實測影片
+        <i data-lucide="plane" id="promoMediaIcon"></i>
+        <span id="promoMediaLabel">合作優惠</span>
       </span>
     </a>
   </div>
@@ -1884,6 +1900,85 @@
 <script>
   // Init Lucide icons
   lucide.createIcons();
+
+  // Promo carousel
+  const promoSlides = [
+    {
+      eyebrow: '優惠合作與旅程攻略',
+      title: '中華航空合作優惠｜搭機租車<br>85 折，華航旅客專屬美國自駕方案！',
+      sub: 'SkyHorse 與中華航空合作推出旅客專屬租車優惠，搭乘華航前往美國，即可享租車 85 折起。抵達 PHX、LAX、SFO、ONT 等熱門機場後，中文服務協助取還車，讓你的美國公路旅行從落地開始更順暢。',
+      tags: ['中華航空', '租車優惠', '機場取還車', '美國自駕'],
+      buttonText: '立即查看優惠',
+      buttonHref: 'blog.html',
+      count: '華航旅客專屬優惠',
+      mediaHref: '#',
+      image: 'image/banner-demo.png',
+      imageAlt: 'SkyHorse 與中華航空合作租車 85 折優惠',
+      mediaLabel: '合作優惠',
+      mediaIcon: 'plane',
+      mediaAria: '查看 SkyHorse 與中華航空合作租車優惠'
+    },
+    {
+      eyebrow: '媒體報導與行程攻略',
+      title: '名人體驗｜Joeman 加州體驗<br>平價車款 VS 奢華租車大對決！',
+      sub: 'Joeman（九妹）的第一集《Joe是要對決》就是租車的對決，這次整體升級2.0版，不僅車款升級，地點也移到了美國加州，來次不一樣的公路旅行大挑戰！',
+      tags: ['名人推薦', '自駕攻略', '租車指南', '加州體驗'],
+      buttonText: '瀏覽全部文章',
+      buttonHref: 'blog.html',
+      count: '精選文章',
+      mediaHref: '#',
+      image: 'image/video.png',
+      imageAlt: 'SkyHorse 租車實測影片縮圖',
+      mediaLabel: '實測影片',
+      mediaIcon: 'video',
+      mediaAria: '觀看 SkyHorse 實測影片'
+    }
+  ];
+
+  let promoIndex = 0;
+  const promoEls = {
+    eyebrow: document.getElementById('promoEyebrow'),
+    title: document.getElementById('promoTitle'),
+    sub: document.getElementById('promoSub'),
+    tags: document.getElementById('promoTags'),
+    button: document.getElementById('promoButton'),
+    buttonText: document.getElementById('promoButtonText'),
+    count: document.getElementById('promoCount'),
+    media: document.getElementById('promoMedia'),
+    image: document.getElementById('promoImage'),
+    mediaLabel: document.querySelector('.blog-cta-media-label'),
+    prev: document.getElementById('promoPrev'),
+    next: document.getElementById('promoNext')
+  };
+
+  function renderPromoSlide(index) {
+    const slide = promoSlides[index];
+    if (!slide || !promoEls.title) return;
+
+    promoEls.eyebrow.textContent = slide.eyebrow;
+    promoEls.title.innerHTML = slide.title;
+    promoEls.sub.textContent = slide.sub;
+    promoEls.tags.innerHTML = slide.tags.map(tag => `<span>${tag}</span>`).join('');
+    promoEls.button.href = slide.buttonHref;
+    promoEls.buttonText.textContent = slide.buttonText;
+    promoEls.count.textContent = slide.count;
+    promoEls.media.href = slide.mediaHref;
+    promoEls.media.setAttribute('aria-label', slide.mediaAria);
+    promoEls.image.src = slide.image;
+    promoEls.image.alt = slide.imageAlt;
+    promoEls.mediaLabel.innerHTML = `<i data-lucide="${slide.mediaIcon}"></i><span id="promoMediaLabel">${slide.mediaLabel}</span>`;
+    lucide.createIcons();
+  }
+
+  promoEls.prev?.addEventListener('click', () => {
+    promoIndex = (promoIndex - 1 + promoSlides.length) % promoSlides.length;
+    renderPromoSlide(promoIndex);
+  });
+
+  promoEls.next?.addEventListener('click', () => {
+    promoIndex = (promoIndex + 1) % promoSlides.length;
+    renderPromoSlide(promoIndex);
+  });
 
   // Scroll reveal
   const observer = new IntersectionObserver((entries) => {
