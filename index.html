@@ -87,9 +87,17 @@
     .nav-inner {
       max-width: 1280px; margin: 0 auto; padding: 0 40px;
       height: 64px; display: flex; align-items: center; justify-content: space-between;
+      gap: 24px;
+    }
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      min-width: 0;
     }
     .nav-logo {
       display: flex; align-items: center; gap: 12px; text-decoration: none;
+      flex-shrink: 0;
     }
     .nav-logo-mark {
       width: 36px; height: 36px;
@@ -108,6 +116,37 @@
       font-size: 10px; font-weight: 400;
       color: var(--ink-tertiary); letter-spacing: 0.5px;
       display: block; margin-top: -2px;
+    }
+    .nav-business-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.03);
+      min-width: 0;
+    }
+    .nav-business-link {
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink-secondary);
+      text-decoration: none;
+      line-height: 1;
+      padding: 9px 14px;
+      border-radius: 999px;
+      transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+      white-space: nowrap;
+    }
+    .nav-business-link:hover {
+      color: var(--ink-primary);
+      background: rgba(255,255,255,0.04);
+    }
+    .nav-business-link.is-active {
+      color: #060606;
+      background: var(--gold);
+      box-shadow: 0 6px 20px rgba(255,220,34,0.18);
     }
     .nav-links {
       display: flex; align-items: center; gap: 4px;
@@ -592,13 +631,13 @@
     .section-eyebrow {
       display: inline-flex; align-items: center; gap: 10px;
       font-family: var(--font-mono);
-      font-size: 10px; font-weight: 500;
-      letter-spacing: 2px; text-transform: uppercase;
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 3.5px; text-transform: uppercase;
       color: var(--gold); margin-bottom: 16px;
     }
     .section-eyebrow::before {
       content: ''; display: block;
-      width: 20px; height: 1px; background: var(--gold);
+      width: 28px; height: 1px; background: var(--gold);
     }
     .section-title {
       font-family: var(--font-display);
@@ -870,9 +909,9 @@
     .car-body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
     .car-badge {
       display: inline-flex; align-items: center; gap: 5px;
-      background: rgba(255,220,34,0.12);
-      border: 1px solid rgba(255,220,34,0.3);
-      color: #FFDC22;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.16);
+      color: #fff;
       font-size: 9px; font-weight: 600;
       letter-spacing: 1px; text-transform: uppercase;
       padding: 3px 8px; border-radius: 4px;
@@ -1092,9 +1131,9 @@
     }
     .blog-tag.active,
     .blog-tag:hover {
-      background: rgba(255,220,34,0.12);
-      border-color: rgba(255,220,34,0.3);
-      color: #FFDC22;
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.92);
+      color: #fff;
     }
     .blog-grid {
       display: grid;
@@ -1129,7 +1168,7 @@
       font-weight: 700;
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      color: #FFDC22;
+      color: rgba(255,255,255,0.82);
       margin-bottom: 10px;
     }
     .blog-card-title {
@@ -1269,6 +1308,12 @@
       .nav-links { display: none; }
       .nav-menu-btn { display: flex; }
       .nav-inner { padding: 0 20px; }
+      .nav-left { gap: 10px; }
+      .nav-business-switch { padding: 3px; }
+      .nav-business-link {
+        font-size: 11px;
+        padding: 8px 10px;
+      }
       .hero-content { padding: 100px 20px 40px; }
       .hero-widget { padding: 0 20px 60px; }
       .section { padding: 72px 20px; }
@@ -1328,14 +1373,19 @@
 <!-- ── NAV ── -->
 <nav>
   <div class="nav-inner">
-    <a href="#" class="nav-logo">
-      <img src="image/SkyHorse.svg" alt="SkyHorse Auto" style="height:34px;width:auto;">
-    </a>
+    <div class="nav-left">
+      <a href="#" class="nav-logo">
+        <img src="image/SkyHorse.svg" alt="SkyHorse Auto" style="height:34px;width:auto;">
+      </a>
+      <div class="nav-business-switch" aria-label="業務模塊切換">
+        <a href="index.html" class="nav-business-link is-active">美國租車</a>
+        <a href="#" class="nav-business-link">阿拉斯加之旅</a>
+      </div>
+    </div>
     <div class="nav-links">
-      <a href="#advantages">服務優勢</a>
+      <a href="#advantages">優勢</a>
       <a href="#cars">車型</a>
-      <a href="#">影片</a>
-      <a href="blog.html">行程攻略</a>
+      <a href="blog.html">攻略</a>
       <a href="#" class="nav-cta">立即預訂</a>
     </div>
     <button class="nav-menu-btn" aria-label="Menu">
@@ -1349,10 +1399,6 @@
   <div class="hero-content">
     <div class="hero-eyebrow">天馬租車</div>
     <h1>你的美國自駕租車夥伴</h1>
-    <p class="hero-sub">
-      落地就取車，各大機場皆可交車。<br>
-      全程中文服務、價格透明、沒有隱藏費用。
-    </p>
     <div class="hero-features">
       <div class="hero-feature">
         <div class="hero-feature-icon"><i data-lucide="message-circle"></i></div>
@@ -1770,7 +1816,7 @@
   </div>
 
   <div class="cars-footer">
-    <a href="/fleet.html" class="section-view-all">查看全部 <i data-lucide="arrow-right"></i></a>
+    <a href="fleet.html" class="section-view-all">查看全部 <i data-lucide="arrow-right"></i></a>
   </div>
 
 </section>
@@ -1918,11 +1964,11 @@
       <div>
         <div class="footer-col-title">車型</div>
         <div class="footer-links">
-          <a href="#">轎車系列</a>
-          <a href="#">SUV 休旅</a>
-          <a href="#">7人座 MPV</a>
-          <a href="#">電動車</a>
-          <a href="#">跑車敞篷</a>
+          <a href="fleet.html">轎車系列</a>
+          <a href="fleet.html">SUV 休旅</a>
+          <a href="fleet.html">7人座 MPV</a>
+          <a href="fleet.html">電動車</a>
+          <a href="fleet.html">跑車敞篷</a>
         </div>
       </div>
       <div>

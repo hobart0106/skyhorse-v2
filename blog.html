@@ -111,14 +111,14 @@
     }
     .blog-hero-eyebrow {
       font-family: var(--font-mono);
-      font-size: 10px; font-weight: 500;
-      letter-spacing: 3px; text-transform: uppercase;
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 3.5px; text-transform: uppercase;
       color: var(--gold); margin-bottom: 20px;
       display: flex; align-items: center; gap: 10px;
     }
     .blog-hero-eyebrow::before {
       content: ''; display: block;
-      width: 20px; height: 1px; background: var(--gold);
+      width: 28px; height: 1px; background: var(--gold);
     }
     .blog-hero-title {
       font-family: var(--font-display);
@@ -128,7 +128,7 @@
       color: var(--ink-primary);
       margin-bottom: 16px;
     }
-    .blog-hero-title strong { color: var(--gold); }
+    .blog-hero-title strong { color: var(--ink-primary); }
     .blog-hero-sub {
       font-size: 16px; font-weight: 300;
       color: var(--ink-secondary);
@@ -139,9 +139,9 @@
     /* ── CATEGORY TABS ── */
     .blog-tabs {
       display: flex; gap: 8px; flex-wrap: wrap;
-      padding-bottom: 48px;
+      padding-bottom: 24px;
       border-bottom: 1px solid var(--border);
-      margin-bottom: 28px;
+      margin-bottom: 36px;
     }
     .blog-tab {
       font-family: var(--font-display);
@@ -161,9 +161,10 @@
       background: rgba(255,255,255,0.08);
     }
     .blog-tab.active {
-      color: #060606;
-      background: var(--gold);
-      border-color: var(--gold);
+      color: var(--ink-primary);
+      background: rgba(255,255,255,0.02);
+      border-color: rgba(255,255,255,0.96);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.35);
       font-weight: 600;
     }
     .blog-tab .tab-count {
@@ -232,7 +233,7 @@
       font-weight: 700;
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      color: #FFDC22;
+      color: rgba(255,255,255,0.82);
       margin-bottom: 10px;
     }
     .post-date {
@@ -299,9 +300,9 @@
       font-size: 9px; font-weight: 700;
       letter-spacing: 1px;
       text-transform: uppercase;
-      color: var(--gold);
-      background: var(--gold-dim);
-      border: 1px solid var(--border-yellow);
+      color: #fff;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.16);
       border-radius: 20px;
       padding: 2px 8px;
       width: fit-content;
@@ -309,7 +310,7 @@
     .featured-badge svg {
       width: 11px;
       height: 11px;
-      color: var(--gold);
+      color: #fff;
     }
     .featured-tag {
       padding: 2px 8px;
@@ -483,9 +484,9 @@
     </a>
     <div class="nav-links">
       <a href="index.html">首頁</a>
+      <a href="index.html#advantages">優勢</a>
       <a href="index.html#cars">車型</a>
-      <a href="#">視頻</a>
-      <a href="blog.html" class="active">行程攻略</a>
+      <a href="blog.html" class="active">攻略</a>
       <a href="#" class="nav-cta">立即預訂</a>
     </div>
     <button class="nav-menu-btn" aria-label="Menu" style="display:none">
@@ -693,19 +694,21 @@
 
   // Category filter
   const tabs = document.querySelectorAll('.blog-tab');
-  const posts = document.querySelectorAll('.post-card, .featured-post');
+  const featuredPost = document.querySelector('.featured-post');
+  const sectionLabel = document.querySelector('.section-label');
+  const posts = document.querySelectorAll('.post-card');
 
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
       tabs.forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
       const cat = tab.dataset.category;
+
+      if (featuredPost) featuredPost.style.display = cat === 'all' ? '' : 'none';
+      if (sectionLabel) sectionLabel.style.display = cat === 'all' ? '' : 'none';
+
       posts.forEach(post => {
-        if (cat === 'all' || post.dataset.category === cat) {
-          post.style.display = '';
-        } else {
-          post.style.display = 'none';
-        }
+        post.style.display = cat === 'all' || post.dataset.category === cat ? '' : 'none';
       });
     });
   });

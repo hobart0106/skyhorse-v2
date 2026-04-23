@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>車款介紹 | Sky Horse 天馬租車</title>
+  <meta name="description" content="Sky Horse 天馬租車全車型介紹。轎車、休旅車、廂型車、電動車，透明價格，無隱藏費用。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-base:     #060606;
+      --bg-surface:  #0e0e0e;
+      --bg-elevated: #161616;
+      --bg-card:     #111111;
+      --border:     rgba(255,255,255,0.06);
+      --border-mid:  rgba(255,255,255,0.12);
+      --border-yellow: rgba(255,209,0,0.4);
+      --gold:        #FFDC22;
+      --gold-bright: #F5C94E;
+      --gold-dim:    rgba(232,184,75,0.12);
+      --gold-glow:   rgba(232,184,75,0.08);
+      --ink-primary:   #F2F2F2;
+      --ink-secondary: #8A8A8A;
+      --ink-tertiary:  #4A4A4A;
+      --font-display: 'Space Grotesk', 'Noto Sans TC', sans-serif;
+      --font-body:    'Noto Sans TC', sans-serif;
+      --font-mono:    'JetBrains Mono', monospace;
+      --r-sm: 6px; --r-md: 10px; --r-lg: 16px; --r-xl: 24px;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-base);
+      color: var(--ink-primary);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg-base); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(6,6,6,0.85);
+      backdrop-filter: blur(24px) saturate(180%);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1280px; margin: 0 auto; padding: 0 40px;
+      height: 64px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 4px;
+    }
+    .nav-links a {
+      font-size: 13px; font-weight: 400;
+      color: var(--ink-secondary);
+      text-decoration: none; padding: 6px 14px;
+      border-radius: var(--r-sm);
+      transition: color 0.15s, background 0.15s;
+    }
+    .nav-links a:hover { color: var(--ink-primary); background: rgba(255,255,255,0.04); }
+    .nav-links a.active { color: var(--ink-primary); background: rgba(255,255,255,0.06); }
+    .nav-cta {
+      background: var(--gold) !important;
+      color: #060606 !important;
+      font-weight: 600 !important;
+    }
+    .nav-cta:hover { background: var(--gold-bright) !important; }
+
+    /* ── HERO ── */
+    .fleet-hero {
+      padding: 120px 40px 64px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .fleet-hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 3.5px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 20px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .fleet-hero-eyebrow::before {
+      content: ''; display: block;
+      width: 28px; height: 1px; background: var(--gold);
+    }
+    .fleet-hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 800;
+      letter-spacing: -2px; line-height: 1.1;
+      color: var(--ink-primary);
+      margin-bottom: 16px;
+    }
+    .fleet-hero-title strong { color: var(--ink-primary); }
+    .fleet-hero-sub {
+      font-size: 16px; font-weight: 300;
+      color: var(--ink-secondary);
+      max-width: 520px; line-height: 1.8;
+      margin-bottom: 40px;
+    }
+
+    /* ── CATEGORY TABS ── */
+    .fleet-tabs {
+      display: flex; gap: 8px; flex-wrap: wrap;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 36px;
+    }
+    .fleet-tab {
+      font-family: var(--font-display);
+      font-size: 13px; font-weight: 500;
+      color: var(--ink-secondary);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 20px;
+      padding: 7px 18px;
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+      letter-spacing: 0.3px;
+    }
+    .fleet-tab:hover {
+      color: var(--ink-primary);
+      border-color: rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.08);
+    }
+    .fleet-tab.active {
+      color: var(--ink-primary);
+      background: rgba(255,255,255,0.02);
+      border-color: rgba(255,255,255,0.96);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.35);
+      font-weight: 600;
+    }
+
+    /* ── FLEET CONTENT ── */
+    .fleet-content {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 40px 100px;
+    }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 10px; font-weight: 500;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--ink-tertiary);
+      margin-bottom: 24px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .section-label::after {
+      content: ''; flex: 1;
+      height: 1px; background: var(--border);
+    }
+    .category-block { margin-bottom: 64px; }
+    .category-title {
+      font-family: var(--font-display);
+      font-size: 22px; font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--ink-primary);
+      margin-bottom: 8px;
+    }
+    .category-title span { color: var(--ink-primary); }
+    .category-sub {
+      font-size: 13px; color: var(--ink-tertiary);
+      margin-bottom: 28px;
+    }
+
+    /* ── CAR GRID ── */
+    .car-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .car-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      transition: border-color 0.25s, transform 0.25s;
+      display: flex; flex-direction: column;
+    }
+    .car-card:hover {
+      border-color: var(--border-mid);
+      transform: translateY(-4px);
+    }
+    .car-card:hover .car-img img {
+      transform: scale(1.04);
+    }
+    .car-img {
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      background: var(--bg-elevated);
+      flex-shrink: 0;
+      position: relative;
+    }
+    .car-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s var(--ease-out);
+    }
+    .car-badge {
+      position: absolute;
+      top: 12px; left: 12px;
+      font-family: var(--font-display);
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      color: #fff;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 20px;
+      padding: 3px 10px;
+    }
+    .car-body {
+      padding: 20px;
+      display: flex; flex-direction: column;
+      flex: 1; gap: 10px;
+    }
+    .car-type {
+      font-family: var(--font-display);
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 1px; text-transform: uppercase;
+      color: var(--ink-primary);
+    }
+    .car-name {
+      font-family: var(--font-display);
+      font-size: 16px; font-weight: 700;
+      color: var(--ink-primary);
+      line-height: 1.35;
+      letter-spacing: -0.3px;
+    }
+    .car-desc {
+      font-size: 13px; font-weight: 300;
+      color: var(--ink-secondary);
+    }
+    .car-specs {
+      display: flex; flex-wrap: wrap; gap: 6px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+    }
+    .car-spec {
+      display: flex; align-items: center; gap: 5px;
+      font-size: 12px; color: var(--ink-secondary);
+    }
+    .car-spec svg { width: 13px; height: 13px; color: var(--ink-tertiary); flex-shrink: 0; }
+    .car-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 14px;
+      margin-top: auto;
+      border-top: 1px solid var(--border);
+    }
+    .car-price {
+      font-family: var(--font-display);
+      font-size: 18px; font-weight: 700;
+      color: var(--ink-primary);
+    }
+    .car-price span { font-size: 12px; font-weight: 400; color: var(--ink-tertiary); }
+    .car-btn {
+      font-family: var(--font-display);
+      font-size: 12px; font-weight: 700;
+      color: #060606;
+      background: var(--gold);
+      border-radius: var(--r-md);
+      padding: 7px 16px;
+      transition: background 0.15s;
+      white-space: nowrap;
+    }
+    .car-btn:hover { background: var(--gold-bright); }
+    .car-btn.outline {
+      background: transparent;
+      color: var(--gold);
+      border: 1px solid var(--border-yellow);
+    }
+    .car-btn.outline:hover { background: var(--gold-dim); }
+
+    /* ── NEWSLETTER ── */
+    .newsletter {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      padding: 56px 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 40px;
+      margin-top: 64px;
+    }
+    .newsletter-left { max-width: 420px; }
+    .newsletter-title {
+      font-family: var(--font-display);
+      font-size: 24px; font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--ink-primary);
+      margin-bottom: 10px;
+    }
+    .newsletter-sub {
+      font-size: 14px; font-weight: 300;
+      color: var(--ink-secondary);
+      line-height: 1.7;
+    }
+    .newsletter-form { display: flex; gap: 10px; flex: 1; max-width: 400px; }
+    .newsletter-input {
+      flex: 1;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--r-md);
+      padding: 12px 16px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: #fff;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .newsletter-input::placeholder { color: rgba(255,255,255,0.25); }
+    .newsletter-input:focus { border-color: rgba(255,220,34,0.5); }
+    .newsletter-btn {
+      background: var(--gold);
+      color: #060606;
+      font-family: var(--font-display);
+      font-size: 13px; font-weight: 700;
+      padding: 12px 24px;
+      border: none; border-radius: var(--r-md);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.15s;
+    }
+    .newsletter-btn:hover { background: var(--gold-bright); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px;
+      background: var(--bg-surface);
+    }
+    .footer-inner {
+      max-width: 1280px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-brand { display: flex; align-items: center; gap: 12px; }
+    .footer-brand-name {
+      font-family: var(--font-display);
+      font-size: 14px; font-weight: 600;
+      color: var(--ink-primary);
+    }
+    .footer-copy { font-size: 12px; color: var(--ink-tertiary); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .car-grid { grid-template-columns: repeat(2, 1fr); }
+      .newsletter { flex-direction: column; }
+      .newsletter-form { max-width: 100%; width: 100%; }
+    }
+    @media (max-width: 640px) {
+      .fleet-hero { padding: 100px 20px 40px; }
+      .fleet-content { padding: 0 20px 80px; }
+      nav .nav-links { display: none; }
+      .car-grid { grid-template-columns: 1fr; gap: 16px; }
+      .newsletter { padding: 32px 24px; }
+      .newsletter-form { flex-direction: column; }
+      footer { padding: 32px 20px; }
+      .footer-inner { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="image/SkyHorse.svg" alt="Sky Horse" style="height:34px;width:auto;">
+    </a>
+    <div class="nav-links">
+      <a href="index.html">首頁</a>
+      <a href="index.html#advantages">優勢</a>
+      <a href="fleet.html" class="active">車型</a>
+      <a href="blog.html">攻略</a>
+      <a href="#" class="nav-cta">立即預訂</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="fleet-hero">
+  <div class="fleet-hero-eyebrow">Fleet &amp; Vehicles</div>
+  <h1 class="fleet-hero-title">找到適合你的<br><strong>車款與價格</strong></h1>
+  <p class="fleet-hero-sub">
+    全部車型價格透明，無隱藏費用。取車時實際里程表數字多少就收多少，信用評分 700 以上可享優惠。
+  </p>
+
+  <!-- Category Tabs -->
+  <div class="fleet-tabs">
+    <button class="fleet-tab active" data-cat="all">全部車款 <span style="opacity:0.5;font-size:10px">12</span></button>
+    <button class="fleet-tab" data-cat="sedan">轎車 Sedan</button>
+    <button class="fleet-tab" data-cat="suv">休旅車 SUV</button>
+    <button class="fleet-tab" data-cat="van">廂型車 / Van</button>
+    <button class="fleet-tab" data-cat="ev">電動車 / 特殊車型</button>
+  </div>
+</section>
+
+<!-- ── FLEET ── -->
+<main class="fleet-content">
+
+  <!-- ═══ 1. SEDAN ═══ -->
+  <div class="category-block" data-category="sedan">
+    <div class="category-title">轎車 <span>Sedan</span></div>
+    <div class="category-sub">一般商務與旅遊用，適合市區與公路行駛</div>
+
+    <div class="car-grid">
+
+      <!-- Sedan 1 -->
+      <article class="car-card">
+        <div class="car-img">
+          <img src="https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=600&q=80&auto=format&fit=crop" alt="Toyota Corolla">
+          <span class="car-badge">無限里程</span>
+        </div>
+        <div class="car-body">
+          <div class="car-type">中型轎車</div>
+          <div class="car-name">Toyota Corolla 或同級車款</div>
+          <div class="car-desc">省油可靠，市區通勤與長途皆適宜</div>
+          <div class="car-specs">
+            <span class="car-spec"><i data-lucide="users"></i>5人座</span>
+            <span class="car-spec"><i data-lucide="briefcase"></i>1大1小行李</span>
+          </div>
+          <div class="car-footer">
+            <div class="car-price">$59.61<span>/天</span></div>
+            <a href="#" class="car-btn">預約租車</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Sedan 2 -->
+      <article class="car-card">
+        <div class="car-img">
+          <img src="https://images.unsplash.com/photo-1619682817481-e994891cd1f5?w=600&q=80&auto=format&fit=crop" alt="Toyota Camry">
+          <span class="car-badge">無限里程</span>
+        </div>
+        <div class="car-body">
+          <div class="car-type">大型轎車</div>
+          <div class="car-name">Toyota Camry 或同級車款</div>
+          <div class="car-desc">舒適大空間，後座更寬敞，適合长途</div>
+          <div class="car-specs">
+            <span class="car-spec"><i data-lucide="users"></i>5人座</span>
+            <span class="car-spec"><i data-lucide="briefcase"></i>2大行李</span>
+          </div>
+          <div class="car-footer">
+            <div class="car-price">$67.74<span>/天</span></div>
+            <a href="#" class="car-btn">預約租車</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Sedan 3 -->
+      <article class="car-card">
+        <div class="car-img">
+          <img src="https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=600&q=80&auto=format&fit=crop" alt="Tesla Model 3">
+          <span class="car-badge">無限里程</span>
+        </div>
+        <div class="car-body">
+          <div class="car-type">Tesla轎車 — FSD自動駕駛</div>
+          <div class="car-name">Tesla Model 3</div>
+          <div class="car-desc"> Autopilot + FSD 自動輔助駕駛，未來感內裝</div>
+          <div class="car-specs">
+            <span class="car-spec"><i data-lucide="users"></i>5人座</span>
+            <span class="car-spec"><i data-lucide="briefcase"></i>2大行李</span>
+          </div>
+          <div class="car-footer">
+            <div class="car-price">$96.80<span>/天</span></div>
+            <a href="#" class="car-btn">預約租車</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+  <!-- ═══ 2. SUV ═══ -->
+  <div class="category-block" data-category="suv">
+    <div class="category-title">休旅車 <span>SUV</span></div>
+    <div class="category-sub">空間大、通過性強，適合家庭與户外旅遊</div>
+
+    <div class="car-grid">
+
+      <!-- SUV 1 -->
+      <article class="car-card">
+        <div class="car-img">
+          <img src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=600&q=80&auto=format&fit=crop" alt="Honda CR-V">
+          <span class="car-badge">無限里程</span>
+        </div>
+        <div class="car-body">
+          <div class="car-type">休旅車</div>
+          <div class="car-name">Honda CR-V 或同級車款</div>
+          <div class="car-desc">家用首選，乘坐舒適，行李空間充裕</div>
+          <div class="car-specs">
+            <span class="car-spec"><i data-lucide="users"></i>5人座</span>
+            <span class="car-spec"><i data-lucide="briefcase"></i>4大行李</span>
+          </div>
+          <div class="car-footer">
+            <div class="car-price">$79.88<span>/天</span></div>
+            <a href="#" class="car-btn">預約租車</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- SUV 2 -->
+      <article class="car-card">
+        <div class="car-img">
+          <img src="https://images.unsplash.com/photo-1606611013016-969c19ba27bb?w=600&q=80&auto=format&fit=crop" alt="Subaru Outback">
+          <span class="car-badge">四驅</span>
+        </div>
+        <div class="car-body">
+          <div class="car-type">四驅休旅車</div>
+          <div class="car-name">Subaru Outback 或同級車款</div>
+          <div class="car-desc">AWD 四驅系統，雨天抓地力佳，適用輕度越野</div>
+          <div class="car-specs">
+            <span class="car-spec"><i data-lucide="users"></i>5人座</span>
+            <span class="car-spec"><i data-lucide="briefcase"></i>4大行李</span>
+          </div>
+          <div class="car-footer">
+            <div class="car-price">$94.04<span>/天</span></div>
+            <a href="#" class="car-btn">預約租車</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- SUV 3 -->
+      <article class="car-card">
+        <div class="car-img">
+          <img src="https://images.unsplash.com/photo-1606016159991-dfe4f2746ad5?w=600&q=80&auto=format&fit=crop" alt="Porsche Macan">
+          <span class="car-badge">豪華</span>
+        </div>
+        <div class="car-body">
+          <div class="car-type">豪華休旅車</div>
+          <div class="car-name">Porsche Macan 或同級車款</div>
+          <div class="car-desc">德系豪華品牌，動力充沛，乘坐體驗頂級</div>
+          <div class="car-specs">
+            <span class="car-spec"><i data-lucide="users"></i>5人座</span>
+            <span class="car-spec"><i data-lucide="briefcase"></i>4大行李</span>
+          </div>
+          <div class="car-footer">
+            <div class="car-price">$108.42<span>/天</span></div>
+            <a href="#" class="car-btn">預約租車</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- SUV 4 -->
+      <article class="car-card">
+        <div class="car-img">
+          <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?w=600&q=80&auto=format&fit=crop" alt="Tesla Model Y">
+          <span class="car-badge">FSD</span>
+        </div>
+        <div class="car-body">
+          <div class="car-type">Tesla休旅車 — FSD自動駕駛</div>
+          <div class="car-name">Tesla Model Y</div>
+          <div class="car-desc">續航力佳，FSD 自動輔助駕駛，空間實用</div>
+          <div class="car-specs">
+            <span class="car-spec"><i data-lucide="users"></i>5人座</span>
+            <span class="car-spec"><i data-lucide="briefcase"></i>4大行李</span>
+          </div>
+          <div class="car-footer">
+            <div class="car-price">$112.00<span>/天</span></div>
+            <a href="#" class="car-btn">預約租車</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- SUV 5 -->
+      <article class="car-card">
+        <div class="car-img">
+          <img src="https://www.topgear.com/sites/default/files/2024/04/1-Jeep-Wrangler-review-2024.jpg" alt="Jeep Wrangler">
+          <span class="car-badge">越野</span>
+        </div>
+        <div class="car-body">
+          <div class="car-type">Jeep系列 — 經典四驅越野車</div>
+          <div class="car-name">Jeep Wrangler</div>
+          <div class="car-desc">硬派越野標杆，拆頂設計，深度戶外玩家首選</div>
+          <div class="car-specs">
+            <span class="car-spec"><i data-lucide="users"></i>5人座</span>
+            <span class="car-spec"><i data-lucide="briefcase"></i>2大行李</span>
+          </div>
+          <div class="car-footer">
+            <div class="car-price">$107.52<span>/天</span></div>
+            <a href="#" class="car-btn">預約租車</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+  <!-- ═══ 3. VAN ═══ -->
+  <div class="category-block" data-category="van">
+    <div class="category-title">廂型車 / <span>Van</span></div>
+    <div class="category-sub">多人乘載，行李空間大，適合家庭出遊與團體用車</div>
+
+    <div class="car-grid">
+
+      <!-- Van 1 -->
+      <article class="car-card">
+        <div class="car-img">
+          <img src="https://images.unsplash.com/photo-1559416523-140ddc3d238c?w=600&q=80&auto=format&fit=crop" alt="Honda Odyssey">
+          <span class="car-badge">無限里程</span>
+        </div>
+        <div class="car-body">
+          <div class="car-type">迷你廂型車</div>
+          <div class="car-name">Honda Odyssey 或同級車款</div>
+          <div class="car-desc">七人座 MPV，滑門設計，家庭出遊首選</div>
+          <div class="car-specs">
+            <span class="car-spec"><i data-lucide="users"></i>7人座</span>
+            <span class="car-spec"><i data-lucide="briefcase"></i>4大行李</span>
+          </div>
+          <div class="car-footer">
+            <div class="car-price">$108.42<span>/天</span></div>
+            <a href="#" class="car-btn">預約租車</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Van 2 -->
+      <article class="car-card">
+        <div class="car-img">
+          <img src="https://di-uploads-pod3.dealerinspire.com/fletcherjonesmotorcarsoffremont/uploads/2020/02/MB-Metris-Gallery-Passenger-Van-02.jpg" alt="Mercedes-Benz Metris">
+          <span class="car-badge">無限里程</span>
+        </div>
+        <div class="car-body">
+          <div class="car-type">中型廂型車</div>
+          <div class="car-name">Mercedes-Benz Metris 或同級車款</div>
+          <div class="car-desc">八人座，星級品牌，商務與旅遊皆適宜</div>
+          <div class="car-specs">
+            <span class="car-spec"><i data-lucide="users"></i>8人座</span>
+            <span class="car-spec"><i data-lucide="briefcase"></i>6大行李</span>
+          </div>
+          <div class="car-footer">
+            <div class="car-price">$139.31<span>/天</span></div>
+            <a href="#" class="car-btn">預約租車</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Van 3 -->
+      <article class="car-card">
+        <div class="car-img">
+          <img src="https://img.cdn.dragon2000.net/C2095/N10332/IMG_59430-large.jpg" alt="Ford Transit">
+          <span class="car-badge">無限里程</span>
+        </div>
+        <div class="car-body">
+          <div class="car-type">大型廂型車</div>
+          <div class="car-name">Ford Transit 350 或同級車款</div>
+          <div class="car-desc">九人座最大空間，大型行李或設備輕鬆裝載</div>
+          <div class="car-specs">
+            <span class="car-spec"><i data-lucide="users"></i>9人座</span>
+            <span class="car-spec"><i data-lucide="briefcase"></i>9大行李</span>
+          </div>
+          <div class="car-footer">
+            <div class="car-price">$150.92<span>/天</span></div>
+            <a href="#" class="car-btn">預約租車</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+  <!-- ═══ 4. EV / SPECIAL ═══ -->
+  <div class="category-block" data-category="ev">
+    <div class="category-title">電動車 / <span>特殊車型</span></div>
+    <div class="category-sub">Tesla 全系列與特殊車型，體驗未來駕駛</div>
+
+    <div class="car-grid">
+
+      <!-- EV 1 -->
+      <article class="car-card">
+        <div class="car-img">
+          <img src="https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=600&q=80&auto=format&fit=crop" alt="Tesla Model 3">
+          <span class="car-badge">無限里程</span>
+        </div>
+        <div class="car-body">
+          <div class="car-type">Tesla轎車 — FSD自動駕駛</div>
+          <div class="car-name">Tesla Model 3</div>
+          <div class="car-desc"> Autopilot + FSD 自動輔助駕駛，科技感十足</div>
+          <div class="car-specs">
+            <span class="car-spec"><i data-lucide="users"></i>5人座</span>
+            <span class="car-spec"><i data-lucide="briefcase"></i>2大行李</span>
+          </div>
+          <div class="car-footer">
+            <div class="car-price">$96.80<span>/天</span></div>
+            <a href="#" class="car-btn">預約租車</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- EV 2 -->
+      <article class="car-card">
+        <div class="car-img">
+          <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?w=600&q=80&auto=format&fit=crop" alt="Tesla Model Y">
+          <span class="car-badge">無限里程</span>
+        </div>
+        <div class="car-body">
+          <div class="car-type">Tesla休旅車 — FSD自動駕駛</div>
+          <div class="car-name">Tesla Model Y</div>
+          <div class="car-desc">續航力佳，FSD 自動輔助駕駛，實用大空間</div>
+          <div class="car-specs">
+            <span class="car-spec"><i data-lucide="users"></i>5人座</span>
+            <span class="car-spec"><i data-lucide="briefcase"></i>4大行李</span>
+          </div>
+          <div class="car-footer">
+            <div class="car-price">$112.00<span>/天</span></div>
+            <a href="#" class="car-btn">預約租車</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- EV 3 -->
+      <article class="car-card">
+        <div class="car-img">
+          <img src="https://www.electrive.com/media/2025/03/tesla-cybertruck-frontansicht.jpg" alt="Tesla Cybertruck">
+          <span class="car-badge">獨家車型</span>
+        </div>
+        <div class="car-body">
+          <div class="car-type">Tesla系列 — FSD自動駕駛</div>
+          <div class="car-name">Tesla Cybertruck</div>
+          <div class="car-desc">純電科幻皮卡，限量供應，需提前預訂</div>
+          <div class="car-specs">
+            <span class="car-spec"><i data-lucide="users"></i>5人座</span>
+            <span class="car-spec"><i data-lucide="briefcase"></i>10大行李</span>
+          </div>
+          <div class="car-footer">
+            <div class="car-price">$208.00<span>/天</span></div>
+            <a href="#" class="car-btn">預約租車</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+  <!-- Newsletter -->
+  <div class="newsletter">
+    <div class="newsletter-left">
+      <div class="newsletter-title">需要客製化用車方案？</div>
+      <div class="newsletter-sub">多人用車、長期租賃或特殊需求，歡迎聯絡我們取得專屬報價。</div>
+    </div>
+    <form class="newsletter-form" onsubmit="return false;">
+      <input type="email" class="newsletter-input" placeholder="輸入你的電子信箱">
+      <button type="submit" class="newsletter-btn">聯絡我們</button>
+    </form>
+  </div>
+
+</main>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="image/SkyHorse.svg" alt="Sky Horse" style="height:28px;width:auto;">
+      <div class="footer-brand-name">Sky Horse 天馬租車</div>
+    </div>
+    <div class="footer-copy">&copy; 2026 Sky Horse Auto. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  lucide.createIcons();
+
+  // Category filter
+  const tabs = document.querySelectorAll('.fleet-tab');
+  const blocks = document.querySelectorAll('.category-block');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const cat = tab.dataset.cat;
+      blocks.forEach(block => {
+        if (cat === 'all' || block.dataset.category === cat) {
+          block.style.display = '';
+        } else {
+          block.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
