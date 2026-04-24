@@ -85,7 +85,7 @@
       transition: border-color 0.3s;
     }
     .nav-inner {
-      max-width: 1280px; margin: 0 auto; padding: 0 40px;
+      max-width: 1200px; margin: 0 auto; padding: 0 40px;
       height: 64px; display: flex; align-items: center; justify-content: space-between;
       gap: 24px;
     }
@@ -182,7 +182,10 @@
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
       text-align: center;
-      overflow: hidden;
+      width: 100%;
+  max-width: 100vw;
+  overflow: hidden;
+  overflow-x: hidden;
     }
     .hero::before {
       content: '';
@@ -193,7 +196,7 @@
     .hero-content {
       position: relative; z-index: 2;
       padding: 120px 40px 60px;
-      max-width: 720px;
+      max-width: 1200px;
       width: 100%;
     }
     .hero-eyebrow {
@@ -298,13 +301,15 @@
       background:
         linear-gradient(135deg, rgba(255,220,34,0.05), transparent 34%),
         var(--bg-surface);
-      padding: 84px 40px;
+      padding: 84px 0;
     }
     .blog-cta-inner {
-      max-width: 1280px;
+      max-width: 1200px;
       margin: 0 auto;
+      padding: 0 40px;
+      box-sizing: border-box;
       display: grid;
-      grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1.1fr);
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
       align-items: center;
       gap: 72px;
     }
@@ -470,7 +475,10 @@
       color: var(--gold);
     }
     @media (max-width: 768px) {
-      .blog-cta-section { padding: 64px 20px; }
+    .blog-cta-section { padding: 60px 0; }
+    .blog-cta-inner { padding: 0 20px; }
+      .blog-cta-section { padding: 64px 0; }
+    .blog-cta-inner { padding: 0 20px; }
       .blog-cta-inner {
         grid-template-columns: 1fr;
         gap: 32px;
@@ -490,15 +498,12 @@
 
     /* Booking Form Section */
     .booking-form-section {
-      padding: 80px 40px;
+      padding: 80px 0;
       background: #0a0a0a;
       border-top: 1px solid rgba(255,255,255,0.06);
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
-    .booking-form-inner {
-      max-width: 900px;
-      margin: 0 auto;
-    }
+    .booking-form-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; box-sizing: border-box; }
     .booking-form-title {
       font-family: var(--font-display);
       font-size: 13px;
@@ -595,11 +600,11 @@
       background: var(--bg-surface);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
-      padding: 32px 40px;
+      padding: 32px 0;
     }
     .stats-inner {
-      max-width: 1280px; margin: 0 auto;
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px;
+      max-width: 1200px; margin: 0 auto; padding: 0 40px; box-sizing: border-box;
+      display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 40px;
     }
     .stat-item {
       text-align: center;
@@ -626,7 +631,7 @@
     /* ══════════════════════════════════════
        SECTION BASE
     ══════════════════════════════════════ */
-    .section { padding: 100px 40px; max-width: 1280px; margin: 0 auto; }
+    .section { padding: 100px 40px; max-width: 1200px; margin: 0 auto; }
     .section-header { margin-bottom: 56px; }
     .section-eyebrow {
       display: inline-flex; align-items: center; gap: 10px;
@@ -711,10 +716,10 @@
     .cars-section { padding: 100px 0; background: var(--bg-base); }
     .cars-header {
       padding: 0 40px; margin: 0 auto 48px;
-      max-width: 1280px;
+      max-width: 1200px;
     }
     .car-category {
-      max-width: 1280px;
+      max-width: 1200px;
       margin: 0 auto 56px;
       padding: 0 40px;
     }
@@ -737,7 +742,7 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 20px;
-      max-width: 1280px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 0 40px;
     }
@@ -755,9 +760,9 @@
       transform: translateY(-3px);
       box-shadow: 0 12px 40px rgba(0,0,0,0.4);
     }
-    .cat-card-img {
-      width: calc(100% + 56px);
-      margin: -32px -28px 0;
+    .cat-card-img { width: 100%;
+      margin: 0;
+    box-sizing: border-box;
       height: 240px;
       object-fit: cover;
       display: block;
@@ -854,7 +859,7 @@
     .cars-footer {
       text-align: center;
       padding: 40px 40px 0;
-      max-width: 1280px;
+      max-width: 1200px;
       margin: 0 auto;
     }
     .section-view-all-wrap {
@@ -958,11 +963,11 @@
       background: var(--bg-surface);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
-      padding: 80px 40px;
+      padding: 80px 0;
     }
-    .airports-inner { max-width: 1280px; margin: 0 auto; }
+    .airports-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; box-sizing: border-box; }
     .airports-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+      display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px;
       background: var(--border);
       border: 1px solid var(--border);
       border-radius: var(--r-lg);
@@ -991,7 +996,7 @@
     /* ══════════════════════════════════════
        CELEBRITY / SOCIAL PROOF
     ══════════════════════════════════════ */
-    .celeb-section { padding: 100px 40px; max-width: 1280px; margin: 0 auto; }
+    .celeb-section { padding: 100px 40px; max-width: 1200px; margin: 0 auto; }
     .celeb-grid {
       display: grid; grid-template-columns: 1fr 2fr; gap: 1px;
       background: var(--border);
@@ -1052,10 +1057,10 @@
     ══════════════════════════════════════ */
     .cta-strip {
       background: var(--gold);
-      padding: 72px 40px;
+      padding: 72px 0;
     }
     .cta-inner {
-      max-width: 1280px; margin: 0 auto;
+      max-width: 1200px; margin: 0 auto; padding: 0 40px; box-sizing: border-box;
       display: flex; align-items: center; justify-content: space-between;
       gap: 40px;
     }
@@ -1098,11 +1103,11 @@
        BLOG SECTION
     ══════════════════════════════════════ */
     .blog-section {
-      padding: 100px 40px;
+      padding: 100px 0;
       background: #0a0a0a;
       border-top: 1px solid rgba(255,255,255,0.06);
     }
-    .blog-inner { max-width: 1280px; margin: 0 auto; }
+    .blog-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; box-sizing: border-box; }
     .blog-header {
       display: flex;
       flex-direction: column;
@@ -1202,9 +1207,9 @@
     footer {
       background: var(--bg-surface);
       border-top: 1px solid var(--border);
-      padding: 64px 40px 40px;
+      padding: 64px 0 40px;
     }
-    .footer-inner { max-width: 1280px; margin: 0 auto; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; box-sizing: border-box; }
     .footer-top {
       display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
       gap: 48px; padding-bottom: 48px;
@@ -1322,22 +1327,27 @@
       .adv-card { padding: 28px 24px; }
       .cars-section { padding: 72px 0; }
       .cars-header { padding: 0 20px; margin-bottom: 32px; }
-      .cars-cat-grid { grid-template-columns: 1fr; gap: 16px; }
-      .cat-card-img { width: calc(100% + 40px); margin: -24px -20px 0; height: 200px; }
+      .cars-cat-grid { grid-template-columns: 1fr; gap: 16px; padding: 0 20px; }
+      .cat-card-img { width: 100%; margin: 0; height: 200px; }
       .cat-card-body { padding: 12px 16px 0; gap: 6px; }
       .cat-card-footer { padding: 8px 16px 16px; }
       .cars-footer { padding: 24px 20px 0; }
       .section-view-all-wrap { padding-top: 28px; }
       .section-view-all { padding: 11px 24px; }
-      .airports-section { padding: 60px 20px; }
+      .airports-section { padding: 60px 0; }
+      .airports-inner { padding: 0 20px; }
+      .celeb-section { padding: 100px 20px; }
       .airports-grid { grid-template-columns: repeat(2, 1fr); }
-      .cta-inner { flex-direction: column; text-align: center; }
+      .booking-form-inner { padding: 0 20px; }
+      .car-category { padding: 0 20px; }
+      .cta-inner { flex-direction: column; text-align: center; padding: 0 20px; }
       .footer-inner { padding: 0 20px; }
       .footer-top { grid-template-columns: 1fr; gap: 32px; }
       .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
-      .stats-inner { grid-template-columns: repeat(2, 1fr); gap: 24px; }
-      .stats-bar { padding: 32px 20px; }
-      .blog-section { padding: 72px 16px; }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); gap: 24px; padding: 0 20px; }
+      .stats-bar { padding: 32px 0; }
+      .blog-section { padding: 72px 0; }
+      .blog-inner { padding: 0 20px; }
       .blog-tags { gap: 8px; margin-bottom: 28px; }
       .blog-tag { font-size: 10px; padding: 6px 12px; }
       .blog-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
@@ -1496,26 +1506,26 @@
   <div class="booking-form-inner">
     <div class="booking-form-title">預訂你的下一趟旅程</div>
     <div class="booking-form-sub">簡單幾步，開啟你的美國自駕之旅</div>
-    <form class="booking-form-grid">
+    <form class="booking-form-grid" onsubmit="handleBooking(event)">
       <div class="bf-field">
-        <label><i data-lucide="user"></i>姓名 / 暱稱</label>
-        <input type="text" placeholder="例：Jimmy" />
+        <label for="fullName"><i data-lucide="user"></i>姓名 / 暱稱</label>
+         <input type="text" id="fullName" placeholder="例：Jimmy" />
       </div>
       <div class="bf-field">
-        <label><i data-lucide="mail"></i>信箱</label>
-        <input type="email" placeholder="例：jimmy@gmail.com" />
+        <label for="email"><i data-lucide="mail"></i>信箱</label>
+         <input type="email" id="email" placeholder="例：jimmy@gmail.com" />
       </div>
       <div class="bf-field">
-        <label><i data-lucide="calendar"></i>取車日期</label>
-        <input type="date" />
+        <label for="pickupDate"><i data-lucide="calendar"></i>取車日期</label>
+        <input type="date" id="pickupDate" />
       </div>
       <div class="bf-field">
-        <label><i data-lucide="calendar"></i>還車日期</label>
-        <input type="date" />
+        <label for="returnDate"><i data-lucide="calendar"></i>還車日期</label>
+        <input type="date" id="returnDate" />
       </div>
       <div class="bf-field">
-        <label><i data-lucide="clock"></i>取車時間</label>
-        <select>
+        <label for="pickupTime"><i data-lucide="clock"></i>取車時間</label>
+        <select id="pickupTime">
           <option value="">選擇時間</option>
           <option>08:00</option>
           <option>09:00</option>
@@ -1531,8 +1541,8 @@
         </select>
       </div>
       <div class="bf-field">
-        <label><i data-lucide="clock"></i>還車時間</label>
-        <select>
+        <label for="returnTime"><i data-lucide="clock"></i>還車時間</label>
+        <select id="returnTime">
           <option value="">選擇時間</option>
           <option>08:00</option>
           <option>09:00</option>
@@ -1548,8 +1558,8 @@
         </select>
       </div>
       <div class="bf-field">
-        <label><i data-lucide="map-pin"></i>取車地點</label>
-        <select>
+        <label for="pickupLocation"><i data-lucide="map-pin"></i>取車地點</label>
+        <select id="pickupLocation">
           <option value="">選擇機場</option>
           <option>LAX — Los Angeles International Airport</option>
           <option>SFO — San Francisco International Airport</option>
@@ -1561,8 +1571,8 @@
         </select>
       </div>
       <div class="bf-field">
-        <label><i data-lucide="map-pin"></i>還車地點</label>
-        <select>
+        <label for="returnLocation"><i data-lucide="map-pin"></i>還車地點</label>
+        <select id="returnLocation">
           <option value="">選擇機場</option>
           <option>LAX — Los Angeles International Airport</option>
           <option>SFO — San Francisco International Airport</option>
@@ -1573,10 +1583,10 @@
           <option>ORD — O'Hare International Airport (Chicago)</option>
         </select>
       </div>
+      <button type="submit" class="bf-submit" style="margin-top:24px">
+        下一步 <i data-lucide="arrow-right"></i>
+      </button>
     </form>
-    <button type="submit" class="bf-submit" style="margin-top:24px">
-      下一步 <i data-lucide="arrow-right"></i>
-    </button>
   </div>
 </section>
 
