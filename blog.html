@@ -19,6 +19,7 @@
       --bg-card:     #111111;
       --border:     rgba(255,255,255,0.06);
       --border-mid:  rgba(255,255,255,0.12);
+      --border-subtle: rgba(255,255,255,0.05);
       --border-yellow: rgba(255,209,0,0.4);
       --gold:        #FFDC22;
       --gold-bright: #F5C94E;
@@ -34,6 +35,11 @@
       --font-mono:    'JetBrains Mono', monospace;
       --r-sm: 6px; --r-md: 10px; --r-lg: 16px; --r-xl: 24px;
       --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+      /* Layout tokens */
+      --container-max:    1200px;
+      --container-pad:   40px;
+      --container-pad-sm: 20px;
     }
 
     html { scroll-behavior: smooth; }
@@ -59,11 +65,20 @@
       border-bottom: 1px solid var(--border);
     }
     .nav-inner {
-      max-width: 1280px; margin: 0 auto; padding: 0 40px;
+      max-width: var(--container-max); margin: 0 auto;
+      padding: 0 var(--container-pad);
       height: 64px; display: flex; align-items: center; justify-content: space-between;
+      gap: 24px;
+    }
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      min-width: 0;
     }
     .nav-logo {
       display: flex; align-items: center; gap: 12px; text-decoration: none;
+      flex-shrink: 0;
     }
     .nav-logo-mark {
       width: 36px; height: 36px;
@@ -105,8 +120,12 @@
 
     /* ── BLOG HERO ── */
     .blog-hero {
-      padding: 120px 40px 64px;
-      max-width: 1280px;
+      padding: 120px var(--container-pad) 64px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .blog-hero-inner {
+      max-width: var(--container-max);
       margin: 0 auto;
     }
     .blog-hero-eyebrow {
@@ -176,9 +195,13 @@
 
     /* ── POSTS GRID ── */
     .blog-content {
-      max-width: 1280px;
+      padding: 0 var(--container-pad) 100px;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 0 40px 100px;
+    }
+    .blog-content-inner {
+      max-width: var(--container-max);
+      margin: 0 auto;
     }
     .posts-grid {
       display: grid;
@@ -423,9 +446,11 @@
       background: var(--bg-surface);
     }
     .footer-inner {
-      max-width: 1280px; margin: 0 auto;
+      max-width: var(--container-max); margin: 0 auto;
       display: flex; align-items: center; justify-content: space-between;
       flex-wrap: wrap; gap: 20px;
+      padding: 0 var(--container-pad);
+      box-sizing: border-box;
     }
     .footer-brand {
       display: flex; align-items: center; gap: 12px;
@@ -479,9 +504,11 @@
 <!-- ── NAV ── -->
 <nav>
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo">
-      <img src="image/SkyHorse.svg" alt="Sky Horse 天馬租車" style="height:34px;width:auto;">
-    </a>
+    <div class="nav-left">
+      <a href="index.html" class="nav-logo">
+        <img src="image/SkyHorse.svg" alt="Sky Horse 天馬租車" style="height:34px;width:auto;">
+      </a>
+    </div>
     <div class="nav-links">
       <a href="index.html">首頁</a>
       <a href="index.html#advantages">優勢</a>
@@ -497,19 +524,21 @@
 
 <!-- ── HERO ── -->
 <section class="blog-hero">
-  <div class="blog-hero-eyebrow">Media &amp; Travel Guide</div>
-  <h1 class="blog-hero-title">媒體報導<br><strong>與行程攻略</strong></h1>
-  <p class="blog-hero-sub">
-    名人推薦、媒體採訪與專業自駕攻略。從舊金山到阿拉斯加，行程規劃、租車建議與沿途風景一本掌握。
-  </p>
+  <div class="blog-hero-inner">
+    <div class="blog-hero-eyebrow">Media &amp; Travel Guide</div>
+    <h1 class="blog-hero-title">媒體報導<br><strong>與行程攻略</strong></h1>
+    <p class="blog-hero-sub">
+      名人推薦、媒體採訪與專業自駕攻略。從舊金山到阿拉斯加，行程規劃、租車建議與沿途風景一本掌握。
+    </p>
 
-  <!-- Category Tabs -->
-  <div class="blog-tabs">
-    <button class="blog-tab active" data-category="all">全部文章 <span class="tab-count">12</span></button>
-    <button class="blog-tab" data-category="celebrity">名人推荐 <span class="tab-count">3</span></button>
-    <button class="blog-tab" data-category="guide">自驾攻略 <span class="tab-count">4</span></button>
-    <button class="blog-tab" data-category="rental">租车指南 <span class="tab-count">3</span></button>
-    <button class="blog-tab" data-category="alaska">阿拉斯加专区 <span class="tab-count">2</span></button>
+    <!-- Category Tabs -->
+    <div class="blog-tabs">
+      <button class="blog-tab active" data-category="all">全部文章 <span class="tab-count">12</span></button>
+      <button class="blog-tab" data-category="celebrity">名人推荐 <span class="tab-count">3</span></button>
+      <button class="blog-tab" data-category="guide">自驾攻略 <span class="tab-count">4</span></button>
+      <button class="blog-tab" data-category="rental">租车指南 <span class="tab-count">3</span></button>
+      <button class="blog-tab" data-category="alaska">阿拉斯加专区 <span class="tab-count">2</span></button>
+    </div>
   </div>
 </section>
 

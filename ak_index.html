@@ -1,0 +1,2145 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>阿拉斯加旅遊團｜Sky Horse 美國租車</title>
+  <meta name="description" content="阿拉斯加夏季日不落・冬季極光行程，全程中文導覽，小團出發。Sky Horse 天馬在美國深耕，提供最在地的台灣人服務。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* ── SKYHORSE DESIGN TOKENS ── */
+      --bg-base:     #060606;
+      --bg-surface:  #0e0e0e;
+      --bg-elevated: #161616;
+      --bg-card:     #111111;
+      --border:     rgba(255,255,255,0.06);
+      --border-mid:  rgba(255,255,255,0.12);
+      --border-yellow: rgba(255,209,0,0.4);
+
+      --gold:        #FFDC22;
+      --gold-bright: #F5C94E;
+      --gold-dim:    rgba(232,184,75,0.12);
+      --gold-glow:   rgba(232,184,75,0.08);
+
+      --ink-primary:   #F2F2F2;
+      --ink-secondary: #8A8A8A;
+      --ink-tertiary:  #4A4A4A;
+
+      --success: #34C759;
+      --info:    #0A84FF;
+
+      /* Typography */
+      --font-display: 'Space Grotesk', 'Noto Sans TC', sans-serif;
+      --font-body:    'Noto Sans TC', sans-serif;
+      --font-mono:    'JetBrains Mono', monospace;
+
+      /* Spacing (4px base) */
+      --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px;
+      --sp-5: 20px; --sp-6: 24px; --sp-8: 32px; --sp-10: 40px;
+      --sp-12: 48px; --sp-16: 64px; --sp-20: 80px; --sp-24: 96px;
+
+      /* Radii */
+      --r-sm: 6px; --r-md: 10px; --r-lg: 16px; --r-xl: 24px;
+
+      /* Shadows */
+      --shadow-card: 0 2px 12px rgba(0,0,0,0.4);
+      --shadow-gold: 0 0 40px rgba(232,184,75,0.15);
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-base);
+      color: var(--ink-primary);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg-base); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+    /* ══════════════════════════════════════
+       NAV
+    ══════════════════════════════════════ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(6,6,6,0.85);
+      backdrop-filter: blur(24px) saturate(180%);
+      border-bottom: 1px solid var(--border);
+      transition: border-color 0.3s;
+    }
+    nav.scrolled { border-bottom-color: var(--border-mid); }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 40px;
+      height: 64px; display: flex; align-items: center; justify-content: space-between;
+      gap: 24px;
+    }
+    .nav-left {
+      display: flex; align-items: center; gap: 18px; min-width: 0;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px; text-decoration: none; flex-shrink: 0;
+    }
+    .nav-logo-mark {
+      width: 36px; height: 36px;
+      background: var(--gold);
+      border-radius: var(--r-sm);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .nav-logo-mark svg { width: 20px; height: 20px; }
+    .nav-logo-text {
+      font-family: var(--font-display);
+      font-size: 15px; font-weight: 600;
+      color: var(--ink-primary); letter-spacing: -0.2px;
+    }
+    .nav-logo-sub {
+      font-size: 10px; font-weight: 400;
+      color: var(--ink-tertiary); letter-spacing: 0.5px;
+      display: block; margin-top: -2px;
+    }
+    .nav-business-switch {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 4px; border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.03); min-width: 0;
+    }
+    .nav-business-link {
+      font-family: var(--font-display); font-size: 12px; font-weight: 600;
+      color: var(--ink-secondary); text-decoration: none; line-height: 1;
+      padding: 9px 14px; border-radius: 999px;
+      transition: background 0.15s, color 0.15s, box-shadow 0.15s; white-space: nowrap;
+    }
+    .nav-business-link:hover { color: var(--ink-primary); background: rgba(255,255,255,0.04); }
+    .nav-business-link.is-active {
+      color: #060606; background: var(--gold);
+      box-shadow: 0 6px 20px rgba(255,220,34,0.18);
+    }
+    .nav-links { display: flex; align-items: center; gap: 4px; }
+    .nav-links a {
+      font-size: 13px; font-weight: 400; color: var(--ink-secondary);
+      text-decoration: none; padding: 6px 14px; border-radius: var(--r-sm);
+      transition: color 0.15s, background 0.15s; letter-spacing: 0.1px;
+    }
+    .nav-links a:hover { color: var(--ink-primary); background: rgba(255,255,255,0.04); }
+    .nav-cta {
+      background: var(--gold) !important; color: #060606 !important; font-weight: 600 !important;
+    }
+    .nav-cta:hover { background: var(--gold-bright) !important; }
+    .nav-menu-btn {
+      display: none; background: none; border: 1px solid var(--border);
+      border-radius: var(--r-sm); padding: 6px 10px; color: var(--ink-secondary); cursor: pointer;
+    }
+
+    /* ══════════════════════════════════════
+       HERO — Alaska Dark + Northern Lights
+    ══════════════════════════════════════ */
+    .hero {
+      position: relative; min-height: 60vh;
+      background: #060606;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; width: 100%; max-width: 100vw;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(6,6,6,0.6);
+      background: radial-gradient(ellipse at 50% 30%, rgba(62,207,160,0.08) 0%, rgba(6,6,6,0.7) 70%);
+      z-index: 1;
+    }
+
+    /* ── Carousel ── */
+    .hero-carousel {
+      position: absolute; inset: 0; z-index: 0;
+    }
+    .hero-carousel__slide {
+      position: absolute; inset: 0;
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out;
+    }
+    .hero-carousel__slide.active { opacity: 1; }
+    .hero-carousel__slide img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ── Carousel Dots ── */
+    .hero-carousel__dots {
+      position: absolute; bottom: 20px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; gap: 8px; z-index: 3;
+    }
+    .hero-carousel__dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.35);
+      border: none; cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+      padding: 0;
+    }
+    .hero-carousel__dot.active {
+      background: var(--gold);
+      transform: scale(1.3);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 120px 40px 60px;
+      max-width: 1200px; width: 100%;
+    }
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 24px;
+      display: inline-flex; align-items: center; gap: 10px;
+      opacity: 0; transform: translateY(12px);
+      animation: fadeUp 0.6s var(--ease-out) 0.2s forwards;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block; width: 24px; height: 1.5px;
+      background: var(--gold);
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 5.5vw, 68px);
+      font-weight: 800; line-height: 1.08; letter-spacing: -2px;
+      color: #fff;
+      margin-bottom: 20px;
+      opacity: 0; transform: translateY(16px);
+      animation: fadeUp 0.7s var(--ease-out) 0.35s forwards;
+    }
+    .hero-sub {
+      font-size: 16px; font-weight: 300;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.8; margin-bottom: 40px;
+      max-width: 600px; margin-left: auto; margin-right: auto;
+      opacity: 0; transform: translateY(12px);
+      animation: fadeUp 0.6s var(--ease-out) 0.5s forwards;
+    }
+    .hero-pills {
+      display: flex; justify-content: center; gap: 10px;
+      margin-bottom: 40px; flex-wrap: wrap;
+      opacity: 0; transform: translateY(12px);
+      animation: fadeUp 0.6s var(--ease-out) 0.55s forwards;
+    }
+    .hero-pill {
+      font-family: var(--font-display);
+      font-size: 12px; font-weight: 500;
+      color: rgba(255,255,255,0.6);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 20px; padding: 5px 14px;
+    }
+    .hero-actions {
+      display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+      margin-bottom: 40px;
+      opacity: 0; transform: translateY(12px);
+      animation: fadeUp 0.6s var(--ease-out) 0.65s forwards;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gold); color: #060606;
+      font-family: var(--font-display);
+      font-size: 14px; font-weight: 700;
+      padding: 14px 32px; border-radius: 8px; text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      letter-spacing: 0.3px;
+    }
+    .btn-primary:hover { background: var(--gold-bright); transform: translateY(-2px); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent;
+      border: 1.5px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.7);
+      font-family: var(--font-display);
+      font-size: 14px; font-weight: 500;
+      padding: 14px 32px; border-radius: 8px; text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
+    .hero-scroll {
+      position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      font-family: var(--font-mono); font-size: 9px; letter-spacing: 2px;
+      color: rgba(255,255,255,0.25); text-transform: uppercase;
+      opacity: 0; animation: fadeUp 0.6s var(--ease-out) 1s forwards;
+    }
+    .hero-scroll-line {
+      width: 1px; height: 40px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    /* ══════════════════════════════════════
+       STATS
+    ══════════════════════════════════════ */
+    .stats {
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 48px 0;
+    }
+    .stats-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 40px;
+    }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 32px; text-align: center;
+    }
+    .stat-item {}
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 3vw, 44px);
+      font-weight: 800; letter-spacing: -1.5px;
+      color: var(--ink-primary);
+      margin-bottom: 6px;
+    }
+    .stat-num span { font-size: 1.6rem; color: var(--gold); }
+    .stat-label {
+      font-size: 13px; font-weight: 400;
+      color: var(--ink-secondary); line-height: 1.5;
+    }
+
+    /* ── BLOG CTA ── */
+    .blog-cta-section {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background:
+        linear-gradient(135deg, rgba(255,220,34,0.05), transparent 34%),
+        var(--bg-surface);
+      padding: 84px 0;
+    }
+    .blog-cta-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+      box-sizing: border-box;
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      align-items: center;
+      gap: 72px;
+    }
+    .blog-cta-content { max-width: 520px; }
+    .blog-cta-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .blog-cta-title {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1.2;
+      color: var(--ink-primary);
+      margin-bottom: 14px;
+    }
+    .blog-cta-sub {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--ink-secondary);
+      line-height: 1.8;
+      max-width: 480px;
+      margin-bottom: 20px;
+    }
+    .blog-cta-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-content: space-between;
+      margin-top: 24px;
+    }
+    .blog-cta-primary {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .blog-cta-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .blog-cta-tags span {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--ink-secondary);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 20px;
+      padding: 3px 12px;
+    }
+    .blog-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold);
+      color: #060606;
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      padding: 14px 32px;
+      border-radius: var(--r-md);
+      transition: background 0.15s, gap 0.15s;
+      white-space: nowrap;
+    }
+    .blog-cta-btn:hover { background: var(--gold-bright); gap: 12px; }
+    .blog-cta-btn svg { width: 16px; height: 16px; }
+    .blog-cta-count {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-tertiary);
+    }
+    .blog-cta-media {
+      position: relative;
+      display: block;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: #080808;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.45);
+      aspect-ratio: 465 / 265;
+      text-decoration: none;
+    }
+    .blog-cta-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.35s var(--ease-out), filter 0.35s var(--ease-out);
+    }
+    .blog-cta-media::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.42));
+      pointer-events: none;
+    }
+    .blog-cta-media:hover img {
+      transform: scale(1.03);
+      filter: brightness(1.08);
+    }
+    .blog-cta-media-label {
+      position: absolute;
+      left: 20px;
+      bottom: 18px;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      background: rgba(6,6,6,0.72);
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 999px;
+      padding: 8px 12px;
+      backdrop-filter: blur(12px);
+    }
+    .blog-cta-media-label svg {
+      width: 14px;
+      height: 14px;
+      color: var(--gold);
+    }
+    @media (max-width: 768px) {
+    .blog-cta-section { padding: 60px 0; }
+    .blog-cta-inner { padding: 0 20px; }
+    .blog-cta-inner {
+      grid-template-columns: 1fr;
+      gap: 32px;
+      text-align: center;
+    }
+    .blog-cta-tags { justify-content: center; }
+    .blog-cta-actions { justify-content: center; }
+    .blog-cta-media { max-width: 480px; margin: 0 auto; }
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 800; letter-spacing: -1px;
+      color: var(--ink-primary); line-height: 1.2;
+      margin-bottom: 14px;
+    }
+    .section-desc {
+      font-size: 15px; font-weight: 300;
+      color: var(--ink-secondary); line-height: 1.8;
+      max-width: 600px; margin: 0 auto 40px;
+    }
+
+    /* ══════════════════════════════════════
+       SECTION INNER PATTERN
+    ══════════════════════════════════════ */
+    .section-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 40px;
+    }
+
+    /* ══════════════════════════════════════
+       TRIP DETAIL
+    ══════════════════════════════════════ */
+    .trip-section {
+      background: var(--bg-surface);
+      padding: 96px 0;
+    }
+    .trip-header {
+      text-align: center; margin-bottom: 48px;
+    }
+    .trip-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+      display: inline-flex; align-items: center; gap: 10px;
+    }
+    .trip-eyebrow::before, .trip-eyebrow::after {
+      content: ''; display: block; width: 24px; height: 1.5px; background: var(--gold);
+    }
+    .trip-header__sub {
+      font-size: 15px; font-weight: 300;
+      color: var(--ink-secondary); line-height: 1.8;
+      max-width: 680px; margin: 0 auto 20px;
+    }
+    .trip-meta-badges {
+      display: flex; justify-content: center; gap: 8px; flex-wrap: wrap;
+    }
+    .trip-badge {
+      font-family: var(--font-display);
+      font-size: 11px; font-weight: 600;
+      color: var(--ink-secondary);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 20px; padding: 4px 14px;
+    }
+    .trip-badge--price {
+      background: var(--gold-dim);
+      border-color: var(--border-yellow);
+      color: var(--gold);
+    }
+    .trip-badge--price strong { font-weight: 700; }
+
+    /* Tabs */
+    .trip-tabs {
+      display: flex; justify-content: center; gap: 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 48px;
+    }
+    .trip-tab {
+      font-family: var(--font-display);
+      font-size: 13px; font-weight: 500;
+      color: var(--ink-secondary);
+      background: none; border: none;
+      padding: 12px 24px;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .trip-tab:hover { color: var(--ink-primary); }
+    .trip-tab.active {
+      color: var(--gold);
+      border-bottom-color: var(--gold);
+    }
+
+    /* Panels */
+    .trip-panel { display: none; }
+    .trip-panel.active { display: block; }
+
+    /* Highlights grid */
+    .highlights-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg); overflow: hidden;
+      margin-bottom: 48px;
+    }
+    .highlight-row {
+      display: flex; align-items: flex-start; gap: 16px;
+      background: var(--bg-card); padding: 20px 24px;
+    }
+    .highlight-icon {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      background: var(--gold-dim);
+      border: 1px solid var(--border-yellow);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      color: var(--gold);
+    }
+    .highlight-icon svg { width: 18px; height: 18px; }
+    .highlight-label {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 1px; text-transform: uppercase;
+      color: var(--ink-tertiary); margin-bottom: 4px;
+    }
+    .highlight-val {
+      font-size: 14px; font-weight: 400;
+      color: var(--ink-primary);
+    }
+
+    /* Feature cards */
+    .trip-features-title {
+      font-family: var(--font-display);
+      font-size: 18px; font-weight: 700;
+      color: var(--ink-primary); margin-bottom: 24px;
+    }
+    .trip-features-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .trip-feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg); padding: 28px 24px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .trip-feature-card:hover {
+      border-color: var(--border-yellow);
+      transform: translateY(-4px);
+    }
+    .trip-feature-card__num {
+      font-family: var(--font-mono);
+      font-size: 11px; font-weight: 500;
+      color: var(--gold); margin-bottom: 12px;
+    }
+    .trip-feature-card h4 {
+      font-family: var(--font-display);
+      font-size: 15px; font-weight: 700;
+      color: var(--ink-primary); margin-bottom: 8px;
+    }
+    .trip-feature-card p {
+      font-size: 13px; font-weight: 300;
+      color: var(--ink-secondary); line-height: 1.6;
+    }
+
+    /* Day timeline */
+    .day-timeline { display: flex; flex-direction: column; gap: 0; }
+    .day-item {
+      display: grid; grid-template-columns: 120px 1fr;
+      gap: 32px; padding: 32px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+    }
+    .day-item:last-child { border-bottom: none; }
+    .day-marker {
+      text-align: center;
+      padding-top: 4px;
+    }
+    .day-marker span {
+      font-family: var(--font-mono);
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      color: var(--gold);
+      background: var(--gold-dim);
+      border: 1px solid var(--border-yellow);
+      padding: 5px 10px; border-radius: 5px;
+      white-space: nowrap;
+    }
+    .day-content h3 {
+      font-family: var(--font-display);
+      font-size: 18px; font-weight: 700;
+      color: var(--ink-primary); margin-bottom: 10px;
+    }
+    .day-content p {
+      font-size: 14px; font-weight: 300;
+      color: var(--ink-secondary); line-height: 1.7;
+      margin-bottom: 12px;
+    }
+    .day-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .day-tag {
+      font-family: var(--font-display);
+      font-size: 11px; font-weight: 500;
+      color: var(--ink-secondary);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px; padding: 3px 12px;
+    }
+
+    /* Cost section */
+    .cost-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+    .cost-section-title {
+      font-family: var(--font-display);
+      font-size: 16px; font-weight: 700;
+      color: var(--ink-primary); margin-bottom: 16px;
+    }
+    .cost-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .cost-list li {
+      font-size: 14px; font-weight: 300;
+      color: var(--ink-secondary);
+      padding-left: 20px; position: relative;
+    }
+    .cost-list li::before {
+      content: ''; position: absolute; left: 0; top: 8px;
+      width: 6px; height: 6px; border-radius: 50%;
+    }
+    .cost-list--include li::before { background: var(--gold); }
+    .cost-list--exclude li::before { background: var(--ink-tertiary); }
+    .cost-price-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-yellow);
+      border-radius: var(--r-lg); padding: 28px;
+      margin-top: 24px;
+      box-shadow: var(--shadow-gold);
+    }
+    .cost-price-label {
+      font-family: var(--font-mono);
+      font-size: 10px; font-weight: 500;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--ink-tertiary); margin-bottom: 8px;
+    }
+    .cost-price-num {
+      font-family: var(--font-display);
+      font-size: 32px; font-weight: 800;
+      color: var(--gold); letter-spacing: -1px;
+      margin-bottom: 4px;
+    }
+    .cost-price-unit {
+      font-size: 12px; color: var(--ink-tertiary);
+    }
+
+    /* ══════════════════════════════════════
+       FEATURED TRIPS
+    ══════════════════════════════════════ */
+    .featured-section {
+      background: var(--bg-base);
+      padding: 96px 0;
+    }
+    .featured-header {
+      text-align: center; margin-bottom: 56px;
+    }
+    .featured-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+      display: inline-flex; align-items: center; gap: 10px;
+    }
+    .featured-eyebrow::before, .featured-eyebrow::after {
+      content: ''; display: block; width: 24px; height: 1.5px; background: var(--gold);
+    }
+    .ft-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+      gap: 20px;
+    }
+    .ft-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .ft-card:hover {
+      border-color: var(--border-mid);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-gold);
+    }
+    .ft-card--featured { border-color: var(--border-yellow); }
+    .ft-card__img {
+      position: relative; aspect-ratio: 16/9;
+      background: var(--bg-elevated); overflow: hidden;
+    }
+    .ft-card__img img {
+      width: 100%; height: 100%; object-fit: cover;
+      display: block; transition: transform 0.3s var(--ease-out);
+    }
+    .ft-card:hover .ft-card__img img { transform: scale(1.04); }
+    .ft-card__badge {
+      position: absolute; top: 14px; left: 14px;
+      font-family: var(--font-display);
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      border-radius: 4px; padding: 4px 8px;
+    }
+    .ft-card__badge--hot {
+      background: rgba(255,220,34,0.12);
+      border: 1px solid var(--border-yellow);
+      color: var(--gold);
+    }
+    .ft-card__badge--new {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: var(--ink-secondary);
+    }
+    .ft-card__body { padding: 24px; }
+    .ft-card__tag {
+      font-family: var(--font-mono);
+      font-size: 11px; font-weight: 500;
+      color: var(--gold); margin-bottom: 10px;
+      letter-spacing: 0.5px;
+    }
+    .ft-card__title {
+      font-family: var(--font-display);
+      font-size: 17px; font-weight: 700;
+      color: var(--ink-primary); line-height: 1.3;
+      margin-bottom: 10px; letter-spacing: -0.3px;
+    }
+    .ft-card__desc {
+      font-size: 13px; font-weight: 300;
+      color: var(--ink-secondary); line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .ft-card__highlights {
+      display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 20px;
+    }
+    .ft-card__highlights span {
+      font-family: var(--font-display);
+      font-size: 11px; font-weight: 500;
+      color: var(--ink-secondary);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px; padding: 3px 12px;
+    }
+    .ft-card__footer {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 16px; border-top: 1px solid var(--border);
+    }
+    .ft-card__duration {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 12px; color: var(--ink-secondary);
+    }
+    .ft-card__duration svg { width: 14px; height: 14px; color: var(--ink-tertiary); }
+    .ft-card__price {
+      font-size: 12px; color: var(--ink-secondary);
+    }
+    .ft-card__price strong {
+      font-size: 18px; font-weight: 800;
+      color: var(--gold); letter-spacing: -0.5px;
+    }
+
+    /* ══════════════════════════════════════
+       WHY US (Highlights)
+    ══════════════════════════════════════ */
+    .why-section {
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 96px 0;
+    }
+    .why-header {
+      text-align: center; margin-bottom: 56px;
+    }
+    .why-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+      display: inline-flex; align-items: center; gap: 10px;
+    }
+    .why-eyebrow::before, .why-eyebrow::after {
+      content: ''; display: block; width: 24px; height: 1.5px; background: var(--gold);
+    }
+    .why-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .why-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg); padding: 32px 24px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .why-card:hover { border-color: var(--border-mid); transform: translateY(-4px); }
+    .why-card__icon {
+      width: 48px; height: 48px;
+      background: var(--gold-dim);
+      border: 1px solid var(--border-yellow);
+      border-radius: var(--r-md);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; margin-bottom: 20px;
+    }
+    .why-card__title {
+      font-family: var(--font-display);
+      font-size: 16px; font-weight: 700;
+      color: var(--ink-primary); margin-bottom: 10px;
+    }
+    .why-card__desc {
+      font-size: 13px; font-weight: 300;
+      color: var(--ink-secondary); line-height: 1.7;
+    }
+
+    /* ══════════════════════════════════════
+       REVIEWS
+    ══════════════════════════════════════ */
+    .reviews-section {
+      background: var(--bg-base);
+      padding: 96px 0;
+    }
+    .reviews-header {
+      text-align: center; margin-bottom: 56px;
+    }
+    .reviews-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .review-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg); padding: 28px;
+      transition: border-color 0.2s;
+    }
+    .review-card:hover { border-color: var(--border-mid); }
+    .review-card__quote {
+      font-family: var(--font-display);
+      font-size: 48px; font-weight: 800;
+      color: var(--gold); line-height: 0.6; margin-bottom: 16px;
+    }
+    .review-card__stars {
+      color: var(--gold); font-size: 12px;
+      letter-spacing: 2px; margin-bottom: 12px;
+    }
+    .review-card__text {
+      font-size: 14px; font-weight: 300;
+      color: var(--ink-secondary); line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .review-card__author { display: flex; align-items: center; gap: 12px; }
+    .review-card__avatar {
+      width: 36px; height: 36px;
+      background: var(--gold-dim);
+      border: 1px solid var(--border-yellow);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display);
+      font-size: 13px; font-weight: 700;
+      color: var(--gold); flex-shrink: 0;
+    }
+    .review-card__name {
+      font-size: 13px; font-weight: 600;
+      color: var(--ink-primary);
+    }
+    .review-card__meta {
+      font-size: 11px; color: var(--ink-tertiary);
+    }
+
+    /* ══════════════════════════════════════
+       SOCIAL PROOF
+    ══════════════════════════════════════ */
+    .social-section {
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 72px 0;
+    }
+    .social-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 40px;
+      text-align: center;
+    }
+    .social-title {
+      font-family: var(--font-display);
+      font-size: clamp(20px, 2.5vw, 28px);
+      font-weight: 800; letter-spacing: -0.5px;
+      color: var(--ink-primary); margin-bottom: 8px;
+    }
+    .social-sub {
+      font-size: 14px; color: var(--ink-secondary); margin-bottom: 40px;
+    }
+    .social-badges {
+      display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;
+    }
+    .social-badge {
+      display: flex; align-items: center; gap: 12px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md); padding: 14px 20px;
+      text-align: left; min-width: 180px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .social-badge:hover {
+      border-color: var(--border-yellow);
+      box-shadow: var(--shadow-gold);
+    }
+    .social-badge__icon {
+      width: 36px; height: 36px;
+      background: var(--gold-dim);
+      border: 1px solid var(--border-yellow);
+      border-radius: var(--r-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; flex-shrink: 0;
+    }
+    .social-badge__text {
+      font-size: 12px; font-weight: 500;
+      color: var(--ink-primary); line-height: 1.4;
+    }
+    .social-badge__text span { color: var(--ink-tertiary); font-weight: 400; }
+
+    /* ══════════════════════════════════════
+       ABOUT
+    ══════════════════════════════════════ */
+    .about-section {
+      background: var(--bg-base);
+      padding: 96px 0;
+    }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 72px; align-items: center;
+    }
+    .about-img-wrap {
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      aspect-ratio: 4/3;
+      background: var(--bg-card);
+    }
+    .about-img-wrap img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .about-year {
+      font-family: var(--font-display);
+      font-size: 64px; font-weight: 800;
+      color: var(--gold); letter-spacing: -3px;
+      line-height: 1; margin-bottom: 8px;
+      opacity: 0.3;
+    }
+    .about-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+      display: inline-flex; align-items: center; gap: 10px;
+    }
+    .about-eyebrow::before {
+      content: ''; display: block; width: 24px; height: 1.5px; background: var(--gold);
+    }
+    .about-title {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 2.5vw, 30px);
+      font-weight: 800; letter-spacing: -0.5px;
+      color: var(--ink-primary); margin-bottom: 20px;
+      line-height: 1.2;
+    }
+    .about-body {
+      font-size: 14px; font-weight: 300;
+      color: var(--ink-secondary); line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    .about-contact {
+      display: flex; flex-direction: column; gap: 10px;
+      margin-top: 24px;
+    }
+    .about-contact-item {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 13px; color: var(--ink-secondary);
+    }
+    .about-contact-item svg { width: 15px; height: 15px; color: var(--gold); flex-shrink: 0; }
+
+    /* ══════════════════════════════════════
+       FAQ
+    ══════════════════════════════════════ */
+    .faq-section {
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border);
+      padding: 96px 0;
+    }
+    .faq-header { text-align: center; margin-bottom: 56px; }
+    .faq-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+      display: inline-flex; align-items: center; gap: 10px;
+    }
+    .faq-eyebrow::before, .faq-eyebrow::after {
+      content: ''; display: block; width: 24px; height: 1.5px; background: var(--gold);
+    }
+    .faq-list {
+      max-width: 800px; margin: 0 auto;
+      display: flex; flex-direction: column; gap: 0;
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg); overflow: hidden;
+    }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q {
+      width: 100%; display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; padding: 20px 24px;
+      background: var(--bg-card);
+      border: none; cursor: pointer;
+      font-family: var(--font-body);
+      font-size: 14px; font-weight: 500;
+      color: var(--ink-primary); text-align: left;
+      transition: color 0.2s;
+    }
+    .faq-q:hover { color: var(--gold); }
+    .faq-q svg { width: 16px; height: 16px; flex-shrink: 0; color: var(--ink-tertiary); transition: transform 0.2s; }
+    .faq-item.open .faq-q svg { transform: rotate(180deg); color: var(--gold); }
+    .faq-a {
+      display: none; padding: 0 24px 20px;
+      font-size: 14px; font-weight: 300;
+      color: var(--ink-secondary); line-height: 1.8;
+      background: var(--bg-card);
+    }
+    .faq-item.open .faq-a { display: block; }
+
+    /* ══════════════════════════════════════
+       CTA STRIP
+    ══════════════════════════════════════ */
+    .cta-strip {
+      background: var(--gold);
+      padding: 72px 0;
+    }
+    .cta-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 40px; box-sizing: border-box;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 40px;
+    }
+    .cta-text {}
+    .cta-title {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 700;
+      color: #060606;
+      letter-spacing: -1.5px;
+      margin-bottom: 8px;
+    }
+    .cta-sub { font-size: 15px; color: rgba(6,6,6,0.6); font-weight: 400; }
+    .cta-actions { display: flex; gap: 12px; flex-shrink: 0; }
+    .btn-dark {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #060606; color: var(--gold);
+      font-family: var(--font-display);
+      font-size: 14px; font-weight: 600;
+      padding: 13px 28px; border-radius: var(--r-md);
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-dark:hover { background: #1a1a1a; transform: translateY(-1px); }
+    .btn-dark svg { width: 14px; height: 14px; }
+    .btn-outline-dark {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent;
+      border: 1.5px solid rgba(6,6,6,0.3);
+      color: #060606;
+      font-family: var(--font-display);
+      font-size: 14px; font-weight: 600;
+      padding: 13px 28px; border-radius: var(--r-md);
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-outline-dark:hover { border-color: #060606; background: rgba(6,6,6,0.06); }
+
+    /* ══════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════ */
+    footer {
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border);
+      padding: 64px 0 40px;
+    }
+    .footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; box-sizing: border-box; }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px; padding-bottom: 48px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 32px;
+    }
+    .footer-brand {}
+    .footer-logo {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none; margin-bottom: 16px;
+    }
+    .footer-logo-mark {
+      width: 36px; height: 36px;
+      background: var(--gold); border-radius: var(--r-sm);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .footer-logo-mark svg { width: 20px; height: 20px; }
+    .footer-logo-text {
+      font-family: var(--font-display);
+      font-size: 15px; font-weight: 600;
+      color: var(--ink-primary);
+    }
+    .footer-desc {
+      font-size: 13px; font-weight: 300;
+      color: var(--ink-tertiary);
+      line-height: 1.7;
+      max-width: 280px;
+    }
+    .footer-social {
+      display: flex; gap: 10px; margin-top: 20px;
+    }
+    .footer-social a {
+      width: 36px; height: 36px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--ink-secondary);
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .footer-social a:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: var(--gold-dim);
+    }
+    .footer-social a svg { width: 16px; height: 16px; }
+    .footer-col-title {
+      font-family: var(--font-display);
+      font-size: 12px; font-weight: 600;
+      color: var(--ink-secondary);
+      letter-spacing: 1px; text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .footer-links { display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a {
+      font-size: 13px; color: var(--ink-tertiary);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .footer-links a:hover { color: var(--ink-primary); }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 12px; color: var(--ink-tertiary);
+    }
+    .footer-bottom a {
+      color: var(--ink-tertiary); text-decoration: none;
+      transition: color 0.15s;
+    }
+    .footer-bottom a:hover { color: var(--ink-secondary); }
+
+    /* ══════════════════════════════════════
+       STICKY LINE BUTTON
+    ══════════════════════════════════════ */
+    .sticky-line {
+      position: fixed; bottom: 24px; right: 24px; z-index: 90;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .sticky-line__label {
+      font-family: var(--font-display);
+      font-size: 11px; font-weight: 600;
+      color: var(--ink-secondary);
+      background: var(--bg-card);
+      border: 1px solid var(--border-mid);
+      border-radius: 999px; padding: 6px 14px;
+    }
+    .sticky-line__btn {
+      width: 52px; height: 52px;
+      background: #00B900;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px rgba(0,185,0,0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .sticky-line__btn:hover { transform: scale(1.08); }
+    .sticky-line__btn svg { width: 26px; height: 26px; }
+
+    /* ══════════════════════════════════════
+       ANIMATIONS
+    ══════════════════════════════════════ */
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.8; }
+    }
+
+    /* ══════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .trip-features-grid { grid-template-columns: repeat(2, 1fr); }
+      .why-grid { grid-template-columns: repeat(2, 1fr); }
+      .ft-grid { grid-template-columns: repeat(2, 1fr); }
+      .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .nav-inner { padding: 0 20px; }
+      .nav-links { display: none; }
+      .nav-menu-btn { display: flex; }
+      .hero-content { padding: 100px 20px 50px; }
+      .stats-inner { padding: 0 20px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+      .section-inner, .video-inner { padding: 0 20px; }
+      .trip-section { padding: 64px 0; }
+      .trip-section .section-inner { padding: 0 20px; }
+      .featured-section { padding: 64px 0; }
+      .featured-section .section-inner { padding: 0 20px; }
+      .highlights-grid { grid-template-columns: 1fr; }
+      .trip-features-grid { grid-template-columns: 1fr; }
+      .ft-grid { grid-template-columns: 1fr; }
+      .why-section { padding: 64px 0; }
+      .why-section .section-inner { padding: 0 20px; }
+      .why-grid { grid-template-columns: 1fr; }
+      .reviews-section { padding: 64px 0; }
+      .reviews-section .section-inner { padding: 0 20px; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .about-section { padding: 64px 0; }
+      .about-section .section-inner { padding: 0 20px; }
+      .about-grid { grid-template-columns: 1fr; gap: 32px; }
+      .faq-section { padding: 64px 0; }
+      .faq-section .section-inner { padding: 0 20px; }
+      .final-cta-section { padding: 80px 0; }
+      .final-cta-inner { padding: 0 20px; }
+      .footer-inner { padding: 0 20px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+      .day-item { grid-template-columns: 80px 1fr; gap: 16px; }
+      .cost-grid { grid-template-columns: 1fr; gap: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav id="nav">
+    <div class="nav-inner">
+      <div class="nav-left">
+        <a href="index.html" class="nav-logo">
+          <img src="image/SkyHorse.svg" alt="SkyHorse Auto" style="height:34px;width:auto;">
+        </a>
+        <div class="nav-business-switch" aria-label="業務模塊切換">
+          <a href="index.html" class="nav-business-link">美國租車</a>
+          <a href="#" class="nav-business-link is-active">阿拉斯加之旅</a>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="#advantages">優勢</a>
+        <a href="#cars">車型</a>
+        <a href="blog.html">攻略</a>
+        <a href="#" class="nav-cta">立即預訂</a>
+      </div>
+      <button class="nav-menu-btn" aria-label="Menu">
+        <i data-lucide="menu" style="width:18px;height:18px"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ════ HERO ════ -->
+  <section class="hero">
+    <!-- ── Image Carousel ── -->
+    <div class="hero-carousel" id="heroCarousel">
+      <div class="hero-carousel__slide active"><img src="image/Alaska_1.png" alt="Alaska scenery 1"></div>
+      <div class="hero-carousel__slide"><img src="image/Alaska_2.png" alt="Alaska scenery 2"></div>
+      <div class="hero-carousel__slide"><img src="image/Alaska_3.png" alt="Alaska scenery 3"></div>
+      <div class="hero-carousel__slide"><img src="image/Alaska_4.png" alt="Alaska scenery 4"></div>
+      <div class="hero-carousel__slide"><img src="image/Alaska_5.png" alt="Alaska scenery 5"></div>
+      <div class="hero-carousel__slide"><img src="image/Alaska_6.png" alt="Alaska scenery 6"></div>
+      <div class="hero-carousel__slide"><img src="image/Alaska_7.png" alt="Alaska scenery 7"></div>
+      <div class="hero-carousel__slide"><img src="image/Alaska_8.png" alt="Alaska scenery 8"></div>
+    </div>
+    <div class="hero-carousel__dots" id="heroCarouselDots"></div>
+    <!-- ── ── ── -->
+
+    <div class="hero-content">
+      <div class="hero-eyebrow">Sky Horse 天馬旅遊</div>
+      <h1>極圈以北，極光之旅</h1>
+      <p class="hero-sub">全程中文陪伴，帶你深入北極冰川、雪山與野生動物的世界。</p>
+      <div class="hero-pills">
+        <span class="hero-pill">5天4夜深度行</span>
+        <span class="hero-pill">8人以下小團</span>
+        <span class="hero-pill">全程中文導遊</span>
+        <span class="hero-pill">夏季 / 冬季皆有</span>
+      </div>
+      <div class="hero-actions">
+        <a href="https://line.me/R/ti/p/@skyhorse" class="btn-primary" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+          立即諮詢行程
+        </a>
+        <a href="#itinerary" class="btn-ghost" onclick="event.preventDefault();document.querySelector('#itinerary').scrollIntoView({behavior:'smooth'})">
+          查看詳細行程
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="hero-scroll-line"></div>
+      scroll
+    </div>
+  </section>
+
+  <!-- ════ STATS ════ -->
+  <section class="stats">
+    <div class="stats-inner">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-num">2019</div>
+          <div class="stat-label">開始服務<br>深耕美國市場</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">500<span>+</span></div>
+          <div class="stat-label">台灣旅客<br>安全帶領</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">&le;8</div>
+          <div class="stat-label">人小團<br>深度體驗</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">100<span>%</span></div>
+          <div class="stat-label">全程中文<br>無語言障礙</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BLOG CTA (PROMOTION) ── -->
+  <section class="blog-cta-section">
+    <div class="blog-cta-inner">
+      <div class="blog-cta-content">
+        <div class="blog-cta-eyebrow">
+          <i data-lucide="newspaper" style="width:14px;height:14px"></i>
+          <span>優惠合作與行程攻略</span>
+        </div>
+        <h2 class="blog-cta-title">中華航空合作優惠｜搭機租車<br>85折，華航旅客專屬美國自駕方案！</h2>
+        <p class="blog-cta-sub">
+          SkyHorse 與中華航空合作推出旅客專屬租車優惠，搭乘華航前往美國，即可享租車85折起。抵達 PHX、LAX、SFO、ONT 等熱門機場後，中文服務協助取還車，讓你的美國公路旅行從落地開始更順暢。
+        </p>
+        <div class="blog-cta-tags">
+          <span>中華航空</span>
+          <span>租車優惠</span>
+          <span>機場取還車</span>
+          <span>美國自駕</span>
+        </div>
+        <div class="blog-cta-actions">
+          <div class="blog-cta-primary">
+            <a href="blog.html" class="blog-cta-btn">
+              立即查看優惠
+              <i data-lucide="arrow-right"></i>
+            </a>
+            <div class="blog-cta-count">華航旅客專屬優惠</div>
+          </div>
+        </div>
+      </div>
+      <a href="blog.html" class="blog-cta-media" aria-label="查看 SkyHorse 與中華航空合作租車優惠">
+        <img src="image/banner-demo.png" alt="SkyHorse 與中華航空合作租車 85 折優惠" loading="lazy">
+        <span class="blog-cta-media-label">
+          <i data-lucide="plane"></i>
+          合作優惠
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ════ TRIP DETAIL ════ -->
+  <section class="trip-section" id="itinerary">
+    <div class="section-inner">
+      <div class="trip-header">
+        <div class="trip-eyebrow">主打行程推薦</div>
+        <h2 class="section-title">2026 阿拉斯加 夏季日不落<br><em style="font-style:italic;color:var(--ink-tertiary);font-size:0.85em">5日冰川・峽灣・野生自然之旅</em></h2>
+        <p class="trip-header__sub">五天四夜一價全包，以安克拉治為起點，深入探索冰川、峽灣與野生動物棲息地。搭配波蒂奇冰川遊船、馬塔努斯卡冰川健行、基奈峽灣國家公園與海切爾山口高山景觀，一次看見阿拉斯加夏季最壯麗的自然風光。</p>
+        <div class="trip-meta-badges">
+          <span class="trip-badge">6–8月出發</span>
+          <span class="trip-badge">5天4夜</span>
+          <span class="trip-badge">8人以下小團</span>
+          <span class="trip-badge">全程中文</span>
+          <span class="trip-badge trip-badge--price">From <strong>US$2,800</strong></span>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="trip-tabs">
+        <button class="trip-tab active" onclick="switchTripTab('highlights',this)">方案亮點</button>
+        <button class="trip-tab" onclick="switchTripTab('itinerary',this)">每日行程</button>
+        <button class="trip-tab" onclick="switchTripTab('cost',this)">費用資訊</button>
+      </div>
+
+      <!-- Panel: Highlights -->
+      <div class="trip-panel active" id="panel-highlights">
+        <div class="highlights-grid">
+          <div class="highlight-row">
+            <div class="highlight-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+            </div>
+            <div>
+              <div class="highlight-label">行程路線</div>
+              <div class="highlight-val">安克拉治 → 波蒂奇冰川 → 馬塔努斯卡冰川 → 基奈峽灣 → 海切爾山口 → 安克拉治</div>
+            </div>
+          </div>
+          <div class="highlight-row">
+            <div class="highlight-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            </div>
+            <div>
+              <div class="highlight-label">導覽語言</div>
+              <div class="highlight-val">全程中文</div>
+            </div>
+          </div>
+          <div class="highlight-row">
+            <div class="highlight-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <div class="highlight-label">行程時間</div>
+              <div class="highlight-val">5 天 4 夜</div>
+            </div>
+          </div>
+          <div class="highlight-row">
+            <div class="highlight-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div class="highlight-label">集合地點</div>
+              <div class="highlight-val">安克拉治國際機場（ANC）</div>
+            </div>
+          </div>
+          <div class="highlight-row">
+            <div class="highlight-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <div>
+              <div class="highlight-label">最早出發日</div>
+              <div class="highlight-val">2026年 6月 1日（夏季限定）</div>
+            </div>
+          </div>
+          <div class="highlight-row">
+            <div class="highlight-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div>
+              <div class="highlight-label">訂購確認</div>
+              <div class="highlight-val">LINE 諮詢後 24 小時內確認訂位</div>
+            </div>
+          </div>
+          <div class="highlight-row">
+            <div class="highlight-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 10h.01M15 10h.01M12 2a10 10 0 100 20 10 10 0 000-20zm0 14a4 4 0 01-4-4h8a4 4 0 01-4 4z"/></svg>
+            </div>
+            <div>
+              <div class="highlight-label">取消政策</div>
+              <div class="highlight-val">出發 30 天前可免費取消，詳情請洽 LINE</div>
+            </div>
+          </div>
+          <div class="highlight-row">
+            <div class="highlight-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <div>
+              <div class="highlight-label">成團人數</div>
+              <div class="highlight-val">最少 2 人，最多 8 人</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="trip-features">
+          <h3 class="trip-features-title">行程特色</h3>
+          <div class="trip-features-grid">
+            <div class="trip-feature-card">
+              <div class="trip-feature-card__num">01</div>
+              <h4>波蒂奇冰川遊船</h4>
+              <p>搭乘遊船進入波蒂奇湖，近距離仰望冰川，藍白交錯的冰層景觀震撼人心。</p>
+            </div>
+            <div class="trip-feature-card">
+              <div class="trip-feature-card__num">02</div>
+              <h4>馬塔努斯卡冰川健行</h4>
+              <p>穿戴冰爪踏上千萬年冰川，全程中文嚮導帶領，安全又難忘。</p>
+            </div>
+            <div class="trip-feature-card">
+              <div class="trip-feature-card__num">03</div>
+              <h4>基奈峽灣國家公園</h4>
+              <p>搭船深入峽灣，觀察座頭鯨、海獺、角嘴海雀等壯觀野生動物。</p>
+            </div>
+            <div class="trip-feature-card">
+              <div class="trip-feature-card__num">04</div>
+              <h4>海切爾山口高山景觀</h4>
+              <p>阿拉斯加夏季永晝奇景，在高山草甸俯瞰馬塔努斯卡河谷壯麗全景。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel: Itinerary -->
+      <div class="trip-panel" id="panel-itinerary">
+        <div class="day-timeline">
+          <div class="day-item">
+            <div class="day-marker"><span>Day 1</span></div>
+            <div class="day-content">
+              <h3>抵達安克拉治 · 城市初探</h3>
+              <p>中文司機機場接機，辦理入住後前往安克拉治市區漫步，晚餐享用阿拉斯加新鮮帝王蟹。</p>
+              <div class="day-tags">
+                <span class="day-tag">機場接送</span><span class="day-tag">酒店入住</span><span class="day-tag">海鮮晚餐</span><span class="day-tag">安克拉治市區</span>
+              </div>
+            </div>
+          </div>
+          <div class="day-item">
+            <div class="day-marker"><span>Day 2</span></div>
+            <div class="day-content">
+              <h3>波蒂奇冰川遊船 · 海灣探索</h3>
+              <p>前往波蒂奇湖，搭乘遊船近距離觀賞冰川。下午前往惠蒂爾小鎮，欣賞峽灣風光，晚餐在當地餐廳享用。</p>
+              <div class="day-tags">
+                <span class="day-tag">波蒂奇冰川</span><span class="day-tag">遊船體驗</span><span class="day-tag">惠蒂爾小鎮</span>
+              </div>
+            </div>
+          </div>
+          <div class="day-item">
+            <div class="day-marker"><span>Day 3</span></div>
+            <div class="day-content">
+              <h3>馬塔努斯卡冰川健行 · 海切爾山口</h3>
+              <p>早上配戴冰爪深入馬塔努斯卡冰川，下午驅車前往海切爾山口，眺望連綿山脈與廣袤草甸。</p>
+              <div class="day-tags">
+                <span class="day-tag">冰川健行</span><span class="day-tag">冰爪含</span><span class="day-tag">海切爾山口</span><span class="day-tag">攝影指導</span>
+              </div>
+            </div>
+          </div>
+          <div class="day-item">
+            <div class="day-marker"><span>Day 4</span></div>
+            <div class="day-content">
+              <h3>基奈峽灣國家公園 · 賞鯨之旅</h3>
+              <p>前往蘇厄德，搭乘全日賞鯨遊船深入基奈峽灣國家公園，觀察座頭鯨、虎鯨、海獺、角嘴海雀。</p>
+              <div class="day-tags">
+                <span class="day-tag">賞鯨遊船</span><span class="day-tag">國家公園</span><span class="day-tag">野生動物</span><span class="day-tag">蘇厄德小鎮</span>
+              </div>
+            </div>
+          </div>
+          <div class="day-item">
+            <div class="day-marker"><span>Day 5</span></div>
+            <div class="day-content">
+              <h3>返回安克拉治 · 自由購物 · 送機</h3>
+              <p>早上返回安克拉治，自由時間逛紀念品商店，中文司機準時送機，圓滿結束五天阿拉斯加之旅。</p>
+              <div class="day-tags">
+                <span class="day-tag">自由活動</span><span class="day-tag">購物時間</span><span class="day-tag">機場送機</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel: Cost -->
+      <div class="trip-panel" id="panel-cost">
+        <div class="cost-grid">
+          <div>
+            <h3 class="cost-section-title">費用包含</h3>
+            <ul class="cost-list cost-list--include">
+              <li>全程住宿（4晚，2人1室標準房）</li>
+              <li>機場接送（往返）</li>
+              <li>全程園區交通與包車</li>
+              <li>中文導遊全程陪同</li>
+              <li>波蒂奇冰川遊船票</li>
+              <li>馬塔努斯卡冰川入場費與冰爪租借</li>
+              <li>基奈峽灣賞鯨船票</li>
+              <li>行程表內指定餐食</li>
+              <li>所有小費</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="cost-section-title">費用不包含</h3>
+            <ul class="cost-list cost-list--exclude">
+              <li>國際往返機票</li>
+              <li>個人消費與購物</li>
+              <li>旅遊保險（強烈建議自行投保）</li>
+              <li>行程表外餐食與飲料</li>
+              <li>單人房差價（可加購）</li>
+            </ul>
+            <div class="cost-price-box">
+              <div class="cost-price-label">行程費用</div>
+              <div class="cost-price-num">USD 2,800</div>
+              <div class="cost-price-unit">起 / 人（依出發日期與人數調整）</div>
+              <a href="https://line.me/R/ti/p/@skyhorse" class="btn-primary" style="margin-top:20px;width:100%;justify-content:center;display:flex" target="_blank" rel="noopener">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+                LINE 詢問報名
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ FEATURED TRIPS ════ -->
+  <section class="featured-section" id="pricing">
+    <div class="section-inner">
+      <div class="featured-header">
+        <div class="featured-eyebrow">近期活動行程</div>
+        <h2 class="section-title">精選阿拉斯加旅程</h2>
+        <p class="section-desc">每一條路線都由 Sky Horse 天馬親自規劃，全程中文陪伴，一價全包無隱藏費用。</p>
+      </div>
+      <div class="ft-grid">
+        <!-- Card 1: Summer -->
+        <div class="ft-card ft-card--featured">
+          <div class="ft-card__img">
+            <img src="image/summer-trip.jpg" alt="夏季冰川" onerror="this.parentElement.style.background='#161616';this.remove()">
+            <span class="ft-card__badge ft-card__badge--hot">夏季主打</span>
+          </div>
+          <div class="ft-card__body">
+            <div class="ft-card__tag">6–8月出發</div>
+            <h3 class="ft-card__title">2026 阿拉斯加 夏季日不落<br>5日冰川・峽灣・野生自然之旅</h3>
+            <p class="ft-card__desc">五天四夜全包，從安克拉治出發，波蒂奇冰川遊船、馬塔努斯卡冰川健行、基奈峽灣賞鯨，一次看盡阿拉斯加夏季最壯麗風光。</p>
+            <div class="ft-card__highlights">
+              <span>5天4夜</span><span>冰川健行</span><span>峽灣遊船</span><span>賞鯨</span>
+            </div>
+            <div class="ft-card__footer">
+              <div class="ft-card__duration">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                5 天
+              </div>
+              <div class="ft-card__price"><span>From</span> <strong>US$2,800</strong></div>
+            </div>
+          </div>
+        </div>
+        <!-- Card 2: Winter Aurora -->
+        <div class="ft-card">
+          <div class="ft-card__img">
+            <img src="image/aurora-trip.jpg" alt="極光" onerror="this.parentElement.style.background='#161616';this.remove()">
+            <span class="ft-card__badge ft-card__badge--new">冬季行程</span>
+          </div>
+          <div class="ft-card__body">
+            <div class="ft-card__tag">12–2月出發</div>
+            <h3 class="ft-card__title">2026/27 阿拉斯加 極光爆發年<br>7日四晚追光・極地雪國深度之旅</h3>
+            <p class="ft-card__desc">七天六夜全中文導覽，從費爾班克斯出發，安排四晚專業追光，把握極光高峰的黃金冬季，再走進狗拉雪橇、珍娜極地溫泉、迪納利雪國漫步。</p>
+            <div class="ft-card__highlights">
+              <span>7天6夜</span><span>4晚追光</span><span>狗拉雪橇</span><span>溫泉體驗</span>
+            </div>
+            <div class="ft-card__footer">
+              <div class="ft-card__duration">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                7 天
+              </div>
+              <div class="ft-card__price"><span>From</span> <strong>US$3,100</strong></div>
+            </div>
+          </div>
+        </div>
+        <!-- Card 3: Day Trip -->
+        <div class="ft-card">
+          <div class="ft-card__img">
+            <img src="image/day-trip.jpg" alt="單日行程" onerror="this.parentElement.style.background='#161616';this.remove()">
+            <span class="ft-card__badge">一日行程</span>
+          </div>
+          <div class="ft-card__body">
+            <div class="ft-card__tag">彈性加購</div>
+            <h3 class="ft-card__title">阿拉斯加單日體驗<br>冰川・峽灣・極光 任選</h3>
+            <p class="ft-card__desc">已在阿拉斯加自由行？加購單日中文帶團體驗。冰川健行、遊船賞鯨、費爾班克斯極光單夜，全程中文，接送含。</p>
+            <div class="ft-card__highlights">
+              <span>1天/1晚</span><span>彈性選擇</span><span>接送含</span>
+            </div>
+            <div class="ft-card__footer">
+              <div class="ft-card__duration">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                1 天起
+              </div>
+              <div class="ft-card__price"><span>From</span> <strong>US$220</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ WHY US ════ -->
+  <section class="why-section" id="highlights">
+    <div class="section-inner">
+      <div class="why-header">
+        <div class="why-eyebrow">為什麼選 Sky Horse</div>
+        <h2 class="section-title">旅行中文，放心出發</h2>
+        <p class="section-desc" style="margin-left:auto;margin-right:auto">我們不是台灣的旅行社。我們是在美國的台灣人，幫你的阿拉斯加之旅做最貼近中文旅客需求的安排。</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFDC22" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+          </div>
+          <h3 class="why-card__title">全程中文陪伴</h3>
+          <p class="why-card__desc">在美國，但完全不需要說英文。從抵達機場到最後送機，全程由中文導遊陪伴，溝通零障礙。</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFDC22" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          </div>
+          <h3 class="why-card__title">費用透明，無隱藏</h3>
+          <p class="why-card__desc">行程費用含住宿、交通、門票、指定餐食和小費。報名前清楚告知你每分錢的用途。</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFDC22" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <h3 class="why-card__title">小團深度體驗</h3>
+          <p class="why-card__desc">最多 8 人成行，不是幾十人的大巴觀光。彈性行程配合你的節奏，真正深度體驗每個景點。</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFDC22" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <h3 class="why-card__title">在地資源，真正在地</h3>
+          <p class="why-card__desc">Sky Horse 在美國深耕超過 5 年，有自己的合作司機、導遊和當地夥伴，不是轉包的二手行程。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ REVIEWS ════ -->
+  <section class="reviews-section" id="reviews">
+    <div class="section-inner">
+      <div class="reviews-header">
+        <div class="trip-eyebrow">旅客真實評價</div>
+        <h2 class="section-title">他們去過，你也可以</h2>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-card__quote">"</div>
+          <div class="review-card__stars">★★★★★</div>
+          <p class="review-card__text">看到了美麗的極光，讓我們留下美好的回憶！導遊非常專業，解說豐富，全程都感覺很安心。</p>
+          <div class="review-card__author">
+            <div class="review-card__avatar">林</div>
+            <div>
+              <div class="review-card__name">林先生</div>
+              <div class="review-card__meta">冬季行程 · 2025年12月</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-card__quote">"</div>
+          <div class="review-card__stars">★★★★★</div>
+          <p class="review-card__text">導遊很親切且行程很精彩，非常貼心的提早接送我們到機場。和家人一起旅遊完全不用擔心溝通問題！</p>
+          <div class="review-card__author">
+            <div class="review-card__avatar">K</div>
+            <div>
+              <div class="review-card__name">Katrina</div>
+              <div class="review-card__meta">夏季行程 · 2025年7月</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-card__quote">"</div>
+          <div class="review-card__stars">★★★★★</div>
+          <p class="review-card__text">行程很好玩，我們12月前往都有看到很強的極光，超級推薦！帶長輩一起去全程都照顧得很周到。</p>
+          <div class="review-card__author">
+            <div class="review-card__avatar">蔡</div>
+            <div>
+              <div class="review-card__name">蔡小姐</div>
+              <div class="review-card__meta">冬季行程 · 2025年1月</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-card__quote">"</div>
+          <div class="review-card__stars">★★★★★</div>
+          <p class="review-card__text">與長輩同行一起追極光，留下了很美好的回憶。全中文服務讓長輩完全沒有壓力！</p>
+          <div class="review-card__author">
+            <div class="review-card__avatar">洪</div>
+            <div>
+              <div class="review-card__name">洪小姐</div>
+              <div class="review-card__meta">冬季行程 · 2025年2月</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-card__quote">"</div>
+          <div class="review-card__stars">★★★★★</div>
+          <p class="review-card__text">冰川健行是這輩子最壯觀的體驗之一！完全沒想到台灣人可以這麼輕鬆走進阿拉斯加的冰川。</p>
+          <div class="review-card__author">
+            <div class="review-card__avatar">陳</div>
+            <div>
+              <div class="review-card__name">陳先生</div>
+              <div class="review-card__meta">夏季行程 · 2025年8月</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-card__quote">"</div>
+          <div class="review-card__stars">★★★★★</div>
+          <p class="review-card__text">第一次去阿拉斯加就選了天馬，完全沒有語言壓力。導遊會幫忙解釋所有的東西，體驗非常棒。</p>
+          <div class="review-card__author">
+            <div class="review-card__avatar">王</div>
+            <div>
+              <div class="review-card__name">王小姐</div>
+              <div class="review-card__meta">夏季行程 · 2024年7月</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ SOCIAL PROOF ════ -->
+  <section class="social-section">
+    <div class="social-inner">
+      <h2 class="social-title">YouTuber & 媒體合作</h2>
+      <p class="social-sub">他們親自體驗了這趟旅程，然後拍成影片告訴你。</p>
+      <div class="social-badges">
+        <div class="social-badge">
+          <div class="social-badge__icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFDC22" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </div>
+          <div class="social-badge__text">旅遊 YouTuber 合作<br><span>（請填入實際頻道名稱）</span></div>
+        </div>
+        <div class="social-badge">
+          <div class="social-badge__icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFDC22" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </div>
+          <div class="social-badge__text">Instagram 旅遊達人<br><span>@skyhorse_alaska</span></div>
+        </div>
+        <div class="social-badge">
+          <div class="social-badge__icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFDC22" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+          </div>
+          <div class="social-badge__text">TikTok 旅遊分享<br><span>@skyhorseauto</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ ABOUT ════ -->
+  <section class="about-section">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="about-img-wrap">
+          <img src="image/about-alaska.jpg" alt="Sky Horse 團隊在阿拉斯加" onerror="this.style.display='none'">
+        </div>
+        <div>
+          <div class="about-year">2019</div>
+          <div class="about-eyebrow">關於我們</div>
+          <h2 class="about-title">從租車起家，<br>我們比誰都懂美國</h2>
+          <p class="about-body">Sky Horse 天馬從 2019 年就在美國幫台灣旅客服務，從美國租車到阿拉斯加旅遊，我們走過的每一步都是為了讓台灣旅客在美國更安心、更省力。</p>
+          <p class="about-body">我們不是從台灣接單再外包的旅行社，而是真正在美國在地的台灣人團隊，有自己的在地資源、當地導遊和長年合作的夥伴。你的旅程，我們親自負責。</p>
+          <div class="about-contact">
+            <span class="about-contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.7A2 2 0 012 .982h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16a2 2 0 00-.08.92z"/></svg>
+              +1-949-439-7432
+            </span>
+            <span class="about-contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              contact@skyhorseauto.com
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ FAQ ════ -->
+  <section class="faq-section" id="faq">
+    <div class="section-inner">
+      <div class="faq-header">
+        <div class="faq-eyebrow">常見問題</div>
+        <h2 class="section-title">出發前你想知道的</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            費用包含哪些內容？不含哪些？
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a">費用包含：全程住宿（4晚）、景點門票、機場接送、中文導遊、園區內交通、指定餐食、冰川健行裝備、小費。<br><br>不含：國際往返機票、個人消費購物、旅遊保險（強烈建議自行投保）、行程表外的餐食。</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            機票需要自己安排嗎？要在哪裡轉機？
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a">是的，國際機票需自行購買。建議從台灣搭機前往西雅圖（SEA）、舊金山（SFO）或洛杉磯（LAX）轉機，再飛安克拉治（ANC）。我們可以協助你確認轉機時間是否合理。</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            如何預訂？報名流程是什麼？
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a">1. 透過 LINE 或 Email 聯繫，告知欲出發的日期與人數。<br>2. 我們確認名額後提供報名表與費用說明。<br>3. 繳交訂金（通常為總費用 30%）確保席位。<br>4. 出發前 30 天繳清尾款。<br>5. 出發前收到詳細行前說明資料。</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            可以客製行程嗎？可以只參加一天嗎？
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a">目前標準行程為 5 天 4 夜，無法單天參加。我們提供有限度的客製化服務（例如：生日慶祝安排、特殊住宿升級等），可在 LINE 諮詢時告知需求。</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            有最低成團人數嗎？
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a">最少 2 人即可成行（單人報名另有加價），最多 8 人，確保小團品質。若人數不足，我們會嘗試安排拼團。</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            有最低參加年齡嗎？帶長輩或小孩可以嗎？
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a">無嚴格年齡限制，但冰川健行需要一定體力。我們有帶長輩成功完成行程的紀錄，若有疑慮請事先說明，我們會提供適合的建議。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA STRIP ── -->
+  <section class="cta-strip">
+    <div class="cta-inner">
+      <div class="cta-text">
+        <div class="cta-title">準備好上路了嗎？</div>
+        <div class="cta-sub">阿拉斯加等你。名額有限，現在就透過 LINE 詢問你想要的出發日期。</div>
+      </div>
+      <div class="cta-actions">
+        <a href="https://line.me/R/ti/p/@skyhorse" class="btn-dark" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+          LINE 立即諮詢
+        </a>
+        <a href="mailto:contact@skyhorseauto.com" class="btn-outline-dark">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          Email 詢問
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="footer-logo">
+          <img src="image/SkyHorse.svg" alt="SkyHorse Auto" style="height:34px;width:auto;">
+        </a>
+        <p class="footer-desc">加州自駕租車首選。2015 年成立，深耕美西機場租車市場，以中文服務與透明價格著稱。</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+          </a>
+          <a href="#" aria-label="LINE">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.3 13.5a5.3 5.3 0 0 1 0 4.3l-1.2 3.7-3.5-1.2a5.1 5.1 0 0 1-2.5-2L8 17H4.5l1.3-4.4-1.2-3.9a5.3 5.3 0 0 1 0-4.3l1.2-3.7 3.5 1.2a5.1 5.1 0 0 1 2.5 2l3.8-1.3H18l-1.3 4.4 1.2 3.9zm-7.3-3.5a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm4 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/></svg>
+          </a>
+          <a href="#" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.27 8.27 0 0 0 4.83 1.55V6.78a4.85 4.85 0 0 1-1.07-.09z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">服務</div>
+        <div class="footer-links">
+          <a href="#">機場取還車</a>
+          <a href="#">單程異地還車</a>
+          <a href="#">保險加購</a>
+          <a href="#">GPS / 兒童安全座椅</a>
+          <a href="#">司機服務</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">車型</div>
+        <div class="footer-links">
+          <a href="fleet.html">轎車系列</a>
+          <a href="fleet.html">SUV 休旅</a>
+          <a href="fleet.html">7人座 MPV</a>
+          <a href="fleet.html">電動車</a>
+          <a href="fleet.html">跑車敞篷</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">聯絡</div>
+        <div class="footer-links">
+          <a href="#">LINE @skyhorse</a>
+          <a href="#">contact@skyhorseauto.com</a>
+          <a href="#">+1-949-439-7432</a>
+          <a href="#">常見問題</a>
+          <a href="#">使用條款</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 SkyHorse Auto LLC. All rights reserved.</span>
+      <span>
+        <a href="#">隱私權政策</a> · <a href="#">服務條款</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+  <!-- ════ STICKY LINE ════ -->
+  <div class="sticky-line">
+    <span class="sticky-line__label">LINE 快速諮詢</span>
+    <a href="https://line.me/R/ti/p/@skyhorse" class="sticky-line__btn" target="_blank" rel="noopener" aria-label="LINE 諮詢">
+      <svg viewBox="0 0 24 24" fill="white"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+    </a>
+  </div>
+
+  <script>
+    // Init Lucide icons
+    lucide.createIcons();
+
+    // Nav scroll
+    window.addEventListener('scroll', () => {
+      document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // Mobile menu (placeholder — expand if needed)
+
+    // Trip detail tabs
+    function switchTripTab(panel, btn) {
+      document.querySelectorAll('.trip-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.trip-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('panel-' + panel).classList.add('active');
+    }
+
+    // FAQ
+    function toggleFaq(btn) {
+      const item = btn.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+
+    /* ── Hero Carousel ── */
+    (function() {
+      const slides = document.querySelectorAll('.hero-carousel__slide');
+      const dotsContainer = document.getElementById('heroCarouselDots');
+      let current = 0;
+      let timer;
+
+      // Build dots
+      slides.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'hero-carousel__dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+        dot.addEventListener('click', () => goTo(i));
+        dotsContainer.appendChild(dot);
+      });
+      const dots = document.querySelectorAll('.hero-carousel__dot');
+
+      function goTo(index) {
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        current = index;
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+        resetTimer();
+      }
+
+      function next() {
+        goTo((current + 1) % slides.length);
+      }
+
+      function resetTimer() {
+        clearTimeout(timer);
+        timer = setTimeout(next, 5000);
+      }
+
+      // Start
+      resetTimer();
+    })();
+  </script>
+
+</body>
+</html>
