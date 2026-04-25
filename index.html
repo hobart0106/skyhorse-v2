@@ -1376,6 +1376,58 @@
       }
       .blog-card-date { font-size: 10px; }
     }
+    /* ══════════════════════════════════════
+       FAQ
+    ══════════════════════════════════════ */
+    .faq-section {
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border);
+      padding: 96px 0;
+    }
+    .faq-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 40px; box-sizing: border-box;
+    }
+    .faq-header { text-align: left; margin-bottom: 56px; }
+    .faq-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+      display: inline-flex; align-items: center; gap: 10px;
+    }
+    .faq-eyebrow::before {
+      content: ''; display: block; width: 24px; height: 1.5px; background: var(--gold);
+    }
+    .faq-list {
+      max-width: 800px; margin: 0 auto;
+      display: flex; flex-direction: column; gap: 0;
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg); overflow: hidden;
+    }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q {
+      width: 100%; display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; padding: 20px 24px;
+      background: var(--bg-card);
+      border: none; cursor: pointer;
+      font-family: var(--font-body);
+      font-size: 14px; font-weight: 500;
+      color: var(--ink-primary); text-align: left;
+      transition: color 0.2s;
+    }
+    .faq-q:hover { color: var(--gold); }
+    .faq-q svg { width: 16px; height: 16px; flex-shrink: 0; color: var(--ink-tertiary); transition: transform 0.2s; }
+    .faq-item.open .faq-q svg { transform: rotate(180deg); color: var(--gold); }
+    .faq-a {
+      display: none; padding: 0 24px 20px;
+      font-size: 14px; font-weight: 300;
+      color: var(--ink-secondary); line-height: 1.8;
+      background: var(--bg-card);
+    }
+    .faq-item.open .faq-a { display: block; }
+
   </style>
 </head>
 <body>
@@ -1919,6 +1971,60 @@
   </div>
 </section>
 
+  <!-- ════ FAQ ════ -->
+  <section class="faq-section" id="faq">
+    <div class="faq-inner">
+      <div class="faq-header">
+        <div class="faq-eyebrow">常見問題</div>
+        <h2 class="section-title">出發前你想知道的</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            費用包含哪些內容？不含哪些？
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a">費用包含：全程住宿（4晚）、景點門票、機場接送、中文導遊、園區內交通、指定餐食、冰川健行裝備、小費。<br><br>不含：國際往返機票、個人消費購物、旅遊保險（強烈建議自行投保）、行程表外的餐食。</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            機票需要自己安排嗎？要在哪裡轉機？
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a">是的，國際機票需自行購買。建議從台灣搭機前往西雅圖（SEA）、舊金山（SFO）或洛杉磯（LAX）轉機，再飛安克拉治（ANC）。我們可以協助你確認轉機時間是否合理。</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            如何預訂？報名流程是什麼？
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a">1. 透過 LINE 或 Email 聯繫，告知欲出發的日期與人數。<br>2. 我們確認名額後提供報名表與費用說明。<br>3. 繳交訂金（通常為總費用 30%）確保席位。<br>4. 出發前 30 天繳清尾款。<br>5. 出發前收到詳細行前說明資料。</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            可以客製行程嗎？可以只參加一天嗎？
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a">目前標準行程為 5 天 4 夜，無法單天參加。我們提供有限度的客製化服務（例如：生日慶祝安排、特殊住宿升級等），可在 LINE 諮詢時告知需求。</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            有最低成團人數嗎？
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a">最少 2 人即可成行（單人報名另有加價），最多 8 人，確保小團品質。若人數不足，我們會嘗試安排拼團。</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            有最低參加年齡嗎？帶長輩或小孩可以嗎？
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a">無嚴格年齡限制，但冰川健行需要一定體力。我們有帶長輩成功完成行程的紀錄，若有疑慮請事先說明，我們會提供適合的建議。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 <!-- ── CTA STRIP ── -->
 <section class="cta-strip">
   <div class="cta-inner">
@@ -2124,6 +2230,14 @@
   document.getElementById('pickupDate').addEventListener('change', function() {
     document.getElementById('returnDate').min = this.value;
   });
+
+  // FAQ
+  function toggleFaq(btn) {
+    const item = btn.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
 </script>
 </body>
 </html>

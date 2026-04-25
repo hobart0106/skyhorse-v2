@@ -294,27 +294,34 @@
       background: var(--bg-surface);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
-      padding: 48px 0;
+      padding: 32px 0;
     }
     .stats-inner {
-      max-width: 1200px; margin: 0 auto; padding: 0 40px;
+      max-width: 1200px; margin: 0 auto; padding: 0 40px; box-sizing: border-box;
+      display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 40px;
     }
-    .stats-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 32px; text-align: center;
+    .stats-grid { display: contents; }
+    .stat-item {
+      text-align: center;
+      position: relative;
     }
-    .stat-item {}
+    .stat-item + .stat-item::before {
+      content: ''; position: absolute; left: -20px; top: 50%;
+      transform: translateY(-50%);
+      width: 1px; height: 40px;
+      background: var(--border);
+    }
     .stat-num {
       font-family: var(--font-display);
-      font-size: clamp(28px, 3vw, 44px);
-      font-weight: 800; letter-spacing: -1.5px;
-      color: var(--ink-primary);
+      font-size: 40px; font-weight: 700;
+      color: #fff;
+      letter-spacing: -2px; line-height: 1;
       margin-bottom: 6px;
     }
-    .stat-num span { font-size: 1.6rem; color: var(--gold); }
+    .stat-num span { font-size: inherit; color: inherit; }
     .stat-label {
-      font-size: 13px; font-weight: 400;
-      color: var(--ink-secondary); line-height: 1.5;
+      font-size: 12px; color: var(--ink-tertiary);
+      letter-spacing: 0.5px;
     }
 
     /* ── BLOG CTA ── */
@@ -379,7 +386,8 @@
       gap: 12px;
       flex-wrap: wrap;
     }
-    .blog-cta-tags {
+    .blog-cta-tags { display: none; }
+    .blog-cta-tags--hidden {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
@@ -410,7 +418,8 @@
     }
     .blog-cta-btn:hover { background: var(--gold-bright); gap: 12px; }
     .blog-cta-btn svg { width: 16px; height: 16px; }
-    .blog-cta-count {
+    .blog-cta-count { display: none; }
+    .blog-cta-count--hidden {
       font-family: var(--font-mono);
       font-size: 11px;
       color: var(--ink-tertiary);
@@ -476,7 +485,8 @@
       gap: 32px;
       text-align: center;
     }
-    .blog-cta-tags { justify-content: center; }
+    .blog-cta-tags { display: none; }
+    .blog-cta-tags--hidden { justify-content: center; }
     .blog-cta-actions { justify-content: center; }
     .blog-cta-media { max-width: 480px; margin: 0 auto; }
     }
@@ -491,7 +501,7 @@
     .section-desc {
       font-size: 15px; font-weight: 300;
       color: var(--ink-secondary); line-height: 1.8;
-      max-width: 600px; margin: 0 auto 40px;
+      max-width: 600px; margin: 0 0 40px;
     }
 
     /* ══════════════════════════════════════
@@ -509,7 +519,7 @@
       padding: 96px 0;
     }
     .trip-header {
-      text-align: center; margin-bottom: 48px;
+      text-align: left; margin-bottom: 48px;
     }
     .trip-eyebrow {
       font-family: var(--font-mono);
@@ -519,16 +529,16 @@
       margin-bottom: 16px;
       display: inline-flex; align-items: center; gap: 10px;
     }
-    .trip-eyebrow::before, .trip-eyebrow::after {
-      content: ''; display: block; width: 24px; height: 1.5px; background: var(--gold);
+    .trip-eyebrow::before {
+      content: ''; display: block; width: 28px; height: 1px; background: var(--gold);
     }
     .trip-header__sub {
       font-size: 15px; font-weight: 300;
       color: var(--ink-secondary); line-height: 1.8;
-      max-width: 680px; margin: 0 auto 20px;
+      max-width: 680px; margin-bottom: 20px;
     }
     .trip-meta-badges {
-      display: flex; justify-content: center; gap: 8px; flex-wrap: wrap;
+      display: flex; justify-content: flex-start; gap: 8px; flex-wrap: wrap;
     }
     .trip-badge {
       font-family: var(--font-display);
@@ -547,7 +557,7 @@
 
     /* Tabs */
     .trip-tabs {
-      display: flex; justify-content: center; gap: 0;
+      display: flex; justify-content: flex-start; gap: 0;
       border-bottom: 1px solid var(--border);
       margin-bottom: 48px;
     }
@@ -641,15 +651,19 @@
     /* Day timeline */
     .day-timeline { display: flex; flex-direction: column; gap: 0; }
     .day-item {
-      display: grid; grid-template-columns: 120px 1fr;
-      gap: 32px; padding: 32px 0;
-      border-bottom: 1px solid var(--border);
+      display: grid; grid-template-columns: 72px 1fr;
+      gap: 24px; padding: 40px 0;
       align-items: start;
+      position: relative;
     }
-    .day-item:last-child { border-bottom: none; }
+    .day-item:not(:last-child)::after {
+      content: ''; position: absolute;
+      left: 35px; top: 56px; bottom: 0;
+      width: 1px; background: var(--border);
+    }
     .day-marker {
-      text-align: center;
-      padding-top: 4px;
+      display: flex; flex-direction: column; align-items: center;
+      padding-top: 0; position: relative; z-index: 1;
     }
     .day-marker span {
       font-family: var(--font-mono);
@@ -661,27 +675,66 @@
       padding: 5px 10px; border-radius: 5px;
       white-space: nowrap;
     }
+    .day-img {
+      width: 100%; border-radius: 12px;
+      aspect-ratio: 16 / 5; object-fit: cover;
+      margin-bottom: 20px; display: block;
+    }
     .day-content h3 {
       font-family: var(--font-display);
-      font-size: 18px; font-weight: 700;
+      font-size: 20px; font-weight: 700;
       color: var(--ink-primary); margin-bottom: 10px;
     }
     .day-content p {
       font-size: 14px; font-weight: 300;
       color: var(--ink-secondary); line-height: 1.7;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
     .day-tags { display: flex; flex-wrap: wrap; gap: 6px; }
     .day-tag {
       font-family: var(--font-display);
       font-size: 11px; font-weight: 500;
       color: var(--ink-secondary);
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 20px; padding: 3px 12px;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 20px; padding: 4px 14px;
     }
 
-    /* Cost section */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 10px;
+    }
+    .gallery-main {
+      grid-column: 1;
+      grid-row: 1 / 3;
+    }
+    .gallery-item {
+      position: relative; border-radius: 12px;
+      overflow: hidden; cursor: pointer;
+      aspect-ratio: 1;
+    }
+    .gallery-main {
+      aspect-ratio: unset;
+    }
+    .gallery-main img,
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
+    .gallery-item::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 80px;
+      background: linear-gradient(to top, rgba(0,0,0,0.65), transparent);
+      pointer-events: none;
+    }
+    .gallery-label {
+      position: absolute; bottom: 14px; left: 16px;
+      font-size: 14px; font-weight: 600;
+      color: #fff; z-index: 1;
+    }
+        /* Cost section */
     .cost-grid {
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 48px;
@@ -734,7 +787,7 @@
       padding: 96px 0;
     }
     .featured-header {
-      text-align: center; margin-bottom: 56px;
+      text-align: left; margin-bottom: 56px;
     }
     .featured-eyebrow {
       font-family: var(--font-mono);
@@ -744,8 +797,8 @@
       margin-bottom: 16px;
       display: inline-flex; align-items: center; gap: 10px;
     }
-    .featured-eyebrow::before, .featured-eyebrow::after {
-      content: ''; display: block; width: 24px; height: 1.5px; background: var(--gold);
+    .featured-eyebrow::before {
+      content: ''; display: block; width: 28px; height: 1px; background: var(--gold);
     }
     .ft-grid {
       display: grid;
@@ -764,7 +817,7 @@
       transform: translateY(-4px);
       box-shadow: var(--shadow-gold);
     }
-    .ft-card--featured { border-color: var(--border-yellow); }
+    .ft-card--featured { border-color: var(--border); }
     .ft-card__img {
       position: relative; aspect-ratio: 16/9;
       background: var(--bg-elevated); overflow: hidden;
@@ -789,13 +842,13 @@
     .ft-card__badge--new {
       background: rgba(255,255,255,0.08);
       border: 1px solid rgba(255,255,255,0.15);
-      color: var(--ink-secondary);
+      color: #fff;
     }
     .ft-card__body { padding: 24px; }
     .ft-card__tag {
       font-family: var(--font-mono);
       font-size: 11px; font-weight: 500;
-      color: var(--gold); margin-bottom: 10px;
+      color: #fff; margin-bottom: 10px;
       letter-spacing: 0.5px;
     }
     .ft-card__title {
@@ -847,7 +900,7 @@
       padding: 96px 0;
     }
     .why-header {
-      text-align: center; margin-bottom: 56px;
+      text-align: left; margin-bottom: 56px;
     }
     .why-eyebrow {
       font-family: var(--font-mono);
@@ -857,8 +910,8 @@
       margin-bottom: 16px;
       display: inline-flex; align-items: center; gap: 10px;
     }
-    .why-eyebrow::before, .why-eyebrow::after {
-      content: ''; display: block; width: 24px; height: 1.5px; background: var(--gold);
+    .why-eyebrow::before {
+      content: ''; display: block; width: 28px; height: 1px; background: var(--gold);
     }
     .why-grid {
       display: grid; grid-template-columns: repeat(4, 1fr);
@@ -897,7 +950,7 @@
       padding: 96px 0;
     }
     .reviews-header {
-      text-align: center; margin-bottom: 56px;
+      text-align: left; margin-bottom: 56px;
     }
     .reviews-grid {
       display: grid; grid-template-columns: repeat(3, 1fr);
@@ -906,34 +959,32 @@
     .review-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: var(--r-lg); padding: 28px;
+      border-radius: var(--r-lg); padding: 20px;
       transition: border-color 0.2s;
     }
     .review-card:hover { border-color: var(--border-mid); }
     .review-card__quote {
       font-family: var(--font-display);
-      font-size: 48px; font-weight: 800;
-      color: var(--gold); line-height: 0.6; margin-bottom: 16px;
-    }
-    .review-card__stars {
-      color: var(--gold); font-size: 12px;
-      letter-spacing: 2px; margin-bottom: 12px;
+      font-size: 36px; font-weight: 800;
+      color: #555; line-height: 0.8; margin-bottom: 12px;
+      display: block;
     }
     .review-card__text {
       font-size: 14px; font-weight: 300;
       color: var(--ink-secondary); line-height: 1.7;
       margin-bottom: 20px;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+      overflow: hidden; min-height: calc(1.7em * 2);
     }
     .review-card__author { display: flex; align-items: center; gap: 12px; }
     .review-card__avatar {
-      width: 36px; height: 36px;
-      background: var(--gold-dim);
-      border: 1px solid var(--border-yellow);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-display);
-      font-size: 13px; font-weight: 700;
-      color: var(--gold); flex-shrink: 0;
+      width: 40px; height: 40px;
+      border-radius: 50%; flex-shrink: 0;
+      overflow: hidden; background: var(--gold-dim);
+      border: 1px solid var(--border-mid);
+    }
+    .review-card__avatar img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
     }
     .review-card__name {
       font-size: 13px; font-weight: 600;
@@ -1063,7 +1114,7 @@
       border-top: 1px solid var(--border);
       padding: 96px 0;
     }
-    .faq-header { text-align: center; margin-bottom: 56px; }
+    .faq-header { text-align: left; margin-bottom: 56px; }
     .faq-eyebrow {
       font-family: var(--font-mono);
       font-size: 11px; font-weight: 500;
@@ -1072,7 +1123,7 @@
       margin-bottom: 16px;
       display: inline-flex; align-items: center; gap: 10px;
     }
-    .faq-eyebrow::before, .faq-eyebrow::after {
+    .faq-eyebrow::before {
       content: ''; display: block; width: 24px; height: 1.5px; background: var(--gold);
     }
     .faq-list {
@@ -1309,9 +1360,10 @@
       .faq-section .section-inner { padding: 0 20px; }
       .final-cta-section { padding: 80px 0; }
       .final-cta-inner { padding: 0 20px; }
+      .cta-inner { flex-direction: column; text-align: center; padding: 0 20px; }
       .footer-inner { padding: 0 20px; }
-      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
-      .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
       .day-item { grid-template-columns: 80px 1fr; gap: 16px; }
       .cost-grid { grid-template-columns: 1fr; gap: 32px; }
     }
@@ -1324,7 +1376,7 @@
     <div class="nav-inner">
       <div class="nav-left">
         <a href="index.html" class="nav-logo">
-          <img src="image/SkyHorse.svg" alt="SkyHorse Auto" style="height:24px;width:auto;max-width:100%;">
+          <img src="image/SkyHorse-24.svg" alt="SkyHorse Auto">
         </a>
         <div class="nav-business-switch" aria-label="業務模塊切換">
           <a href="index.html" class="nav-business-link">美國租車</a>
@@ -1392,19 +1444,19 @@
       <div class="stats-grid">
         <div class="stat-item">
           <div class="stat-num">2019</div>
-          <div class="stat-label">開始服務<br>深耕美國市場</div>
+          <div class="stat-label">開始服務深耕美國市場</div>
         </div>
         <div class="stat-item">
-          <div class="stat-num">500<span>+</span></div>
-          <div class="stat-label">台灣旅客<br>安全帶領</div>
+          <div class="stat-num">500+</div>
+          <div class="stat-label">累積台灣旅客</div>
         </div>
         <div class="stat-item">
           <div class="stat-num">&le;8</div>
-          <div class="stat-label">人小團<br>深度體驗</div>
+          <div class="stat-label">人以下小團</div>
         </div>
         <div class="stat-item">
-          <div class="stat-num">100<span>%</span></div>
-          <div class="stat-label">全程中文<br>無語言障礙</div>
+          <div class="stat-num">100%</div>
+          <div class="stat-label">全程中文服務</div>
         </div>
       </div>
     </div>
@@ -1422,19 +1474,12 @@
         <p class="blog-cta-sub">
           SkyHorse 與中華航空合作推出旅客專屬租車優惠，搭乘華航前往美國，即可享租車85折起。抵達 PHX、LAX、SFO、ONT 等熱門機場後，中文服務協助取還車，讓你的美國公路旅行從落地開始更順暢。
         </p>
-        <div class="blog-cta-tags">
-          <span>中華航空</span>
-          <span>租車優惠</span>
-          <span>機場取還車</span>
-          <span>美國自駕</span>
-        </div>
         <div class="blog-cta-actions">
           <div class="blog-cta-primary">
             <a href="blog.html" class="blog-cta-btn">
               立即查看優惠
               <i data-lucide="arrow-right"></i>
             </a>
-            <div class="blog-cta-count">華航旅客專屬優惠</div>
           </div>
         </div>
       </div>
@@ -1469,6 +1514,7 @@
         <button class="trip-tab active" onclick="switchTripTab('highlights',this)">方案亮點</button>
         <button class="trip-tab" onclick="switchTripTab('itinerary',this)">每日行程</button>
         <button class="trip-tab" onclick="switchTripTab('cost',this)">費用資訊</button>
+        <button class="trip-tab" onclick="switchTripTab('gallery',this)">圖輯</button>
       </div>
 
       <!-- Panel: Highlights -->
@@ -1581,51 +1627,46 @@
           <div class="day-item">
             <div class="day-marker"><span>Day 1</span></div>
             <div class="day-content">
+              <img src="image/Alaska_1.png" alt="抵達安克拉治 · 城市初探" class="day-img" loading="lazy">
               <h3>抵達安克拉治 · 城市初探</h3>
               <p>中文司機機場接機，辦理入住後前往安克拉治市區漫步，晚餐享用阿拉斯加新鮮帝王蟹。</p>
-              <div class="day-tags">
-                <span class="day-tag">機場接送</span><span class="day-tag">酒店入住</span><span class="day-tag">海鮮晚餐</span><span class="day-tag">安克拉治市區</span>
-              </div>
+              <div class="day-tags"><span class="day-tag">機場接送</span><span class="day-tag">酒店入住</span><span class="day-tag">海鮮晚餐</span><span class="day-tag">安克拉治市區</span></div>
             </div>
           </div>
           <div class="day-item">
             <div class="day-marker"><span>Day 2</span></div>
             <div class="day-content">
+              <img src="image/Alaska_2.png" alt="波蒂奇冰川遊船 · 海灣探索" class="day-img" loading="lazy">
               <h3>波蒂奇冰川遊船 · 海灣探索</h3>
               <p>前往波蒂奇湖，搭乘遊船近距離觀賞冰川。下午前往惠蒂爾小鎮，欣賞峽灣風光，晚餐在當地餐廳享用。</p>
-              <div class="day-tags">
-                <span class="day-tag">波蒂奇冰川</span><span class="day-tag">遊船體驗</span><span class="day-tag">惠蒂爾小鎮</span>
-              </div>
+              <div class="day-tags"><span class="day-tag">波蒂奇冰川</span><span class="day-tag">遊船體驗</span><span class="day-tag">惠蒂爾小鎮</span></div>
             </div>
           </div>
           <div class="day-item">
             <div class="day-marker"><span>Day 3</span></div>
             <div class="day-content">
+              <img src="image/Alaska_3.png" alt="馬塔努斯卡冰川健行 · 海切爾山口" class="day-img" loading="lazy">
               <h3>馬塔努斯卡冰川健行 · 海切爾山口</h3>
               <p>早上配戴冰爪深入馬塔努斯卡冰川，下午驅車前往海切爾山口，眺望連綿山脈與廣袤草甸。</p>
-              <div class="day-tags">
-                <span class="day-tag">冰川健行</span><span class="day-tag">冰爪含</span><span class="day-tag">海切爾山口</span><span class="day-tag">攝影指導</span>
-              </div>
+              <div class="day-tags"><span class="day-tag">冰川健行</span><span class="day-tag">冰爪含</span><span class="day-tag">海切爾山口</span><span class="day-tag">攝影指導</span></div>
             </div>
           </div>
           <div class="day-item">
             <div class="day-marker"><span>Day 4</span></div>
             <div class="day-content">
+              <img src="image/Alaska_4.png" alt="基奈峽灣國家公園 · 賞鯨之旅" class="day-img" loading="lazy">
               <h3>基奈峽灣國家公園 · 賞鯨之旅</h3>
               <p>前往蘇厄德，搭乘全日賞鯨遊船深入基奈峽灣國家公園，觀察座頭鯨、虎鯨、海獺、角嘴海雀。</p>
-              <div class="day-tags">
-                <span class="day-tag">賞鯨遊船</span><span class="day-tag">國家公園</span><span class="day-tag">野生動物</span><span class="day-tag">蘇厄德小鎮</span>
-              </div>
+              <div class="day-tags"><span class="day-tag">賞鯨遊船</span><span class="day-tag">國家公園</span><span class="day-tag">野生動物</span><span class="day-tag">蘇厄德小鎮</span></div>
             </div>
           </div>
           <div class="day-item">
             <div class="day-marker"><span>Day 5</span></div>
             <div class="day-content">
+              <img src="image/Alaska_5.png" alt="返回安克拉治 · 自由購物 · 送機" class="day-img" loading="lazy">
               <h3>返回安克拉治 · 自由購物 · 送機</h3>
               <p>早上返回安克拉治，自由時間逛紀念品商店，中文司機準時送機，圓滿結束五天阿拉斯加之旅。</p>
-              <div class="day-tags">
-                <span class="day-tag">自由活動</span><span class="day-tag">購物時間</span><span class="day-tag">機場送機</span>
-              </div>
+              <div class="day-tags"><span class="day-tag">自由活動</span><span class="day-tag">購物時間</span><span class="day-tag">機場送機</span></div>
             </div>
           </div>
         </div>
@@ -1669,6 +1710,32 @@
           </div>
         </div>
       </div>
+
+      <!-- Panel: Gallery -->
+      <div class="trip-panel" id="panel-gallery">
+        <div class="gallery-grid">
+          <div class="gallery-item gallery-main">
+            <img src="image/Alaska_6.png" alt="馬塔努斯卡冰川健行">
+            <div class="gallery-label">馬塔努斯卡冰川健行</div>
+          </div>
+          <div class="gallery-item">
+            <img src="image/Alaska_2.png" alt="波蒂奇冰川遊船">
+            <div class="gallery-label">波蒂奇冰川遊船</div>
+          </div>
+          <div class="gallery-item">
+            <img src="image/Alaska_7.png" alt="基奈峽灣野生動物">
+            <div class="gallery-label">基奈峽灣野生動物</div>
+          </div>
+          <div class="gallery-item">
+            <img src="image/Alaska_1.png" alt="安克拉治城市">
+            <div class="gallery-label">安克拉治城市</div>
+          </div>
+          <div class="gallery-item">
+            <img src="image/Alaska_5.png" alt="阿拉斯加山景">
+            <div class="gallery-label">阿拉斯加山景</div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1684,7 +1751,7 @@
         <!-- Card 1: Summer -->
         <div class="ft-card ft-card--featured">
           <div class="ft-card__img">
-            <img src="image/summer-trip.jpg" alt="夏季冰川" onerror="this.parentElement.style.background='#161616';this.remove()">
+            <img src="image/Alaska_3.png" alt="夏季冰川" onerror="this.parentElement.style.background='#161616';this.remove()">
             <span class="ft-card__badge ft-card__badge--hot">夏季主打</span>
           </div>
           <div class="ft-card__body">
@@ -1706,7 +1773,7 @@
         <!-- Card 2: Winter Aurora -->
         <div class="ft-card">
           <div class="ft-card__img">
-            <img src="image/aurora-trip.jpg" alt="極光" onerror="this.parentElement.style.background='#161616';this.remove()">
+            <img src="image/Alaska_6.png" alt="極光" onerror="this.parentElement.style.background='#161616';this.remove()">
             <span class="ft-card__badge ft-card__badge--new">冬季行程</span>
           </div>
           <div class="ft-card__body">
@@ -1728,8 +1795,8 @@
         <!-- Card 3: Day Trip -->
         <div class="ft-card">
           <div class="ft-card__img">
-            <img src="image/day-trip.jpg" alt="單日行程" onerror="this.parentElement.style.background='#161616';this.remove()">
-            <span class="ft-card__badge">一日行程</span>
+            <img src="image/Alaska_1.png" alt="單日行程" onerror="this.parentElement.style.background='#161616';this.remove()">
+            <span class="ft-card__badge ft-card__badge--new">一日行程</span>
           </div>
           <div class="ft-card__body">
             <div class="ft-card__tag">彈性加購</div>
@@ -1757,7 +1824,7 @@
       <div class="why-header">
         <div class="why-eyebrow">為什麼選 Sky Horse</div>
         <h2 class="section-title">旅行中文，放心出發</h2>
-        <p class="section-desc" style="margin-left:auto;margin-right:auto">我們不是台灣的旅行社。我們是在美國的台灣人，幫你的阿拉斯加之旅做最貼近中文旅客需求的安排。</p>
+        <p class="section-desc">我們不是台灣的旅行社。我們是在美國的台灣人，幫你的阿拉斯加之旅做最貼近中文旅客需求的安排。</p>
       </div>
       <div class="why-grid">
         <div class="why-card">
@@ -1802,10 +1869,9 @@
       <div class="reviews-grid">
         <div class="review-card">
           <div class="review-card__quote">"</div>
-          <div class="review-card__stars">★★★★★</div>
           <p class="review-card__text">看到了美麗的極光，讓我們留下美好的回憶！導遊非常專業，解說豐富，全程都感覺很安心。</p>
           <div class="review-card__author">
-            <div class="review-card__avatar">林</div>
+            <div class="review-card__avatar"><img src="https://i.pravatar.cc/80?img=11" alt="林先生"></div>
             <div>
               <div class="review-card__name">林先生</div>
               <div class="review-card__meta">冬季行程 · 2025年12月</div>
@@ -1814,10 +1880,9 @@
         </div>
         <div class="review-card">
           <div class="review-card__quote">"</div>
-          <div class="review-card__stars">★★★★★</div>
           <p class="review-card__text">導遊很親切且行程很精彩，非常貼心的提早接送我們到機場。和家人一起旅遊完全不用擔心溝通問題！</p>
           <div class="review-card__author">
-            <div class="review-card__avatar">K</div>
+            <div class="review-card__avatar"><img src="https://i.pravatar.cc/80?img=27" alt="Katrina"></div>
             <div>
               <div class="review-card__name">Katrina</div>
               <div class="review-card__meta">夏季行程 · 2025年7月</div>
@@ -1826,10 +1891,9 @@
         </div>
         <div class="review-card">
           <div class="review-card__quote">"</div>
-          <div class="review-card__stars">★★★★★</div>
           <p class="review-card__text">行程很好玩，我們12月前往都有看到很強的極光，超級推薦！帶長輩一起去全程都照顧得很周到。</p>
           <div class="review-card__author">
-            <div class="review-card__avatar">蔡</div>
+            <div class="review-card__avatar"><img src="https://i.pravatar.cc/80?img=44" alt="蔡小姐"></div>
             <div>
               <div class="review-card__name">蔡小姐</div>
               <div class="review-card__meta">冬季行程 · 2025年1月</div>
@@ -1838,10 +1902,9 @@
         </div>
         <div class="review-card">
           <div class="review-card__quote">"</div>
-          <div class="review-card__stars">★★★★★</div>
           <p class="review-card__text">與長輩同行一起追極光，留下了很美好的回憶。全中文服務讓長輩完全沒有壓力！</p>
           <div class="review-card__author">
-            <div class="review-card__avatar">洪</div>
+            <div class="review-card__avatar"><img src="https://i.pravatar.cc/80?img=47" alt="洪小姐"></div>
             <div>
               <div class="review-card__name">洪小姐</div>
               <div class="review-card__meta">冬季行程 · 2025年2月</div>
@@ -1850,10 +1913,9 @@
         </div>
         <div class="review-card">
           <div class="review-card__quote">"</div>
-          <div class="review-card__stars">★★★★★</div>
           <p class="review-card__text">冰川健行是這輩子最壯觀的體驗之一！完全沒想到台灣人可以這麼輕鬆走進阿拉斯加的冰川。</p>
           <div class="review-card__author">
-            <div class="review-card__avatar">陳</div>
+            <div class="review-card__avatar"><img src="https://i.pravatar.cc/80?img=60" alt="陳先生"></div>
             <div>
               <div class="review-card__name">陳先生</div>
               <div class="review-card__meta">夏季行程 · 2025年8月</div>
@@ -1862,70 +1924,13 @@
         </div>
         <div class="review-card">
           <div class="review-card__quote">"</div>
-          <div class="review-card__stars">★★★★★</div>
           <p class="review-card__text">第一次去阿拉斯加就選了天馬，完全沒有語言壓力。導遊會幫忙解釋所有的東西，體驗非常棒。</p>
           <div class="review-card__author">
-            <div class="review-card__avatar">王</div>
+            <div class="review-card__avatar"><img src="https://i.pravatar.cc/80?img=5" alt="王小姐"></div>
             <div>
               <div class="review-card__name">王小姐</div>
               <div class="review-card__meta">夏季行程 · 2024年7月</div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ════ SOCIAL PROOF ════ -->
-  <section class="social-section">
-    <div class="social-inner">
-      <h2 class="social-title">YouTuber & 媒體合作</h2>
-      <p class="social-sub">他們親自體驗了這趟旅程，然後拍成影片告訴你。</p>
-      <div class="social-badges">
-        <div class="social-badge">
-          <div class="social-badge__icon">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFDC22" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-          </div>
-          <div class="social-badge__text">旅遊 YouTuber 合作<br><span>（請填入實際頻道名稱）</span></div>
-        </div>
-        <div class="social-badge">
-          <div class="social-badge__icon">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFDC22" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-          </div>
-          <div class="social-badge__text">Instagram 旅遊達人<br><span>@skyhorse_alaska</span></div>
-        </div>
-        <div class="social-badge">
-          <div class="social-badge__icon">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFDC22" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
-          </div>
-          <div class="social-badge__text">TikTok 旅遊分享<br><span>@skyhorseauto</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ════ ABOUT ════ -->
-  <section class="about-section">
-    <div class="section-inner">
-      <div class="about-grid">
-        <div class="about-img-wrap">
-          <img src="image/about-alaska.jpg" alt="Sky Horse 團隊在阿拉斯加" onerror="this.style.display='none'">
-        </div>
-        <div>
-          <div class="about-year">2019</div>
-          <div class="about-eyebrow">關於我們</div>
-          <h2 class="about-title">從租車起家，<br>我們比誰都懂美國</h2>
-          <p class="about-body">Sky Horse 天馬從 2019 年就在美國幫台灣旅客服務，從美國租車到阿拉斯加旅遊，我們走過的每一步都是為了讓台灣旅客在美國更安心、更省力。</p>
-          <p class="about-body">我們不是從台灣接單再外包的旅行社，而是真正在美國在地的台灣人團隊，有自己的在地資源、當地導遊和長年合作的夥伴。你的旅程，我們親自負責。</p>
-          <div class="about-contact">
-            <span class="about-contact-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.7A2 2 0 012 .982h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16a2 2 0 00-.08.92z"/></svg>
-              +1-949-439-7432
-            </span>
-            <span class="about-contact-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-              contact@skyhorseauto.com
-            </span>
           </div>
         </div>
       </div>
@@ -1986,28 +1991,26 @@
     </div>
   </section>
 
-  <!-- ── CTA STRIP ── -->
-  <section class="cta-strip">
-    <div class="cta-inner">
-      <div class="cta-text">
-        <div class="cta-title">準備好上路了嗎？</div>
-        <div class="cta-sub">阿拉斯加等你。名額有限，現在就透過 LINE 詢問你想要的出發日期。</div>
-      </div>
-      <div class="cta-actions">
-        <a href="https://line.me/R/ti/p/@skyhorse" class="btn-dark" target="_blank" rel="noopener">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
-          LINE 立即諮詢
-        </a>
-        <a href="mailto:contact@skyhorseauto.com" class="btn-outline-dark">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-          Email 詢問
-        </a>
-      </div>
+<!-- ── CTA STRIP ── -->
+<section class="cta-strip">
+  <div class="cta-inner">
+    <div class="cta-text">
+      <div class="cta-title">準備好上路了嗎？</div>
+      <div class="cta-sub">填寫預訂表單，快速取得報價。</div>
     </div>
-  </section>
+    <div class="cta-actions">
+      <a href="#" class="btn-dark">
+        <i data-lucide="message-circle"></i>LINE 預訂
+      </a>
+      <a href="#" class="btn-outline-dark">
+        <i data-lucide="mail"></i>Email 詢問
+      </a>
+    </div>
+  </div>
+</section>
 
-
-  <footer>
+<!-- ── FOOTER ── -->
+<footer>
   <div class="footer-inner">
     <div class="footer-top">
       <div class="footer-brand">
@@ -2069,14 +2072,6 @@
     </div>
   </div>
 </footer>
-
-  <!-- ════ STICKY LINE ════ -->
-  <div class="sticky-line">
-    <span class="sticky-line__label">LINE 快速諮詢</span>
-    <a href="https://line.me/R/ti/p/@skyhorse" class="sticky-line__btn" target="_blank" rel="noopener" aria-label="LINE 諮詢">
-      <svg viewBox="0 0 24 24" fill="white"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
-    </a>
-  </div>
 
   <script>
     // Init Lucide icons
