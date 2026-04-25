@@ -1376,6 +1376,58 @@
       }
       .blog-card-date { font-size: 10px; }
     }
+    /* ══════════════════════════════════════
+       FAQ
+    ══════════════════════════════════════ */
+    .faq-section {
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border);
+      padding: 96px 0;
+    }
+    .faq-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 40px; box-sizing: border-box;
+    }
+    .faq-header { text-align: left; margin-bottom: 56px; }
+    .faq-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+      display: inline-flex; align-items: center; gap: 10px;
+    }
+    .faq-eyebrow::before {
+      content: ''; display: block; width: 24px; height: 1.5px; background: var(--gold);
+    }
+    .faq-list {
+      max-width: 800px; margin: 0 auto;
+      display: flex; flex-direction: column; gap: 0;
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg); overflow: hidden;
+    }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q {
+      width: 100%; display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; padding: 20px 24px;
+      background: var(--bg-card);
+      border: none; cursor: pointer;
+      font-family: var(--font-body);
+      font-size: 14px; font-weight: 500;
+      color: var(--ink-primary); text-align: left;
+      transition: color 0.2s;
+    }
+    .faq-q:hover { color: var(--gold); }
+    .faq-q svg { width: 16px; height: 16px; flex-shrink: 0; color: var(--ink-tertiary); transition: transform 0.2s; }
+    .faq-item.open .faq-q svg { transform: rotate(180deg); color: var(--gold); }
+    .faq-a {
+      display: none; padding: 0 24px 20px;
+      font-size: 14px; font-weight: 300;
+      color: var(--ink-secondary); line-height: 1.8;
+      background: var(--bg-card);
+    }
+    .faq-item.open .faq-a { display: block; }
+
   </style>
 </head>
 <body>
@@ -1919,6 +1971,60 @@
   </div>
 </section>
 
+  <!-- ════ FAQ ════ -->
+  <section class="faq-section" id="faq">
+    <div class="faq-inner">
+      <div class="faq-header">
+        <div class="faq-eyebrow">常見問題</div>
+        <h2 class="section-title">出發前你想知道的</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            如何向 Sky Horse 天馬租車 預訂租車服務？
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a">您可以直接透過我們的官網預訂所需的車型，並使用 LINE 與我們聯繫，由專人以中文全程協助您選擇車型及保險方案，並且回答您關於租車及行程安排的疑問。</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Sky Horse 天馬租車有哪些車型可以選擇？
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a">1. 中型轎車 Midsize Sedan（Toyota Corolla 同級車）5人座 / 1大1小行李<br>2. 大型轎車 Full-Sized Sedan（Toyota Camry 同級車）5人座 / 2大行李<br>3. 休旅車 SUV（Honda CR-V同級車）5人座 / 4大行李<br>4. 迷你廂型車 Minivan（Honda Odyssey同級車）7〜8人座 / 4大行李<br><br>如乘客未坐滿，後座皆可放倒放置額外行李。歡迎直接與我們聯繫，我們將針對您的團體和行李推薦最適合的車款！</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Sky Horse 天馬租車的收費如何計算、如何付款？
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a">在預訂車輛時，官網即會顯示明確、透明的最終費用，支付金額包含以下：<br>1. 訂金：網站預訂時使用信用卡支付訂金 US$100，即會收到 Email 通知完成預訂。<br>2. 剩餘款項：於交車時，使用信用卡（感應刷卡、Apple Pay、線上刷卡），或以美金現金付款。<br>3. 預授權押金：由於相關應付費用（如未繳停車費或罰單等）作業時間較長，取車時會由支付訂金的信用卡預付 US$1 預授權押金，預授權最長於取車後30天自動解除授權。</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            什麼狀況下會被扣取押金？
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a">還車後，若有以下狀況將需加收費用：<br>1. 代繳 / 未繳的停車費、過路費、罰單<br>2. 車內過度髒亂或有異味需特殊清潔（車內嚴禁吸菸）<br>3. 還車時，油量少於取車時的油量（交車時由於會有送車路程，不一定是滿油）<br>4. 車體內外部損壞</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            在美國（加州）租車需要提供哪些文件？
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a">您需要提供效期內的原有國籍駕照、國際駕照、護照、及有效信用卡。</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            取車和還車時間怎麼訂？
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a">建議國際航線取車請選擇落地後1小時，還車選擇起飛前3.5小時，<strong>預定時請填寫抵達航班資訊</strong>，專人會關注航班狀態預先準備好車輛在機場外等候。<br><br>洛杉磯LAX / 舊金山SFO國際航線，預計落地後1小時取車，起飛前3.5小時還車<br>安大略ONT國際航線，預計落地後半小時取車，起飛前2.5小時還車</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 <!-- ── CTA STRIP ── -->
 <section class="cta-strip">
   <div class="cta-inner">
@@ -2124,6 +2230,14 @@
   document.getElementById('pickupDate').addEventListener('change', function() {
     document.getElementById('returnDate').min = this.value;
   });
+
+  // FAQ
+  function toggleFaq(btn) {
+    const item = btn.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
 </script>
 </body>
 </html>
