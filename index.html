@@ -340,6 +340,10 @@
       line-height: 1.2;
       color: var(--ink-primary);
       margin-bottom: 14px;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      overflow: hidden;
     }
     .blog-cta-sub {
       font-size: 14px;
@@ -348,6 +352,10 @@
       line-height: 1.8;
       max-width: 480px;
       margin-bottom: 20px;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      overflow: hidden;
     }
     .blog-cta-actions {
       display: flex;
@@ -361,21 +369,6 @@
       align-items: center;
       gap: 12px;
       flex-wrap: wrap;
-    }
-    .blog-cta-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-    .blog-cta-tags span {
-      font-family: var(--font-display);
-      font-size: 11px;
-      font-weight: 500;
-      color: var(--ink-secondary);
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.10);
-      border-radius: 20px;
-      padding: 3px 12px;
     }
     .blog-cta-btn {
       display: inline-flex;
@@ -394,6 +387,9 @@
     .blog-cta-btn:hover { background: var(--gold-bright); gap: 12px; }
     .blog-cta-btn svg { width: 16px; height: 16px; }
     .blog-cta-count {
+      display: none;
+    }
+    .blog-cta-count--hidden {
       font-family: var(--font-mono);
       font-size: 11px;
       color: var(--ink-tertiary);
@@ -443,7 +439,11 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform 0.35s var(--ease-out), filter 0.35s var(--ease-out);
+      opacity: 1;
+      transition: opacity 0.48s var(--ease-out), transform 0.35s var(--ease-out), filter 0.35s var(--ease-out);
+    }
+    .blog-cta-media.is-switching img {
+      opacity: 0.18;
     }
     .blog-cta-media::after {
       content: '';
@@ -486,20 +486,45 @@
       .blog-cta-section { padding: 64px 0; }
     .blog-cta-inner { padding: 0 20px; }
       .blog-cta-inner {
-        grid-template-columns: 1fr;
-        gap: 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
         text-align: center;
       }
-      .blog-cta-content { max-width: none; }
-      .blog-cta-sub { margin: 0 auto 20px; }
-      .blog-cta-tags { justify-content: center; }
-      .blog-cta-actions {
-        justify-content: center;
-        flex-direction: column;
+      .blog-cta-content {
+        display: contents;
+        max-width: none;
       }
-      .blog-cta-primary { justify-content: center; }
-      .blog-cta-controls { justify-content: center; }
-      .blog-cta-media { border-radius: 20px; }
+      .blog-cta-eyebrow { order: 1; justify-content: center; }
+      .blog-cta-title { order: 2; }
+      .blog-cta-sub { order: 3; margin: 0 auto; }
+      .blog-cta-media {
+        order: 4;
+        border-radius: 20px;
+        max-width: 480px;
+        width: 100%;
+        margin: 0 auto;
+      }
+      .blog-cta-actions {
+        order: 5;
+        width: 100%;
+        max-width: 480px;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+        gap: 12px;
+        margin: 4px auto 0;
+      }
+      .blog-cta-primary {
+        justify-content: flex-start;
+        flex: 0 1 auto;
+      }
+      .blog-cta-btn { padding: 14px 28px; }
+      .blog-cta-controls { justify-content: center; margin-left: 0; flex-shrink: 0; }
+      .blog-cta-switch {
+        width: 44px;
+        height: 44px;
+      }
     }
 
     /* Booking Form Section */
@@ -1350,7 +1375,10 @@
       .footer-inner { padding: 0 20px; }
       .footer-top { grid-template-columns: 1fr; gap: 32px; }
       .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
-      .stats-inner { grid-template-columns: repeat(2, 1fr); gap: 24px; padding: 0 20px; }
+      .stats-inner { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; padding: 0 20px; }
+      .stat-item + .stat-item::before { left: -6px; height: 32px; }
+      .stat-num { font-size: 32px; letter-spacing: -1.5px; }
+      .stat-label { font-size: 11px; }
       .stats-bar { padding: 32px 0; }
       .blog-section { padding: 72px 0; }
       .blog-inner { padding: 0 20px; }
@@ -1525,19 +1553,13 @@
       <p class="blog-cta-sub" id="promoSub">
         SkyHorse 與中華航空合作推出旅客專屬租車優惠，搭乘華航前往美國，即可享租車 85 折起。抵達 PHX、LAX、SFO、ONT 等熱門機場後，中文服務協助取還車，讓你的美國公路旅行從落地開始更順暢。
       </p>
-      <div class="blog-cta-tags" id="promoTags">
-        <span>中華航空</span>
-        <span>租車優惠</span>
-        <span>機場取還車</span>
-        <span>美國自駕</span>
-      </div>
       <div class="blog-cta-actions">
         <div class="blog-cta-primary">
           <a href="blog.html" class="blog-cta-btn" id="promoButton">
             <span id="promoButtonText">立即查看優惠</span>
             <i data-lucide="arrow-right"></i>
           </a>
-          <div class="blog-cta-count" id="promoCount">華航旅客專屬優惠</div>
+          <div class="blog-cta-count blog-cta-count--hidden" id="promoCount">華航旅客專屬優惠</div>
         </div>
         <div class="blog-cta-controls" aria-label="切換優惠資訊">
           <button class="blog-cta-switch is-prev" type="button" id="promoPrev" aria-label="上一則資訊">
@@ -1772,9 +1794,6 @@
       </div>
 
     </div>
-    <div class="section-view-all-wrap">
-      <a href="blog.html" class="section-view-all">查看全部 <i data-lucide="arrow-right"></i></a>
-    </div>
   </div>
 </section>
 
@@ -1881,10 +1900,6 @@
       </div>
     </div>
 
-  </div>
-
-  <div class="cars-footer">
-    <a href="fleet.html" class="section-view-all">查看全部 <i data-lucide="arrow-right"></i></a>
   </div>
 
 </section>
@@ -2074,7 +2089,7 @@
         </div>
       </div>
       <div>
-        <div class="footer-col-title">服務</div>
+        <div class="footer-col-title">美國租車</div>
         <div class="footer-links">
           <a href="#">機場取還車</a>
           <a href="#">單程異地還車</a>
@@ -2084,17 +2099,17 @@
         </div>
       </div>
       <div>
-        <div class="footer-col-title">車型</div>
+        <div class="footer-col-title">阿拉斯加</div>
         <div class="footer-links">
-          <a href="fleet.html">轎車系列</a>
-          <a href="fleet.html">SUV 休旅</a>
-          <a href="fleet.html">7人座 MPV</a>
-          <a href="fleet.html">電動車</a>
-          <a href="fleet.html">跑車敞篷</a>
+          <a href="ak_index.html#itinerary">夏季日不落</a>
+          <a href="ak_index.html#featured-trips">冬季極光</a>
+          <a href="ak_index.html#featured-trips">單日體驗</a>
+          <a href="ak_index.html#highlights">為什麼選 Sky Horse</a>
+          <a href="ak_index.html#faq">常見問題</a>
         </div>
       </div>
       <div>
-        <div class="footer-col-title">聯絡</div>
+        <div class="footer-col-title">聯絡我們</div>
         <div class="footer-links">
           <a href="#">LINE @skyhorse</a>
           <a href="#">contact@skyhorseauto.com</a>
@@ -2123,7 +2138,6 @@
       eyebrow: '優惠合作與旅程攻略',
       title: '中華航空合作優惠｜搭機租車<br>85 折，華航旅客專屬美國自駕方案！',
       sub: 'SkyHorse 與中華航空合作推出旅客專屬租車優惠，搭乘華航前往美國，即可享租車 85 折起。抵達 PHX、LAX、SFO、ONT 等熱門機場後，中文服務協助取還車，讓你的美國公路旅行從落地開始更順暢。',
-      tags: ['中華航空', '租車優惠', '機場取還車', '美國自駕'],
       buttonText: '立即查看優惠',
       buttonHref: 'blog.html',
       count: '華航旅客專屬優惠',
@@ -2138,7 +2152,6 @@
       eyebrow: '媒體報導與行程攻略',
       title: '名人體驗｜Joeman 加州體驗<br>平價車款 VS 奢華租車大對決！',
       sub: 'Joeman（九妹）的第一集《Joe是要對決》就是租車的對決，這次整體升級2.0版，不僅車款升級，地點也移到了美國加州，來次不一樣的公路旅行大挑戰！',
-      tags: ['名人推薦', '自駕攻略', '租車指南', '加州體驗'],
       buttonText: '瀏覽全部文章',
       buttonHref: 'blog.html',
       count: '精選文章',
@@ -2152,11 +2165,11 @@
   ];
 
   let promoIndex = 0;
+  let promoImageSwapTimer = null;
   const promoEls = {
     eyebrow: document.getElementById('promoEyebrow'),
     title: document.getElementById('promoTitle'),
     sub: document.getElementById('promoSub'),
-    tags: document.getElementById('promoTags'),
     button: document.getElementById('promoButton'),
     buttonText: document.getElementById('promoButtonText'),
     count: document.getElementById('promoCount'),
@@ -2174,27 +2187,46 @@
     promoEls.eyebrow.textContent = slide.eyebrow;
     promoEls.title.innerHTML = slide.title;
     promoEls.sub.textContent = slide.sub;
-    promoEls.tags.innerHTML = slide.tags.map(tag => `<span>${tag}</span>`).join('');
     promoEls.button.href = slide.buttonHref;
     promoEls.buttonText.textContent = slide.buttonText;
     promoEls.count.textContent = slide.count;
     promoEls.media.href = slide.mediaHref;
     promoEls.media.setAttribute('aria-label', slide.mediaAria);
-    promoEls.image.src = slide.image;
-    promoEls.image.alt = slide.imageAlt;
     promoEls.mediaLabel.innerHTML = `<i data-lucide="${slide.mediaIcon}"></i><span id="promoMediaLabel">${slide.mediaLabel}</span>`;
+
+    if (promoEls.image && promoEls.media) {
+      clearTimeout(promoImageSwapTimer);
+      promoEls.media.classList.add('is-switching');
+      promoImageSwapTimer = setTimeout(() => {
+        promoEls.image.src = slide.image;
+        promoEls.image.alt = slide.imageAlt;
+        requestAnimationFrame(() => {
+          promoEls.media.classList.remove('is-switching');
+        });
+      }, 220);
+    }
+
     lucide.createIcons();
   }
 
-  promoEls.prev?.addEventListener('click', () => {
-    promoIndex = (promoIndex - 1 + promoSlides.length) % promoSlides.length;
-    renderPromoSlide(promoIndex);
-  });
+  const hasMultiplePromoSlides = promoSlides.length > 1;
+  if (promoEls.prev?.parentElement) {
+    promoEls.prev.parentElement.style.display = hasMultiplePromoSlides ? 'flex' : 'none';
+  }
 
-  promoEls.next?.addEventListener('click', () => {
-    promoIndex = (promoIndex + 1) % promoSlides.length;
-    renderPromoSlide(promoIndex);
-  });
+  if (hasMultiplePromoSlides) {
+    promoEls.prev?.addEventListener('click', () => {
+      promoIndex = (promoIndex - 1 + promoSlides.length) % promoSlides.length;
+      renderPromoSlide(promoIndex);
+    });
+
+    promoEls.next?.addEventListener('click', () => {
+      promoIndex = (promoIndex + 1) % promoSlides.length;
+      renderPromoSlide(promoIndex);
+    });
+  }
+
+  renderPromoSlide(promoIndex);
 
   // Scroll reveal
   const observer = new IntersectionObserver((entries) => {
