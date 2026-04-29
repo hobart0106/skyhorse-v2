@@ -260,26 +260,34 @@
       animation: fadeUp 0.6s var(--ease-out) 0.65s forwards;
     }
     .btn-primary {
-      display: inline-flex; align-items: center; gap: 8px;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 52px; min-width: 168px;
       background: var(--gold); color: #060606;
       font-family: var(--font-display);
       font-size: 14px; font-weight: 700;
-      padding: 14px 32px; border-radius: 8px; text-decoration: none;
+      padding: 0 28px; border-radius: 8px; text-decoration: none;
       transition: background 0.2s, transform 0.15s;
       letter-spacing: 0.3px;
+      white-space: nowrap;
     }
     .btn-primary:hover { background: var(--gold-bright); transform: translateY(-2px); }
+    .btn-primary svg,
+    .btn-primary i { width: 16px; height: 16px; }
     .btn-ghost {
-      display: inline-flex; align-items: center; gap: 8px;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 52px; min-width: 168px;
       background: transparent;
       border: 1.5px solid rgba(255,255,255,0.2);
       color: rgba(255,255,255,0.7);
       font-family: var(--font-display);
-      font-size: 14px; font-weight: 500;
-      padding: 14px 32px; border-radius: 8px; text-decoration: none;
+      font-size: 14px; font-weight: 600;
+      padding: 0 28px; border-radius: 8px; text-decoration: none;
       transition: border-color 0.2s, color 0.2s;
+      white-space: nowrap;
     }
     .btn-ghost:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
+    .btn-ghost svg,
+    .btn-ghost i { width: 16px; height: 16px; }
     .hero-scroll {
       position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
       display: flex; flex-direction: column; align-items: center; gap: 8px;
@@ -401,19 +409,23 @@
     .blog-cta-btn {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 8px;
+      min-height: 52px;
+      min-width: 168px;
       background: var(--gold);
       color: #060606;
       font-family: var(--font-display);
       font-size: 14px;
       font-weight: 700;
-      padding: 14px 32px;
+      padding: 0 28px;
       border-radius: var(--r-md);
       transition: background 0.15s, gap 0.15s;
       white-space: nowrap;
     }
     .blog-cta-btn:hover { background: var(--gold-bright); gap: 12px; }
-    .blog-cta-btn svg { width: 16px; height: 16px; }
+    .blog-cta-btn svg,
+    .blog-cta-btn i { width: 16px; height: 16px; }
     .blog-cta-count { display: none; }
     .blog-cta-count--hidden {
       font-family: var(--font-mono);
@@ -521,7 +533,7 @@
     }
     .blog-cta-eyebrow { order: 1; justify-content: center; }
     .blog-cta-title { order: 2; }
-    .blog-cta-sub { order: 3; margin: 0 auto; }
+    .blog-cta-sub { display: none; }
     .blog-cta-media {
       order: 4;
       max-width: 480px;
@@ -541,7 +553,7 @@
       justify-content: flex-start;
       flex: 0 1 auto;
     }
-    .blog-cta-btn { padding: 14px 28px; }
+    .blog-cta-btn { min-height: 48px; min-width: 152px; padding: 0 24px; }
     .blog-cta-controls { margin-left: 0; flex-shrink: 0; }
     .blog-cta-switch {
       width: 44px;
@@ -653,14 +665,14 @@
       background: var(--bg-card); padding: 20px 24px;
     }
     .highlight-icon {
-      width: 36px; height: 36px;
-      border-radius: 8px;
+      width: 18px; height: 18px;
+      border-radius: 5px;
       background: var(--gold-dim);
       border: 1px solid var(--border-yellow);
       display: flex; align-items: center; justify-content: center; flex-shrink: 0;
       color: var(--gold);
     }
-    .highlight-icon svg { width: 18px; height: 18px; }
+    .highlight-icon svg { width: 9px; height: 9px; }
     .highlight-label {
       font-size: 11px; font-weight: 600;
       letter-spacing: 1px; text-transform: uppercase;
@@ -779,18 +791,6 @@
     .gallery-item img {
       width: 100%; height: 100%;
       object-fit: cover; display: block;
-    }
-    .gallery-item::after {
-      content: '';
-      position: absolute; bottom: 0; left: 0; right: 0;
-      height: 80px;
-      background: linear-gradient(to top, rgba(0,0,0,0.65), transparent);
-      pointer-events: none;
-    }
-    .gallery-label {
-      position: absolute; bottom: 14px; left: 16px;
-      font-size: 14px; font-weight: 600;
-      color: #fff; z-index: 1;
     }
         /* Cost section */
     .cost-grid {
@@ -1237,28 +1237,35 @@
     .cta-sub { font-size: 15px; color: rgba(6,6,6,0.6); font-weight: 400; }
     .cta-actions { display: flex; gap: 12px; flex-shrink: 0; }
     .btn-dark {
-      display: inline-flex; align-items: center; gap: 8px;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 52px; min-width: 168px;
       background: #060606; color: var(--gold);
       font-family: var(--font-display);
       font-size: 14px; font-weight: 600;
-      padding: 13px 28px; border-radius: var(--r-md);
+      padding: 0 28px; border-radius: var(--r-md);
       text-decoration: none;
       transition: background 0.2s, transform 0.15s;
+      white-space: nowrap;
     }
     .btn-dark:hover { background: #1a1a1a; transform: translateY(-1px); }
-    .btn-dark svg { width: 14px; height: 14px; }
+    .btn-dark svg,
+    .btn-dark i { width: 16px; height: 16px; }
     .btn-outline-dark {
-      display: inline-flex; align-items: center; gap: 8px;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 52px; min-width: 168px;
       background: transparent;
       border: 1.5px solid rgba(6,6,6,0.3);
       color: #060606;
       font-family: var(--font-display);
       font-size: 14px; font-weight: 600;
-      padding: 13px 28px; border-radius: var(--r-md);
+      padding: 0 28px; border-radius: var(--r-md);
       text-decoration: none;
       transition: border-color 0.2s, background 0.2s;
+      white-space: nowrap;
     }
     .btn-outline-dark:hover { border-color: #060606; background: rgba(6,6,6,0.06); }
+    .btn-outline-dark svg,
+    .btn-outline-dark i { width: 16px; height: 16px; }
 
     /* ══════════════════════════════════════
        FOOTER
@@ -1406,7 +1413,7 @@
       .hero-carousel__slide img { max-width: 100vw; max-height: 100vh; }
       .stats-inner { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; padding: 0 20px; }
       .stat-item + .stat-item::before { left: -6px; height: 32px; }
-      .stat-num { font-size: 32px; letter-spacing: -1.5px; }
+      .stat-num { font-size: 22px; letter-spacing: -1px; }
       .stat-label { font-size: 11px; }
       .stats-bar { padding: 32px 0; }
       .section-inner, .video-inner { padding: 0 20px; }
@@ -1457,7 +1464,7 @@
         <a href="#advantages">優勢</a>
         <a href="#cars">車型</a>
         <a href="blog.html">攻略</a>
-        <a href="#" class="nav-cta">立即預訂</a>
+        <a href="https://skyhorseauto.com/book/?ssid=pTxGMOleYqc0" class="nav-cta" target="_blank" rel="noopener">立即預訂</a>
       </div>
       <button class="nav-menu-btn" aria-label="Menu">
         <i data-lucide="menu" style="width:18px;height:18px"></i>
@@ -1485,12 +1492,6 @@
       <div class="hero-eyebrow">Sky Horse 天馬旅遊</div>
       <h1>極圈以北，極光之旅</h1>
       <p class="hero-sub">全程中文陪伴，帶你深入北極冰川、雪山與野生動物的世界。</p>
-      <div class="hero-pills">
-        <span class="hero-pill">5天4夜深度行</span>
-        <span class="hero-pill">8人以下小團</span>
-        <span class="hero-pill">全程中文導遊</span>
-        <span class="hero-pill">夏季 / 冬季皆有</span>
-      </div>
       <div class="hero-actions">
         <a href="https://line.me/R/ti/p/@skyhorse" class="btn-primary" target="_blank" rel="noopener">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
@@ -1513,19 +1514,19 @@
     <div class="stats-inner">
       <div class="stat-item">
         <div class="stat-num">2019</div>
-        <div class="stat-label">開始服務深耕美國市場</div>
+        <div class="stat-label">深耕美國</div>
       </div>
       <div class="stat-item">
         <div class="stat-num">500+</div>
-        <div class="stat-label">累積台灣旅客</div>
+        <div class="stat-label">台灣旅客</div>
       </div>
       <div class="stat-item">
         <div class="stat-num">&le;8</div>
-        <div class="stat-label">人以下小團</div>
+        <div class="stat-label">小團出行</div>
       </div>
       <div class="stat-item">
         <div class="stat-num">100%</div>
-        <div class="stat-label">全程中文服務</div>
+        <div class="stat-label">中文服務</div>
       </div>
     </div>
   </div>
@@ -1793,23 +1794,18 @@
         <div class="gallery-grid">
           <div class="gallery-item gallery-main">
             <img src="image/Alaska_6.png" alt="馬塔努斯卡冰川健行">
-            <div class="gallery-label">馬塔努斯卡冰川健行</div>
           </div>
           <div class="gallery-item">
             <img src="image/Alaska_2.png" alt="波蒂奇冰川遊船">
-            <div class="gallery-label">波蒂奇冰川遊船</div>
           </div>
           <div class="gallery-item">
             <img src="image/Alaska_7.png" alt="基奈峽灣野生動物">
-            <div class="gallery-label">基奈峽灣野生動物</div>
           </div>
           <div class="gallery-item">
             <img src="image/Alaska_1.png" alt="安克拉治城市">
-            <div class="gallery-label">安克拉治城市</div>
           </div>
           <div class="gallery-item">
             <img src="image/Alaska_5.png" alt="阿拉斯加山景">
-            <div class="gallery-label">阿拉斯加山景</div>
           </div>
         </div>
       </div>
