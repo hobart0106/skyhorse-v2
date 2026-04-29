@@ -180,81 +180,309 @@
     }
 
     /* ══════════════════════════════════════
-       HERO — Centered, Black, Editorial
+       HERO — Positioning, Features, Quick Booking
     ══════════════════════════════════════ */
     .hero {
-      position: relative;      min-height: 60vh;
+      position: relative;
+      min-height: 60vh;
       background: #060606 url('image/hero_bg.png') center/cover no-repeat;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      text-align: center;
+      display: flex;
+      align-items: center;
       width: 100%;
-  max-width: 100vw;
-  overflow: hidden;
-  overflow-x: hidden;
+      max-width: 100vw;
+      overflow: hidden;
+      overflow-x: hidden;
     }
     .hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: rgba(6,6,6,0.5);
-      z-index: 1;
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(6,6,6,0.42) 0%, rgba(6,6,6,0.18) 26%, rgba(6,6,6,0.54) 100%),
+        linear-gradient(90deg, rgba(6,6,6,0.5) 0%, rgba(6,6,6,0.12) 44%, rgba(6,6,6,0.42) 100%);
     }
     .hero-content {
-      position: relative; z-index: 2;
-      padding: 120px 40px 60px;
-      max-width: 1200px;
+      position: relative;
+      z-index: 2;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 40px 40px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       width: 100%;
+      min-height: calc(60vh - 92px);
+    }
+    .hero-head {
+      width: 100%;
+      max-width: 980px;
+      display: flex;
+      flex: 1 1 auto;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+    .hero-copy {
+      width: 100%;
+      max-width: none;
+      text-align: center;
     }
     .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border: 1px solid rgba(255,220,34,0.28);
+      border-radius: 999px;
+      background: rgba(14,14,14,0.36);
+      backdrop-filter: blur(12px);
       font-family: var(--font-display);
-      font-size: 11px; font-weight: 500;
-      letter-spacing: 3px; text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
-      margin-bottom: 24px;
-      opacity: 0; transform: translateY(12px);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2.4px;
+      text-transform: uppercase;
+      color: #FFDC22;
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(12px);
       animation: fadeUp 0.6s var(--ease-out) 0.2s forwards;
     }
+    .hero-eyebrow i { width: 14px; height: 14px; }
     .hero h1 {
       font-family: var(--font-display);
-      font-size: clamp(35px, 5.5vw, 64px);
+      font-size: clamp(40px, 6vw, 82px);
       font-weight: 800;
-      line-height: 1.1; letter-spacing: -2px;
+      line-height: 1.02;
+      letter-spacing: -2.4px;
       color: #fff;
-      margin-bottom: 20px;
-      opacity: 0; transform: translateY(16px);
+      margin: 0 auto;
+      max-width: 980px;
+      opacity: 0;
+      transform: translateY(16px);
       animation: fadeUp 0.7s var(--ease-out) 0.35s forwards;
     }
     .hero-sub {
-      font-size: 15px; font-weight: 300;
-      color: rgba(255,255,255,0.6);
+      max-width: 720px;
+      font-size: 16px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.76);
       line-height: 1.8;
-      margin-bottom: 40px;
-      opacity: 0; transform: translateY(12px);
+      margin-bottom: 0;
+      opacity: 0;
+      transform: translateY(12px);
       animation: fadeUp 0.6s var(--ease-out) 0.5s forwards;
     }
-    .hero-features {
-      display: flex; justify-content: center; gap: 32px;
-      margin-bottom: 40px;
+    .hero-pills {
+      display: flex;
       flex-wrap: wrap;
-      opacity: 0; transform: translateY(12px);
-      animation: fadeUp 0.6s var(--ease-out) 0.6s forwards;
+      justify-content: center;
+      gap: 10px;
+      max-width: 980px;
+      width: 100%;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.6s var(--ease-out) 0.55s forwards;
     }
-    .hero-feature {
-      display: flex; flex-direction: column;
-      align-items: center; gap: 8px;
-      min-width: 80px;
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.16);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      padding: 5px 14px;
+      white-space: nowrap;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.2),
+        inset 0 -1px 0 rgba(255,255,255,0.06),
+        0 12px 30px rgba(0,0,0,0.2);
+      -webkit-backdrop-filter: blur(34px) saturate(200%) brightness(1.08);
+      backdrop-filter: blur(34px) saturate(200%) brightness(1.08);
     }
-    .hero-feature-icon {
-      width: 44px; height: 44px;
-      border: 1px solid rgba(255,220,34,0.3);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
+    .hero-pill i {
+      width: 13px;
+      height: 13px;
+      color: rgba(255,255,255,0.86);
+      flex-shrink: 0;
     }
-    .hero-feature-icon svg { width: 20px; height: 20px; color: #FFDC22; }
-    .hero-feature-label {
-      font-size: 12px; font-weight: 500;
-      color: rgba(255,255,255,0.5);
+    .hero-booking-card {
+      width: 100%;
+      max-width: 1230px;
+      margin: auto auto 8px;
+      padding: 20px 24px 18px;
+      border-radius: 16px;
+      background: rgba(10,10,10,0.52);
+      border: 1px solid rgba(255,255,255,0.14);
+      -webkit-backdrop-filter: blur(22px) saturate(140%);
+      backdrop-filter: blur(22px) saturate(140%);
+      box-shadow: 0 30px 90px rgba(0,0,0,0.36);
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.6s var(--ease-out) 0.72s forwards;
+    }
+    .hero-booking-form {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1.25fr) minmax(210px, 0.9fr) auto;
+      gap: 14px;
+      align-items: end;
+    }
+    .hero-booking-group {
+      display: grid;
+      gap: 8px;
+      min-width: 0;
+    }
+    .hero-booking-group-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.58);
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+    .hero-booking-combo,
+    .hero-booking-single {
+      min-height: 56px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--r-md);
+      background: rgba(255,255,255,0.07);
+      overflow: hidden;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+      -webkit-backdrop-filter: blur(16px) saturate(150%);
+      backdrop-filter: blur(16px) saturate(150%);
+      transition: border-color 0.18s, box-shadow 0.18s, transform 0.18s;
+    }
+    .hero-booking-combo:focus-within,
+    .hero-booking-single:focus-within {
+      border-color: rgba(255,220,34,0.92);
+      box-shadow: 0 0 0 3px rgba(255,220,34,0.16);
+      transform: translateY(-1px);
+    }
+    .hero-booking-combo {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
+    }
+    .hero-booking-divider {
+      width: 1px;
+      background: rgba(255,255,255,0.1);
+      align-self: stretch;
+      margin: 12px 0;
+    }
+    .hero-booking-segment,
+    .hero-booking-single {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      height: 100%;
+      padding: 0 16px;
+      color: rgba(255,255,255,0.78);
+    }
+    .hero-booking-segment i,
+    .hero-booking-single i {
+      width: 18px;
+      height: 18px;
+      color: #FFDC22;
+      flex-shrink: 0;
+    }
+    .hero-booking-input,
+    .hero-booking-select {
+      width: 100%;
+      min-width: 0;
+      min-height: 54px;
+      padding: 0;
+      border: none;
+      background: transparent;
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+    }
+    .hero-booking-input {
+      cursor: text;
+    }
+    .hero-booking-select-wrap {
+      position: relative;
+      width: 100%;
+      min-width: 0;
+      display: inline-flex;
+      align-items: center;
+    }
+    .hero-booking-select-wrap::after,
+    .hero-booking-date-wrap::after {
+      content: "";
+      position: absolute;
+      right: 4px;
+      top: 50%;
+      width: 16px;
+      height: 16px;
+      transform: translateY(-50%);
+      pointer-events: none;
+      background: currentColor;
+      color: rgba(255,255,255,0.34);
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") center/contain no-repeat;
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") center/contain no-repeat;
+    }
+    .hero-booking-date-wrap {
+      position: relative;
+      width: 100%;
+      min-width: 0;
+      display: inline-flex;
+      align-items: center;
+    }
+    .hero-booking-date-wrap .hero-booking-input {
+      padding-right: 28px;
+    }
+    .hero-booking-input::-webkit-calendar-picker-indicator {
+      opacity: 0;
+      position: absolute;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+    }
+    .hero-booking-submit {
+      min-height: 56px;
+      min-width: 188px;
+      padding: 16px 24px;
+      border: none;
+      border-radius: var(--r-md);
+      background: #FFDC22;
+      color: #060606;
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      white-space: nowrap;
       letter-spacing: 0.5px;
+    }
+    .hero-booking-submit:hover {
+      background: #ffe640;
+      transform: translateY(-1px);
+    }
+    .hero-booking-submit i { display: none; }
+    .hero-booking-meta {
+      margin-top: 10px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.48);
+      line-height: 1.6;
+    }
+    .hero-booking-meta a {
+      color: #FFDC22;
+      text-decoration: none;
+      font-weight: 600;
     }
     .hero-actions {
       display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
@@ -263,28 +491,36 @@
       animation: fadeUp 0.6s var(--ease-out) 0.7s forwards;
     }
     .btn-primary {
-      display: inline-flex; align-items: center; gap: 8px;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 52px; min-width: 168px;
       background: #FFDC22; color: #060606;
       font-family: var(--font-display);
       font-size: 14px; font-weight: 700;
-      padding: 14px 32px; border-radius: 8px;
+      padding: 0 28px; border-radius: 8px;
       text-decoration: none;
       transition: background 0.2s, transform 0.15s;
       letter-spacing: 0.3px;
+      white-space: nowrap;
     }
     .btn-primary:hover { background: #ffe640; transform: translateY(-2px); }
+    .btn-primary svg,
+    .btn-primary i { width: 16px; height: 16px; }
     .btn-ghost {
-      display: inline-flex; align-items: center; gap: 8px;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 52px; min-width: 168px;
       background: transparent;
       border: 1.5px solid rgba(255,255,255,0.2);
       color: rgba(255,255,255,0.7);
       font-family: var(--font-display);
-      font-size: 14px; font-weight: 500;
-      padding: 14px 32px; border-radius: 8px;
+      font-size: 14px; font-weight: 600;
+      padding: 0 28px; border-radius: 8px;
       text-decoration: none;
       transition: border-color 0.2s, color 0.2s;
+      white-space: nowrap;
     }
     .btn-ghost:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
+    .btn-ghost svg,
+    .btn-ghost i { width: 16px; height: 16px; }
     .hero-social-proof {
       opacity: 0; transform: translateY(12px);
       animation: fadeUp 0.6s var(--ease-out) 0.8s forwards;
@@ -373,19 +609,23 @@
     .blog-cta-btn {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 8px;
+      min-height: 52px;
+      min-width: 168px;
       background: var(--gold);
       color: #060606;
       font-family: var(--font-display);
       font-size: 14px;
       font-weight: 700;
-      padding: 14px 32px;
+      padding: 0 28px;
       border-radius: var(--r-md);
       transition: background 0.15s, gap 0.15s;
       white-space: nowrap;
     }
     .blog-cta-btn:hover { background: var(--gold-bright); gap: 12px; }
-    .blog-cta-btn svg { width: 16px; height: 16px; }
+    .blog-cta-btn svg,
+    .blog-cta-btn i { width: 16px; height: 16px; }
     .blog-cta-count {
       display: none;
     }
@@ -519,7 +759,7 @@
         justify-content: flex-start;
         flex: 0 1 auto;
       }
-      .blog-cta-btn { padding: 14px 28px; }
+      .blog-cta-btn { min-height: 48px; min-width: 152px; padding: 0 24px; }
       .blog-cta-controls { justify-content: center; margin-left: 0; flex-shrink: 0; }
       .blog-cta-switch {
         width: 44px;
@@ -1107,28 +1347,35 @@
     .cta-sub { font-size: 15px; color: rgba(6,6,6,0.6); font-weight: 400; }
     .cta-actions { display: flex; gap: 12px; flex-shrink: 0; }
     .btn-dark {
-      display: inline-flex; align-items: center; gap: 8px;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 52px; min-width: 168px;
       background: #060606; color: var(--gold);
       font-family: var(--font-display);
       font-size: 14px; font-weight: 600;
-      padding: 13px 28px; border-radius: var(--r-md);
+      padding: 0 28px; border-radius: var(--r-md);
       text-decoration: none;
       transition: background 0.2s, transform 0.15s;
+      white-space: nowrap;
     }
     .btn-dark:hover { background: #1a1a1a; transform: translateY(-1px); }
-    .btn-dark svg { width: 14px; height: 14px; }
+    .btn-dark svg,
+    .btn-dark i { width: 16px; height: 16px; }
     .btn-outline-dark {
-      display: inline-flex; align-items: center; gap: 8px;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 52px; min-width: 168px;
       background: transparent;
       border: 1.5px solid rgba(6,6,6,0.3);
       color: #060606;
       font-family: var(--font-display);
       font-size: 14px; font-weight: 600;
-      padding: 13px 28px; border-radius: var(--r-md);
+      padding: 0 28px; border-radius: var(--r-md);
       text-decoration: none;
       transition: border-color 0.2s, background 0.2s;
+      white-space: nowrap;
     }
     .btn-outline-dark:hover { border-color: #060606; background: rgba(6,6,6,0.06); }
+    .btn-outline-dark svg,
+    .btn-outline-dark i { width: 16px; height: 16px; }
 
     /* ══════════════════════════════════════
        BLOG SECTION
@@ -1331,9 +1578,26 @@
        RESPONSIVE
     ══════════════════════════════════════ */
     @media (max-width: 1024px) {
-      .hero { grid-template-columns: 1fr; }
-      .hero-widget { padding: 0 40px 60px; }
-      .booking-card { max-width: 500px; }
+      .hero-content {
+        padding: 40px 40px 0;
+        min-height: calc(60vh - 92px);
+      }
+      .hero-head {
+        gap: 12px;
+        flex: 1 1 auto;
+      }
+      .hero-pills { gap: 10px; }
+      .hero-booking-card {
+        padding: 18px;
+        border-radius: 24px;
+      }
+      .hero-booking-form {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .hero-booking-submit {
+        width: 100%;
+        min-width: 0;
+      }
       .stats-inner { grid-template-columns: repeat(2, 1fr); }
       .airports-grid { grid-template-columns: repeat(2, 1fr); }
       .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
@@ -1350,8 +1614,76 @@
         font-size: 11px;
         padding: 8px 10px;
       }
-      .hero-content { padding: 100px 20px 40px; }
-      .hero-widget { padding: 0 20px 60px; }
+      .hero {
+        min-height: 82svh;
+      }
+      .hero-content {
+        padding: 24px 20px 16px;
+        gap: 16px;
+        min-height: 82svh;
+      }
+      .hero-head {
+        gap: 8px;
+        flex: 1 1 auto;
+      }
+      .hero-copy { text-align: center; }
+      .hero h1 {
+        font-size: clamp(18px, 6.5vw, 26px);
+        line-height: 1.04;
+        letter-spacing: -0.8px;
+      }
+      .hero-pills { display: none; }
+      .hero-sub { font-size: 14px; line-height: 1.75; }
+      .hero-booking-card {
+        padding: 12px;
+        border-radius: 16px;
+        margin-top: auto;
+      }
+      .hero-booking-form { grid-template-columns: 1fr; gap: 8px; }
+      .hero-booking-combo,
+      .hero-booking-single,
+      .hero-booking-input,
+      .hero-booking-select,
+      .hero-booking-submit { min-height: 48px; }
+      .hero-booking-combo {
+        grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
+      }
+      .hero-booking-divider {
+        width: 1px;
+        height: auto;
+        margin: 10px 0;
+      }
+      .hero-booking-segment,
+      .hero-booking-single {
+        padding: 0 12px;
+        gap: 10px;
+      }
+      .hero-booking-group {
+        gap: 4px;
+      }
+      .hero-booking-group-title {
+        font-size: 9px;
+        letter-spacing: 1px;
+      }
+      .hero-booking-segment i,
+      .hero-booking-single i {
+        width: 16px;
+        height: 16px;
+      }
+      .hero-booking-input,
+      .hero-booking-select {
+        min-height: 46px;
+        font-size: 12px;
+      }
+      .hero-booking-submit {
+        font-size: 14px;
+        border-radius: 16px;
+      }
+      .hero-booking-meta { display: none; }
+      .hero-booking-meta {
+        font-size: 11px;
+        margin-top: 10px;
+      }
       .section { padding: 72px 20px; }
       .section-header { margin-bottom: 36px; }
       .adv-grid { grid-template-columns: 1fr; }
@@ -1482,7 +1814,7 @@
       <a href="#advantages">優勢</a>
       <a href="#cars">車型</a>
       <a href="blog.html">攻略</a>
-      <a href="#" class="nav-cta">立即預訂</a>
+      <a href="https://skyhorseauto.com/book/?ssid=pTxGMOleYqc0" class="nav-cta" target="_blank" rel="noopener">立即預訂</a>
     </div>
     <button class="nav-menu-btn" aria-label="Menu">
       <i data-lucide="menu" style="width:18px;height:18px"></i>
@@ -1493,30 +1825,96 @@
 <!-- ── HERO ── -->
 <section class="hero">
   <div class="hero-content">
-    <div class="hero-eyebrow">天馬租車</div>
-    <h1>你的美國自駕租車夥伴</h1>
-    <div class="hero-features">
-      <div class="hero-feature">
-        <div class="hero-feature-icon"><i data-lucide="message-circle"></i></div>
-        <div class="hero-feature-label">全程中文</div>
+    <div class="hero-head">
+      <div class="hero-copy">
+        <h1>你的美國自駕租車夥伴</h1>
       </div>
-      <div class="hero-feature">
-        <div class="hero-feature-icon"><i data-lucide="plane-landing"></i></div>
-        <div class="hero-feature-label">七大據點</div>
-      </div>
-      <div class="hero-feature">
-        <div class="hero-feature-icon"><i data-lucide="badge-check"></i></div>
-        <div class="hero-feature-label">價格透明</div>
-      </div>
-      <div class="hero-feature">
-        <div class="hero-feature-icon"><i data-lucide="shield-check"></i></div>
-        <div class="hero-feature-label">零隱藏費用</div>
+
+      <div class="hero-pills" aria-label="SkyHorse 服務特點">
+        <span class="hero-pill"><i data-lucide="message-circle"></i>全程中文</span>
+        <span class="hero-pill"><i data-lucide="map-pin"></i>七大據點</span>
+        <span class="hero-pill"><i data-lucide="badge-check"></i>價格透明</span>
+        <span class="hero-pill"><i data-lucide="shield-check"></i>免費取消</span>
       </div>
     </div>
-    <div class="hero-actions">
-      <a href="#" class="btn-primary">立即預訂</a>
-      <a href="#cars" class="btn-ghost">瀏覽車型 →</a>
+
+    <div class="hero-booking-card">
+      <form class="hero-booking-form" onsubmit="handleHeroBooking(event)">
+        <div class="hero-booking-group">
+          <div class="hero-booking-group-title">選擇地點</div>
+          <div class="hero-booking-combo">
+            <label class="hero-booking-segment" for="heroPickupLocation">
+              <i data-lucide="map-pin"></i>
+              <span class="hero-booking-select-wrap">
+                <select class="hero-booking-select" id="heroPickupLocation">
+                  <option value="">取車地點</option>
+                  <option>LAX 洛杉磯</option>
+                  <option>SFO 舊金山</option>
+                  <option>ONT 安大略</option>
+                  <option>LAS 拉斯維加斯</option>
+                  <option>PHX 鳳凰城</option>
+                  <option>SEA 西雅圖</option>
+                </select>
+              </span>
+            </label>
+            <div class="hero-booking-divider" aria-hidden="true"></div>
+            <label class="hero-booking-segment" for="heroReturnLocation">
+              <i data-lucide="map-pinned"></i>
+              <span class="hero-booking-select-wrap">
+                <select class="hero-booking-select" id="heroReturnLocation">
+                  <option value="">還車地點</option>
+                  <option>同取車地點</option>
+                  <option>LAX 洛杉磯</option>
+                  <option>SFO 舊金山</option>
+                  <option>ONT 安大略</option>
+                  <option>LAS 拉斯維加斯</option>
+                  <option>PHX 鳳凰城</option>
+                  <option>SEA 西雅圖</option>
+                </select>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="hero-booking-group">
+          <div class="hero-booking-group-title">取還車日期</div>
+          <div class="hero-booking-combo">
+            <label class="hero-booking-segment" for="heroPickupDate">
+              <i data-lucide="calendar-days"></i>
+              <span class="hero-booking-date-wrap">
+                <input class="hero-booking-input" type="date" id="heroPickupDate">
+              </span>
+            </label>
+            <div class="hero-booking-divider" aria-hidden="true"></div>
+            <label class="hero-booking-segment" for="heroReturnDate">
+              <i data-lucide="calendar-range"></i>
+              <span class="hero-booking-date-wrap">
+                <input class="hero-booking-input" type="date" id="heroReturnDate">
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="hero-booking-group">
+          <div class="hero-booking-group-title">車型需求</div>
+          <label class="hero-booking-single" for="heroCarType">
+            <i data-lucide="car-front"></i>
+            <span class="hero-booking-select-wrap">
+              <select class="hero-booking-select" id="heroCarType">
+                <option value="">選擇車型</option>
+                <option>轎車 Sedan</option>
+                <option>休旅車 SUV</option>
+                <option>廂型車 Van</option>
+                <option>電動車 EV</option>
+                <option>想先諮詢推薦</option>
+              </select>
+            </span>
+          </label>
+        </div>
+        <button class="hero-booking-submit" type="submit">
+          <span>開始預訂</span>
+        </button>
+      </form>
     </div>
+  </div>
 </section>
 
 <!-- ── STATS ── -->
@@ -1578,95 +1976,6 @@
         <span id="promoMediaLabel">合作優惠</span>
       </span>
     </a>
-  </div>
-</section>
-
-<!-- ── BOOKING FORM ── -->
-<section class="booking-form-section">
-  <div class="booking-form-inner">
-    <div class="booking-form-title">預訂你的下一趟旅程</div>
-    <div class="booking-form-sub">簡單幾步，開啟你的美國自駕之旅</div>
-    <form class="booking-form-grid" onsubmit="handleBooking(event)">
-      <div class="bf-field">
-        <label for="fullName"><i data-lucide="user"></i>姓名 / 暱稱</label>
-         <input type="text" id="fullName" placeholder="例：Jimmy" />
-      </div>
-      <div class="bf-field">
-        <label for="email"><i data-lucide="mail"></i>信箱</label>
-         <input type="email" id="email" placeholder="例：jimmy@gmail.com" />
-      </div>
-      <div class="bf-field">
-        <label for="pickupDate"><i data-lucide="calendar"></i>取車日期</label>
-        <input type="date" id="pickupDate" />
-      </div>
-      <div class="bf-field">
-        <label for="returnDate"><i data-lucide="calendar"></i>還車日期</label>
-        <input type="date" id="returnDate" />
-      </div>
-      <div class="bf-field">
-        <label for="pickupTime"><i data-lucide="clock"></i>取車時間</label>
-        <select id="pickupTime">
-          <option value="">選擇時間</option>
-          <option>08:00</option>
-          <option>09:00</option>
-          <option>10:00</option>
-          <option>11:00</option>
-          <option>12:00</option>
-          <option>13:00</option>
-          <option>14:00</option>
-          <option>15:00</option>
-          <option>16:00</option>
-          <option>17:00</option>
-          <option>18:00</option>
-        </select>
-      </div>
-      <div class="bf-field">
-        <label for="returnTime"><i data-lucide="clock"></i>還車時間</label>
-        <select id="returnTime">
-          <option value="">選擇時間</option>
-          <option>08:00</option>
-          <option>09:00</option>
-          <option>10:00</option>
-          <option>11:00</option>
-          <option>12:00</option>
-          <option>13:00</option>
-          <option>14:00</option>
-          <option>15:00</option>
-          <option>16:00</option>
-          <option>17:00</option>
-          <option>18:00</option>
-        </select>
-      </div>
-      <div class="bf-field">
-        <label for="pickupLocation"><i data-lucide="map-pin"></i>取車地點</label>
-        <select id="pickupLocation">
-          <option value="">選擇機場</option>
-          <option>LAX — Los Angeles International Airport</option>
-          <option>SFO — San Francisco International Airport</option>
-          <option>SAN — San Diego International Airport</option>
-          <option>LAS — Harry Reid International Airport (Las Vegas)</option>
-          <option>PHX — Phoenix Sky Harbor International Airport</option>
-          <option>SEA — Seattle-Tacoma International Airport</option>
-          <option>ORD — O'Hare International Airport (Chicago)</option>
-        </select>
-      </div>
-      <div class="bf-field">
-        <label for="returnLocation"><i data-lucide="map-pin"></i>還車地點</label>
-        <select id="returnLocation">
-          <option value="">選擇機場</option>
-          <option>LAX — Los Angeles International Airport</option>
-          <option>SFO — San Francisco International Airport</option>
-          <option>SAN — San Diego International Airport</option>
-          <option>LAS — Harry Reid International Airport (Las Vegas)</option>
-          <option>PHX — Phoenix Sky Harbor International Airport</option>
-          <option>SEA — Seattle-Tacoma International Airport</option>
-          <option>ORD — O'Hare International Airport (Chicago)</option>
-        </select>
-      </div>
-      <button type="submit" class="bf-submit" style="margin-top:24px">
-        下一步 <i data-lucide="arrow-right"></i>
-      </button>
-    </form>
   </div>
 </section>
 
@@ -2261,12 +2570,28 @@
     window.open(`https://line.me/ti/p/@skyhorse?text=${encodeURIComponent(text)}`, '_blank');
   }
 
+  function handleHeroBooking(e) {
+    e.preventDefault();
+    const loc = document.getElementById('heroPickupLocation').value;
+    const returnLoc = document.getElementById('heroReturnLocation').value;
+    const date = document.getElementById('heroPickupDate').value;
+    const ret = document.getElementById('heroReturnDate').value;
+    const car = document.getElementById('heroCarType').value;
+    const text = `🚗 天馬租車快速預訂\n━━━━━━━━━━━\n取車地點：${loc || '尚未填寫'}\n還車地點：${returnLoc || '尚未填寫'}\n取車日期：${date || '尚未填寫'}\n還車日期：${ret || '尚未填寫'}\n車型需求：${car || '尚未填寫'}`;
+    window.open(`https://line.me/ti/p/@skyhorse?text=${encodeURIComponent(text)}`, '_blank');
+  }
+
   // Set min date = today
   const today = new Date().toISOString().split('T')[0];
   document.getElementById('pickupDate').min = today;
   document.getElementById('returnDate').min = today;
+  document.getElementById('heroPickupDate').min = today;
+  document.getElementById('heroReturnDate').min = today;
   document.getElementById('pickupDate').addEventListener('change', function() {
     document.getElementById('returnDate').min = this.value;
+  });
+  document.getElementById('heroPickupDate').addEventListener('change', function() {
+    document.getElementById('heroReturnDate').min = this.value;
   });
 
   // FAQ
