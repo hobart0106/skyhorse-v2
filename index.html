@@ -459,6 +459,17 @@
       box-shadow: 0 4px 14px rgba(255,220,34,0.30);
     }
     .hero-booking-submit i { display: none; }
+    @media (min-width: 1440px) {
+      .hero-booking-form {
+        grid-template-columns: minmax(0, 1.45fr) minmax(0, 1.35fr) minmax(180px, 0.72fr) auto;
+      }
+      .hero-booking-form .hero-booking-group:nth-child(3) {
+        max-width: 360px;
+      }
+      .hero-booking-submit {
+        max-width: 360px;
+      }
+    }
     .hero-booking-trust {
       display: flex;
       justify-content: center;
@@ -536,8 +547,6 @@
 
     /* ── BLOG CTA ── */
     .blog-cta-section {
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
       background:
         linear-gradient(135deg, rgba(255,220,34,0.05), transparent 34%),
         var(--bg-surface);
@@ -769,8 +778,6 @@
     .booking-form-section {
       padding: 80px 0;
       background: #0a0a0a;
-      border-top: 1px solid rgba(255,255,255,0.06);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
     }
     .booking-form-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; box-sizing: border-box; }
     .booking-form-title {
@@ -1023,6 +1030,9 @@
       display: flex;
       flex-direction: column;
       transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
     }
     .cat-card:hover {
       border-color: rgba(255,220,34,0.5);
@@ -1230,8 +1240,6 @@
     ══════════════════════════════════════ */
     .airports-section {
       background: var(--bg-surface);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
       padding: 80px 0;
     }
     .airports-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; box-sizing: border-box; }
@@ -1381,7 +1389,6 @@
     .blog-section {
       padding: 100px 0;
       background: #0a0a0a;
-      border-top: 1px solid rgba(255,255,255,0.06);
     }
     .blog-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; box-sizing: border-box; }
     .blog-header {
@@ -1595,9 +1602,10 @@
       .hero-booking-submit {
         width: 100%;
         min-width: 0;
+        max-width: none;
       }
       .hero-booking-trust { gap: 12px; }
-      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .stats-inner { grid-template-columns: repeat(4, minmax(0, 1fr)); }
       .airports-grid { grid-template-columns: repeat(2, 1fr); }
       .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
       .celeb-grid { grid-template-columns: 1fr; }
@@ -1699,6 +1707,7 @@
       .footer-inner { padding: 0 20px; }
       .footer-top { grid-template-columns: 1fr; gap: 32px; }
       .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+      .faq-inner { padding: 0 20px; }
       .stats-inner { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; padding: 0 20px; }
       .stat-item + .stat-item::before { left: -6px; height: 32px; }
       .stat-num { font-size: 22px; letter-spacing: -1px; }
@@ -1740,7 +1749,6 @@
     ══════════════════════════════════════ */
     .faq-section {
       background: var(--bg-surface);
-      border-top: 1px solid var(--border);
       padding: 96px 0;
     }
     .faq-inner {
@@ -1979,7 +1987,7 @@
   <div class="cars-cat-grid">
 
     <!-- Sedan -->
-    <div class="cat-card">
+    <a class="cat-card" href="fleet.html#sedan">
       <img class="cat-card-img" src="https://images.unsplash.com/photo-1623869675781-80aa31012a5a?w=600&q=80&auto=format&fit=crop" alt="轎車 Sedan" loading="lazy">
       <div class="cat-card-body">
         <div class="cat-card-type">轎車 Sedan</div>
@@ -1997,10 +2005,10 @@
       <div class="cat-card-footer">
         <div class="cat-card-price">$45<span>/天起</span></div>
       </div>
-    </div>
+    </a>
 
     <!-- SUV -->
-    <div class="cat-card">
+    <a class="cat-card" href="fleet.html#suv">
       <img class="cat-card-img" src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=600&q=80&auto=format&fit=crop" alt="休旅車 SUV" loading="lazy">
       <div class="cat-card-body">
         <div class="cat-card-type">
@@ -2023,10 +2031,10 @@
       <div class="cat-card-footer">
         <div class="cat-card-price">$78<span>/天起</span></div>
       </div>
-    </div>
+    </a>
 
     <!-- Van -->
-    <div class="cat-card">
+    <a class="cat-card" href="fleet.html#van">
       <img class="cat-card-img" src="https://images.unsplash.com/photo-1559416523-140ddc3d238c?w=600&q=80&auto=format&fit=crop" alt="廂型車 Van" loading="lazy">
       <div class="cat-card-body">
         <div class="cat-card-type">廂型車 / Van</div>
@@ -2044,10 +2052,10 @@
       <div class="cat-card-footer">
         <div class="cat-card-price">$95<span>/天起</span></div>
       </div>
-    </div>
+    </a>
 
     <!-- EV / Special -->
-    <div class="cat-card">
+    <a class="cat-card" href="fleet.html#ev">
       <img class="cat-card-img" src="https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=600&q=80&auto=format&fit=crop" alt="電動車 Tesla" loading="lazy">
       <div class="cat-card-body">
         <div class="cat-card-type">
@@ -2070,7 +2078,7 @@
       <div class="cat-card-footer">
         <div class="cat-card-price">$89<span>/天起</span></div>
       </div>
-    </div>
+    </a>
 
   </div>
 

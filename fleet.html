@@ -776,20 +776,21 @@
   const tabs = document.querySelectorAll('.fleet-tab');
   const blocks = document.querySelectorAll('.category-block');
 
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      tabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      const cat = tab.dataset.cat;
-      blocks.forEach(block => {
-        if (cat === 'all' || block.dataset.category === cat) {
-          block.style.display = '';
-        } else {
-          block.style.display = 'none';
-        }
-      });
+  function activateCat(cat) {
+    tabs.forEach(t => t.classList.remove('active'));
+    const target = document.querySelector(`.fleet-tab[data-cat="${cat}"]`) || tabs[0];
+    target.classList.add('active');
+    blocks.forEach(block => {
+      block.style.display = (cat === 'all' || block.dataset.category === cat) ? '' : 'none';
     });
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => activateCat(tab.dataset.cat));
   });
+
+  const hash = location.hash.replace('#', '');
+  if (hash) activateCat(hash);
 </script>
 
 </body>
