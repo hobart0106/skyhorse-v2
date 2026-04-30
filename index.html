@@ -490,7 +490,7 @@
     .hero-trust-item svg {
       width: 12px;
       height: 12px;
-      color: #ffffff;
+      color: var(--ink-tertiary);
       flex-shrink: 0;
     }
     .hero-actions {
@@ -549,7 +549,7 @@
     .blog-cta-section {
       background:
         linear-gradient(135deg, rgba(255,220,34,0.05), transparent 34%),
-        var(--bg-surface);
+        var(--bg-base);
       padding: 84px 0;
     }
     .blog-cta-inner {
@@ -1239,7 +1239,7 @@
        AIRPORTS — Large type editorial
     ══════════════════════════════════════ */
     .airports-section {
-      background: var(--bg-surface);
+      background: var(--bg-base);
       padding: 80px 0;
     }
     .airports-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; box-sizing: border-box; }
@@ -1488,8 +1488,7 @@
        FOOTER
     ══════════════════════════════════════ */
     footer {
-      background: var(--bg-surface);
-      border-top: 1px solid var(--border);
+      background: var(--bg-base);
       padding: 64px 0 40px;
     }
     .footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; box-sizing: border-box; }
@@ -1699,7 +1698,7 @@
       .section-view-all { padding: 11px 24px; }
       .airports-section { display: none; }
       .airports-inner { padding: 0 20px; }
-      .celeb-section { padding: 100px 20px; }
+      .celeb-section { padding: 100px 20px 48px; }
       .airports-grid { grid-template-columns: repeat(2, 1fr); }
       .booking-form-inner { padding: 0 20px; }
       .car-category { padding: 0 20px; }
@@ -1707,7 +1706,9 @@
       .footer-inner { padding: 0 20px; }
       .footer-top { grid-template-columns: 1fr; gap: 32px; }
       .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
-      .faq-inner { padding: 0 20px; }
+      .faq-section { padding: 72px 20px; }
+      .faq-inner { padding: 0; }
+      .faq-header { margin-bottom: 36px; }
       .stats-inner { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; padding: 0 20px; }
       .stat-item + .stat-item::before { left: -6px; height: 32px; }
       .stat-num { font-size: 22px; letter-spacing: -1px; }
@@ -1748,24 +1749,13 @@
        FAQ
     ══════════════════════════════════════ */
     .faq-section {
-      background: var(--bg-surface);
+      background: var(--bg-base);
       padding: 96px 0;
     }
     .faq-inner {
       max-width: 1200px; margin: 0 auto; padding: 0 40px; box-sizing: border-box;
     }
-    .faq-header { text-align: left; margin-bottom: 56px; }
-    .faq-eyebrow {
-      font-family: var(--font-mono);
-      font-size: 11px; font-weight: 500;
-      letter-spacing: 3px; text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 16px;
-      display: inline-flex; align-items: center; gap: 10px;
-    }
-    .faq-eyebrow::before {
-      content: ''; display: block; width: 24px; height: 1.5px; background: var(--gold);
-    }
+    .faq-header { text-align: left; }
     .faq-list {
       max-width: 800px; margin: 0 auto;
       display: flex; flex-direction: column; gap: 0;
@@ -1941,10 +1931,6 @@
 <section class="blog-cta-section">
   <div class="blog-cta-inner">
     <div class="blog-cta-content">
-      <div class="blog-cta-eyebrow">
-        <i data-lucide="newspaper" style="width:14px;height:14px"></i>
-        <span id="promoEyebrow">優惠合作與旅程攻略</span>
-      </div>
       <h2 class="blog-cta-title" id="promoTitle">中華航空合作優惠｜搭機租車<br>85 折，華航旅客專屬美國自駕方案！</h2>
       <p class="blog-cta-sub" id="promoSub">
         SkyHorse 與中華航空合作推出旅客專屬租車優惠，搭乘華航前往美國，即可享租車 85 折起。抵達 PHX、LAX、SFO、ONT 等熱門機場後，中文服務協助取還車，讓你的美國公路旅行從落地開始更順暢。
@@ -2302,8 +2288,8 @@
   <!-- ════ FAQ ════ -->
   <section class="faq-section" id="faq">
     <div class="faq-inner">
-      <div class="faq-header">
-        <div class="faq-eyebrow">常見問題</div>
+      <div class="section-header faq-header">
+        <div class="section-eyebrow">常見問題</div>
         <h2 class="section-title">出發前你想知道的</h2>
       </div>
       <div class="faq-list">
