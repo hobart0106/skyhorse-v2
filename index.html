@@ -166,6 +166,14 @@
       letter-spacing: 0.1px;
     }
     .nav-links a:hover { color: var(--ink-primary); background: rgba(255,255,255,0.04); }
+    .nav-link-disabled {
+      cursor: default;
+      opacity: 0.85;
+    }
+    .nav-link-disabled:hover {
+      color: var(--ink-secondary) !important;
+      background: transparent !important;
+    }
     .nav-cta {
       background: var(--gold) !important;
       color: #060606 !important;
@@ -461,13 +469,14 @@
     .hero-booking-submit i { display: none; }
     @media (min-width: 1440px) {
       .hero-booking-form {
-        grid-template-columns: minmax(0, 1.45fr) minmax(0, 1.35fr) minmax(180px, 0.72fr) auto;
+        grid-template-columns: minmax(0, 1.62fr) minmax(0, 1.5fr) minmax(160px, 0.56fr) auto;
       }
       .hero-booking-form .hero-booking-group:nth-child(3) {
-        max-width: 360px;
+        max-width: 240px;
       }
       .hero-booking-submit {
-        max-width: 360px;
+        min-width: 180px;
+        max-width: 240px;
       }
     }
     .hero-booking-trust {
@@ -777,7 +786,7 @@
     /* Booking Form Section */
     .booking-form-section {
       padding: 80px 0;
-      background: #0a0a0a;
+      background: var(--bg-base);
     }
     .booking-form-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; box-sizing: border-box; }
     .booking-form-title {
@@ -873,7 +882,7 @@
        STATS BAR
     ══════════════════════════════════════ */
     .stats-bar {
-      background: var(--bg-surface);
+      background: var(--bg-base);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
       padding: 32px 0;
@@ -1388,7 +1397,7 @@
     ══════════════════════════════════════ */
     .blog-section {
       padding: 100px 0;
-      background: #0a0a0a;
+      background: var(--bg-base);
     }
     .blog-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; box-sizing: border-box; }
     .blog-header {
@@ -1585,15 +1594,19 @@
       .hero-content {
         padding: 40px 40px 0;
         min-height: calc(60vh - 92px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
       }
       .hero-head {
         gap: 12px;
-        flex: 1 1 auto;
+        flex: 0 0 auto;
       }
       .hero-pills { gap: 10px; }
       .hero-booking-card {
         padding: 18px;
         border-radius: 16px;
+        margin: 24px auto 8px;
       }
       .hero-booking-form {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1706,9 +1719,10 @@
       .footer-inner { padding: 0 20px; }
       .footer-top { grid-template-columns: 1fr; gap: 32px; }
       .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
-      .faq-section { padding: 72px 20px; }
-      .faq-inner { padding: 0; }
-      .faq-header { margin-bottom: 36px; }
+      .faq-section { padding: 64px 0; }
+      .faq-inner { padding: 0 20px; }
+      .faq-header { margin-bottom: 56px; }
+      .faq-list { max-width: none; width: 100%; }
       .stats-inner { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; padding: 0 20px; }
       .stat-item + .stat-item::before { left: -6px; height: 32px; }
       .stat-num { font-size: 22px; letter-spacing: -1px; }
@@ -1802,9 +1816,9 @@
       </div>
     </div>
     <div class="nav-links">
-      <a href="#advantages">優勢</a>
-      <a href="#cars">車型</a>
+      <a href="fleet.html">全部車型</a>
       <a href="blog.html">攻略</a>
+      <a href="javascript:void(0)" class="nav-link-disabled" aria-disabled="true">訂單</a>
       <a href="https://skyhorseauto.com/book/?ssid=pTxGMOleYqc0" class="nav-cta" target="_blank" rel="noopener">立即預訂</a>
     </div>
     <button class="nav-menu-btn" aria-label="Menu">
