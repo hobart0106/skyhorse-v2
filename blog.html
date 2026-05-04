@@ -111,13 +111,64 @@
     }
     .nav-links a:hover { color: var(--ink-primary); background: rgba(255,255,255,0.04); }
     .nav-links a.active { color: var(--ink-primary); background: rgba(255,255,255,0.06); }
-    .nav-cta {
-      background: var(--gold) !important;
-      color: #060606 !important;
-      font-weight: 600 !important;
+    .nav-menu-btn {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--ink-secondary);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
     }
-    .nav-cta:hover { background: var(--gold-bright) !important; }
-
+    .nav-menu-btn:hover { color: var(--ink-primary); border-color: var(--border-mid); background: rgba(255,255,255,0.04); }
+    .nav-menu-btn.is-open { color: var(--ink-primary); border-color: var(--border-mid); background: rgba(255,255,255,0.06); }
+    .nav-mobile-panel {
+      position: fixed;
+      top: 64px;
+      left: 20px;
+      right: 20px;
+      z-index: 95;
+      background: rgba(10,10,10,0.96);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 12px;
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      box-shadow: 0 18px 48px rgba(0,0,0,0.45);
+      backdrop-filter: blur(18px) saturate(160%);
+    }
+    .nav-mobile-panel a {
+      display: flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 0 14px;
+      border-radius: 12px;
+      color: var(--ink-secondary);
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.15s, background 0.15s;
+    }
+    .nav-mobile-panel a.active {
+      color: var(--ink-primary);
+      background: rgba(255,255,255,0.06);
+    }
+    .nav-mobile-panel a:hover {
+      color: var(--ink-primary);
+      background: rgba(255,255,255,0.04);
+    }
+    .nav-mobile-panel.is-open { display: flex; }
+    .nav-mobile-backdrop {
+      position: fixed;
+      inset: 64px 0 0;
+      z-index: 94;
+      background: rgba(0,0,0,0.32);
+      display: none;
+    }
+    .nav-mobile-backdrop.is-open { display: block; }
     /* ── BLOG HERO ── */
     .blog-hero {
       padding: 120px var(--container-pad) 64px;
@@ -485,9 +536,12 @@
       .newsletter-form { max-width: 100%; width: 100%; }
     }
     @media (max-width: 640px) {
+      .nav-inner { padding: 0 20px; }
+      .nav-left { gap: 10px; }
       .blog-hero { padding: 100px 20px 40px; }
       .blog-content { padding: 0 20px 80px; }
       nav .nav-links { display: none; }
+      .nav-menu-btn { display: flex; }
       .posts-grid { grid-template-columns: 1fr; gap: 16px; }
       .featured-body { padding: 24px; gap: 16px; }
       .featured-title { font-size: 24px; letter-spacing: -0.8px; }
@@ -510,17 +564,21 @@
       </a>
     </div>
     <div class="nav-links">
-      <a href="index.html">首頁</a>
-      <a href="index.html#advantages">優勢</a>
-      <a href="index.html#cars">車型</a>
+      <a href="fleet.html">車型</a>
       <a href="blog.html" class="active">攻略</a>
-      <a href="https://skyhorseauto.com/book/?ssid=pTxGMOleYqc0" class="nav-cta" target="_blank" rel="noopener">立即預訂</a>
+      <a href="index.html">首頁</a>
     </div>
-    <button class="nav-menu-btn" aria-label="Menu" style="display:none">
+    <button class="nav-menu-btn" aria-label="Menu">
       <i data-lucide="menu" style="width:18px;height:18px"></i>
     </button>
   </div>
 </nav>
+<div class="nav-mobile-backdrop" data-nav-close></div>
+<div class="nav-mobile-panel" id="mobile-nav-panel">
+  <a href="fleet.html">車型</a>
+  <a href="blog.html" class="active">攻略</a>
+  <a href="index.html">首頁</a>
+</div>
 
 <!-- ── HERO ── -->
 <section class="blog-hero">
@@ -720,6 +778,42 @@
 <script>
   // Init Lucide icons
   lucide.createIcons();
+
+  // Mobile nav
+  const navMenuBtn = document.querySelector('.nav-menu-btn');
+  const navMobilePanel = document.getElementById('mobile-nav-panel');
+  const navMobileBackdrop = document.querySelector('.nav-mobile-backdrop');
+  const closeMobileNav = () => {
+    navMenuBtn?.classList.remove('is-open');
+    navMenuBtn?.setAttribute('aria-expanded', 'false');
+    navMobilePanel?.classList.remove('is-open');
+    navMobileBackdrop?.classList.remove('is-open');
+    document.body.style.overflow = '';
+  };
+  const openMobileNav = () => {
+    navMenuBtn?.classList.add('is-open');
+    navMenuBtn?.setAttribute('aria-expanded', 'true');
+    navMobilePanel?.classList.add('is-open');
+    navMobileBackdrop?.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  };
+
+  navMenuBtn?.addEventListener('click', () => {
+    const isOpen = navMobilePanel?.classList.contains('is-open');
+    if (isOpen) closeMobileNav();
+    else openMobileNav();
+  });
+
+  navMobileBackdrop?.addEventListener('click', closeMobileNav);
+  navMobilePanel?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeMobileNav);
+  });
+  window.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeMobileNav();
+  });
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 640) closeMobileNav();
+  });
 
   // Category filter
   const tabs = document.querySelectorAll('.blog-tab');
