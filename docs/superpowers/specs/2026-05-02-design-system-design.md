@@ -76,11 +76,61 @@ Layer 3 — Component   元件只引用 semantic token
 
 | Token | 值 | 用途 |
 |-------|---|------|
-| `--font-display` | `'Space Grotesk', sans-serif` | 標題、按鈕、數字統計 |
-| `--font-body` | `'Noto Sans TC', sans-serif` | 內文、說明、日期 |
+| `--font-display` | `'Space Grotesk', sans-serif` | 純英文標題、數字統計、品牌名稱 |
+| `--font-zh` | `'Noto Sans TC', sans-serif` | 含中文標題、中英混排、內文、說明 |
 | `--font-mono` | `'JetBrains Mono', monospace` | 機場代號、eyebrow、tag |
 
-> **使用規則：** 所有元件的 `font-family` 一律引用 token（`font-family: var(--font-display)`），不得 hardcode 字型名稱。typography utility classes（`.font-display`、`.font-body`、`.font-mono`）提供快捷，但元件內部仍以 token 為準。
+> **使用規則：** 所有元件的 `font-family` 一律引用 token，不得 hardcode 字型名稱。
+
+### 中英文字型分流規則
+
+**原則：** Space Grotesk 不含 CJK 字集，遇到中文會 fallback 到系統字型（PingFang SC / 微軟正黑體），導致混排不一致。因此：
+
+| 情況 | 字型 | Token |
+|------|------|-------|
+| 純英文標題（SkyHorse、From US$2,800） | Space Grotesk | `--font-display` |
+| 含中文的標題（中華航空合作優惠、立即預約） | Noto Sans TC | `--font-zh` |
+| 中英混排標題（2026 阿拉斯加 夏季日不落） | Noto Sans TC | `--font-zh` |
+| 內文、說明、描述 | Noto Sans TC | `--font-zh` |
+| 機場代號、eyebrow、tag | JetBrains Mono | `--font-mono` |
+| 純數字統計（10,000+） | Space Grotesk | `--font-display` |
+
+**判斷方式：** 字串中若含任何 CJK 字元（`/[一-鿿㐀-䶿]/`），改用 `--font-zh`。
+
+### Text Style 規格（Figma + CSS）
+
+**EN 標題系列（Space Grotesk — 純英文使用）**
+
+| Style | 字體 | 字重 | 大小 | Line Height | Letter Spacing |
+|-------|------|------|------|-------------|----------------|
+| EN/Display | Space Grotesk | Bold 700 | 56px | 110% | -2px |
+| EN/H1 | Space Grotesk | Bold 700 | 40px | 110% | -1.5px |
+| EN/H2 | Space Grotesk | Medium 500 | 32px | 120% | -1px |
+| EN/H3 | Space Grotesk | Medium 500 | 24px | 130% | -0.3px |
+| EN/H4 | Space Grotesk | Medium 500 | 18px | 140% | 0 |
+
+**ZH 標題系列（Noto Sans TC — 含中文使用）**
+
+| Style | 字體 | 字重 | 大小 | Line Height | Letter Spacing |
+|-------|------|------|------|-------------|----------------|
+| ZH/Display | Noto Sans TC | Bold | 48px | 130% | 0 |
+| ZH/H1 | Noto Sans TC | Bold | 36px | 135% | 0 |
+| ZH/H2 | Noto Sans TC | Bold | 28px | 140% | 0 |
+| ZH/H3 | Noto Sans TC | Bold | 22px | 145% | 0 |
+| ZH/H4 | Noto Sans TC | Medium | 17px | 150% | 0 |
+
+> 中文標題不使用負 letter-spacing，Noto Sans TC 本身字距設計已適合緊湊閱讀。
+
+**共用系列（Body / Utility）**
+
+| Style | 字體 | 字重 | 大小 | Line Height |
+|-------|------|------|------|-------------|
+| Body/LG | Noto Sans TC | Regular | 16px | 170% |
+| Body/SM | Noto Sans TC | Regular | 14px | 170% |
+| Caption | Noto Sans TC | Light | 13px | 160% |
+| Label/SM | Space Grotesk | Bold | 12px | 150% |
+| Mono/Tag | JetBrains Mono | Medium | 11px | 150% + 3.5px spacing |
+| Mono/Code | JetBrains Mono | Regular | 13px | 160% |
 
 ### 間距（4px 基底）
 
