@@ -35,10 +35,10 @@
       --info:    #0A84FF;
 
       /* Typography */
-      --font-display: 'Stack Sans Headline', 'Noto Sans TC', sans-serif;
-      --font-zh:      'Noto Sans TC', sans-serif;
-      --font-body:    'Noto Sans TC', sans-serif;
-      --font-mono:    'JetBrains Mono', monospace;
+      --font-display: 'Space Grotesk', 'Noto Sans TC', sans-serif;
+      --font-zh:      'Space Grotesk', 'Noto Sans TC', sans-serif;
+      --font-body:    'Space Grotesk', 'Noto Sans TC', sans-serif;
+      --font-mono:    'Space Grotesk', 'Noto Sans TC', sans-serif;
 
       /* Spacing (4px base) */
       --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px;
@@ -68,9 +68,16 @@
       overflow-x: hidden;
     }
 
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: var(--bg-base); }
-    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+    html, body, * {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    *::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+      display: none;
+      background: transparent;
+    }
 
     /* ══════════════════════════════════════
        NAV
@@ -755,10 +762,6 @@
       border-radius: var(--r-lg); padding: 28px 24px;
       transition: border-color 0.2s, transform 0.2s;
     }
-    .trip-feature-card:hover {
-      border-color: var(--border-yellow);
-      transform: translateY(-4px);
-    }
     .trip-feature-card__num {
       font-family: var(--font-mono);
       font-size: 11px; font-weight: 500;
@@ -927,7 +930,7 @@
       transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
     }
     .ft-card:hover {
-      border-color: var(--border-mid);
+      border-color: var(--border-yellow);
       transform: translateY(-4px);
       box-shadow: var(--shadow-gold);
     }
@@ -1037,7 +1040,6 @@
       border-radius: var(--r-lg); padding: 32px 24px;
       transition: border-color 0.2s, transform 0.2s;
     }
-    .why-card:hover { border-color: var(--border-mid); transform: translateY(-4px); }
     .why-card__icon {
       width: 48px; height: 48px;
       background: var(--gold-dim);
@@ -1076,7 +1078,6 @@
       border-radius: var(--r-lg); padding: 20px;
       transition: border-color 0.2s;
     }
-    .review-card:hover { border-color: var(--border-mid); }
     .review-card__quote {
       font-family: var(--font-zh);
       font-size: 36px; font-weight: 800;
@@ -1138,10 +1139,6 @@
       border-radius: var(--r-md); padding: 14px 20px;
       text-align: left; min-width: 180px;
       transition: border-color 0.2s, box-shadow 0.2s;
-    }
-    .social-badge:hover {
-      border-color: var(--border-yellow);
-      box-shadow: var(--shadow-gold);
     }
     .social-badge__icon {
       width: 36px; height: 36px;
@@ -1240,10 +1237,10 @@
     .faq-list {
       max-width: 800px; margin: 0 auto;
       display: flex; flex-direction: column; gap: 0;
-      border: 1px solid var(--border);
+      border: 1px solid rgba(255,255,255,0.10);
       border-radius: var(--r-lg); overflow: hidden;
     }
-    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-item { border-bottom: 1px solid rgba(255,255,255,0.06); }
     .faq-item:last-child { border-bottom: none; }
     .faq-q {
       width: 100%; display: flex; align-items: center; justify-content: space-between;

@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>名人體驗｜天馬租車 Sky Horse</title>
+  <meta name="description" content="Joeman、百靈果、博恩、妍安等名人推薦，在美國租車自駕首選天馬租車。全程中文服務，機場接送，LINE即时回應。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-base:     #060606;
+      --bg-surface:  #0e0e0e;
+      --bg-elevated: #161616;
+      --bg-card:     #111111;
+      --border:     rgba(255,255,255,0.06);
+      --border-mid:  rgba(255,255,255,0.12);
+      --gold:        #FFDC22;
+      --gold-bright: #F5C94E;
+      --gold-dim:    rgba(232,184,75,0.10);
+      --gold-border: rgba(255,220,34,0.30);
+      --ink-primary:   #F2F2F2;
+      --ink-secondary: #8A8A8A;
+      --ink-tertiary: #4A4A4A;
+      --font-display: 'Space Grotesk', 'Noto Sans TC', sans-serif;
+      --font-body:    'Noto Sans TC', sans-serif;
+      --r-sm: 6px; --r-md: 10px; --r-lg: 16px;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-base);
+      color: var(--ink-primary);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    html, body, * {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    *::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+      display: none;
+      background: transparent;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── LOGO (CSS only) ── */
+    .logo-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px; height: 32px;
+      background: var(--gold);
+      border-radius: var(--r-sm);
+      font-family: var(--font-display);
+      font-size: 13px; font-weight: 700;
+      color: #060606;
+      flex-shrink: 0;
+    }
+    .logo-text {
+      font-family: var(--font-display);
+      font-size: 14px; font-weight: 600;
+      color: var(--ink-primary);
+      letter-spacing: -0.2px;
+      line-height: 1;
+    }
+    .logo-text span { color: var(--gold); }
+    .logo-wrap { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+
+    /* ── AVATAR (CSS only) ── */
+    .avatar {
+      border-radius: 50%;
+      background: var(--gold-dim);
+      border: 1px solid var(--gold-border);
+      display: inline-flex; align-items: center; justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 700;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+    .avatar-sm  { width: 36px; height: 36px; font-size: 0.72rem; }
+    .avatar-md  { width: 44px; height: 44px; font-size: 0.82rem; }
+    .avatar-lg  { width: 48px; height: 48px; font-size: 0.88rem; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(6,6,6,0.88);
+      backdrop-filter: blur(24px) saturate(180%);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 40px;
+      height: 64px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-left { display: flex; align-items: center; gap: 18px; }
+    .nav-business-switch {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 4px; border: 1px solid var(--border); border-radius: 999px;
+      background: rgba(255,255,255,0.03);
+    }
+    .nav-business-link {
+      font-family: var(--font-display); font-size: 12px; font-weight: 600;
+      color: var(--ink-secondary); text-decoration: none;
+      padding: 9px 14px; border-radius: 999px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .nav-business-link:hover { color: var(--ink-primary); background: rgba(255,255,255,0.04); }
+    .nav-business-link.is-active { color: #060606; background: var(--gold); }
+    .nav-links { display: flex; align-items: center; gap: 4px; }
+    .nav-links a {
+      font-size: 13px; color: var(--ink-secondary); text-decoration: none;
+      padding: 6px 14px; border-radius: var(--r-sm);
+      transition: color 0.15s, background 0.15s;
+    }
+    .nav-links a:hover { color: var(--ink-primary); background: rgba(255,255,255,0.04); }
+    .nav-links a.is-active { color: var(--gold); }
+    .nav-cta {
+      background: var(--gold) !important; color: #060606 !important; font-weight: 600 !important;
+    }
+    .nav-cta:hover { background: var(--gold-bright) !important; }
+    .nav-menu-btn {
+      display: none; background: none; border: 1px solid var(--border);
+      border-radius: var(--r-sm); padding: 6px 10px; color: var(--ink-secondary); cursor: pointer;
+    }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      padding: 120px 40px 64px;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .page-header::before {
+      content: '';
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 700px; height: 400px;
+      background: radial-gradient(ellipse, rgba(255,220,34,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .page-header-eyebrow {
+      font-family: var(--font-display);
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 16px;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .page-header-eyebrow::before,
+    .page-header-eyebrow::after {
+      content: ''; display: block;
+      width: 24px; height: 1px; background: var(--gold);
+      opacity: 0.4;
+    }
+    .page-header h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700; letter-spacing: -0.035em;
+      line-height: 1.15; margin-bottom: 16px;
+    }
+    .page-header p {
+      font-size: 1rem; color: var(--ink-secondary);
+      max-width: 520px; margin: 0 auto; font-weight: 300;
+    }
+
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 28px 40px;
+    }
+    .trust-bar-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; gap: 40px; justify-content: center; flex-wrap: wrap;
+    }
+    .trust-item { display: flex; align-items: center; gap: 10px; }
+    .trust-icon {
+      width: 36px; height: 36px;
+      background: var(--gold-dim); border: 1px solid var(--gold-border);
+      border-radius: var(--r-sm); display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+    .trust-label strong { display: block; font-family: var(--font-display); font-size: 0.82rem; font-weight: 600; }
+    .trust-label span { font-size: 0.72rem; color: var(--ink-tertiary); }
+
+    /* ── SECTION ── */
+    .section { padding: 72px 40px; }
+    .section-eyebrow {
+      font-family: var(--font-display); font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 700; letter-spacing: -0.03em;
+      color: var(--ink-primary); margin-bottom: 8px;
+    }
+    .section-sub { font-size: 0.9rem; color: var(--ink-secondary); font-weight: 300; margin-bottom: 48px; }
+
+    /* ── VIDEO CARDS ── */
+    .video-section { background: var(--bg-surface); }
+    .video-layout {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+    }
+    .video-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--r-lg); overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+      display: flex; flex-direction: column;
+    }
+    .video-card:hover {
+      border-color: var(--gold-border);
+      transform: translateY(-2px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+    }
+    .video-thumb {
+      aspect-ratio: 16/9;
+      background: #0a0a0a;
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 8px;
+    }
+    .video-thumb-init {
+      font-family: var(--font-display); font-size: 3.5rem; font-weight: 700;
+      color: rgba(255,220,34,0.1); letter-spacing: -0.04em;
+    }
+    .video-play-btn {
+      width: 52px; height: 52px;
+      background: rgba(255,220,34,0.9);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+    .video-play-btn::after {
+      content: '';
+      width: 0; height: 0;
+      border-style: solid;
+      border-width: 8px 0 8px 13px;
+      border-color: transparent transparent transparent #060606;
+      transform: translateX(2px);
+    }
+    .video-info { padding: 20px 24px 24px; flex: 1; display: flex; flex-direction: column; gap: 0; }
+    .video-kol {
+      font-family: var(--font-display); font-size: 0.7rem; font-weight: 600;
+      color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px;
+    }
+    .video-title {
+      font-family: var(--font-display); font-size: 1.05rem; font-weight: 600;
+      color: var(--ink-primary); letter-spacing: -0.01em; line-height: 1.4; margin-bottom: 8px;
+    }
+    .video-desc { font-size: 0.85rem; color: var(--ink-secondary); line-height: 1.7; flex: 1; }
+    .video-meta { display: flex; gap: 16px; margin-top: 14px; }
+    .video-meta-item {
+      display: flex; align-items: center; gap: 5px;
+      font-size: 0.75rem; color: var(--ink-tertiary);
+    }
+    .video-meta-item strong { color: var(--ink-secondary); font-weight: 500; }
+
+    /* ── QUOTE STRIP ── */
+    .quotes-section {
+      background: var(--bg-base);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .quotes-inner { max-width: 1200px; margin: 0 auto; }
+    .quotes-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;
+    }
+    .quote-item {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--r-lg); padding: 24px 28px;
+      position: relative;
+    }
+    .quote-item::before {
+      content: '"';
+      position: absolute; top: 10px; left: 20px;
+      font-family: var(--font-display); font-size: 4rem; font-weight: 700;
+      color: var(--gold); opacity: 0.12; line-height: 1;
+    }
+    .quote-text {
+      font-size: 0.92rem; color: var(--ink-primary); line-height: 1.85;
+      margin-bottom: 18px; position: relative;
+    }
+    .quote-attr { display: flex; align-items: center; gap: 10px; }
+    .quote-author { font-size: 0.8rem; }
+    .quote-author strong { color: var(--gold); font-weight: 600; }
+    .quote-author span { color: var(--ink-tertiary); display: block; }
+
+    /* ── KOL GRID ── */
+    .kol-section { background: var(--bg-surface); }
+    .kol-grid {
+      max-width: 1200px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 20px;
+    }
+    .kol-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--r-lg); padding: 28px;
+      display: flex; flex-direction: column;
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+      text-decoration: none;
+    }
+    .kol-card:hover {
+      border-color: var(--gold-border);
+      background: #141414;
+      transform: translateY(-2px);
+    }
+    .kol-card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+    .kol-badges { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+    .kol-platform {
+      font-size: 0.68rem; color: var(--ink-tertiary);
+      background: rgba(255,255,255,0.04); padding: 2px 8px; border-radius: 4px;
+    }
+    .kol-name {
+      font-family: var(--font-display); font-size: 1.05rem; font-weight: 700;
+      color: var(--ink-primary); letter-spacing: -0.01em; margin-bottom: 4px;
+    }
+    .kol-subtitle { font-size: 0.85rem; color: var(--ink-secondary); margin-bottom: 16px; }
+    .kol-quote {
+      font-size: 0.875rem; color: var(--ink-secondary); line-height: 1.8; flex: 1;
+      border-left: 2px solid var(--gold-border); padding-left: 14px; margin-bottom: 20px;
+      font-style: italic;
+    }
+    .kol-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 16px; border-top: 1px solid var(--border); margin-top: auto;
+    }
+    .kol-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .kol-tag {
+      font-size: 0.68rem; color: var(--ink-tertiary);
+      background: rgba(255,255,255,0.04); padding: 2px 8px; border-radius: 4px;
+    }
+    .kol-read {
+      font-family: var(--font-display); font-size: 0.78rem; font-weight: 600; color: var(--gold);
+    }
+    .kol-read::after { content: ' →'; }
+
+    /* ── ARTICLE LIST ── */
+    .article-section { background: var(--bg-base); }
+    .article-list {
+      max-width: 1200px; margin: 0 auto;
+      border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden;
+    }
+    .article-row {
+      display: grid; grid-template-columns: 1fr auto;
+      align-items: center; gap: 24px; padding: 20px 28px;
+      background: var(--bg-card); border-bottom: 1px solid var(--border);
+      text-decoration: none; transition: background 0.15s;
+    }
+    .article-row:last-child { border-bottom: none; }
+    .article-row:hover { background: var(--bg-elevated); }
+    .article-left { display: flex; align-items: center; gap: 16px; min-width: 0; }
+    .article-num {
+      font-family: var(--font-display); font-size: 0.72rem; font-weight: 600;
+      color: var(--ink-tertiary); width: 24px; flex-shrink: 0;
+    }
+    .article-kol {
+      font-size: 0.7rem; font-weight: 600; color: var(--gold);
+      letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px;
+    }
+    .article-title {
+      font-family: var(--font-display); font-size: 0.95rem; font-weight: 600;
+      color: var(--ink-primary); letter-spacing: -0.01em;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .article-desc {
+      font-size: 0.8rem; color: var(--ink-secondary); margin-top: 2px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .article-arrow { color: var(--ink-tertiary); flex-shrink: 0; transition: color 0.15s, transform 0.15s; }
+    .article-row:hover .article-arrow { color: var(--gold); transform: translateX(3px); }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border);
+      padding: 80px 40px; text-align: center;
+    }
+    .cta-inner { max-width: 560px; margin: 0 auto; }
+    .cta-section h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700; letter-spacing: -0.03em; margin-bottom: 12px;
+    }
+    .cta-section h2 em { font-style: normal; color: var(--gold); }
+    .cta-section p { font-size: 0.95rem; color: var(--ink-secondary); margin-bottom: 36px; font-weight: 300; }
+    .btn-group { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-gold {
+      background: var(--gold); color: #060606;
+      padding: 12px 28px; border-radius: var(--r-md);
+      font-family: var(--font-display); font-weight: 600; font-size: 0.9rem;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: background 0.15s, transform 0.15s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-gold:hover { background: var(--gold-bright); transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent; color: var(--ink-primary);
+      padding: 12px 28px; border-radius: var(--r-md);
+      border: 1px solid var(--border-mid);
+      font-family: var(--font-display); font-weight: 500; font-size: 0.9rem;
+      text-decoration: none; transition: border-color 0.15s, background 0.15s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-outline:hover { border-color: var(--gold-border); background: var(--gold-dim); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg-surface); border-top: 1px solid var(--border);
+      padding: 64px 0 40px;
+    }
+    .footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; box-sizing: border-box; }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px; padding-bottom: 48px;
+      border-bottom: 1px solid var(--border); margin-bottom: 32px;
+    }
+    .footer-desc {
+      font-size: 13px; font-weight: 300; color: var(--ink-tertiary);
+      line-height: 1.7; max-width: 280px; margin-top: 16px;
+    }
+    .footer-social { display: flex; gap: 10px; margin-top: 20px; }
+    .footer-social a {
+      width: 36px; height: 36px;
+      background: var(--bg-elevated); border: 1px solid var(--border);
+      border-radius: var(--r-sm); display: flex; align-items: center; justify-content: center;
+      color: var(--ink-secondary); text-decoration: none;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+      font-size: 0.85rem; font-family: var(--font-display); font-weight: 700;
+    }
+    .footer-social a:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
+    .footer-col-title {
+      font-family: var(--font-display); font-size: 12px; font-weight: 600;
+      color: var(--ink-secondary); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px;
+    }
+    .footer-links { display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { font-size: 13px; color: var(--ink-tertiary); text-decoration: none; transition: color 0.15s; }
+    .footer-links a:hover { color: var(--ink-primary); }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 12px; color: var(--ink-tertiary);
+    }
+    .footer-bottom a { color: var(--ink-tertiary); text-decoration: none; transition: color 0.15s; }
+    .footer-bottom a:hover { color: var(--ink-secondary); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .video-layout { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-menu-btn { display: flex; }
+      .nav-inner { padding: 0 20px; }
+      .page-header { padding: 100px 20px 48px; }
+      .section { padding: 56px 20px; }
+      .kol-grid { grid-template-columns: 1fr; }
+      .article-row { padding: 16px 20px; }
+      .footer-top { grid-template-columns: 1fr; gap: 28px; }
+      .footer-inner { padding: 0 20px; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-left">
+      <a href="index.html" class="logo-wrap">
+        <div class="logo-mark">SH</div>
+        <div class="logo-text">天馬租車 <span>Sky Horse</span></div>
+      </a>
+      <div class="nav-business-switch">
+        <a href="index.html" class="nav-business-link is-active">美國租車</a>
+        <a href="ak_index.html" class="nav-business-link">阿拉斯加</a>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">首頁</a>
+      <a href="index.html#cars">車型</a>
+      <a href="blog.html">攻略</a>
+      <a href="#" class="is-active">名人體驗</a>
+      <a href="https://skyhorseauto.com/book/?ssid=pTxGMOleYqc0" class="nav-cta" target="_blank" rel="noopener">立即預訂</a>
+    </div>
+    <button class="nav-menu-btn" aria-label="Menu">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- ── PAGE HEADER ── -->
+<div class="page-header">
+  <div class="page-header-eyebrow">Celebrity Experiences</div>
+  <h1>名人都在租什麼車？</h1>
+  <p>Joeman、百靈果、博恩、妍安⋯⋯從平價轎車到夢幻超跑，每段故事都是真實的公路之旅</p>
+</div>
+
+<!-- ── TRUST BAR ── -->
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    <div class="trust-item">
+      <div class="trust-icon">TOP</div>
+      <div class="trust-label"><strong>50+ KOL 實測推薦</strong><span>不含業配，真實體驗</span></div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">CN</div>
+      <div class="trust-label"><strong>全程中文服務</strong><span>英文不好也免擔心</span></div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">AIR</div>
+      <div class="trust-label"><strong>機場直接交車</strong><span>專人航廈接送</span></div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">4.9</div>
+      <div class="trust-label"><strong>Google 4.9 分</strong><span>真實旅客評價</span></div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">LINE</div>
+      <div class="trust-label"><strong>LINE 24h 客服</strong><span>即時回應</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── YOUTUBE VIDEOS ── -->
+<section class="section video-section">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="section-eyebrow">YouTube 影片</div>
+    <h2 class="section-title">實際上路給你看</h2>
+    <p class="section-sub">名人親自拍片記錄，真實呈現租車流程與公路之旅</p>
+  </div>
+  <div class="video-layout">
+    <a href="https://skyhorseauto.com/joeman-california-reviews/" class="video-card" target="_blank" rel="noopener">
+      <div class="video-thumb">
+        <div class="video-thumb-init">JOE</div>
+        <div class="video-play-btn"></div>
+      </div>
+      <div class="video-info">
+        <div class="video-kol">Joeman 九妹 · YouTube</div>
+        <div class="video-title">平價車款 VS 奢華租車大對決！</div>
+        <div class="video-desc">Toyota Camry 市區遊 + 賓利歐陸GT 直闖拉斯維加斯，Joeman 兩種人生一次體驗</div>
+        <div class="video-meta">
+          <div class="video-meta-item"><strong>LA ↔ Las Vegas</strong></div>
+          <div class="video-meta-item"><strong>Bentley / Toyota</strong></div>
+        </div>
+      </div>
+    </a>
+    <a href="https://skyhorseauto.com/bailingguonews-experience/" class="video-card" target="_blank" rel="noopener">
+      <div class="video-thumb">
+        <div class="video-thumb-init">BG</div>
+        <div class="video-play-btn"></div>
+      </div>
+      <div class="video-info">
+        <div class="video-kol">百靈果 News · Podcast</div>
+        <div class="video-title">「超爽，大推給所有人！」</div>
+        <div class="video-desc">凱莉 & Ken 美西自駕，行李多到天馬多開一台車來載，孕婦也能舒服還車</div>
+        <div class="video-meta">
+          <div class="video-meta-item"><strong>Los Angeles</strong></div>
+          <div class="video-meta-item"><strong>SUV 旗艦車款</strong></div>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ── PULL QUOTES ── -->
+<section class="section quotes-section">
+  <div class="quotes-inner">
+    <div class="section-eyebrow">名人怎麼說</div>
+    <h2 class="section-title">他們的真實心聲</h2>
+    <p class="section-sub">每一句話都是真實反馈，沒有業配</p>
+    <div class="quotes-grid">
+      <div class="quote-item">
+        <div class="quote-text">全程可以用中文了解保險、遇到問題用 LINE 諮詢，從機場就有專人接送，旅程結束自由選擇還車地點，非常方便！</div>
+        <div class="quote-attr">
+          <div class="avatar avatar-sm">JOE</div>
+          <div class="quote-author"><strong>Joeman</strong><span>YouTuber · 92萬訂閱</span></div>
+        </div>
+      </div>
+      <div class="quote-item">
+        <div class="quote-text">Sky Horse 的車好新！真心大推！行李好多還多開一台來載我們，在這麼忙亂的 LAX，有這麼細心的服務，真的很安心。</div>
+        <div class="quote-attr">
+          <div class="avatar avatar-sm">BG</div>
+          <div class="quote-author"><strong>百靈果凱莉</strong><span>Podcast · 百靈果 News</span></div>
+        </div>
+      </div>
+      <div class="quote-item">
+        <div class="quote-text">在美國沒有車等於沒有腳，天馬讓我們重溫兩個人一起在異地生活的浪漫。九週年紀念，選擇了特斯拉 Cybertruck。</div>
+        <div class="quote-attr">
+          <div class="avatar avatar-sm">AN</div>
+          <div class="quote-author"><strong>妍安 Ann</strong><span>時尚 KOL · 53.7萬追蹤</span></div>
+        </div>
+      </div>
+      <div class="quote-item">
+        <div class="quote-text">英文好不代表要在美國自己處理租車保險，天馬全中文服務讓我把時間留給更重要的事——巡迴演出。</div>
+        <div class="quote-attr">
+          <div class="avatar avatar-sm">BN</div>
+          <div class="quote-author"><strong>博恩 Born</strong><span>脫口秀演員 · 2024 世界巡迴</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── KOL CARDS ── -->
+<section class="section kol-section">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="section-eyebrow">完整體驗文章</div>
+    <h2 class="section-title">名人專文推薦</h2>
+    <p class="section-sub">點擊閱讀完整故事</p>
+  </div>
+  <div class="kol-grid">
+
+    <a href="https://skyhorseauto.com/joeman-california-reviews/" class="kol-card" target="_blank" rel="noopener">
+      <div class="kol-card-top">
+        <div class="avatar avatar-lg">JOE</div>
+        <div class="kol-badges"><span class="kol-platform">YouTube</span></div>
+      </div>
+      <div class="kol-name">Joeman 九妹</div>
+      <div class="kol-subtitle">Joe是要對決 2.0 · 平價 VS 奢華租車</div>
+      <div class="kol-quote">「Toyota Camry 軟座椅、後車廂寬敞，適合長途公路旅行；賓利歐陸GT 市區駕駛是夢幻選擇。兩種體驗，天馬一個團隊全部搞定。」</div>
+      <div class="kol-footer">
+        <div class="kol-tags">
+          <span class="kol-tag">Toyota Camry</span>
+          <span class="kol-tag">Bentley GT</span>
+          <span class="kol-tag">LA ↔ Vegas</span>
+        </div>
+        <span class="kol-read">閱讀</span>
+      </div>
+    </a>
+
+    <a href="https://skyhorseauto.com/bailingguonews-experience/" class="kol-card" target="_blank" rel="noopener">
+      <div class="kol-card-top">
+        <div class="avatar avatar-lg">BG</div>
+        <div class="kol-badges"><span class="kol-platform">Podcast</span></div>
+      </div>
+      <div class="kol-name">百靈果 News</div>
+      <div class="kol-subtitle">凱莉 & Ken · 洛杉磯自駕推薦</div>
+      <div class="kol-quote">「超爽，大推給所有人！車好新、服務超貼心，連孕婦都能舒服還車。行李多到多開一台車來載，細心到令人驚艷。」</div>
+      <div class="kol-footer">
+        <div class="kol-tags">
+          <span class="kol-tag">機場接送</span>
+          <span class="kol-tag">中文服務</span>
+          <span class="kol-tag">SUV</span>
+        </div>
+        <span class="kol-read">閱讀</span>
+      </div>
+    </a>
+
+    <a href="https://skyhorseauto.com/brian-2024-world-tour-sky-horse-car-rental/" class="kol-card" target="_blank" rel="noopener">
+      <div class="kol-card-top">
+        <div class="avatar avatar-lg">BN</div>
+        <div class="kol-badges"><span class="kol-platform">Comedy</span></div>
+      </div>
+      <div class="kol-name">博恩 Born</div>
+      <div class="kol-subtitle">2024 世界巡迴 · 美國租車首選</div>
+      <div class="kol-quote">「英文好不代表要在美國自己處理租車保險，天馬全中文服務讓我把時間留給更重要的事——巡迴演出。」</div>
+      <div class="kol-footer">
+        <div class="kol-tags">
+          <span class="kol-tag">巡演</span>
+          <span class="kol-tag">全中文</span>
+          <span class="kol-tag">商務</span>
+        </div>
+        <span class="kol-read">閱讀</span>
+      </div>
+    </a>
+
+    <a href="https://skyhorseauto.com/%e5%90%8d%e4%ba%ba%e9%ab%94%e9%a9%97%e7%be%8e%e5%9c%8b%e5%8a%a0%e5%b7%9e%e5%85%ac%e8%b7%af%e6%97%85%e8%a1%8c-%e5%a6%8d%e5%ae%89%e9%ab%94%e9%a9%97-cybertruck/" class="kol-card" target="_blank" rel="noopener">
+      <div class="kol-card-top">
+        <div class="avatar avatar-lg">AN</div>
+        <div class="kol-badges"><span class="kol-platform">Instagram</span></div>
+      </div>
+      <div class="kol-name">妍安 Ann</div>
+      <div class="kol-subtitle">結婚九週年 · 特斯拉 Cybertruck</div>
+      <div class="kol-quote">「在美國沒有車等於沒有腳，天馬讓我們重溫異地生活的浪漫。特斯拉 Cybertruck 超帥電動皮卡，這趟九週年回憶無價。」</div>
+      <div class="kol-footer">
+        <div class="kol-tags">
+          <span class="kol-tag">Cybertruck</span>
+          <span class="kol-tag">紀念日</span>
+          <span class="kol-tag">電動車</span>
+        </div>
+        <span class="kol-read">閱讀</span>
+      </div>
+    </a>
+
+    <a href="https://skyhorseauto.com/usa-roadtrip-with-kids-sky-horse-car-rental/" class="kol-card" target="_blank" rel="noopener">
+      <div class="kol-card-top">
+        <div class="avatar avatar-lg">TR</div>
+        <div class="kol-badges"><span class="kol-platform">Blog</span></div>
+      </div>
+      <div class="kol-name">兔女狼</div>
+      <div class="kol-subtitle">帶2歲童 + 六大箱行李 · 試管之旅</div>
+      <div class="kol-quote">「沒有家人幫忙，拖著六大箱行李帶幼童自駕——魔王級挑戰，天馬讓這一切變成可能。赴美試管的勇氣之旅。」</div>
+      <div class="kol-footer">
+        <div class="kol-tags">
+          <span class="kol-tag">家庭</span>
+          <span class="kol-tag">親子</span>
+          <span class="kol-tag">試管</span>
+        </div>
+        <span class="kol-read">閱讀</span>
+      </div>
+    </a>
+
+    <a href="https://skyhorseauto.com/brandon-chevrolet-corvette-c8r-california-roadtrip/" class="kol-card" target="_blank" rel="noopener">
+      <div class="kol-card-top">
+        <div class="avatar avatar-lg">BR</div>
+        <div class="kol-badges"><span class="kol-platform">YouTube</span></div>
+      </div>
+      <div class="kol-name">布萊登 Brandon</div>
+      <div class="kol-subtitle">Corvette C8R · 實現爸爸遺願</div>
+      <div class="kol-quote">「開著限量敞篷車，在加州公路上與天馬一起為去世的爸爸實現遺願。謝謝你們幫我圓夢。」</div>
+      <div class="kol-footer">
+        <div class="kol-tags">
+          <span class="kol-tag">Corvette</span>
+          <span class="kol-tag">公路旅行</span>
+          <span class="kol-tag">超跑</span>
+        </div>
+        <span class="kol-read">閱讀</span>
+      </div>
+    </a>
+
+    <a href="https://skyhorseauto.com/kol-experience-soya%e6%89%8b%e7%99%a2%e8%a8%88%e5%8a%83/" class="kol-card" target="_blank" rel="noopener">
+      <div class="kol-card-top">
+        <div class="avatar avatar-lg">SO</div>
+        <div class="kol-badges"><span class="kol-platform">YouTube</span></div>
+      </div>
+      <div class="kol-name">Soya 手癢計劃</div>
+      <div class="kol-subtitle">美國遊學 · 英文不好也敢租車</div>
+      <div class="kol-quote">「英文有進步空間沒關係，選中文服務的租車公司最安心。天馬讓我一個人也敢去美國闖！」</div>
+      <div class="kol-footer">
+        <div class="kol-tags">
+          <span class="kol-tag">遊學</span>
+          <span class="kol-tag">單人</span>
+          <span class="kol-tag">自駕</span>
+        </div>
+        <span class="kol-read">閱讀</span>
+      </div>
+    </a>
+
+    <a href="https://skyhorseauto.com/funder-interview/" class="kol-card" target="_blank" rel="noopener">
+      <div class="kol-card-top">
+        <div class="avatar avatar-lg">SH</div>
+        <div class="kol-badges"><span class="kol-platform">專訪</span></div>
+      </div>
+      <div class="kol-name">天馬租車</div>
+      <div class="kol-subtitle">品牌故事 · 從10台車到 KOL 首選</div>
+      <div class="kol-quote">「顧客信任到直接匯500萬過來——這是我們用服務換來的口碑。」台灣人在美國紮根的品牌故事。</div>
+      <div class="kol-footer">
+        <div class="kol-tags">
+          <span class="kol-tag">品牌故事</span>
+          <span class="kol-tag">創辦人</span>
+        </div>
+        <span class="kol-read">閱讀</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ── ARTICLE LIST ── -->
+<section class="section article-section">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="section-eyebrow">文章總覽</div>
+    <h2 class="section-title">所有名人體驗文章</h2>
+    <p class="section-sub">共 8 篇，持續更新中</p>
+  </div>
+  <div class="article-list">
+    <a href="https://skyhorseauto.com/joeman-california-reviews/" class="article-row" target="_blank" rel="noopener">
+      <div class="article-left">
+        <span class="article-num">01</span>
+        <div>
+          <div class="article-kol">Joeman 九妹 · YouTube 92萬訂閱</div>
+          <div class="article-title">【名人體驗】Joeman 加州體驗 平價車款 VS 奢華租車大對決！</div>
+          <div class="article-desc">Toyota Camry 市區遊 + 賓利歐陸GT 24小時拉斯維加斯來回</div>
+        </div>
+      </div>
+      <span class="article-arrow">→</span>
+    </a>
+    <a href="https://skyhorseauto.com/bailingguonews-experience/" class="article-row" target="_blank" rel="noopener">
+      <div class="article-left">
+        <span class="article-num">02</span>
+        <div>
+          <div class="article-kol">百靈果 News · Podcast</div>
+          <div class="article-title">【名人推薦】百靈果：「超爽，大推給所有人！」 洛杉磯租車體驗</div>
+          <div class="article-desc">凱莉 & Ken 美西自駕，行李多到多開一台車來載</div>
+        </div>
+      </div>
+      <span class="article-arrow">→</span>
+    </a>
+    <a href="https://skyhorseauto.com/brian-2024-world-tour-sky-horse-car-rental/" class="article-row" target="_blank" rel="noopener">
+      <div class="article-left">
+        <span class="article-num">03</span>
+        <div>
+          <div class="article-kol">博恩 Born · 脫口秀演員</div>
+          <div class="article-title">【名人體驗】博恩 2024 世界巡迴 美國租車首選 Sky Horse！</div>
+          <div class="article-desc">英文好也不自己處理保險，天馬全中文服務把時間留給巡迴</div>
+        </div>
+      </div>
+      <span class="article-arrow">→</span>
+    </a>
+    <a href="https://skyhorseauto.com/%e5%90%8d%e4%ba%ba%e9%ab%94%e9%a9%97%e7%be%8e%e5%9c%8b%e5%8a%a0%e5%b7%9e%e5%85%ac%e8%b7%af%e6%97%85%e8%a1%8c-%e5%a6%8d%e5%ae%89%e9%ab%94%e9%a9%97-cybertruck/" class="article-row" target="_blank" rel="noopener">
+      <div class="article-left">
+        <span class="article-num">04</span>
+        <div>
+          <div class="article-kol">妍安 Ann · Instagram 53.7萬追蹤</div>
+          <div class="article-title">【名人體驗】美國加州公路旅行 妍安體驗超帥特斯拉 Cybertruck</div>
+          <div class="article-desc">結婚九週年，特斯拉電動皮卡公路旅行</div>
+        </div>
+      </div>
+      <span class="article-arrow">→</span>
+    </a>
+    <a href="https://skyhorseauto.com/usa-roadtrip-with-kids-sky-horse-car-rental/" class="article-row" target="_blank" rel="noopener">
+      <div class="article-left">
+        <span class="article-num">05</span>
+        <div>
+          <div class="article-kol">兔女狼 · 作家 / 部落客</div>
+          <div class="article-title">【名人推薦】帶2歲童公路旅行 兔女狼大推的加州租車 Sky Horse</div>
+          <div class="article-desc">赴美試管，拖著六大箱行李帶幼童自駕魔王級挑戰</div>
+        </div>
+      </div>
+      <span class="article-arrow">→</span>
+    </a>
+    <a href="https://skyhorseauto.com/brandon-chevrolet-corvette-c8r-california-roadtrip/" class="article-row" target="_blank" rel="noopener">
+      <div class="article-left">
+        <span class="article-num">06</span>
+        <div>
+          <div class="article-kol">布萊登 Brandon · 台美混血喜劇演員</div>
+          <div class="article-title">【名人推薦】在加州開限量敞篷車 為去世的爸爸實現遺願</div>
+          <div class="article-desc">Chevrolet Corvette C8R 加州公路旅行</div>
+        </div>
+      </div>
+      <span class="article-arrow">→</span>
+    </a>
+    <a href="https://skyhorseauto.com/kol-experience-soya%e6%89%8b%e7%99%a2%e8%a8%88%e5%8a%83/" class="article-row" target="_blank" rel="noopener">
+      <div class="article-left">
+        <span class="article-num">07</span>
+        <div>
+          <div class="article-kol">Soya 手癢計劃 · YouTube 45萬訂閱</div>
+          <div class="article-title">【名人體驗】Soya 到美國遊學玩耍 英文不流利選中文服務租車公司</div>
+          <div class="article-desc">英文有進步空間也敢一個人去美國闖</div>
+        </div>
+      </div>
+      <span class="article-arrow">→</span>
+    </a>
+    <a href="https://skyhorseauto.com/funder-interview/" class="article-row" target="_blank" rel="noopener">
+      <div class="article-left">
+        <span class="article-num">08</span>
+        <div>
+          <div class="article-kol">天馬租車 · 創辦人專訪</div>
+          <div class="article-title">【創辦人專訪】在美國，選對租車公司出遊最保險！信任到直接轉了500萬</div>
+          <div class="article-desc">從10台車到 KOL 首選的轉型故事</div>
+        </div>
+      </div>
+      <span class="article-arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <h2>下一位<em>寫下公路故事</em>的人是你</h2>
+    <p>不論是家庭出遊、商務行程，還是夢幻公路旅行，天馬租車提供全程中文服務，讓你專注在旅途本身。</p>
+    <div class="btn-group">
+      <a href="https://skyhorseauto.com/book/?ssid=pTxGMOleYqc0" class="btn-gold" target="_blank" rel="noopener">立即預訂租車 →</a>
+      <a href="index.html#cars" class="btn-outline">看所有車款</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <a href="index.html" class="logo-wrap">
+          <div class="logo-mark">SH</div>
+          <div class="logo-text">Sky Horse</div>
+        </a>
+        <p class="footer-desc">加州自駕租車首選。2015 年成立，深耕美西機場租車市場，以中文服務與透明價格著稱。</p>
+        <div class="footer-social">
+          <a href="#">FB</a>
+          <a href="#">IG</a>
+          <a href="#">LINE</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">美國租車</div>
+        <div class="footer-links">
+          <a href="#">機場取還車</a>
+          <a href="#">單程異地還車</a>
+          <a href="#">保險加購</a>
+          <a href="#">GPS / 兒童安全座椅</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">阿拉斯加</div>
+        <div class="footer-links">
+          <a href="ak_index.html">夏季日不落</a>
+          <a href="ak_index.html#featured-trips">冬季極光</a>
+          <a href="ak_index.html#highlights">為什麼選 Sky Horse</a>
+          <a href="ak_index.html#faq">常見問題</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">聯絡我們</div>
+        <div class="footer-links">
+          <a href="#">LINE @skyhorse</a>
+          <a href="#">contact@skyhorseauto.com</a>
+          <a href="#">+1-949-439-7432</a>
+          <a href="#">常見問題</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 SkyHorse Auto LLC. All rights reserved.</span>
+      <span><a href="#">隱私權政策</a> · <a href="#">服務條款</a></span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

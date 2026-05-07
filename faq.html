@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>常見問題 | Sky Horse 天馬租車</title>
+  <meta name="description" content="美國租車與阿拉斯加旅遊常見問題，關於預訂、取還車、保險、證件要求、阿拉斯加行程等疑難解答。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-base:     #060606;
+      --bg-surface:  #0e0e0e;
+      --bg-elevated: #161616;
+      --bg-card:     #111111;
+      --border:     rgba(255,255,255,0.06);
+      --border-mid:  rgba(255,255,255,0.12);
+      --border-yellow: rgba(255,209,0,0.4);
+      --gold:        #FFDC22;
+      --gold-bright: #F5C94E;
+      --gold-dim:    rgba(232,184,75,0.12);
+      --gold-glow:   rgba(232,184,75,0.08);
+      --ink-primary:   #F2F2F2;
+      --ink-secondary: #8A8A8A;
+      --ink-tertiary:  #4A4A4A;
+      --success: #34C759;
+      --info:    #0A84FF;
+      --font-display: 'Space Grotesk', 'Noto Sans TC', sans-serif;
+      --font-body:    'Noto Sans TC', sans-serif;
+      --font-mono:    'JetBrains Mono', monospace;
+      --r-sm: 6px; --r-md: 10px; --r-lg: 16px; --r-xl: 24px;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-base);
+      color: var(--ink-primary);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    html, body, * {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    *::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+      display: none;
+      background: transparent;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(6,6,6,0.85);
+      backdrop-filter: blur(24px) saturate(180%);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 40px;
+      height: 64px; display: flex; align-items: center; justify-content: space-between;
+      gap: 24px;
+    }
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      min-width: 0;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px; text-decoration: none;
+      flex-shrink: 0;
+    }
+    .nav-logo img { display: block; width: 118px; height: 24px; flex-shrink: 0; }
+    .nav-links {
+      display: flex; align-items: center; gap: 4px;
+    }
+    .nav-links a {
+      font-size: 13px; font-weight: 400;
+      color: var(--ink-secondary);
+      text-decoration: none; padding: 6px 14px;
+      border-radius: var(--r-sm);
+      transition: color 0.15s, background 0.15s;
+    }
+    .nav-links a:hover { color: var(--ink-primary); background: rgba(255,255,255,0.04); }
+    .nav-links a.active { color: var(--ink-primary); background: rgba(255,255,255,0.06); }
+    .nav-menu-btn {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--ink-secondary);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+    .nav-menu-btn:hover { color: var(--ink-primary); border-color: var(--border-mid); background: rgba(255,255,255,0.04); }
+    .nav-menu-btn.is-open { color: var(--ink-primary); border-color: var(--border-mid); background: rgba(255,255,255,0.06); }
+    .nav-mobile-panel {
+      position: fixed;
+      top: 64px;
+      left: 20px;
+      right: 20px;
+      z-index: 95;
+      background: rgba(10,10,10,0.96);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 12px;
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      box-shadow: 0 18px 48px rgba(0,0,0,0.45);
+      backdrop-filter: blur(18px) saturate(160%);
+    }
+    .nav-mobile-panel a {
+      display: flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 0 14px;
+      border-radius: 12px;
+      color: var(--ink-secondary);
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.15s, background 0.15s;
+      text-decoration: none;
+    }
+    .nav-mobile-panel a:hover {
+      color: var(--ink-primary);
+      background: rgba(255,255,255,0.04);
+    }
+    .nav-mobile-panel a.active {
+      color: var(--ink-primary);
+      background: rgba(255,255,255,0.06);
+    }
+    .nav-mobile-panel.is-open { display: flex; }
+    .nav-mobile-backdrop {
+      position: fixed;
+      inset: 64px 0 0;
+      z-index: 94;
+      background: rgba(0,0,0,0.32);
+      display: none;
+    }
+    .nav-mobile-backdrop.is-open { display: block; }
+
+    /* ── HERO ── */
+    .faq-hero {
+      padding: 120px 40px 32px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .faq-hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 3.5px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 20px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .faq-hero-eyebrow::before {
+      content: ''; display: block;
+      width: 28px; height: 1px; background: var(--gold);
+    }
+    .faq-hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 800;
+      letter-spacing: -2px; line-height: 1.1;
+      color: var(--ink-primary);
+      margin-bottom: 16px;
+    }
+    .faq-hero-sub {
+      font-size: 16px; font-weight: 300;
+      color: var(--ink-secondary);
+      max-width: 560px; line-height: 1.8;
+      margin-bottom: 40px;
+    }
+
+    /* ── FAQ PAGE ── */
+    .faq-page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px 100px;
+    }
+    .faq-tabs {
+      display: flex; gap: 8px; flex-wrap: wrap;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 32px;
+    }
+    .faq-tab {
+      font-family: var(--font-display); font-size: 13px; font-weight: 600;
+      color: var(--ink-secondary);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 20px;
+      padding: 7px 18px;
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+      letter-spacing: 0.3px;
+    }
+    .faq-tab:hover {
+      color: var(--ink-primary);
+      border-color: rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.08);
+    }
+    .faq-tab.active {
+      color: var(--ink-primary);
+      background: rgba(255,255,255,0.02);
+      border-color: rgba(255,255,255,0.96);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.35);
+    }
+    .faq-panel { display: none; }
+    .faq-panel.active { display: block; }
+    .faq-list {
+      max-width: none;
+      width: 100%;
+      display: flex; flex-direction: column; gap: 0;
+      border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden;
+      background: var(--bg-card);
+    }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q {
+      width: 100%; display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; padding: 20px 24px;
+      background: var(--bg-card); color: var(--ink-primary);
+      font-family: var(--font-body); font-size: 15px; font-weight: 500;
+      text-align: left; cursor: pointer; border: none;
+      transition: color 0.2s;
+    }
+    .faq-q:hover { color: var(--gold); }
+    .faq-q svg { width: 16px; height: 16px; flex-shrink: 0; color: var(--ink-tertiary); transition: transform 0.2s; }
+    .faq-item.open .faq-q svg { transform: rotate(180deg); color: var(--gold); }
+    .faq-a {
+      display: none; padding: 0 24px 20px;
+      font-size: 14px; font-weight: 300; color: var(--ink-secondary);
+      line-height: 1.8; background: var(--bg-card);
+    }
+    .faq-item.open .faq-a { display: block; }
+
+    /* ── CTA STRIP ── */
+    .cta-strip { background: var(--gold); padding: 56px 40px; }
+    .cta-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+    .cta-title { font-family: var(--font-display); font-size: 26px; font-weight: 700; color: #060606; margin-bottom: 6px; }
+    .cta-sub { font-size: 14px; color: rgba(6,6,6,0.65); }
+    .cta-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-dark { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; background: #060606; color: #FFDC22; font-family: var(--font-display); font-size: 14px; font-weight: 600; padding: 0 24px; border-radius: 8px; text-decoration: none; transition: background 0.2s; white-space: nowrap; }
+    .btn-dark:hover { background: #1a1a1a; }
+    .btn-outline-dark { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; background: transparent; border: 1.5px solid rgba(6,6,6,0.4); color: #060606; font-family: var(--font-display); font-size: 14px; font-weight: 600; padding: 0 24px; border-radius: 8px; text-decoration: none; transition: border-color 0.2s; white-space: nowrap; }
+    .btn-outline-dark:hover { border-color: #060606; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--bg-surface); border-top: 1px solid var(--border); padding: 64px 0 0; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; padding-bottom: 56px; border-bottom: 1px solid var(--border); }
+    .footer-brand { }
+    .footer-logo { display: inline-block; margin-bottom: 16px; }
+    .footer-desc { font-size: 13px; color: var(--ink-tertiary); line-height: 1.7; max-width: 280px; margin-bottom: 20px; }
+    .footer-social { display: flex; gap: 12px; }
+    .footer-social a { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; color: var(--ink-tertiary); border: 1px solid var(--border); border-radius: var(--r-sm); transition: color 0.15s, border-color 0.15s; }
+    .footer-social a:hover { color: var(--gold); border-color: var(--border-yellow); }
+    .footer-social svg { width: 16px; height: 16px; }
+    .footer-col-title { font-family: var(--font-display); font-size: 12px; font-weight: 600; color: var(--ink-primary); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px; }
+    .footer-links { display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { font-size: 13px; color: var(--ink-tertiary); text-decoration: none; transition: color 0.15s; }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; padding: 24px 0; font-size: 12px; color: var(--ink-tertiary); }
+    .footer-bottom a { color: var(--ink-tertiary); text-decoration: none; }
+    .footer-bottom a:hover { color: var(--gold); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      .nav-inner { padding: 0 20px; }
+      .nav-links { display: none; }
+      .nav-menu-btn { display: flex; }
+      .faq-hero { padding: 100px 20px 40px; }
+      .faq-hero-title { font-size: 32px; letter-spacing: -1px; }
+      .faq-page { padding: 0 20px 80px; }
+      .faq-tabs { width: 100%; padding-bottom: 16px; margin-bottom: 24px; }
+      .faq-tab { flex: 1; text-align: center; padding: 10px 12px; font-size: 12px; }
+      .faq-q { padding: 18px 20px; font-size: 14px; }
+      .faq-a { padding: 0 20px 18px; font-size: 13px; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .footer-brand { grid-column: 1 / -1; }
+      .cta-strip { padding: 40px 20px; }
+      .cta-inner { flex-direction: column; align-items: flex-start; gap: 24px; }
+      .footer-inner { padding: 0 20px; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-left">
+      <a href="index.html" class="nav-logo">
+        <img src="image/SkyHorse-24.svg" alt="SkyHorse Auto">
+      </a>
+    </div>
+    <div class="nav-links">
+      <a href="fleet.html">車型</a>
+      <a href="blog.html">攻略</a>
+      <a href="index.html">首頁</a>
+    </div>
+    <button class="nav-menu-btn" aria-label="選單">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</nav>
+<div class="nav-mobile-backdrop" data-nav-close></div>
+<div class="nav-mobile-panel" id="mobile-nav-panel">
+  <a href="fleet.html">車型</a>
+  <a href="blog.html">攻略</a>
+  <a href="index.html">首頁</a>
+</div>
+
+<!-- HERO -->
+<section class="faq-hero">
+  <div class="faq-hero-eyebrow">Frequently Asked Questions</div>
+  <h1 class="faq-hero-title">出發前想知道的<br>常見問題</h1>
+  <p class="faq-hero-sub">從美國租車到旅遊行程安排，一次整理。</p>
+</section>
+
+<!-- FAQ CONTENT -->
+<main class="faq-page">
+  <!-- Tabs -->
+  <div class="faq-tabs" role="tablist">
+    <button class="faq-tab active" data-tab="us" role="tab" aria-selected="true">美國租車</button>
+    <button class="faq-tab" data-tab="ak" role="tab" aria-selected="false">阿拉斯加</button>
+  </div>
+
+  <!-- US Panel -->
+  <div class="faq-panel active" id="panel-us" role="tabpanel">
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          如何向 Sky Horse 天馬租車預訂租車服務？
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">您可以直接透過我們的官網預訂所需的車型，並使用 LINE 與我們聯繫，由專人以中文全程協助您選擇車型及保險方案，並且回答您關於租車及行程安排的疑問。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Sky Horse 天馬租車有哪些車型可以選擇？
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">1. 中型轎車 Midsize Sedan（Toyota Corolla 同級車）5人座 / 1大1小行李<br>2. 大型轎車 Full-Sized Sedan（Toyota Camry 同級車）5人座 / 2大行李<br>3. 休旅車 SUV（Honda CR-V 同級車）5人座 / 4大行李<br>4. 迷你廂型車 Minivan（Honda Odyssey 同級車）7～8人座 / 4大行李<br><br>如乘客未坐滿，後座皆可放倒放置額外行李。歡迎直接與我們聯繫，我們將針對您的團體和行李推薦最適合的車款。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Sky Horse 天馬租車的收費如何計算、如何付款？
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">在預訂車輛時，官網即會顯示明確、透明的最終費用，支付金額包含以下：<br>1. 訂金：網站預訂時使用信用卡支付訂金 US$100，即會收到 Email 通知完成預訂。<br>2. 剩餘款項：於交車時，使用信用卡（感應刷卡、Apple Pay、線上刷卡），或以美金現金付款。<br>3. 預授權押金：取車時會由支付訂金的信用卡預付 US$1 預授權押金，最長於取車後 30 天自動解除授權。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          什麼狀況下會被扣取押金？
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">還車後，若有以下狀況將需加收費用：<br>1. 代繳／未繳的停車費、過路費、罰單<br>2. 車內過度髒亂或有異味需特殊清潔（車內嚴禁吸菸）<br>3. 還車時油量少於取車時的油量（交車時由於會有送車路程，不一定是滿油）<br>4. 車體內外部損壞</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          在美國（加州）租車需要提供哪些文件？
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">您需要提供效期內的原有國籍駕照、國際駕照、護照，以及有效信用卡。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          取車和還車時間怎麼訂？
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">建議國際航線取車請選擇落地後 1 小時，還車選擇起飛前 3.5 小時，預訂時請填寫抵達航班資訊，專人會關注航班狀態預先準備好車輛在機場外等候。<br><br>洛杉磯 LAX / 舊金山 SFO 國際航線：預計落地後 1 小時取車，起飛前 3.5 小時還車。<br>安大略 ONT 國際航線：預計落地後半小時取車，起飛前 2.5 小時還車。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Sky Horse 天馬租車的費用包括哪些項目？
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">我們的租車費用包括基本租金、車輛保險以及相關稅費，您在網站上預訂後顯示的即為最終費用，絕沒有隱藏款項或臨櫃加價。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          是否提供兒童安全座椅？美國的相關規定是什麼？
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">我們提供兩種尺寸的兒童座椅，訂車時可選擇額外配備。<br><br>美國法規規定：8 歲以下的兒童必須在後座使用汽車安全座椅或增高座椅；8 歲或身高達到 4’9″（145 公分）的兒童，可視情況決定是否使用增高座椅。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          可以取消及更改預訂嗎？
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">可以。只要取車 7 日前以 LINE 訊息或至官網取消，都可以全額退款。若需要調整租還時間、地點、車型或保險方案，也都可以隨時告知，由我們協助處理。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Sky Horse 天馬租車的服務範圍包括哪些地區？
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">我們在洛杉磯、舊金山、聖地牙哥和拉斯維加斯的主要機場、市中心、外圍城市（如 San Jose、Oakland 及整個灣區）皆提供接送及取還車服務，會依據您的地點需求提供個人化協助。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          甲租乙還需要加價嗎？
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">Sky Horse 天馬租車提供到府租還車服務，只要在洛杉磯、舊金山、聖地牙哥和拉斯維加斯等地同城市內租還（例如洛杉磯機場租、洛杉磯市區還），不額外加收異地費用。<br><br>若跨城市租還，常見費用如下：<br>．舊金山－洛杉磯 US$200<br>．拉斯維加斯－洛杉磯 US$350<br>．洛杉磯－聖地牙哥 US$100</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          租車前、或旅遊期間遇到問題如何聯繫客服？
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">Sky Horse 天馬租車提供零時差客服，只要透過 LINE 與我們聯繫，我們會第一時間為您解答。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          可以增加額外駕駛嗎？
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">可以。請在預訂時選擇「額外駕駛保障」，讓主要駕駛與其餘駕駛皆享有保險保障，並在取車時提供所有駕駛的駕照供確認。<br><br>未具保險駕車發生事故，保險公司將不予理賠，且依加州汽車管理法規定可處最高 US$720 罰鍰。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Sky Horse 天馬租車年齡的限制？25 歲以下是否需要加收費用？
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">一般美國租車規定年齡為 21 歲，我們不承租給低於 21 歲的駕駛。若未滿 25 歲將酌收 US$19／日的青年駕駛費用（Young Driver Fee）。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          是否提供適合戶外自駕、季節限制的配備車款（四輪傳動、雪鍊、GPS 等）？
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">訂車時可選擇四輪傳動車款（AWD）或雪鍊，因應不同路況的駕駛需求。<br><br>在美國導航最常用的是 Google Maps，我們多數車款都配有 CarPlay，方便直接使用手機導航。若計畫前往國家公園或偏遠地區，建議提前下載離線地圖，避免部分地區網路不佳。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          租車期間有行駛里程限制嗎？
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">多數車款皆提供無上限里程，僅有部分豪華車款有里程限制；於官網租車選擇車款時都會提供完整資訊參考。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          租車旅遊期間如遇交通事故該怎麼辦？
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">請第一時間聯繫當地警方報案，並立即通知我們，我們會協助您處理後續事宜。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          還車時需要加滿油嗎？
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">建議於還車前將油箱補滿至交車時的油量。若還車時低於取車油量，系統會自動計算額外費用，通常會高於自行加油的成本。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          向 Sky Horse 天馬租車長期租車是否有優惠？
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">租借天數越多，每日平均價格越優惠，可直接於官網預訂車輛查看優惠價格。若想租借 180 天以上，建議直接透過 LINE 聯繫我們取得專屬報價。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Sky Horse 天馬租車提供哪些保險方案？
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">在美國租車自駕，主要風險是租賃車的碰撞或失竊，以及碰撞造成第三人的車損與體傷賠償。Sky Horse 天馬租車提供多種保險方案，可依照個人需求選擇；若不確定該如何搭配，建議直接詢問客服，且行前皆可調整保險方案。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AK Panel -->
+  <div class="faq-panel" id="panel-ak" role="tabpanel">
+    <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            費用包含哪些內容？不含哪些？
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a">費用包含：全程住宿（4晚）、景點門票、機場接送、中文導遊、園區內交通、指定餐食、冰川健行裝備、小費。<br><br>不含：國際往返機票、個人消費購物、旅遊保險（強烈建議自行投保）、行程表外的餐食。</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            機票需要自己安排嗎？要在哪裡轉機？
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a">是的，國際機票需自行購買。建議從台灣搭機前往西雅圖（SEA）、舊金山（SFO）或洛杉磯（LAX）轉機，再飛安克拉治（ANC）。我們可以協助確認轉機時間是否足夠。</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            如何預訂？報名流程是什麼？
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a">1. 透過 LINE 或 Email 聯繫，告知出發日期與人數。<br>2. 我們確認名額後提供報名表與費用說明。<br>3. 繳交訂金（通常為總費用 30%）確保席位。<br>4. 出發前 30 天繳清尾款。<br>5. 出發前收到詳細行前說明資料。</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            可以客製行程嗎？可以只參加一天嗎？
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a">目前標準行程為 5 天 4 夜，無法單天參加。我們提供有限度的客製化服務（例如：生日慶祝安排、特殊住宿升級等），可在 LINE 諮詢時告知需求。</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            有最低成團人數嗎？
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a">最少 2 人即可成行（單人報名另有加價），最多 8 人，確保小團品質。若人數不足，我們會嘗試安排拼團。</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            有最低參加年齡嗎？帶長輩或小孩可以嗎？
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a">無嚴格年齡限制，但冰川健行需要一定體力。我們有帶長輩成功完成行程的紀錄，若有疑慮請事先說明，我們會提供適合的建議。</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            阿拉斯加自駕需要特殊駕照嗎？
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a">一般觀光自駕無需特殊證件，持有效國際駕照（IDP）即可在阿拉斯加合法開車。但部分國家公園內的道路（如未鋪裝路面）可能需要四輪驅動，建議選擇 SUV 車型。</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            什麼季節適合去阿拉斯加？
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a">夏季（5～9月）適合公路旅行，日照時間長，道路狀況最佳，可造訪國家公園和冰川。冬季（11～3月）則以極光觀測為主，部分道路可能封閉，需有雪地駕駛經驗。</div>
+        </div>
+    </div>
+  </div>
+</main>
+
+<!-- CTA STRIP -->
+<section class="cta-strip">
+  <div class="cta-inner">
+    <div>
+      <div class="cta-title">還有其他問題？</div>
+      <div class="cta-sub">直接聯絡我們，快速得到解答。</div>
+    </div>
+    <div class="cta-actions">
+      <a href="#" class="btn-dark">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.3 13.5a5.3 5.3 0 0 1 0 4.3l-1.2 3.7-3.5-1.2a5.1 5.1 0 0 1-2.5-2L8 17H4.5l1.3-4.4-1.2-3.9a5.3 5.3 0 0 1 0-4.3l1.2-3.7 3.5 1.2a5.1 5.1 0 0 1 2.5 2l3.8-1.3H18l-1.3 4.4 1.2 3.9zm-7.3-3.5a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm4 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/></svg>
+        LINE 詢問
+      </a>
+      <a href="mailto:contact@skyhorseauto.com" class="btn-outline-dark">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        Email 詢問
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo">
+          <img src="image/SkyHorse-24.svg" alt="SkyHorse Auto" style="height:24px;width:auto;">
+        </a>
+        <p class="footer-desc">加州自駕租車首選。2015 年成立，深耕美西機場租車市場，以中文服務與透明價格著稱。</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+          </a>
+          <a href="#" aria-label="LINE">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.3 13.5a5.3 5.3 0 0 1 0 4.3l-1.2 3.7-3.5-1.2a5.1 5.1 0 0 1-2.5-2L8 17H4.5l1.3-4.4-1.2-3.9a5.3 5.3 0 0 1 0-4.3l1.2-3.7 3.5 1.2a5.1 5.1 0 0 1 2.5 2l3.8-1.3H18l-1.3 4.4 1.2 3.9z"/></svg>
+          </a>
+          <a href="#" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.27 8.27 0 0 0 4.83 1.55V6.78a4.85 4.85 0 0 1-1.07-.09z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">美國租車</div>
+        <div class="footer-links">
+          <a href="index.html">機場取還車</a>
+          <a href="#">單程異地還車</a>
+          <a href="#">保險加購</a>
+          <a href="#">GPS / 兒童安全座椅</a>
+          <a href="#">司機服務</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">阿拉斯加</div>
+        <div class="footer-links">
+          <a href="ak_index.html">夏季日不落</a>
+          <a href="ak_index.html">冬季極光</a>
+          <a href="ak_index.html">單日體驗</a>
+          <a href="ak_index.html">關於我們</a>
+          <a href="faq.html">常見問題</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">聯絡我們</div>
+        <div class="footer-links">
+          <a href="#">LINE @skyhorse</a>
+          <a href="#">contact@skyhorseauto.com</a>
+          <a href="#">+1-949-439-7432</a>
+          <a href="faq.html">常見問題</a>
+          <a href="#">使用條款</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 SkyHorse Auto LLC. All rights reserved.</span>
+      <span>
+        <a href="#">隱私權政策</a> · <a href="#">服務條款</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Init Lucide icons
+  lucide.createIcons();
+
+  const navMenuBtn = document.querySelector('.nav-menu-btn');
+  const navMobilePanel = document.getElementById('mobile-nav-panel');
+  const navMobileBackdrop = document.querySelector('.nav-mobile-backdrop');
+
+  const closeMobileNav = () => {
+    navMenuBtn?.classList.remove('is-open');
+    navMobilePanel?.classList.remove('is-open');
+    navMobileBackdrop?.classList.remove('is-open');
+    document.body.style.overflow = '';
+  };
+
+  const openMobileNav = () => {
+    navMenuBtn?.classList.add('is-open');
+    navMobilePanel?.classList.add('is-open');
+    navMobileBackdrop?.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  };
+
+  navMenuBtn?.addEventListener('click', () => {
+    if (navMobilePanel?.classList.contains('is-open')) {
+      closeMobileNav();
+    } else {
+      openMobileNav();
+    }
+  });
+
+  navMobileBackdrop?.addEventListener('click', closeMobileNav);
+  navMobilePanel?.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMobileNav));
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMobileNav();
+  });
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) closeMobileNav();
+  });
+
+  // FAQ accordion
+  function toggleFaq(btn) {
+    const item = btn.parentElement;
+    const isOpen = item.classList.contains('open');
+    // Close all within same panel
+    item.closest('.faq-list').querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // Tab switching
+  document.querySelectorAll('.faq-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      // Update buttons
+      document.querySelectorAll('.faq-tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+      tab.classList.add('active'); tab.setAttribute('aria-selected', 'true');
+      // Update panels
+      const target = tab.dataset.tab;
+      document.querySelectorAll('.faq-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('panel-' + target).classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>

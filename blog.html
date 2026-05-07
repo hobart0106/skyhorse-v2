@@ -51,9 +51,16 @@
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: var(--bg-base); }
-    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+    html, body, * {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    *::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+      display: none;
+      background: transparent;
+    }
 
     a { color: inherit; text-decoration: none; }
 
@@ -171,7 +178,7 @@
     .nav-mobile-backdrop.is-open { display: block; }
     /* ── BLOG HERO ── */
     .blog-hero {
-      padding: 120px var(--container-pad) 64px;
+      padding: 120px var(--container-pad) 32px;
       max-width: 1200px;
       margin: 0 auto;
     }
@@ -209,9 +216,9 @@
     /* ── CATEGORY TABS ── */
     .blog-tabs {
       display: flex; gap: 8px; flex-wrap: wrap;
-      padding-bottom: 24px;
+      padding-bottom: 18px;
       border-bottom: 1px solid var(--border);
-      margin-bottom: 36px;
+      margin-bottom: 18px;
     }
     .blog-tab {
       font-family: var(--font-display);
@@ -524,6 +531,8 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
+      .blog-hero { padding-bottom: 28px; }
+      .blog-tabs { padding-bottom: 16px; margin-bottom: 16px; }
       .posts-grid { grid-template-columns: repeat(2, 1fr); }
       .featured-post { grid-template-columns: 1fr; }
       .featured-img {
@@ -532,7 +541,14 @@
       }
       .featured-body { padding: 32px; }
       .featured-action { margin-top: 24px; }
-      .newsletter { flex-direction: column; }
+      .newsletter {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .newsletter-left {
+        width: 100%;
+        max-width: 100%;
+      }
       .newsletter-form { max-width: 100%; width: 100%; }
     }
     @media (max-width: 640px) {
@@ -604,22 +620,22 @@
 <main class="blog-content">
 
   <!-- Featured Post -->
-  <article class="featured-post" data-category="alaska">
+  <article class="featured-post" data-category="guide">
     <div class="featured-img">
       <img src="https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=800&q=80&auto=format&fit=crop" alt="阿拉斯加極光">
     </div>
     <div class="featured-body">
       <div class="featured-top">
         <div class="featured-badge">
-          <i data-lucide="star" style="width:12px;height:12px"></i> 編輯精選
+          <i data-lucide="heart-handshake" style="width:12px;height:12px"></i> 品牌故事
         </div>
       </div>
-      <h2 class="featured-title">阿拉斯加自駕完整攻略：從安克拉治到迪納利國家公園</h2>
+      <h2 class="featured-title">Sky Horse 天馬租車品牌故事：為中文旅客打造更安心的美國自駕體驗</h2>
       <p class="featured-excerpt">
-        這條路線涵蓋阿拉斯加最經典的自駕風景——極光、冰川、野生動物與千年冰川。租車選擇、行駛注意事項、必停景點與最佳拍攝時間，一次整理給你。
+        Sky Horse 天馬租車創立於 2019 年，由三位中文母語、深耕美西生活的創辦人共同打造。我們不是傳統租車公司，而是更像你在美國熟悉路況、懂中文旅客需求、真正陪你把旅程安排順的在地朋友。
       </p>
       <a href="article.html" class="featured-action">
-        閱讀全文
+        了解品牌故事
         <i data-lucide="arrow-right"></i>
       </a>
     </div>
@@ -837,11 +853,19 @@
   });
 
   // Demo article links
-  document.querySelectorAll('.featured-post, .post-card').forEach(card => {
+  document.querySelectorAll('.featured-post').forEach(card => {
     card.style.cursor = 'pointer';
     card.addEventListener('click', (event) => {
       if (event.target.closest('a, button')) return;
       window.location.href = 'article.html';
+    });
+  });
+
+  document.querySelectorAll('.post-card').forEach(card => {
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', (event) => {
+      if (event.target.closest('a, button')) return;
+      window.location.href = 'article_mockup2.html';
     });
   });
 </script>
