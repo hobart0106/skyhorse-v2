@@ -428,115 +428,6 @@
       overflow: hidden;
     }
 
-    /* ── FEATURED POST ── */
-    .featured-post {
-      background: var(--bg-card);
-      border: 1px solid var(--border-mid);
-      border-radius: var(--r-xl);
-      overflow: hidden;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: 380px;
-      margin-bottom: 48px;
-      transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
-    }
-    .featured-post:hover {
-      border-color: rgba(255,255,255,0.2);
-      box-shadow: 0 20px 70px rgba(0,0,0,0.35);
-      transform: translateY(-2px);
-    }
-    .featured-post:hover .featured-img img { transform: scale(1.03); }
-    .featured-img {
-      overflow: hidden;
-      background: var(--bg-elevated);
-      min-height: 380px;
-    }
-    .featured-img img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s var(--ease-out);
-    }
-    .featured-body {
-      padding: 40px 42px 36px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 18px;
-    }
-    .featured-top {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    .featured-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-family: var(--font-display);
-      font-size: 9px; font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: #fff;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.16);
-      border-radius: 20px;
-      padding: 2px 8px;
-      width: fit-content;
-    }
-    .featured-badge svg {
-      width: 11px;
-      height: 11px;
-      color: #fff;
-    }
-    .featured-tag {
-      padding: 2px 8px;
-    }
-    .featured-title {
-      font-family: var(--font-display);
-      font-size: clamp(26px, 2.8vw, 38px);
-      font-weight: 800;
-      line-height: 1.18; letter-spacing: -1.1px;
-      color: var(--ink-primary);
-      max-width: 680px;
-    }
-    .featured-excerpt {
-      font-size: 14px; font-weight: 300;
-      color: var(--ink-secondary);
-      line-height: 1.8;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      max-width: 720px;
-    }
-    .featured-action {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-family: var(--font-display);
-      font-size: 14px; font-weight: 800;
-      color: #060606;
-      background: var(--gold);
-      border-radius: var(--r-md);
-      padding: 14px 28px;
-      transition: background 0.15s, gap 0.15s;
-      width: fit-content;
-      margin-top: 24px;
-    }
-    .featured-action:hover { background: var(--gold-bright); gap: 10px; }
-    .featured-action svg { width: 16px; height: 16px; }
-
-    /* ── SECTION DIVIDER ── */
-    .section-label {
-      font-family: var(--font-mono);
-      font-size: 10px; font-weight: 500;
-      letter-spacing: 3px; text-transform: uppercase;
-      color: var(--ink-tertiary);
-      margin-bottom: 24px;
-      display: flex; align-items: center; gap: 12px;
-    }
-    .section-label::after {
-      content: ''; flex: 1;
-      height: 1px; background: var(--border);
-    }
-
     /* ── NEWS LETTER ── */
     .newsletter {
       background: var(--bg-card);
@@ -610,13 +501,6 @@
       .blog-hero { padding-bottom: 28px; }
       .blog-tabs { padding-bottom: 16px; margin-bottom: 16px; }
       .posts-grid { grid-template-columns: repeat(2, 1fr); }
-      .featured-post { grid-template-columns: 1fr; }
-      .featured-img {
-        aspect-ratio: 16/9;
-        min-height: 0;
-      }
-      .featured-body { padding: 32px; }
-      .featured-action { margin-top: 24px; }
       .newsletter {
         flex-direction: column;
         align-items: stretch;
@@ -635,9 +519,6 @@
       nav .nav-links { display: none; }
       .nav-menu-btn { display: flex; }
       .posts-grid { grid-template-columns: 1fr; gap: 16px; }
-      .featured-body { padding: 24px; gap: 16px; }
-      .featured-title { font-size: 24px; letter-spacing: -0.8px; }
-      .featured-excerpt { font-size: 13px; line-height: 1.7; }
       .newsletter { padding: 32px 24px; }
       .newsletter-form { flex-direction: column; }
       footer { padding: 32px 20px; }
@@ -696,9 +577,10 @@
     <div class="blog-tabs">
       <button class="blog-tab active" data-category="all">全部文章 <span class="tab-count">12</span></button>
       <button class="blog-tab" data-category="celebrity">名人推荐 <span class="tab-count">3</span></button>
-      <button class="blog-tab" data-category="guide">自驾攻略 <span class="tab-count">4</span></button>
+      <button class="blog-tab" data-category="guide">自驾攻略 <span class="tab-count">3</span></button>
       <button class="blog-tab" data-category="rental">租车指南 <span class="tab-count">3</span></button>
-      <button class="blog-tab" data-category="alaska">阿拉斯加专区 <span class="tab-count">2</span></button>
+      <button class="blog-tab" data-category="alaska">阿拉斯加 <span class="tab-count">1</span></button>
+      <button class="blog-tab" data-category="brand">品牌文章 <span class="tab-count">1</span></button>
     </div>
   </div>
 </section>
@@ -706,33 +588,22 @@
 <!-- ── POSTS ── -->
 <main class="blog-content">
 
-  <!-- Featured Post -->
-  <article class="featured-post" data-category="guide">
-    <div class="featured-img">
-      <img src="https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=800&q=80&auto=format&fit=crop" alt="阿拉斯加極光">
-    </div>
-    <div class="featured-body">
-      <div class="featured-top">
-        <div class="featured-badge">
-          <i data-lucide="heart-handshake" style="width:12px;height:12px"></i> 品牌故事
-        </div>
-      </div>
-      <h2 class="featured-title">Sky Horse 天馬租車品牌故事：為中文旅客打造更安心的美國自駕體驗</h2>
-      <p class="featured-excerpt">
-        Sky Horse 天馬租車創立於 2019 年，由三位中文母語、深耕美西生活的創辦人共同打造。我們不是傳統租車公司，而是更像你在美國熟悉路況、懂中文旅客需求、真正陪你把旅程安排順的在地朋友。
-      </p>
-      <a href="article.html" class="featured-action">
-        了解品牌故事
-        <i data-lucide="arrow-right"></i>
-      </a>
-    </div>
-  </article>
-
-  <!-- Section label -->
-  <div class="section-label">最新文章</div>
 
   <!-- Posts Grid -->
   <div class="posts-grid">
+
+    <!-- 品牌故事 -->
+    <article class="post-card" data-category="brand">
+      <div class="post-img">
+        <img src="https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=600&q=80&auto=format&fit=crop" alt="品牌故事">
+      </div>
+      <div class="post-body">
+        <div class="post-tag">品牌故事</div>
+        <h3 class="post-title">Sky Horse 天馬租車品牌故事：為中文旅客打造更安心的美國自駕體驗</h3>
+        <p class="post-excerpt">Sky Horse 天馬租車創立於 2019 年，由三位中文母語、深耕美西生活的創辦人共同打造。我們不是傳統租車公司，而是更像你在美國熟悉路況、懂中文旅客需求、真正陪你把旅程安排順的在地朋友。</p>
+        <div class="post-date">2019 年</div>
+      </div>
+    </article>
 
     <!-- Post 1 -->
     <article class="post-card" data-category="celebrity">
@@ -818,7 +689,7 @@
         <img src="https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=600&q=80&auto=format&fit=crop" alt="極光">
       </div>
       <div class="post-body">
-        <div class="post-tag">阿拉斯加專區</div>
+        <div class="post-tag">阿拉斯加</div>
         <h3 class="post-title">費爾班克斯追光指南：極光預測、拍攝設定與保暖裝備清單</h3>
         <p class="post-excerpt">KP指數怎麼看？哪個時間帶運氣最好？手機與相機設定技巧，以及零下三十度自駕的安全準備。</p>
         <div class="post-date">2024 年 4 月 10 日</div>
@@ -933,8 +804,6 @@
 
   // Category filter
   const tabs = document.querySelectorAll('.blog-tab');
-  const featuredPost = document.querySelector('.featured-post');
-  const sectionLabel = document.querySelector('.section-label');
   const posts = document.querySelectorAll('.post-card');
 
   tabs.forEach(tab => {
@@ -943,9 +812,6 @@
       tab.classList.add('active');
       const cat = tab.dataset.category;
 
-      if (featuredPost) featuredPost.style.display = cat === 'all' ? '' : 'none';
-      if (sectionLabel) sectionLabel.style.display = cat === 'all' ? '' : 'none';
-
       posts.forEach(post => {
         post.style.display = cat === 'all' || post.dataset.category === cat ? '' : 'none';
       });
@@ -953,14 +819,6 @@
   });
 
   // Demo article links
-  document.querySelectorAll('.featured-post').forEach(card => {
-    card.style.cursor = 'pointer';
-    card.addEventListener('click', (event) => {
-      if (event.target.closest('a, button')) return;
-      window.location.href = 'article.html';
-    });
-  });
-
   document.querySelectorAll('.post-card').forEach(card => {
     card.style.cursor = 'pointer';
     card.addEventListener('click', (event) => {
