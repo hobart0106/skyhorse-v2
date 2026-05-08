@@ -31,7 +31,7 @@
 
       --ink-primary:   #F2F2F2;
       --ink-secondary: #8A8A8A;
-      --ink-tertiary:  #4A4A4A;
+      --ink-tertiary:  #8A8A8A;
 
       /* Semantic */
       --success: #34C759;
@@ -522,7 +522,7 @@
       animation: fadeUp 0.6s var(--ease-out) 0.8s forwards;
     }
     .hero-social-label {
-      font-size: 10px; color: rgba(255,255,255,0.3);
+      font-size: 10px; color: #8A8A8A;
       letter-spacing: 2px; text-transform: uppercase;
       margin-bottom: 8px;
     }
@@ -821,7 +821,7 @@
       transition: border-color 0.2s, box-shadow 0.2s;
       appearance: none;
     }
-    .bf-field input::placeholder { color: rgba(255,255,255,0.25); }
+    .bf-field input::placeholder { color: #8A8A8A; }
     .bf-field input:focus,
     .bf-field select:focus {
       border-color: rgba(255,220,34,0.5);
@@ -899,14 +899,14 @@
        SECTION BASE
     ══════════════════════════════════════ */
     .section { padding: 100px 40px; max-width: 1200px; margin: 0 auto; }
-    .section-header { margin-bottom: 56px; }
+    .section-header { display: flex; flex-direction: column; gap: 12px;
+      margin-bottom: 56px; }
     .section-eyebrow {
       display: inline-flex; align-items: center; gap: 10px;
       font-family: var(--font-mono);
       font-size: 11px; font-weight: 500;
       letter-spacing: 3.5px; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 16px;
-    }
+      color: var(--gold); }
     .section-eyebrow::before {
       content: ''; display: block;
       width: 28px; height: 1px; background: var(--gold);
@@ -914,11 +914,10 @@
     .section-title {
       font-family: var(--font-display);
       font-size: clamp(30px, 4vw, 48px);
-      font-weight: 700; line-height: 1.1;
-      letter-spacing: -1.5px;
+      font-weight: 700; line-height: 1.35;
+      letter-spacing: 0;
       color: var(--ink-primary);
-      margin-bottom: 12px;
-    }
+      }
     .section-sub {
       font-size: 15px; font-weight: 300;
       color: var(--ink-secondary);
@@ -1096,7 +1095,7 @@
     }
     .cat-card-models span:hover {
       color: var(--ink-primary);
-      border-color: rgba(255,255,255,0.25);
+      border-color: #8A8A8A;
       background: rgba(255,255,255,0.08);
     }
     .cat-card-specs {
@@ -1471,7 +1470,7 @@
     }
     .blog-card-date {
       font-size: 11px;
-      color: rgba(255,255,255,0.25);
+      color: #8A8A8A;
       letter-spacing: 0.5px;
     }
 
@@ -1485,7 +1484,7 @@
     }
     .footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; box-sizing: border-box; }
     .footer-top {
-      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
       gap: 48px; padding-bottom: 48px;
       border-bottom: 1px solid var(--border);
       margin-bottom: 32px;
@@ -1678,7 +1677,8 @@
         margin-top: 10px;
       }
       .section { padding: 72px 20px; }
-      .section-header { margin-bottom: 36px; }
+      .section-header { display: flex; flex-direction: column; gap: 12px;
+      margin-bottom: 56px; }
       .adv-grid { grid-template-columns: 1fr; }
       .adv-card { padding: 28px 24px; }
       .cars-section { padding: 72px 0; }

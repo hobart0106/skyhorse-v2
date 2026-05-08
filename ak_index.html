@@ -29,7 +29,7 @@
 
       --ink-primary:   #F2F2F2;
       --ink-secondary: #8A8A8A;
-      --ink-tertiary:  #4A4A4A;
+      --ink-tertiary:  #8A8A8A;
 
       --success: #34C759;
       --info:    #0A84FF;
@@ -454,7 +454,7 @@
       position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
       display: flex; flex-direction: column; align-items: center; gap: 8px;
       font-family: var(--font-mono); font-size: 9px; letter-spacing: 2px;
-      color: rgba(255,255,255,0.25); text-transform: uppercase;
+      color: #8A8A8A; text-transform: uppercase;
       opacity: 0; animation: fadeUp 0.6s var(--ease-out) 1s forwards;
     }
     .hero-scroll-line {
@@ -724,10 +724,9 @@
     .section-title {
       font-family: var(--font-display);
       font-size: clamp(24px, 3vw, 36px);
-      font-weight: 800; letter-spacing: -1px;
-      color: var(--ink-primary); line-height: 1.2;
-      margin-bottom: 14px;
-    }
+      font-weight: 800; letter-spacing: 0;
+      color: var(--ink-primary); line-height: 1.35;
+      }
     .section-desc {
       font-size: 15px; font-weight: 300;
       color: var(--ink-secondary); line-height: 1.8;
@@ -1421,14 +1420,12 @@
       background: var(--bg-base);
       padding: 64px 0 40px;
     }
-    .footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; box-sizing: border-box; }
     .footer-top {
-      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
       gap: 48px; padding-bottom: 48px;
       border-bottom: 1px solid var(--border);
       margin-bottom: 32px;
     }
-    .footer-brand {}
     .footer-logo {
       display: flex; align-items: center; gap: 12px;
       text-decoration: none; margin-bottom: 16px;
@@ -1584,7 +1581,6 @@
       .final-cta-section { padding: 80px 0; }
       .final-cta-inner { padding: 0 20px; }
       .cta-inner { flex-direction: column; text-align: center; padding: 0 20px; }
-      .footer-inner { padding: 0 20px; }
       .footer-top { grid-template-columns: 1fr; gap: 32px; }
       .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
       .day-item { grid-template-columns: 80px 1fr; gap: 16px; }
@@ -1627,7 +1623,7 @@
   </a>
   <div class="nav-mobile-links">
     <a href="fleet.html">全部車型</a>
-    <a href="#airports">服務據點</a>
+    <a href="index.html#airports">服務據點</a>
     <a href="blog.html">行程攻略</a>
     <a href="faq.html">常見問題</a>
     <a href="javascript:void(0)" class="nav-link-disabled" aria-disabled="true">我的訂單</a>
@@ -2193,8 +2189,8 @@
       <a href="#" class="btn-dark">
         <i data-lucide="message-circle"></i>LINE 預訂
       </a>
-      <a href="#" class="btn-outline-dark">
-        <i data-lucide="mail"></i>Email 詢問
+      <a href="faq.html" class="btn-outline-dark">
+        <i data-lucide="circle-help"></i>常見問題
       </a>
     </div>
   </div>
