@@ -721,17 +721,6 @@
     }
     }
 
-    .section-title {
-      font-family: var(--font-display);
-      font-size: clamp(24px, 3vw, 36px);
-      font-weight: 800; letter-spacing: 0;
-      color: var(--ink-primary); line-height: 1.35;
-      }
-    .section-desc {
-      font-size: 15px; font-weight: 300;
-      color: var(--ink-secondary); line-height: 1.8;
-      max-width: 600px; margin: 0 0 40px;
-    }
 
     /* ══════════════════════════════════════
        SECTION INNER PATTERN
@@ -747,24 +736,34 @@
       background: var(--bg-surface);
       padding: 96px 0;
     }
-    .trip-header {
-      text-align: left; margin-bottom: 48px;
+    /* ══════════════════════════════════════
+       SECTION HEADER (standardised)
+    ══════════════════════════════════════ */
+    .section-header {
+      display: flex; flex-direction: column; gap: 12px;
+      margin-bottom: 56px;
     }
-    .trip-eyebrow {
+    .section-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
       font-family: var(--font-mono);
       font-size: 11px; font-weight: 500;
-      letter-spacing: 3px; text-transform: uppercase;
+      letter-spacing: 3.5px; text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 16px;
-      display: inline-flex; align-items: center; gap: 10px;
     }
-    .trip-eyebrow::before {
+    .section-eyebrow::before {
       content: ''; display: block; width: 28px; height: 1px; background: var(--gold);
     }
-    .trip-header__sub {
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 3.5vw, 40px);
+      font-weight: 700; line-height: 1.35;
+      letter-spacing: 0;
+      color: var(--ink-primary);
+    }
+    .section-sub {
       font-size: 15px; font-weight: 300;
-      color: var(--ink-secondary); line-height: 1.8;
-      max-width: 680px; margin-bottom: 20px;
+      color: var(--ink-secondary); line-height: 1.75;
+      max-width: 680px;
     }
     .trip-meta-badges {
       display: flex; justify-content: flex-start; gap: 8px; flex-wrap: wrap;
@@ -999,20 +998,6 @@
       background: var(--bg-base);
       padding: 96px 0;
     }
-    .featured-header {
-      text-align: left; margin-bottom: 56px;
-    }
-    .featured-eyebrow {
-      font-family: var(--font-mono);
-      font-size: 11px; font-weight: 500;
-      letter-spacing: 3px; text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 16px;
-      display: inline-flex; align-items: center; gap: 10px;
-    }
-    .featured-eyebrow::before {
-      content: ''; display: block; width: 28px; height: 1px; background: var(--gold);
-    }
     .ft-grid {
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
@@ -1160,9 +1145,6 @@
     .reviews-section {
       background: var(--bg-base);
       padding: 96px 0;
-    }
-    .reviews-header {
-      text-align: left; margin-bottom: 56px;
     }
     .reviews-grid {
       display: grid; grid-template-columns: repeat(3, 1fr);
@@ -1729,10 +1711,10 @@
   <!-- ════ TRIP DETAIL ════ -->
   <section class="trip-section" id="itinerary">
     <div class="section-inner">
-      <div class="trip-header">
-        <div class="trip-eyebrow">主打行程推薦</div>
+      <div class="section-header">
+        <div class="section-eyebrow">主打行程推薦</div>
         <h2 class="section-title">2026 阿拉斯加 夏季日不落<br><em style="font-style:italic;color:var(--ink-tertiary);font-size:0.85em">5日冰川・峽灣・野生自然之旅</em></h2>
-        <p class="trip-header__sub">五天四夜一價全包，以安克拉治為起點，深入探索冰川、峽灣與野生動物棲息地。搭配波蒂奇冰川遊船、馬塔努斯卡冰川健行、基奈峽灣國家公園與海切爾山口高山景觀，一次看見阿拉斯加夏季最壯麗的自然風光。</p>
+        <p class="section-sub">五天四夜一價全包，以安克拉治為起點，深入探索冰川、峽灣與野生動物棲息地。搭配波蒂奇冰川遊船、馬塔努斯卡冰川健行、基奈峽灣國家公園與海切爾山口高山景觀，一次看見阿拉斯加夏季最壯麗的自然風光。</p>
         <div class="trip-meta-badges">
           <span class="trip-badge">6–8月出發</span>
           <span class="trip-badge">5天4夜</span>
@@ -1970,10 +1952,10 @@
   <!-- ════ FEATURED TRIPS ════ -->
   <section class="featured-section" id="pricing">
     <div class="section-inner">
-      <div class="featured-header">
-        <div class="featured-eyebrow">近期活動行程</div>
+      <div class="section-header">
+        <div class="section-eyebrow">近期活動行程</div>
         <h2 class="section-title">精選阿拉斯加旅程</h2>
-        <p class="section-desc">每一條路線都由 Sky Horse 天馬親自規劃，全程中文陪伴，一價全包無隱藏費用。</p>
+        <p class="section-sub">每一條路線都由 Sky Horse 天馬親自規劃，全程中文陪伴，一價全包無隱藏費用。</p>
       </div>
       <div class="ft-grid">
         <!-- Card 1: Summer -->
@@ -2049,8 +2031,8 @@
   <!-- ════ REVIEWS ════ -->
   <section class="reviews-section" id="reviews">
     <div class="section-inner">
-      <div class="reviews-header">
-        <div class="trip-eyebrow">旅客真實評價</div>
+      <div class="section-header">
+        <div class="section-eyebrow">旅客真實評價</div>
         <h2 class="section-title">他們去過，你也可以</h2>
       </div>
       <div class="reviews-grid">
@@ -2471,7 +2453,7 @@
     }, { threshold: 0.12 });
 
     document.querySelectorAll(
-      '.stat-item, .blog-cta-content, .blog-cta-media, .trip-header, .highlight-row, .trip-feature-card, .ft-card, .why-card, .review-card, .faq-item, .final-cta-card'
+      '.stat-item, .blog-cta-content, .blog-cta-media, .section-header, .highlight-row, .trip-feature-card, .ft-card, .why-card, .review-card, .faq-item, .final-cta-card'
     ).forEach((el) => {
       el.classList.add('reveal');
       observer.observe(el);
