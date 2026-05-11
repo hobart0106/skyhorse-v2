@@ -475,7 +475,7 @@
     }
     .hero-booking-form {
       display: grid;
-      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1.25fr) minmax(210px, 0.9fr) auto;
+      grid-template-columns: repeat(3, minmax(0, 10fr)) minmax(0, 6fr);
       gap: 14px;
       align-items: end;
     }
@@ -511,6 +511,9 @@
       display: grid;
       grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
     }
+    .hero-booking-combo--datetime {
+      grid-template-columns: minmax(0, 1fr) 1px 130px;
+    }
     .hero-booking-divider {
       width: 1px;
       background: var(--border);
@@ -519,13 +522,19 @@
     }
     .hero-booking-segment,
     .hero-booking-single {
-      display: inline-flex;
+      display: flex;
       align-items: center;
       gap: 12px;
       min-width: 0;
+      width: 100%;
       height: 100%;
       padding: 0 16px;
       color: var(--ink-primary);
+    }
+    .hero-booking-segment:hover,
+    .hero-booking-single:hover {
+      background: rgba(255,255,255,0.02);
+      transition: background 0.18s;
     }
     .hero-booking-segment i,
     .hero-booking-single i {
@@ -567,18 +576,7 @@
     }
     .hero-booking-select-wrap::after,
     .hero-booking-date-wrap::after {
-      content: "";
-      position: absolute;
-      right: 4px;
-      top: 50%;
-      width: 16px;
-      height: 16px;
-      transform: translateY(-50%);
-      pointer-events: none;
-      background: currentColor;
-      color: #4A4A4A;
-      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") center/contain no-repeat;
-      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") center/contain no-repeat;
+      content: none;
     }
     .hero-booking-date-wrap {
       position: relative;
@@ -600,7 +598,8 @@
     }
     .hero-booking-submit {
       min-height: 52px;
-      min-width: 220px;
+      min-width: unset;
+      width: 100%;
       padding: 12px 24px;
       border: none;
       border-radius: var(--r-md);
@@ -626,14 +625,11 @@
     .hero-booking-submit i { display: none; }
     @media (min-width: 1440px) {
       .hero-booking-form {
-        grid-template-columns: minmax(0, 1.62fr) minmax(0, 1.5fr) minmax(160px, 0.56fr) auto;
-      }
-      .hero-booking-form .hero-booking-group:nth-child(3) {
-        max-width: 240px;
+        grid-template-columns: repeat(3, minmax(0, 10fr)) minmax(0, 6fr);
       }
       .hero-booking-submit {
-        min-width: 180px;
-        max-width: 240px;
+        min-width: unset;
+        max-width: unset;
       }
     }
     .hero-booking-trust {
@@ -2061,8 +2057,8 @@
           </div>
         </div>
         <div class="hero-booking-group">
-          <div class="hero-booking-group-title">取還車日期</div>
-          <div class="hero-booking-combo">
+          <div class="hero-booking-group-title">取車日期時間</div>
+          <div class="hero-booking-combo hero-booking-combo--datetime">
             <label class="hero-booking-segment" for="heroPickupDate">
               <i data-lucide="calendar-days"></i>
               <span class="hero-booking-date-wrap">
@@ -2070,32 +2066,38 @@
               </span>
             </label>
             <div class="hero-booking-divider" aria-hidden="true"></div>
+            <label class="hero-booking-segment" for="heroPickupTime">
+              <i data-lucide="clock"></i>
+              <span class="hero-booking-select-wrap">
+                <select class="hero-booking-select" id="heroPickupTime">
+                  <option>12:00 AM</option><option>1:00 AM</option><option>2:00 AM</option><option>3:00 AM</option><option>4:00 AM</option><option>5:00 AM</option><option>6:00 AM</option><option>7:00 AM</option><option>8:00 AM</option><option>9:00 AM</option><option selected>10:00 AM</option><option>11:00 AM</option><option>12:00 PM</option><option>1:00 PM</option><option>2:00 PM</option><option>3:00 PM</option><option>4:00 PM</option><option>5:00 PM</option><option>6:00 PM</option><option>7:00 PM</option><option>8:00 PM</option><option>9:00 PM</option><option>10:00 PM</option><option>11:00 PM</option>
+                </select>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="hero-booking-group">
+          <div class="hero-booking-group-title">還車日期時間</div>
+          <div class="hero-booking-combo hero-booking-combo--datetime">
             <label class="hero-booking-segment" for="heroReturnDate">
               <i data-lucide="calendar-range"></i>
               <span class="hero-booking-date-wrap">
                 <input class="hero-booking-input" type="date" id="heroReturnDate">
               </span>
             </label>
+            <div class="hero-booking-divider" aria-hidden="true"></div>
+            <label class="hero-booking-segment" for="heroReturnTime">
+              <i data-lucide="clock"></i>
+              <span class="hero-booking-select-wrap">
+                <select class="hero-booking-select" id="heroReturnTime">
+                  <option>12:00 AM</option><option>1:00 AM</option><option>2:00 AM</option><option>3:00 AM</option><option>4:00 AM</option><option>5:00 AM</option><option>6:00 AM</option><option>7:00 AM</option><option>8:00 AM</option><option>9:00 AM</option><option selected>10:00 AM</option><option>11:00 AM</option><option>12:00 PM</option><option>1:00 PM</option><option>2:00 PM</option><option>3:00 PM</option><option>4:00 PM</option><option>5:00 PM</option><option>6:00 PM</option><option>7:00 PM</option><option>8:00 PM</option><option>9:00 PM</option><option>10:00 PM</option><option>11:00 PM</option>
+                </select>
+              </span>
+            </label>
           </div>
         </div>
-        <div class="hero-booking-group">
-          <div class="hero-booking-group-title">車型需求</div>
-          <label class="hero-booking-single" for="heroCarType">
-            <i data-lucide="car-front"></i>
-            <span class="hero-booking-select-wrap">
-              <select class="hero-booking-select" id="heroCarType">
-                <option value="">選擇車型</option>
-                <option>轎車 Sedan</option>
-                <option>休旅車 SUV</option>
-                <option>廂型車 Van</option>
-                <option>電動車 EV</option>
-                <option>想先諮詢推薦</option>
-              </select>
-            </span>
-          </label>
-        </div>
         <button class="hero-booking-submit" type="submit">
-          <span>開始預訂</span>
+          <span>立即預定</span>
         </button>
       </form>
       <div class="hero-booking-trust" aria-label="SkyHorse 預訂保障">
@@ -2809,12 +2811,13 @@
 
   function handleHeroBooking(e) {
     e.preventDefault();
-    const loc = document.getElementById('heroPickupLocation').value;
+    const loc       = document.getElementById('heroPickupLocation').value;
     const returnLoc = document.getElementById('heroReturnLocation').value;
-    const date = document.getElementById('heroPickupDate').value;
-    const ret = document.getElementById('heroReturnDate').value;
-    const car = document.getElementById('heroCarType').value;
-    const text = `🚗 天馬租車快速預訂\n━━━━━━━━━━━\n取車地點：${loc || '尚未填寫'}\n還車地點：${returnLoc || '尚未填寫'}\n取車日期：${date || '尚未填寫'}\n還車日期：${ret || '尚未填寫'}\n車型需求：${car || '尚未填寫'}`;
+    const date      = document.getElementById('heroPickupDate').value;
+    const pickTime  = document.getElementById('heroPickupTime').value;
+    const ret       = document.getElementById('heroReturnDate').value;
+    const retTime   = document.getElementById('heroReturnTime').value;
+    const text = `🚗 天馬租車快速預訂\n━━━━━━━━━━━\n取車地點：${loc || '尚未填寫'}\n還車地點：${returnLoc || '尚未填寫'}\n取車時間：${date || '尚未填寫'} ${pickTime}\n還車時間：${ret || '尚未填寫'} ${retTime}`;
     window.open(`https://line.me/ti/p/@skyhorse?text=${encodeURIComponent(text)}`, '_blank');
   }
 
