@@ -1965,6 +1965,139 @@
       .blog-card-date { font-size: 10px; }
     }
 
+
+    /* hero-card-mb-cta: hidden on desktop */
+    .hero-card-mb-cta { display: none; }
+
+    @media (max-width: 768px) {
+      /* Hide date/time groups and original submit in hero card */
+      .hero-booking-form .hero-booking-group:nth-child(2),
+      .hero-booking-form .hero-booking-group:nth-child(3),
+      .hero-booking-form .hero-booking-submit { display: none; }
+
+      /* Location combo → 2 independent rounded boxes */
+      .hero-booking-card .hero-booking-combo {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        border: none;
+        background: transparent;
+        overflow: visible;
+        min-height: unset;
+        box-shadow: none;
+      }
+      .hero-booking-card .hero-booking-combo .hero-booking-segment {
+        border: 1px solid var(--border);
+        border-radius: var(--r-md);
+        background: var(--bg-elevated);
+        min-height: 64px;
+        width: 100%;
+      }
+      .hero-booking-card .hero-booking-combo .hero-booking-divider { display: none; }
+
+      /* Mobile CTA button */
+      .hero-card-mb-cta {
+        display: block;
+        width: 100%;
+        min-height: 56px;
+        border: none;
+        border-radius: var(--r-md);
+        background: #FFDC22;
+        color: #060606;
+        font-family: var(--font-zh);
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
+        letter-spacing: 0.5px;
+        margin-top: 10px;
+      }
+
+      /* Bottom sheet */
+      .mb-sheet {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+      .mb-sheet.open { display: flex; }
+      .mb-sheet__backdrop {
+        position: absolute;
+        inset: 0;
+        background: rgba(0,0,0,0.6);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+      }
+      .mb-sheet__panel {
+        position: relative;
+        background: rgba(14,14,14,0.98);
+        border: 1px solid rgba(255,255,255,0.10);
+        border-bottom: none;
+        border-radius: 20px 20px 0 0;
+        padding: 20px 16px 36px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        max-height: 92svh;
+        overflow-y: auto;
+        animation: mbUp 0.32s cubic-bezier(0.32,0.72,0,1);
+      }
+      @keyframes mbUp {
+        from { transform: translateY(100%); }
+        to   { transform: translateY(0); }
+      }
+      .mb-sheet__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .mb-sheet__title {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--ink-tertiary);
+      }
+      .mb-sheet__close {
+        width: 32px; height: 32px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.08);
+        border: none;
+        color: var(--ink-primary);
+        font-size: 20px;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+      }
+      .mb-sheet__form {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .mb-sheet__submit {
+        width: 100%;
+        min-height: 56px;
+        border: none;
+        border-radius: var(--r-md);
+        background: #FFDC22;
+        color: #060606;
+        font-family: var(--font-zh);
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
+        letter-spacing: 0.5px;
+        margin-top: 4px;
+      }
+      .mb-sheet__trust {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px 14px;
+        padding-top: 12px;
+        border-top: 1px solid var(--border);
+      }
+      .mb-sheet__trust .hero-trust-item { font-size: 10px; }
+    }
   </style>
 </head>
 <body>
@@ -2100,6 +2233,7 @@
           <span>立即預定</span>
         </button>
       </form>
+      <button class="hero-card-mb-cta" type="button" onclick="mbSheetOpen()">立即預定</button>
       <div class="hero-booking-trust" aria-label="SkyHorse 預訂保障">
         <div class="hero-trust-item"><i data-lucide="shield-check"></i><span>全額保險</span></div>
         <div class="hero-trust-item"><i data-lucide="undo-2"></i><span>48h前免費取消</span></div>
@@ -2823,16 +2957,11 @@
 
   // Set min date = today
   const today = new Date().toISOString().split('T')[0];
-  document.getElementById('pickupDate').min = today;
-  document.getElementById('returnDate').min = today;
-  document.getElementById('heroPickupDate').min = today;
-  document.getElementById('heroReturnDate').min = today;
-  document.getElementById('pickupDate').addEventListener('change', function() {
-    document.getElementById('returnDate').min = this.value;
-  });
-  document.getElementById('heroPickupDate').addEventListener('change', function() {
-    document.getElementById('heroReturnDate').min = this.value;
-  });
+  var _hpd = document.getElementById('heroPickupDate');
+  var _hrd = document.getElementById('heroReturnDate');
+  if (_hpd) _hpd.min = today;
+  if (_hrd) _hrd.min = today;
+  if (_hpd && _hrd) _hpd.addEventListener('change', function() { _hrd.min = this.value; });
 
   // FAQ
   function toggleFaq(btn) {
@@ -2841,6 +2970,129 @@
     document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
     if (!isOpen) item.classList.add('open');
   }
+
+  // ── Mobile bottom sheet ──
+  window.mbSheetOpen = function () {
+    var sheet = document.getElementById('mbSheet');
+    if (!sheet) return;
+    sheet.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    if (window.lucide) lucide.createIcons({ nodes: [sheet] });
+  };
+  window.mbSheetClose = function () {
+    var sheet = document.getElementById('mbSheet');
+    if (sheet) sheet.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+  window.mbSheetSubmit = function (e) {
+    e.preventDefault();
+    var v = function (id) {
+      var el = document.getElementById(id);
+      return (el && el.value) ? el.value : '尚未填寫';
+    };
+    var msg = '🚗 天馬租車快速預訂\n━━━━━━━━━━━' +
+              '\n取車地點：' + v('mb_loc1') +
+              '\n還車地點：' + v('mb_loc2') +
+              '\n取車時間：' + v('mb_d1') + ' ' + v('mb_t1') +
+              '\n還車時間：' + v('mb_d2') + ' ' + v('mb_t2');
+    window.open('https://line.me/ti/p/@skyhorse?text=' + encodeURIComponent(msg), '_blank');
+  };
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && window.mbSheetClose) mbSheetClose();
+  });
+
+
+</script>
+
+<!-- Mobile booking bottom sheet -->
+<div id="mbSheet" class="mb-sheet" role="dialog" aria-modal="true" aria-label="完整預定">
+  <div class="mb-sheet__backdrop" onclick="mbSheetClose()"></div>
+  <div class="mb-sheet__panel">
+    <div class="mb-sheet__header">
+      <span class="mb-sheet__title">選擇預定細節</span>
+      <button class="mb-sheet__close" onclick="mbSheetClose()" aria-label="關閉">&#x2715;</button>
+    </div>
+    <form class="mb-sheet__form" onsubmit="mbSheetSubmit(event)">
+      <div class="hero-booking-group">
+        <div class="hero-booking-group-title">選擇地點</div>
+        <div class="hero-booking-combo">
+          <label class="hero-booking-segment" for="mb_loc1">
+            <i data-lucide="map-pin"></i>
+            <span class="hero-booking-select-wrap">
+              <select class="hero-booking-select" id="mb_loc1">
+                <option value="">取車地點</option>
+                <option>LAX 洛杉磯</option><option>SFO 舊金山</option><option>ONT 安大略</option>
+                <option>LAS 拉斯維加斯</option><option>PHX 鳳凰城</option><option>SEA 西雅圖</option>
+              </select>
+            </span>
+          </label>
+          <div class="hero-booking-divider" aria-hidden="true"></div>
+          <label class="hero-booking-segment" for="mb_loc2">
+            <i data-lucide="map-pinned"></i>
+            <span class="hero-booking-select-wrap">
+              <select class="hero-booking-select" id="mb_loc2">
+                <option value="">還車地點</option><option>同取車地點</option>
+                <option>LAX 洛杉磯</option><option>SFO 舊金山</option><option>ONT 安大略</option>
+                <option>LAS 拉斯維加斯</option><option>PHX 鳳凰城</option><option>SEA 西雅圖</option>
+              </select>
+            </span>
+          </label>
+        </div>
+      </div>
+      <div class="hero-booking-group">
+        <div class="hero-booking-group-title">取車日期時間</div>
+        <div class="hero-booking-combo hero-booking-combo--datetime">
+          <label class="hero-booking-segment" for="mb_d1">
+            <i data-lucide="calendar-days"></i>
+            <span class="hero-booking-date-wrap">
+              <input class="hero-booking-input" type="date" id="mb_d1">
+            </span>
+          </label>
+          <div class="hero-booking-divider" aria-hidden="true"></div>
+          <label class="hero-booking-segment" for="mb_t1">
+            <i data-lucide="clock"></i>
+            <span class="hero-booking-select-wrap">
+              <select class="hero-booking-select" id="mb_t1"><option>12:00 AM</option><option>1:00 AM</option><option>2:00 AM</option><option>3:00 AM</option><option>4:00 AM</option><option>5:00 AM</option><option>6:00 AM</option><option>7:00 AM</option><option>8:00 AM</option><option>9:00 AM</option><option selected>10:00 AM</option><option>11:00 AM</option><option>12:00 PM</option><option>1:00 PM</option><option>2:00 PM</option><option>3:00 PM</option><option>4:00 PM</option><option>5:00 PM</option><option>6:00 PM</option><option>7:00 PM</option><option>8:00 PM</option><option>9:00 PM</option><option>10:00 PM</option><option>11:00 PM</option></select>
+            </span>
+          </label>
+        </div>
+      </div>
+      <div class="hero-booking-group">
+        <div class="hero-booking-group-title">還車日期時間</div>
+        <div class="hero-booking-combo hero-booking-combo--datetime">
+          <label class="hero-booking-segment" for="mb_d2">
+            <i data-lucide="calendar-range"></i>
+            <span class="hero-booking-date-wrap">
+              <input class="hero-booking-input" type="date" id="mb_d2">
+            </span>
+          </label>
+          <div class="hero-booking-divider" aria-hidden="true"></div>
+          <label class="hero-booking-segment" for="mb_t2">
+            <i data-lucide="clock"></i>
+            <span class="hero-booking-select-wrap">
+              <select class="hero-booking-select" id="mb_t2"><option>12:00 AM</option><option>1:00 AM</option><option>2:00 AM</option><option>3:00 AM</option><option>4:00 AM</option><option>5:00 AM</option><option>6:00 AM</option><option>7:00 AM</option><option>8:00 AM</option><option>9:00 AM</option><option selected>10:00 AM</option><option>11:00 AM</option><option>12:00 PM</option><option>1:00 PM</option><option>2:00 PM</option><option>3:00 PM</option><option>4:00 PM</option><option>5:00 PM</option><option>6:00 PM</option><option>7:00 PM</option><option>8:00 PM</option><option>9:00 PM</option><option>10:00 PM</option><option>11:00 PM</option></select>
+            </span>
+          </label>
+        </div>
+      </div>
+      <button class="mb-sheet__submit" type="submit">立即預定</button>
+    </form>
+    <div class="mb-sheet__trust">
+      <div class="hero-trust-item"><i data-lucide="shield-check"></i><span>全額保險</span></div>
+      <div class="hero-trust-item"><i data-lucide="undo-2"></i><span>48h前免費取消</span></div>
+      <div class="hero-trust-item"><i data-lucide="headphones"></i><span>24/7中文客服</span></div>
+      <div class="hero-trust-item"><i data-lucide="badge-check"></i><span>會員折扣</span></div>
+    </div>
+  </div>
+</div>
+<script>
+  (function () {
+    var today = new Date().toISOString().split('T')[0];
+    ['mb_d1','mb_d2'].forEach(function (id) {
+      var el = document.getElementById(id); if (el) el.min = today;
+    });
+    var d1 = document.getElementById('mb_d1'), d2 = document.getElementById('mb_d2');
+    if (d1 && d2) d1.addEventListener('change', function () { d2.min = this.value; });
+  })();
 </script>
 </body>
-</html>
