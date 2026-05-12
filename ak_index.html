@@ -4,11 +4,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>阿拉斯加旅遊團｜Sky Horse 美國租車</title>
-  <meta name="description" content="阿拉斯加夏季日不落・冬季極光行程，全程中文導覽，小團出發。Sky Horse 天馬在美國深耕，提供最在地的台灣人服務。">
+  <meta name="description" content="阿拉斯加夏季日不落・冬季行程行程，全程中文導覽，小團出發。Sky Horse 天馬在美國深耕，提供最在地的台灣人服務。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Stack+Sans+Headline:wght@400;700&family=Noto+Sans+TC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js">
+  // ── Trip filter tabs ──
+  (function () {
+    var tabs  = document.querySelectorAll('.ft-tab');
+    var cards = document.querySelectorAll('.ft-grid .ft-card');
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        tabs.forEach(function (t) { t.classList.remove('active'); });
+        tab.classList.add('active');
+        var cat = tab.dataset.category;
+        cards.forEach(function (card) {
+          card.style.display = (cat === 'all' || card.dataset.category === cat) ? '' : 'none';
+        });
+      });
+    });
+  })();
+
+</script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -379,11 +396,7 @@
       opacity: 0; transform: translateY(12px);
       animation: fadeUp 0.6s var(--ease-out) 0.2s forwards;
     }
-    .hero-eyebrow::before {
-      content: '';
-      display: block; width: 24px; height: 1.5px;
-      background: var(--gold);
-    }
+    .hero-eyebrow::before { content: none; }
     .hero h1 {
       font-family: var(--font-display);
       font-size: clamp(36px, 5.5vw, 68px);
@@ -394,8 +407,8 @@
       animation: fadeUp 0.7s var(--ease-out) 0.35s forwards;
     }
     .hero-sub {
-      font-size: 16px; font-weight: 300;
-      color: rgba(255,255,255,0.6);
+      font-size: 16px; font-weight: 500;
+      color: #ffffff;
       line-height: 1.8; margin-bottom: 40px;
       max-width: 600px; margin-left: auto; margin-right: auto;
       opacity: 0; transform: translateY(12px);
@@ -530,7 +543,7 @@
     }
     .blog-cta-title {
       font-family: var(--font-zh);
-      font-size: clamp(24px, 3vw, 36px);
+      font-size: clamp(20px, 2.8vw, 36px);
       font-weight: 800;
       letter-spacing: -1px;
       line-height: 1.2;
@@ -1568,6 +1581,44 @@
       .day-item { grid-template-columns: 80px 1fr; gap: 16px; }
       .cost-grid { grid-template-columns: 1fr; gap: 32px; }
     }
+
+    /* ── Trip filter tabs ── */
+    .ft-tabs {
+      display: flex; gap: 8px; flex-wrap: wrap;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 32px;
+    }
+    .ft-tab {
+      font-family: var(--font-display);
+      font-size: 13px; font-weight: 500;
+      color: var(--ink-secondary);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 20px;
+      padding: 7px 18px;
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+      letter-spacing: 0.3px;
+    }
+    .ft-tab:hover {
+      color: var(--ink-primary);
+      border-color: #8A8A8A;
+      background: rgba(255,255,255,0.08);
+    }
+    .ft-tab.active {
+      color: var(--ink-primary);
+      background: rgba(255,255,255,0.02);
+      border-color: rgba(255,255,255,0.96);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.35);
+      font-weight: 600;
+    }
+    .ft-tab .tab-count {
+      display: inline-block;
+      font-size: 10px;
+      margin-left: 6px;
+      opacity: 0.6;
+    }
   </style>
 </head>
 <body>
@@ -1630,7 +1681,6 @@
     <!-- ── ── ── -->
 
     <div class="hero-content">
-      <div class="hero-eyebrow">Sky Horse 天馬旅遊</div>
       <h1>極圈以北，極光之旅</h1>
       <p class="hero-sub">全程中文陪伴，帶你深入北極冰川、雪山與野生動物的世界。</p>
       <div class="hero-actions">
@@ -1638,8 +1688,8 @@
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
           立即諮詢行程
         </a>
-        <a href="#itinerary" class="btn-ghost" onclick="event.preventDefault();document.querySelector('#itinerary').scrollIntoView({behavior:'smooth'})">
-          查看詳細行程
+        <a href="#pricing" class="btn-ghost" onclick="event.preventDefault();document.querySelector('#pricing').scrollIntoView({behavior:'smooth'})">
+          查看推薦行程
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
         </a>
       </div>
@@ -1674,292 +1724,61 @@
 
   <!-- ── BLOG CTA (PROMOTION) ── -->
   <section class="blog-cta-section">
-    <div class="blog-cta-inner">
-      <div class="blog-cta-content">
-        <h2 class="blog-cta-title" id="promoTitle">中華航空合作優惠｜搭機租車<br>85折，華航旅客專屬美國自駕方案！</h2>
-        <p class="blog-cta-sub" id="promoSub">
-          SkyHorse 與中華航空合作推出旅客專屬租車優惠，搭乘華航前往美國，即可享租車85折起。抵達 PHX、LAX、SFO、ONT 等熱門機場後，中文服務協助取還車，讓你的美國公路旅行從落地開始更順暢。
-        </p>
-        <div class="blog-cta-actions">
-          <div class="blog-cta-primary">
-            <a href="blog.html" class="blog-cta-btn" id="promoButton">
-              <span id="promoButtonText">立即查看優惠</span>
-              <i data-lucide="arrow-right"></i>
-            </a>
-            <div class="blog-cta-count blog-cta-count--hidden" id="promoCount">華航旅客專屬優惠</div>
-          </div>
-          <div class="blog-cta-controls" aria-label="切換優惠資訊">
-            <button class="blog-cta-switch is-prev" type="button" id="promoPrev" aria-label="上一則資訊">
-              <img src="image/action_arrow.svg" alt="">
-            </button>
-            <button class="blog-cta-switch is-next" type="button" id="promoNext" aria-label="下一則資訊">
-              <img src="image/action_arrow.svg" alt="">
-            </button>
-          </div>
+  <div class="blog-cta-inner">
+    <div class="blog-cta-content">
+      <div class="blog-cta-eyebrow" id="promoEyebrow">優惠合作與行程攻略</div>
+      <h2 class="blog-cta-title" id="promoTitle">中華航空合作優惠<br>搭機租車 85 折，華航旅客專屬方案！</h2>
+      <p class="blog-cta-sub" id="promoSub">
+        SkyHorse 與中華航空合作推出旅客專屬租車優惠，搭乘華航前往美國，即可享租車 85 折起。抵達 PHX、LAX、SFO、ONT 等熱門機場後，中文服務協助取還車，讓你的美國公路旅行從落地開始更順暢。
+      </p>
+      <div class="blog-cta-actions">
+        <div class="blog-cta-primary">
+          <a href="blog.html" class="blog-cta-btn" id="promoButton">
+            <span id="promoButtonText">立即查看優惠</span>
+            <i data-lucide="arrow-right"></i>
+          </a>
+          <div class="blog-cta-count blog-cta-count--hidden" id="promoCount">華航旅客專屬優惠</div>
+        </div>
+        <div class="blog-cta-controls" aria-label="切換優惠資訊">
+          <button class="blog-cta-switch is-prev" type="button" id="promoPrev" aria-label="上一則資訊">
+            <img src="image/action_arrow.svg" alt="">
+          </button>
+          <button class="blog-cta-switch is-next" type="button" id="promoNext" aria-label="下一則資訊">
+            <img src="image/action_arrow.svg" alt="">
+          </button>
         </div>
       </div>
-      <a href="blog.html" class="blog-cta-media" id="promoMedia" aria-label="查看 SkyHorse 與中華航空合作租車優惠">
-        <img src="image/banner-demo.png" alt="SkyHorse 與中華航空合作租車 85 折優惠" loading="lazy" id="promoImage">
-        <span class="blog-cta-media-label">
-          <i data-lucide="plane"></i>
-          <span id="promoMediaLabel">合作優惠</span>
-        </span>
-      </a>
     </div>
-  </section>
+    <a href="#" class="blog-cta-media" id="promoMedia" aria-label="查看 SkyHorse 與中華航空合作租車優惠">
+      <img src="image/banner-demo.png" alt="SkyHorse 與中華航空合作租車 85 折優惠" loading="lazy" id="promoImage">
+      <span class="blog-cta-media-label">
+        <i data-lucide="plane" id="promoMediaIcon"></i>
+        <span id="promoMediaLabel">合作優惠</span>
+      </span>
+    </a>
+  </div>
+</section>
 
   <!-- ════ TRIP DETAIL ════ -->
-  <section class="trip-section" id="itinerary">
-    <div class="section-inner">
-      <div class="section-header">
-        <div class="section-eyebrow">主打行程推薦</div>
-        <h2 class="section-title">2026 阿拉斯加 夏季日不落<br><em style="font-style:italic;color:var(--ink-tertiary);font-size:0.85em">5日冰川・峽灣・野生自然之旅</em></h2>
-        <p class="section-sub">五天四夜一價全包，以安克拉治為起點，深入探索冰川、峽灣與野生動物棲息地。搭配波蒂奇冰川遊船、馬塔努斯卡冰川健行、基奈峽灣國家公園與海切爾山口高山景觀，一次看見阿拉斯加夏季最壯麗的自然風光。</p>
-        <div class="trip-meta-badges">
-          <span class="trip-badge">6–8月出發</span>
-          <span class="trip-badge">5天4夜</span>
-          <span class="trip-badge">8人以下小團</span>
-          <span class="trip-badge">全程中文</span>
-          <span class="trip-badge trip-badge--price">From <strong>US$2,800</strong></span>
-        </div>
-      </div>
-
-      <!-- Tabs -->
-      <div class="trip-tabs">
-        <button class="trip-tab active" onclick="switchTripTab('highlights',this)">亮點</button>
-        <button class="trip-tab" onclick="switchTripTab('itinerary',this)">行程</button>
-        <button class="trip-tab" onclick="switchTripTab('cost',this)">費用</button>
-        <button class="trip-tab" onclick="switchTripTab('gallery',this)">圖集</button>
-      </div>
-
-      <!-- Panel: Highlights -->
-      <div class="trip-panel active" id="panel-highlights">
-        <div class="highlights-grid">
-          <div class="highlight-row">
-            <div class="highlight-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
-            </div>
-            <div>
-              <div class="highlight-label">行程路線</div>
-              <div class="highlight-val">安克拉治 → 波蒂奇冰川 → 馬塔努斯卡冰川 → 基奈峽灣 → 海切爾山口 → 安克拉治</div>
-            </div>
-          </div>
-          <div class="highlight-row">
-            <div class="highlight-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-            </div>
-            <div>
-              <div class="highlight-label">導覽語言</div>
-              <div class="highlight-val">全程中文</div>
-            </div>
-          </div>
-          <div class="highlight-row">
-            <div class="highlight-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            </div>
-            <div>
-              <div class="highlight-label">行程時間</div>
-              <div class="highlight-val">5 天 4 夜</div>
-            </div>
-          </div>
-          <div class="highlight-row">
-            <div class="highlight-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            </div>
-            <div>
-              <div class="highlight-label">集合地點</div>
-              <div class="highlight-val">安克拉治國際機場（ANC）</div>
-            </div>
-          </div>
-          <div class="highlight-row">
-            <div class="highlight-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            </div>
-            <div>
-              <div class="highlight-label">最早出發日</div>
-              <div class="highlight-val">2026年 6月 1日（夏季限定）</div>
-            </div>
-          </div>
-          <div class="highlight-row">
-            <div class="highlight-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-            </div>
-            <div>
-              <div class="highlight-label">訂購確認</div>
-              <div class="highlight-val">LINE 諮詢後 24 小時內確認訂位</div>
-            </div>
-          </div>
-          <div class="highlight-row">
-            <div class="highlight-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 10h.01M15 10h.01M12 2a10 10 0 100 20 10 10 0 000-20zm0 14a4 4 0 01-4-4h8a4 4 0 01-4 4z"/></svg>
-            </div>
-            <div>
-              <div class="highlight-label">取消政策</div>
-              <div class="highlight-val">出發 30 天前可免費取消，詳情請洽 LINE</div>
-            </div>
-          </div>
-          <div class="highlight-row">
-            <div class="highlight-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
-            </div>
-            <div>
-              <div class="highlight-label">成團人數</div>
-              <div class="highlight-val">最少 2 人，最多 8 人</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="trip-features">
-          <h3 class="trip-features-title">行程特色</h3>
-          <div class="trip-features-grid">
-            <div class="trip-feature-card">
-              <div class="trip-feature-card__num">01</div>
-              <h4>波蒂奇冰川遊船</h4>
-              <p>搭乘遊船進入波蒂奇湖，近距離仰望冰川，藍白交錯的冰層景觀震撼人心。</p>
-            </div>
-            <div class="trip-feature-card">
-              <div class="trip-feature-card__num">02</div>
-              <h4>馬塔努斯卡冰川健行</h4>
-              <p>穿戴冰爪踏上千萬年冰川，全程中文嚮導帶領，安全又難忘。</p>
-            </div>
-            <div class="trip-feature-card">
-              <div class="trip-feature-card__num">03</div>
-              <h4>基奈峽灣國家公園</h4>
-              <p>搭船深入峽灣，觀察座頭鯨、海獺、角嘴海雀等壯觀野生動物。</p>
-            </div>
-            <div class="trip-feature-card">
-              <div class="trip-feature-card__num">04</div>
-              <h4>海切爾山口高山景觀</h4>
-              <p>阿拉斯加夏季永晝奇景，在高山草甸俯瞰馬塔努斯卡河谷壯麗全景。</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Panel: Itinerary -->
-      <div class="trip-panel" id="panel-itinerary">
-        <div class="day-timeline">
-          <div class="day-item">
-            <div class="day-marker"><span>Day 1</span></div>
-            <div class="day-content">
-              <img src="image/Alaska_1.png" alt="抵達安克拉治 · 城市初探" class="day-img" loading="lazy">
-              <h3>抵達安克拉治 · 城市初探</h3>
-              <p>中文司機機場接機，辦理入住後前往安克拉治市區漫步，晚餐享用阿拉斯加新鮮帝王蟹。</p>
-              <div class="day-tags"><span class="day-tag">機場接送</span><span class="day-tag">酒店入住</span><span class="day-tag">海鮮晚餐</span><span class="day-tag">安克拉治市區</span></div>
-            </div>
-          </div>
-          <div class="day-item">
-            <div class="day-marker"><span>Day 2</span></div>
-            <div class="day-content">
-              <img src="image/Alaska_2.png" alt="波蒂奇冰川遊船 · 海灣探索" class="day-img" loading="lazy">
-              <h3>波蒂奇冰川遊船 · 海灣探索</h3>
-              <p>前往波蒂奇湖，搭乘遊船近距離觀賞冰川。下午前往惠蒂爾小鎮，欣賞峽灣風光，晚餐在當地餐廳享用。</p>
-              <div class="day-tags"><span class="day-tag">波蒂奇冰川</span><span class="day-tag">遊船體驗</span><span class="day-tag">惠蒂爾小鎮</span></div>
-            </div>
-          </div>
-          <div class="day-item">
-            <div class="day-marker"><span>Day 3</span></div>
-            <div class="day-content">
-              <img src="image/Alaska_3.png" alt="馬塔努斯卡冰川健行 · 海切爾山口" class="day-img" loading="lazy">
-              <h3>馬塔努斯卡冰川健行 · 海切爾山口</h3>
-              <p>早上配戴冰爪深入馬塔努斯卡冰川，下午驅車前往海切爾山口，眺望連綿山脈與廣袤草甸。</p>
-              <div class="day-tags"><span class="day-tag">冰川健行</span><span class="day-tag">冰爪含</span><span class="day-tag">海切爾山口</span><span class="day-tag">攝影指導</span></div>
-            </div>
-          </div>
-          <div class="day-item">
-            <div class="day-marker"><span>Day 4</span></div>
-            <div class="day-content">
-              <img src="image/Alaska_4.png" alt="基奈峽灣國家公園 · 賞鯨之旅" class="day-img" loading="lazy">
-              <h3>基奈峽灣國家公園 · 賞鯨之旅</h3>
-              <p>前往蘇厄德，搭乘全日賞鯨遊船深入基奈峽灣國家公園，觀察座頭鯨、虎鯨、海獺、角嘴海雀。</p>
-              <div class="day-tags"><span class="day-tag">賞鯨遊船</span><span class="day-tag">國家公園</span><span class="day-tag">野生動物</span><span class="day-tag">蘇厄德小鎮</span></div>
-            </div>
-          </div>
-          <div class="day-item">
-            <div class="day-marker"><span>Day 5</span></div>
-            <div class="day-content">
-              <img src="image/Alaska_5.png" alt="返回安克拉治 · 自由購物 · 送機" class="day-img" loading="lazy">
-              <h3>返回安克拉治 · 自由購物 · 送機</h3>
-              <p>早上返回安克拉治，自由時間逛紀念品商店，中文司機準時送機，圓滿結束五天阿拉斯加之旅。</p>
-              <div class="day-tags"><span class="day-tag">自由活動</span><span class="day-tag">購物時間</span><span class="day-tag">機場送機</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Panel: Cost -->
-      <div class="trip-panel" id="panel-cost">
-        <div class="cost-grid">
-          <div>
-            <h3 class="cost-section-title">費用包含</h3>
-            <ul class="cost-list cost-list--include">
-              <li>全程住宿（4晚，2人1室標準房）</li>
-              <li>機場接送（往返）</li>
-              <li>全程園區交通與包車</li>
-              <li>中文導遊全程陪同</li>
-              <li>波蒂奇冰川遊船票</li>
-              <li>馬塔努斯卡冰川入場費與冰爪租借</li>
-              <li>基奈峽灣賞鯨船票</li>
-              <li>行程表內指定餐食</li>
-              <li>所有小費</li>
-            </ul>
-          </div>
-          <div>
-            <h3 class="cost-section-title">費用不包含</h3>
-            <ul class="cost-list cost-list--exclude">
-              <li>國際往返機票</li>
-              <li>個人消費與購物</li>
-              <li>旅遊保險（強烈建議自行投保）</li>
-              <li>行程表外餐食與飲料</li>
-              <li>單人房差價（可加購）</li>
-            </ul>
-            <div class="cost-price-box">
-              <div class="cost-price-label">行程費用</div>
-              <div class="cost-price-num">USD 2,800</div>
-              <div class="cost-price-unit">起 / 人（依出發日期與人數調整）</div>
-              <a href="https://line.me/R/ti/p/@skyhorse" class="btn-primary" style="margin-top:20px;width:100%;justify-content:center;display:flex" target="_blank" rel="noopener">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
-                LINE 詢問報名
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Panel: Gallery -->
-      <div class="trip-panel" id="panel-gallery">
-        <div class="gallery-grid">
-          <div class="gallery-item gallery-main">
-            <img src="image/Alaska_6.png" alt="馬塔努斯卡冰川健行">
-          </div>
-          <div class="gallery-item">
-            <img src="image/Alaska_2.png" alt="波蒂奇冰川遊船">
-          </div>
-          <div class="gallery-item">
-            <img src="image/Alaska_7.png" alt="基奈峽灣野生動物">
-          </div>
-          <div class="gallery-item">
-            <img src="image/Alaska_1.png" alt="安克拉治城市">
-          </div>
-          <div class="gallery-item">
-            <img src="image/Alaska_5.png" alt="阿拉斯加山景">
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ════ FEATURED TRIPS ════ -->
   <section class="featured-section" id="pricing">
     <div class="section-inner">
       <div class="section-header">
-        <div class="section-eyebrow">近期活動行程</div>
-        <h2 class="section-title">精選阿拉斯加旅程</h2>
-        <p class="section-sub">每一條路線都由 Sky Horse 天馬親自規劃，全程中文陪伴，一價全包無隱藏費用。</p>
+        <div class="section-eyebrow">主打行程</div>
+        <h2 class="section-title">探索阿拉斯加四季旅程</h2>
+        <p class="section-sub">從極光雪原、冰河秘境，到午夜陽光與野生自然，Sky Horse 天馬依照不同季節與旅行節奏，規劃多樣阿拉斯加體驗路線，全程中文陪伴，深入感受極境四季魅力。</p>
+      </div>
+      <div class="ft-tabs">
+        <button class="ft-tab active" data-category="all">推薦行程 <span class="tab-count">6</span></button>
+        <button class="ft-tab" data-category="summer">夏季行程 <span class="tab-count">2</span></button>
+        <button class="ft-tab" data-category="winter">冬季行程 <span class="tab-count">2</span></button>
+        <button class="ft-tab" data-category="spring">五日行程 <span class="tab-count">1</span></button>
+        <button class="ft-tab" data-category="daytrip">單日體驗 <span class="tab-count">1</span></button>
       </div>
       <div class="ft-grid">
         <!-- Card 1: Summer -->
-        <div class="ft-card ft-card--featured">
+        <div class="ft-card ft-card--featured" data-category="summer">
           <div class="ft-card__img">
             <img src="image/Alaska_3.png" alt="夏季冰川" onerror="this.parentElement.style.background='#161616';this.remove()">
             <span class="ft-card__badge ft-card__badge--hot">夏季主打</span>
@@ -1981,7 +1800,7 @@
           </div>
         </div>
         <!-- Card 2: Winter Aurora -->
-        <div class="ft-card">
+        <div class="ft-card" data-category="winter">
           <div class="ft-card__img">
             <img src="image/Alaska_6.png" alt="極光" onerror="this.parentElement.style.background='#161616';this.remove()">
             <span class="ft-card__badge ft-card__badge--new">冬季行程</span>
@@ -2003,7 +1822,7 @@
           </div>
         </div>
         <!-- Card 3: Day Trip -->
-        <div class="ft-card">
+        <div class="ft-card" data-category="daytrip">
           <div class="ft-card__img">
             <img src="image/Alaska_1.png" alt="單日行程" onerror="this.parentElement.style.background='#161616';this.remove()">
             <span class="ft-card__badge ft-card__badge--new">一日行程</span>
@@ -2021,6 +1840,73 @@
                 1 天起
               </div>
               <div class="ft-card__price"><span>From</span> <strong>US$220</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4: Spring Wildlife -->
+        <div class="ft-card" data-category="spring">
+          <div class="ft-card__img">
+            <img src="image/Alaska_2.png" alt="春季野生動物" onerror="this.parentElement.style.background='#161616';this.remove()">
+            <span class="ft-card__badge ft-card__badge--hot">春季主打</span>
+          </div>
+          <div class="ft-card__body">
+            <div class="ft-card__tag">4–5月出發</div>
+            <h3 class="ft-card__title">阿拉斯加春季野生動物<br>6日熊・鯨・鷹全覽之旅</h3>
+            <p class="ft-card__desc">春季融雪之際，棕熊、座頭鯨與白頭鷹同步現身。從安克拉治出發，深入卡特邁國家公園、荷馬海岸與奇奈峽灣，捕捉最珍稀的野生畫面。</p>
+            <div class="ft-card__highlights">
+              <span>6天5夜</span><span>賞熊</span><span>座頭鯨</span><span>全中文</span>
+            </div>
+            <div class="ft-card__footer">
+              <div class="ft-card__duration">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                6 天
+              </div>
+              <div class="ft-card__price"><span>From</span> <strong>US$2,600</strong></div>
+            </div>
+          </div>
+        </div>
+        <!-- Card 5: Denali Trekking -->
+        <div class="ft-card" data-category="summer">
+          <div class="ft-card__img">
+            <img src="image/Alaska_4.png" alt="迪納利健行" onerror="this.parentElement.style.background='#161616';this.remove()">
+            <span class="ft-card__badge ft-card__badge--new">限量名額</span>
+          </div>
+          <div class="ft-card__body">
+            <div class="ft-card__tag">7–8月出發</div>
+            <h3 class="ft-card__title">迪納利國家公園深度探索<br>4日山野徒步・荒野攝影之旅</h3>
+            <p class="ft-card__desc">北美最高峰麥金利山腳下，無盡的荒野與萬年冰河。搭乘公園巴士深入禁止自駕的核心地帶，全程中文攝影導覽，帶回最震撼的阿拉斯加山景。</p>
+            <div class="ft-card__highlights">
+              <span>4天3夜</span><span>公園巴士</span><span>攝影導覽</span><span>限8人</span>
+            </div>
+            <div class="ft-card__footer">
+              <div class="ft-card__duration">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                4 天
+              </div>
+              <div class="ft-card__price"><span>From</span> <strong>US$1,980</strong></div>
+            </div>
+          </div>
+        </div>
+        <!-- Card 6: Aurora Winter Short -->
+        <div class="ft-card" data-category="winter">
+          <div class="ft-card__img">
+            <img src="image/Alaska_5.png" alt="極光短途" onerror="this.parentElement.style.background='#161616';this.remove()">
+            <span class="ft-card__badge ft-card__badge--new">冬季行程</span>
+          </div>
+          <div class="ft-card__body">
+            <div class="ft-card__tag">11–3月出發</div>
+            <h3 class="ft-card__title">費爾班克斯極光 3 夜速攻<br>狗橇・溫泉・冰雪村落</h3>
+            <p class="ft-card__desc">時間有限也能追光！三晚費爾班克斯集中火力，搭配狗拉雪橇體驗、珍娜溫泉泡湯與冰雕村，讓極光之旅輕盈又完整，全程中文接送。</p>
+            <div class="ft-card__highlights">
+              <span>4天3夜</span><span>3晚追光</span><span>狗拉雪橇</span><span>溫泉</span>
+            </div>
+            <div class="ft-card__footer">
+              <div class="ft-card__duration">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                4 天
+              </div>
+              <div class="ft-card__price"><span>From</span> <strong>US$1,650</strong></div>
             </div>
           </div>
         </div>
@@ -2172,7 +2058,7 @@
         <i data-lucide="message-circle"></i>LINE 預訂
       </a>
       <a href="faq.html" class="btn-outline-dark">
-        <i data-lucide="circle-help"></i>常見問題
+        <i data-lucide="calendar-check"></i>立即預定
       </a>
     </div>
   </div>
@@ -2216,7 +2102,7 @@
         <div class="footer-col-title">阿拉斯加</div>
         <div class="footer-links">
           <a href="#itinerary">夏季日不落</a>
-          <a href="#featured-trips">冬季極光</a>
+          <a href="#featured-trips">冬季行程</a>
           <a href="#featured-trips">單日體驗</a>
           <a href="#faq">常見問題</a>
         </div>
