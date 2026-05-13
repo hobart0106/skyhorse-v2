@@ -1077,6 +1077,7 @@
       font-size: 17px; font-weight: 700;
       color: var(--ink-primary); line-height: 1.3;
       margin-bottom: 10px; letter-spacing: -0.3px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
     .ft-card__desc {
       font-size: 13px; font-weight: 300;
@@ -1553,7 +1554,7 @@
       .trip-features-grid { grid-template-columns: repeat(2, 1fr); }
       .why-grid { grid-template-columns: repeat(2, 1fr); }
       .ft-grid { grid-template-columns: repeat(2, 1fr); }
-      .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+      /* reviews now marquee */
     }
     @media (max-width: 768px) {
       .nav-inner { padding: 0 20px; }
@@ -1581,8 +1582,8 @@
       .why-section .section-inner { padding: 0 20px; }
       .why-grid { grid-template-columns: repeat(2, 1fr); }
       .reviews-section { padding: 64px 0; }
-      .reviews-section .section-inner { padding: 0 20px; }
-      .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+      .reviews-section .section-inner { padding: 0; }
+      /* reviews now marquee */
       .about-section { padding: 64px 0; }
       .about-section .section-inner { padding: 0 20px; }
       .about-grid { grid-template-columns: 1fr; gap: 32px; }
@@ -1800,7 +1801,7 @@
           </div>
           <div class="ft-card__body">
             <div class="ft-card__tag">6–8月出發</div>
-            <h3 class="ft-card__title">2026 阿拉斯加 夏季日不落<br>5日冰川・峽灣・野生自然之旅</h3>
+            <h3 class="ft-card__title">2026 阿拉斯加 夏季日不落 I 5日冰川・峽灣・野生自然之旅</h3>
             <p class="ft-card__desc">五天四夜全包，從安克拉治出發，波蒂奇冰川遊船、馬塔努斯卡冰川健行、基奈峽灣賞鯨，一次看盡阿拉斯加夏季最壯麗風光。</p>
             <div class="ft-card__highlights">
               <span>5天4夜</span><span>冰川健行</span><span>峽灣遊船</span><span>賞鯨</span>
@@ -1822,7 +1823,7 @@
           </div>
           <div class="ft-card__body">
             <div class="ft-card__tag">12–2月出發</div>
-            <h3 class="ft-card__title">2026/27 阿拉斯加 極光爆發年<br>7日四晚追光・極地雪國深度之旅</h3>
+            <h3 class="ft-card__title">2026/27 阿拉斯加 極光爆發年 I 7日四晚追光・極地雪國深度之旅</h3>
             <p class="ft-card__desc">七天六夜全中文導覽，從費爾班克斯出發，安排四晚專業追光，把握極光高峰的黃金冬季，再走進狗拉雪橇、珍娜極地溫泉、迪納利雪國漫步。</p>
             <div class="ft-card__highlights">
               <span>7天6夜</span><span>4晚追光</span><span>狗拉雪橇</span><span>溫泉體驗</span>
@@ -1844,7 +1845,7 @@
           </div>
           <div class="ft-card__body">
             <div class="ft-card__tag">彈性加購</div>
-            <h3 class="ft-card__title">阿拉斯加單日體驗<br>冰川・峽灣・極光 任選</h3>
+            <h3 class="ft-card__title">阿拉斯加單日體驗 I 冰川・峽灣・極光 任選</h3>
             <p class="ft-card__desc">已在阿拉斯加自由行？加購單日中文帶團體驗。冰川健行、遊船賞鯨、費爾班克斯極光單夜，全程中文，接送含。</p>
             <div class="ft-card__highlights">
               <span>1天/1晚</span><span>彈性選擇</span><span>接送含</span>
@@ -1867,7 +1868,7 @@
           </div>
           <div class="ft-card__body">
             <div class="ft-card__tag">4–5月出發</div>
-            <h3 class="ft-card__title">阿拉斯加春季野生動物<br>6日熊・鯨・鷹全覽之旅</h3>
+            <h3 class="ft-card__title">阿拉斯加春季野生動物 I 6日熊・鯨・鷹全覽之旅</h3>
             <p class="ft-card__desc">春季融雪之際，棕熊、座頭鯨與白頭鷹同步現身。從安克拉治出發，深入卡特邁國家公園、荷馬海岸與奇奈峽灣，捕捉最珍稀的野生畫面。</p>
             <div class="ft-card__highlights">
               <span>6天5夜</span><span>賞熊</span><span>座頭鯨</span><span>全中文</span>
@@ -1889,7 +1890,7 @@
           </div>
           <div class="ft-card__body">
             <div class="ft-card__tag">7–8月出發</div>
-            <h3 class="ft-card__title">迪納利國家公園深度探索<br>4日山野徒步・荒野攝影之旅</h3>
+            <h3 class="ft-card__title">迪納利國家公園深度探索 I 4日山野徒步・荒野攝影之旅</h3>
             <p class="ft-card__desc">北美最高峰麥金利山腳下，無盡的荒野與萬年冰河。搭乘公園巴士深入禁止自駕的核心地帶，全程中文攝影導覽，帶回最震撼的阿拉斯加山景。</p>
             <div class="ft-card__highlights">
               <span>4天3夜</span><span>公園巴士</span><span>攝影導覽</span><span>限8人</span>
@@ -1911,7 +1912,7 @@
           </div>
           <div class="ft-card__body">
             <div class="ft-card__tag">11–3月出發</div>
-            <h3 class="ft-card__title">費爾班克斯極光 3 夜速攻<br>狗橇・溫泉・冰雪村落</h3>
+            <h3 class="ft-card__title">費爾班克斯極光 3 夜速攻 I 狗橇・溫泉・冰雪村落</h3>
             <p class="ft-card__desc">時間有限也能追光！三晚費爾班克斯集中火力，搭配狗拉雪橇體驗、珍娜溫泉泡湯與冰雕村，讓極光之旅輕盈又完整，全程中文接送。</p>
             <div class="ft-card__highlights">
               <span>4天3夜</span><span>3晚追光</span><span>狗拉雪橇</span><span>溫泉</span>
@@ -1930,15 +1931,17 @@
   </section>
 
   <!-- ════ REVIEWS ════ -->
-  <section class="reviews-section" id="reviews">
+    <section class="reviews-section" id="reviews">
     <div class="section-inner">
       <div class="section-header">
         <div class="section-eyebrow">旅客真實評價</div>
         <h2 class="section-title">他們去過，你也可以</h2>
       </div>
-      <div class="reviews-grid">
+    </div>
+    <div class="reviews-marquee">
+      <div class="reviews-track reviews-track--fwd">
         <div class="review-card">
-          <div class="review-card__quote">"</div>
+          <div class="review-card__quote">“</div>
           <p class="review-card__text">看到了美麗的極光，讓我們留下美好的回憶！導遊非常專業，解說豐富，全程都感覺很安心。</p>
           <div class="review-card__author">
             <div class="review-card__avatar"><img src="https://i.pravatar.cc/80?img=11" alt="林先生"></div>
@@ -1949,7 +1952,7 @@
           </div>
         </div>
         <div class="review-card">
-          <div class="review-card__quote">"</div>
+          <div class="review-card__quote">“</div>
           <p class="review-card__text">導遊很親切且行程很精彩，非常貼心的提早接送我們到機場。和家人一起旅遊完全不用擔心溝通問題！</p>
           <div class="review-card__author">
             <div class="review-card__avatar"><img src="https://i.pravatar.cc/80?img=27" alt="Katrina"></div>
@@ -1960,7 +1963,7 @@
           </div>
         </div>
         <div class="review-card">
-          <div class="review-card__quote">"</div>
+          <div class="review-card__quote">“</div>
           <p class="review-card__text">行程很好玩，我們12月前往都有看到很強的極光，超級推薦！帶長輩一起去全程都照顧得很周到。</p>
           <div class="review-card__author">
             <div class="review-card__avatar"><img src="https://i.pravatar.cc/80?img=44" alt="蔡小姐"></div>
@@ -1971,7 +1974,42 @@
           </div>
         </div>
         <div class="review-card">
-          <div class="review-card__quote">"</div>
+          <div class="review-card__quote">“</div>
+          <p class="review-card__text">看到了美麗的極光，讓我們留下美好的回憶！導遊非常專業，解說豐富，全程都感覺很安心。</p>
+          <div class="review-card__author">
+            <div class="review-card__avatar"><img src="https://i.pravatar.cc/80?img=11" alt="林先生"></div>
+            <div>
+              <div class="review-card__name">林先生</div>
+              <div class="review-card__meta">冬季行程 · 2025年12月</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-card__quote">“</div>
+          <p class="review-card__text">導遊很親切且行程很精彩，非常貼心的提早接送我們到機場。和家人一起旅遊完全不用擔心溝通問題！</p>
+          <div class="review-card__author">
+            <div class="review-card__avatar"><img src="https://i.pravatar.cc/80?img=27" alt="Katrina"></div>
+            <div>
+              <div class="review-card__name">Katrina</div>
+              <div class="review-card__meta">夏季行程 · 2025年7月</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-card__quote">“</div>
+          <p class="review-card__text">行程很好玩，我們12月前往都有看到很強的極光，超級推薦！帶長輩一起去全程都照顧得很周到。</p>
+          <div class="review-card__author">
+            <div class="review-card__avatar"><img src="https://i.pravatar.cc/80?img=44" alt="蔡小姐"></div>
+            <div>
+              <div class="review-card__name">蔡小姐</div>
+              <div class="review-card__meta">冬季行程 · 2025年1月</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reviews-track reviews-track--rev">
+        <div class="review-card">
+          <div class="review-card__quote">“</div>
           <p class="review-card__text">與長輩同行一起追極光，留下了很美好的回憶。全中文服務讓長輩完全沒有壓力！</p>
           <div class="review-card__author">
             <div class="review-card__avatar"><img src="https://i.pravatar.cc/80?img=47" alt="洪小姐"></div>
@@ -1982,7 +2020,7 @@
           </div>
         </div>
         <div class="review-card">
-          <div class="review-card__quote">"</div>
+          <div class="review-card__quote">“</div>
           <p class="review-card__text">冰川健行是這輩子最壯觀的體驗之一！完全沒想到台灣人可以這麼輕鬆走進阿拉斯加的冰川。</p>
           <div class="review-card__author">
             <div class="review-card__avatar"><img src="https://i.pravatar.cc/80?img=60" alt="陳先生"></div>
@@ -1993,7 +2031,40 @@
           </div>
         </div>
         <div class="review-card">
-          <div class="review-card__quote">"</div>
+          <div class="review-card__quote">“</div>
+          <p class="review-card__text">第一次去阿拉斯加就選了天馬，完全沒有語言壓力。導遊會幫忙解釋所有的東西，體驗非常棒。</p>
+          <div class="review-card__author">
+            <div class="review-card__avatar"><img src="https://i.pravatar.cc/80?img=5" alt="王小姐"></div>
+            <div>
+              <div class="review-card__name">王小姐</div>
+              <div class="review-card__meta">夏季行程 · 2024年7月</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-card__quote">“</div>
+          <p class="review-card__text">與長輩同行一起追極光，留下了很美好的回憶。全中文服務讓長輩完全沒有壓力！</p>
+          <div class="review-card__author">
+            <div class="review-card__avatar"><img src="https://i.pravatar.cc/80?img=47" alt="洪小姐"></div>
+            <div>
+              <div class="review-card__name">洪小姐</div>
+              <div class="review-card__meta">冬季行程 · 2025年2月</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-card__quote">“</div>
+          <p class="review-card__text">冰川健行是這輩子最壯觀的體驗之一！完全沒想到台灣人可以這麼輕鬆走進阿拉斯加的冰川。</p>
+          <div class="review-card__author">
+            <div class="review-card__avatar"><img src="https://i.pravatar.cc/80?img=60" alt="陳先生"></div>
+            <div>
+              <div class="review-card__name">陳先生</div>
+              <div class="review-card__meta">夏季行程 · 2025年8月</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-card__quote">“</div>
           <p class="review-card__text">第一次去阿拉斯加就選了天馬，完全沒有語言壓力。導遊會幫忙解釋所有的東西，體驗非常棒。</p>
           <div class="review-card__author">
             <div class="review-card__avatar"><img src="https://i.pravatar.cc/80?img=5" alt="王小姐"></div>
