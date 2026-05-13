@@ -2963,6 +2963,20 @@
       var dst = document.getElementById(pair[1]);
       if (src && dst && src.value) dst.value = src.value;
     });
+    // Sync & display date values (set here because hidden inputs ignore JS value on iOS)
+    var _fmtD = function(iso) { var p=iso.split('-'); return p[0].slice(2)+'/'+p[1]+'/'+p[2]; };
+    [['heroPickupDate','mb_d1'],['heroReturnDate','mb_d2']].forEach(function(pair) {
+      var src = document.getElementById(pair[0]);
+      var dst = document.getElementById(pair[1]);
+      if (!dst) return;
+      var iso = (src && src.value) ? src.value : new Date().toISOString().split('T')[0];
+      dst.value = iso;
+      var disp = dst.nextElementSibling;
+      if (disp && disp.classList.contains('date-display')) {
+        disp.textContent = _fmtD(iso);
+        disp.classList.add('has-value');
+      }
+    });
     sheet.classList.add('open');
     document.body.style.overflow = 'hidden';
     if (window.lucide) lucide.createIcons({ nodes: [sheet] });
