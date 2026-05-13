@@ -1721,22 +1721,31 @@
       .nav-menu-btn { display: flex; }
     }
     @media (max-width: 1280px) {
+      .hero { overflow: hidden; min-height: calc(80vh - 64px); }
       .hero-content {
-        padding: 40px 40px 0;
-        min-height: calc(60vh - 92px);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+        position: absolute;
+        inset: 0;
+        padding: 0 40px;
       }
-      .hero-head {
-        gap: 12px;
-        flex: 0 0 auto;
+      .hero-copy {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: calc(100% - 80px);
+        text-align: center;
       }
+      .hero-head { gap: 12px; flex: 0 0 auto; }
       .hero-pills { gap: 10px; }
       .hero-booking-card {
+        position: absolute;
+        bottom: 0;
+        left: 40px;
+        right: 40px;
+        width: auto;
         padding: 18px;
         border-radius: 16px;
-        margin: 24px auto 8px;
+        margin: 0;
       }
       .hero-booking-form {
         grid-template-columns: repeat(2, minmax(0, 1fr));
