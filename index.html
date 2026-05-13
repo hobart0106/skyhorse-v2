@@ -2912,12 +2912,17 @@
     window.open(`https://line.me/ti/p/@skyhorse?text=${encodeURIComponent(text)}`, '_blank');
   }
 
-  // Set min date = today
+  // Set min date = today + pre-fill default dates
   const today = new Date().toISOString().split('T')[0];
+  const tomorrow = new Date(Date.now() + 86400000).toISOString().split('T')[0];
   var _hpd = document.getElementById('heroPickupDate');
   var _hrd = document.getElementById('heroReturnDate');
-  if (_hpd) _hpd.min = today;
-  if (_hrd) _hrd.min = today;
+  var _mb1 = document.getElementById('mb_d1');
+  var _mb2 = document.getElementById('mb_d2');
+  if (_hpd) { _hpd.min = today; _hpd.value = today; }
+  if (_hrd) { _hrd.min = today; _hrd.value = tomorrow; }
+  if (_mb1) { _mb1.min = today; _mb1.value = today; }
+  if (_mb2) { _mb2.min = today; _mb2.value = tomorrow; }
   if (_hpd && _hrd) _hpd.addEventListener('change', function() { _hrd.min = this.value; });
 
   // Date display format: YY/MM/DD
