@@ -586,6 +586,10 @@
 
     .footer-bottom a { color: rgba(0,0,0,0.6); text-decoration: none; }
 
+    @media (max-width: 1024px) {
+      .nav-links { display: none; }
+      .nav-menu-btn { display: flex; }
+    }
     @media (max-width: 768px) {
       .article-layout {
         grid-template-columns: 1fr;

@@ -523,6 +523,10 @@
     }
     .footer-legal a { color: var(--ink-primary); text-decoration: none; transition: color 0.15s; }
     .footer-legal a:hover { color: var(--ink-secondary); }
+    @media (max-width: 1024px) {
+      .nav-links { display: none; }
+      .nav-menu-btn { display: flex; }
+    }
     @media (max-width: 640px) {
       footer { padding: 40px 0 32px; }
       .footer-container { padding: 0 20px; }
