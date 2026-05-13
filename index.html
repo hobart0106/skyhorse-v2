@@ -2054,7 +2054,11 @@
       pointer-events: none;
       -webkit-backdrop-filter: blur(8px);
       backdrop-filter: blur(8px);
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
+    body.is-scrolling .vp-blur-top,
+    body.is-scrolling .vp-blur-bottom { opacity: 1; }
     .vp-blur-top {
       top: 64px;
       -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
@@ -3045,6 +3049,16 @@
       });
     }, { threshold: 0.15 });
     targets.forEach(function(el) { io.observe(el); });
+  })();
+  </script>
+  <script>
+  (function() {
+    var t;
+    window.addEventListener('scroll', function() {
+      document.body.classList.add('is-scrolling');
+      clearTimeout(t);
+      t = setTimeout(function() { document.body.classList.remove('is-scrolling'); }, 300);
+    }, { passive: true });
   })();
   </script>
 </body>
