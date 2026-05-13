@@ -586,11 +586,35 @@
 
     /* ── FOOTER ── */
     footer {
-      border-top: 1px solid var(--border);
+      background: #FFDC22;
+      padding: 64px 0 40px;
       margin-top: 80px;
-      padding: 32px 40px;
     }
-    .footer-brand img { height: 28px; width: auto; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px; padding-bottom: 48px;
+      border-bottom: 1px solid rgba(0,0,0,0.15);
+      margin-bottom: 32px;
+    }
+    .footer-logo { display: flex; align-items: center; text-decoration: none; margin-bottom: 16px; }
+    .footer-logo img { filter: brightness(0); }
+    .footer-desc { font-size: 13px; color: rgba(0,0,0,0.7); line-height: 1.7; max-width: 280px; }
+    .footer-social { display: flex; gap: 10px; margin-top: 20px; }
+    .footer-social a {
+      width: 36px; height: 36px;
+      background: rgba(0,0,0,0.1);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: #060606; text-decoration: none;
+    }
+    .footer-social a svg { width: 16px; height: 16px; }
+    .footer-col-title { font-size: 12px; font-weight: 700; color: #060606; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px; }
+    .footer-links { display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { font-size: 13px; color: rgba(0,0,0,0.75); text-decoration: none; transition: color 0.15s; }
+    .footer-links a:hover { color: #060606; }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: rgba(0,0,0,0.6); }
+    .footer-bottom a { color: rgba(0,0,0,0.6); text-decoration: none; }
 
     @media (max-width: 768px) {
       .article-layout {
@@ -603,7 +627,10 @@
       .nav-inner { padding: 0 20px; }
       nav .nav-links { display: none; }
       .nav-menu-btn { display: flex; }
-      footer { padding: 24px 20px; }
+      footer { padding: 48px 0 32px; margin-top: 48px; }
+      .footer-inner { padding: 0 20px; }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
     }
   </style>
 </head>
@@ -803,11 +830,51 @@
 <!-- ── FOOTER ── -->
 <footer>
   <div class="footer-inner">
-    <div class="footer-brand">
-      <img src="image/SkyHorse.svg" alt="Sky Horse" style="height:28px;width:auto;">
-      <div class="footer-brand-name">Sky Horse 天馬租車</div>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo">
+          <img src="image/SkyHorse.svg" alt="SkyHorse Auto" style="height:34px;width:auto;">
+        </a>
+        <p class="footer-desc">加州自駕租車首選。2015 年成立，深耕美西機場租車市場，以中文服務與透明價格著稱。</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 48 48" fill="currentColor"><path d="M23.9996 4C12.9542 4 4 12.9873 4 24.0735C4 33.4871 10.4575 41.3864 19.1685 43.556V30.2079H15.0446V24.0735H19.1685V21.4302C19.1685 14.598 22.2492 11.4312 28.9323 11.4312C30.1995 11.4312 32.3858 11.6809 33.2802 11.9298V17.4902C32.8082 17.4404 31.9882 17.4155 30.9699 17.4155C27.6907 17.4155 26.4235 18.6625 26.4235 21.9039V24.0735H32.9562L31.8338 30.2079H26.4235V44C36.3266 42.7996 44 34.3366 44 24.0735C43.9992 12.9873 35.045 4 23.9996 4Z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 48 48" fill="currentColor"><path d="M24.0254 4C29.4613 4 30.1422 4.02337 32.2852 4.125C34.4129 4.21883 35.8685 4.56304 37.1436 5.05566C38.4575 5.56387 39.5759 6.25217 40.6865 7.3623C41.805 8.47252 42.4857 9.59084 42.9785 10.9199C43.4713 12.1867 43.8153 13.6495 43.9092 15.7764C44.003 17.9109 44.0273 18.5913 44.0273 24.0254C44.0273 29.4599 44.003 30.1407 43.9092 32.2754C43.8153 34.4021 43.4713 35.8564 42.9785 37.1309C42.4701 38.4445 41.7817 39.5625 40.6709 40.6729C39.5602 41.7831 38.4419 42.4713 37.1279 42.9795C35.8607 43.4721 34.3972 43.8163 32.2695 43.9102C30.1343 44.004 29.4535 44.0273 24.0176 44.0273C18.5811 44.0273 17.9001 44.004 15.7646 43.9102C13.6371 43.8163 12.1822 43.4721 10.9072 42.9795C9.59306 42.4712 8.47407 41.7832 7.36328 40.6729C6.24474 39.5625 5.56412 38.4445 5.04785 37.123C4.55507 35.8564 4.21108 34.3942 4.11719 32.2676C4.02332 30.1329 4 29.452 4 24.0176C4 18.5835 4.02333 17.9031 4.11719 15.7607C4.21106 13.6339 4.55504 12.1789 5.04785 10.9043C5.56411 9.5908 6.24478 8.47255 7.36328 7.3623C8.47403 6.24421 9.5931 5.56391 10.915 5.04785C12.1822 4.55531 13.645 4.21101 15.7725 4.11719C17.9079 4.02336 18.5889 4 24.0254 4ZM24.0137 14.0068C18.4891 14.0068 14.007 18.4891 14.0068 24.0137C14.007 29.5384 18.489 34.0205 24.0137 34.0205C29.5382 34.0203 34.0205 29.5382 34.0205 24.0137C34.0204 18.4892 29.5381 14.007 24.0137 14.0068ZM24.0137 17.5225C27.5976 17.5227 30.5048 20.4297 30.5049 24.0137C30.5049 27.5977 27.5977 30.5047 24.0137 30.5049C20.4295 30.5049 17.5225 27.5979 17.5225 24.0137C17.5226 20.4296 20.4295 17.5225 24.0137 17.5225ZM34.4746 11.2783C35.7264 11.2783 36.7488 12.3 36.749 13.5518C36.749 14.8111 35.7266 15.8262 34.4746 15.8262C33.2154 15.826 32.2012 14.8036 32.2012 13.5518C32.2014 12.2927 33.223 11.2785 34.4746 11.2783Z"/></svg></a>
+          <a href="https://line.me/R/ti/p/@skyhorse" aria-label="LINE" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg></a>
+          <a href="#" aria-label="TikTok"><svg viewBox="0 0 48 48" fill="currentColor"><path d="M32.7336 4H25.828V31.2463C25.828 34.4928 23.172 37.1594 19.8668 37.1594C16.5615 37.1594 13.9056 34.4928 13.9056 31.2463C13.9056 28.058 16.5025 25.4492 19.6898 25.3333V18.4928C12.6661 18.6087 7 24.2319 7 31.2463C7 38.3189 12.7841 44 19.9258 44C27.0674 44 32.8516 38.2609 32.8516 31.2463V17.2753C35.4486 19.1304 38.6357 20.2319 42 20.2899V13.4493C36.8061 13.2754 32.7336 9.10144 32.7336 4Z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">美國租車</div>
+        <div class="footer-links">
+          <a href="fleet.html">全部車型</a>
+          <a href="blog.html">租車攻略</a>
+          <a href="faq.html">常見問題</a>
+          <a href="article.html">關於我們</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">阿拉斯加</div>
+        <div class="footer-links">
+          <a href="ak_index.html">阿拉斯加旅遊</a>
+          <a href="ak_index.html#itinerary">主打行程</a>
+          <a href="blog_ak.html">旅遊攻略</a>
+          <a href="ak_index.html#faq">常見問題</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">聯絡我們</div>
+        <div class="footer-links">
+          <a href="https://line.me/R/ti/p/@skyhorse" target="_blank" rel="noopener">LINE @skyhorse</a>
+          <a href="mailto:contact@skyhorseauto.com">contact@skyhorseauto.com</a>
+          <a href="tel:+19494397432">+1-949-439-7432</a>
+          <a href="faq.html">常見問題</a>
+        </div>
+      </div>
     </div>
-    <div class="footer-copy">&copy; 2026 Sky Horse Auto. All rights reserved.</div>
+    <div class="footer-bottom">
+      <span>&copy; 2025 SkyHorse Auto LLC. All rights reserved.</span>
+      <span><a href="#">隱私權政策</a> · <a href="#">服務條款</a></span>
+    </div>
   </div>
 </footer>
 
