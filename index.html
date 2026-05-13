@@ -3021,7 +3021,8 @@
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
   <script>
     const lenis = new Lenis({
-      lerp: 0.1,
+      duration: 0.7,
+      easing: function(t) { return -(Math.cos(Math.PI * t) - 1) / 2; },
       smoothWheel: true,
       wheelMultiplier: 1,
       touchMultiplier: 1.5,
