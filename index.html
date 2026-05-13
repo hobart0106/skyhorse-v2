@@ -583,6 +583,20 @@
     .hero-booking-date-wrap .hero-booking-input {
       padding-right: 28px;
     }
+    .hero-booking-date-wrap .hero-booking-input[type="date"] {
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+    }
+    .date-display {
+      position: absolute;
+      left: 0;
+      pointer-events: none;
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: rgba(255,255,255,0.35);
+      white-space: nowrap;
+    }
+    .date-display.has-value { color: var(--ink-primary); }
     .hero-booking-input::-webkit-calendar-picker-indicator {
       opacity: 0;
       position: absolute;
@@ -2191,6 +2205,7 @@
               <i data-lucide="calendar-days"></i>
               <span class="hero-booking-date-wrap">
                 <input class="hero-booking-input" type="date" id="heroPickupDate">
+                <span class="date-display" aria-hidden="true">YY/MM/DD</span>
               </span>
             </label>
             <div class="hero-booking-divider" aria-hidden="true"></div>
@@ -2211,6 +2226,7 @@
               <i data-lucide="calendar-range"></i>
               <span class="hero-booking-date-wrap">
                 <input class="hero-booking-input" type="date" id="heroReturnDate">
+                <span class="date-display" aria-hidden="true">YY/MM/DD</span>
               </span>
             </label>
             <div class="hero-booking-divider" aria-hidden="true"></div>
@@ -2904,6 +2920,25 @@
   if (_hrd) _hrd.min = today;
   if (_hpd && _hrd) _hpd.addEventListener('change', function() { _hrd.min = this.value; });
 
+  // Date display format: YY/MM/DD
+  (function() {
+    function fmtDate(iso) {
+      var p = iso.split('-');
+      return p[0].slice(2) + '/' + p[1] + '/' + p[2];
+    }
+    ['heroPickupDate','heroReturnDate','mb_d1','mb_d2'].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      var disp = el.nextElementSibling;
+      if (!disp || !disp.classList.contains('date-display')) return;
+      el.addEventListener('change', function() {
+        if (this.value) { disp.textContent = fmtDate(this.value); disp.classList.add('has-value'); }
+        else { disp.textContent = 'YY/MM/DD'; disp.classList.remove('has-value'); }
+      });
+      if (el.value) { disp.textContent = fmtDate(el.value); disp.classList.add('has-value'); }
+    });
+  })();
+
   // FAQ
   function toggleFaq(btn) {
     const item = btn.parentElement;
@@ -2994,6 +3029,7 @@
             <i data-lucide="calendar-days"></i>
             <span class="hero-booking-date-wrap">
               <input class="hero-booking-input" type="date" id="mb_d1">
+              <span class="date-display" aria-hidden="true">YY/MM/DD</span>
             </span>
           </label>
           <div class="hero-booking-divider" aria-hidden="true"></div>
@@ -3012,6 +3048,7 @@
             <i data-lucide="calendar-range"></i>
             <span class="hero-booking-date-wrap">
               <input class="hero-booking-input" type="date" id="mb_d2">
+              <span class="date-display" aria-hidden="true">YY/MM/DD</span>
             </span>
           </label>
           <div class="hero-booking-divider" aria-hidden="true"></div>
