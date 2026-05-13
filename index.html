@@ -2041,9 +2041,32 @@
       }
       .mb-sheet__trust .hero-trust-item { font-size: 10px; }
     }
+
+    /* ── Viewport edge blur ── */
+    .vp-blur-top, .vp-blur-bottom {
+      position: fixed;
+      left: 0; right: 0;
+      height: 80px;
+      z-index: 48;
+      pointer-events: none;
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+    }
+    .vp-blur-top {
+      top: 64px;
+      -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+      mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+    }
+    .vp-blur-bottom {
+      bottom: 0;
+      -webkit-mask-image: linear-gradient(to top, black 0%, transparent 100%);
+      mask-image: linear-gradient(to top, black 0%, transparent 100%);
+    }
   </style>
 </head>
 <body>
+  <div class="vp-blur-top" aria-hidden="true"></div>
+  <div class="vp-blur-bottom" aria-hidden="true"></div>
 
 <!-- ── NAV ── -->
 <nav>
