@@ -498,8 +498,38 @@
     }
     .newsletter-btn:hover { background: var(--gold-bright); }
 
-    /* ── FOOTER ── */
 /* ── FOOTER ── */
+    @media (max-width: 640px) {
+            }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .fleet-hero { padding-bottom: 28px; }
+      .fleet-tabs { padding-bottom: 16px; margin-bottom: 16px; }
+      .car-grid { grid-template-columns: repeat(2, 1fr); }
+      .newsletter {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .newsletter-left {
+        width: 100%;
+        max-width: 100%;
+      }
+      .newsletter-form { max-width: 100%; width: 100%; }
+    }
+    @media (max-width: 640px) {
+      .nav-inner { padding: 0 20px; }
+      .nav-left { gap: 10px; }
+      .fleet-hero { padding: 100px 20px 40px; }
+      .fleet-content { padding: 0 20px 80px; }
+      nav .nav-links { display: none; }
+      .nav-menu-btn { display: flex; }
+      .car-grid { grid-template-columns: 1fr; gap: 16px; }
+      .newsletter { padding: 32px 24px; }
+      .newsletter-form { flex-direction: column; }
+      }
+  
+    /* ── FOOTER ── */
     footer {
       background: #000;
       padding: 45px 0 40px;
@@ -546,33 +576,6 @@
       .footer-desc { white-space: normal; }
     }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 1024px) {
-      .fleet-hero { padding-bottom: 28px; }
-      .fleet-tabs { padding-bottom: 16px; margin-bottom: 16px; }
-      .car-grid { grid-template-columns: repeat(2, 1fr); }
-      .newsletter {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .newsletter-left {
-        width: 100%;
-        max-width: 100%;
-      }
-      .newsletter-form { max-width: 100%; width: 100%; }
-    }
-    @media (max-width: 640px) {
-      .nav-inner { padding: 0 20px; }
-      .nav-left { gap: 10px; }
-      .fleet-hero { padding: 100px 20px 40px; }
-      .fleet-content { padding: 0 20px 80px; }
-      nav .nav-links { display: none; }
-      .nav-menu-btn { display: flex; }
-      .car-grid { grid-template-columns: 1fr; gap: 16px; }
-      .newsletter { padding: 32px 24px; }
-      .newsletter-form { flex-direction: column; }
-      footer { padding: 32px 20px; }
-    }
   </style>
 </head>
 <body>
