@@ -1839,7 +1839,9 @@
       .adv-card { padding: 28px 24px; }
       .cars-section { padding: 72px 0; }
       .cars-header { padding: 0 0 0 var(--container-padding); margin: 0 0 32px 0; max-width: none; }
-      .car-strip-grid { display: flex; flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scroll-snap-type: x mandatory; gap: 12px; padding-left: var(--container-padding); padding-right: var(--container-padding); }
+      .car-strip-grid { display: flex; flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scroll-snap-type: x mandatory; gap: 12px; padding: 0; }
+      .car-strip-grid::before,
+      .car-strip-grid::after { content: ''; display: block; min-width: var(--container-padding); flex-shrink: 0; }
       .car-strip-card { flex: 0 0 38vw; max-width: 38vw; scroll-snap-align: start; }
       .car-strip-card:hover { transform: none; box-shadow: none; }
       .cat-card-img { width: 100%; margin: 0; height: 120px; }
