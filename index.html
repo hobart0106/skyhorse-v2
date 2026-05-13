@@ -3021,11 +3021,10 @@
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
   <script>
     const lenis = new Lenis({
-      duration: 0.5,
-      easing: function(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; },
+      lerp: 0.1,
       smoothWheel: true,
-      wheelMultiplier: 1.1,
-      touchMultiplier: 1.2,
+      wheelMultiplier: 1,
+      touchMultiplier: 1.5,
     });
     function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
