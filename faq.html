@@ -740,6 +740,27 @@
   // Init Lucide icons
   lucide.createIcons();
 
+  // Auto-activate tab from URL hash
+  (function() {
+    var hash = window.location.hash.replace('#', '');
+    if (hash) {
+      var targetTab = document.querySelector('.faq-tab[data-tab="' + hash + '"]');
+      var targetPanel = document.getElementById('panel-' + hash);
+      if (targetTab && targetPanel) {
+        document.querySelectorAll('.faq-tab').forEach(function(t) {
+          t.classList.remove('active'); t.setAttribute('aria-selected','false');
+        });
+        document.querySelectorAll('.faq-panel').forEach(function(p) {
+          p.classList.remove('active');
+        });
+        targetTab.classList.add('active');
+        targetTab.setAttribute('aria-selected','true');
+        targetPanel.classList.add('active');
+      }
+    }
+  })();
+
+
     const navMenuBtn = document.querySelector('.nav-menu-btn');
   const navMobilePanel = document.getElementById('mobile-nav-panel');
   const navMobileBackdrop = document.querySelector('.nav-mobile-backdrop');
