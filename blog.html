@@ -559,9 +559,36 @@
       .newsletter-form { flex-direction: column; }
       footer { padding: 32px 20px; }
     }
+  
+    /* ── Viewport edge blur (scroll-activated) ── */
+    .vp-blur-top, .vp-blur-bottom {
+      position: fixed;
+      left: 0; right: 0;
+      height: 80px;
+      z-index: 48;
+      pointer-events: none;
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    body.is-scrolling .vp-blur-top,
+    body.is-scrolling .vp-blur-bottom { opacity: 1; }
+    .vp-blur-top {
+      top: 64px;
+      -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+      mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+    }
+    .vp-blur-bottom {
+      bottom: 0;
+      -webkit-mask-image: linear-gradient(to top, black 0%, transparent 100%);
+      mask-image: linear-gradient(to top, black 0%, transparent 100%);
+    }
   </style>
 </head>
 <body>
+  <div class="vp-blur-top" aria-hidden="true"></div>
+  <div class="vp-blur-bottom" aria-hidden="true"></div>
 
 <!-- ── NAV ── -->
 <nav>
@@ -868,5 +895,15 @@
   });
 </script>
 
+  <script>
+  (function() {
+    var t;
+    window.addEventListener('scroll', function() {
+      document.body.classList.add('is-scrolling');
+      clearTimeout(t);
+      t = setTimeout(function() { document.body.classList.remove('is-scrolling'); }, 300);
+    }, { passive: true });
+  })();
+  </script>
 </body>
 </html>
