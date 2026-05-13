@@ -1718,13 +1718,18 @@
       .nav-menu-btn { display: flex; }
     }
     @media (max-width: 1280px) {
+      .hero { min-height: max(520px, 65vh); }
       .hero-content {
-        padding: 40px 40px 0;
-        min-height: calc(60vh - 92px);
+        position: absolute;
+        inset: 0;
+        padding: 64px 40px 24px;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
+        align-items: center;
       }
+      .hero h1 { margin-top: auto; }
+      .hero-sub { margin-bottom: 16px; }
       .hero-head {
         gap: 12px;
         flex: 0 0 auto;
@@ -1733,7 +1738,8 @@
       .hero-booking-card {
         padding: 18px;
         border-radius: 16px;
-        margin: 24px auto 8px;
+        margin: auto 0 0;
+        width: 100%;
       }
       .hero-booking-form {
         grid-template-columns: repeat(2, minmax(0, 1fr));
