@@ -118,6 +118,25 @@
     }
     .nav-links a:hover { color: var(--ink-primary); background: rgba(255,255,255,0.04); }
     .nav-links a.active { color: var(--ink-primary); background: rgba(255,255,255,0.06); }
+    .nav-home-btn {
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--ink-secondary);
+      text-decoration: none;
+      transition: color .2s ease, border-color .2s ease, background .2s ease;
+    }
+    .nav-home-btn:hover {
+      color: var(--ink-primary);
+      border-color: rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.04);
+    }
     .nav-menu-btn {
       width: 44px;
       height: 44px;
@@ -612,10 +631,9 @@
       <a href="blog.html" class="active">自駕攻略</a>
       <a href="index.html">首頁</a>
     </div>
-        <button class="nav-menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="mobile-nav-panel">
-      <span class="nav-icon nav-icon-menu"><i data-lucide="menu" style="width:20px;height:20px"></i></span>
-      <span class="nav-icon nav-icon-close"><i data-lucide="x" style="width:20px;height:20px"></i></span>
-    </button>
+<a href="index.html" class="nav-home-btn" aria-label="返回首頁">
+      <i data-lucide="house" style="width:20px;height:20px"></i>
+    </a>
   </div>
 </nav>
 <div class="nav-mobile-backdrop" data-nav-close></div>
