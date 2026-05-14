@@ -174,28 +174,20 @@
       position: fixed;
       inset: 0;
       z-index: 120;
-      background: #000;
+      background: #060606;
       display: none;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      padding: 0;
-      overflow-y: auto;
-      overscroll-behavior: contain;
-      box-sizing: border-box;
       min-height: 100dvh;
+      overflow: hidden;
     }
     .nav-mobile-panel.is-open { display: flex; }
     .nav-mobile-brand {
-      display: inline-flex;
-      align-items: center;
+      display: flex;
       justify-content: center;
-      position: absolute;
-      top: 80px;
-      left: 50%;
-      transform: translateX(-50%);
-      margin: 0;
+      padding-top: 72px;
       text-decoration: none;
+      flex-shrink: 0;
     }
     .nav-mobile-brand img {
       display: block;
@@ -204,46 +196,59 @@
       height: auto;
     }
     .nav-mobile-links {
+      flex: 1;
       width: 100%;
-      max-width: 260px;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
       gap: 0;
-      text-align: center;
     }
-    .nav-mobile-panel a {
+    .nav-mobile-links a {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: auto;
       padding: 0;
-      border-radius: 0;
       background: none;
       color: var(--ink-primary);
-      font-size: 20px;
+      font-family: var(--font-display);
+      font-size: 24px;
       font-weight: 500;
-      line-height: 68px;
-      letter-spacing: -0.41px;
-      transition: color .15s ease, opacity .15s ease;
+      line-height: 72px;
+      letter-spacing: -0.5px;
+      transition: color .15s ease;
       text-decoration: none;
     }
-    .nav-mobile-panel a:hover {
-      color: var(--gold);
-      background: transparent;
-    }
-    .nav-mobile-panel a.active {
-      color: var(--gold);
-      background: transparent;
-    }
+    .nav-mobile-links a:hover { color: var(--gold); }
+    .nav-mobile-links a.active { color: var(--gold); }
     .nav-mobile-panel a.nav-link-disabled {
-      color: rgba(255,255,255,0.36);
+      color: rgba(255,255,255,0.3);
       pointer-events: none;
     }
-    .nav-mobile-panel a.nav-link-disabled:hover {
-      color: rgba(255,255,255,0.36) !important;
-      background: transparent !important;
+    .nav-mobile-cta {
+      align-self: stretch;
+      background: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 88px;
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+      flex-shrink: 0;
     }
+    .nav-mobile-book {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: #060606;
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      text-decoration: none;
+      line-height: 1;
+    }
+    .nav-mobile-book svg { flex-shrink: 0; }
     .nav-mobile-backdrop {
       display: none !important;
     }
@@ -489,7 +494,12 @@
     <div class="nav-mobile-links">
     <a href="index.html#airports">服務據點</a>
     <a href="faq.html" class="active">常見問題</a>
-    <a href="https://skyhorseauto.com/book/?ssid=pTxGMOleYqc0" target="_blank" rel="noopener">立即預訂</a>
+  </div>
+  <div class="nav-mobile-cta">
+    <a href="https://skyhorseauto.com/book/?ssid=pTxGMOleYqc0" target="_blank" rel="noopener" class="nav-mobile-book">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="8 14 10 16 16 11"/></svg>
+      立即預訂
+    </a>
   </div>
 </div>
 
