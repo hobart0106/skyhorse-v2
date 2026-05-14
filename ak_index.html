@@ -451,19 +451,6 @@
     .btn-ghost:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
     .btn-ghost svg,
     .btn-ghost i { width: 16px; height: 16px; }
-    .hero-scroll {
-      position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
-      display: flex; flex-direction: column; align-items: center; gap: 8px;
-      font-family: var(--font-mono); font-size: 9px; letter-spacing: 2px;
-      color: #8A8A8A; text-transform: uppercase;
-      opacity: 0; animation: fadeUp 0.6s var(--ease-out) 1s forwards;
-    }
-    .hero-scroll-line {
-      width: 1px; height: 40px;
-      background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
-      animation: scrollPulse 2s ease-in-out infinite;
-    }
-
     /* ══════════════════════════════════════
        STATS BAR
     ══════════════════════════════════════ */
@@ -1608,9 +1595,7 @@
     @keyframes fadeUp {
       to { opacity: 1; transform: translateY(0); }
     }
-    @keyframes scrollPulse {
-      0%, 100% { opacity: 0.3; }
-      50% { opacity: 0.8; }
+    50% { opacity: 0.8; }
     }
     .reveal {
       opacity: 0;
@@ -1869,10 +1854,6 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
         </a>
       </div>
-    </div>
-    <div class="hero-scroll">
-      <div class="hero-scroll-line"></div>
-      scroll
     </div>
   </section>
 
