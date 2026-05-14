@@ -2644,7 +2644,7 @@
   window.addEventListener('scroll', function(){
     var scrolled = window.scrollY;
     var total = document.documentElement.scrollHeight - window.innerHeight;
-    btn.classList.toggle('btt-visible', total > 0 && scrolled / total > 0.5);
+    btn.classList.toggle('btt-visible', total > 0 && scrolled / total > 0.33);
   }, { passive: true });
   btn.addEventListener('click', function(){
     window.scrollTo({ top: 0, behavior: 'smooth' });
