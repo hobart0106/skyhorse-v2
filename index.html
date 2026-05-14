@@ -893,6 +893,11 @@
       height: 14px;
       color: var(--gold);
     }
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .nav-menu-btn { display: flex; }
+      .nav-inner { max-width: 100%; }
+    }
     @media (max-width: 768px) {
     .blog-cta-section { padding: 32px 0; }
     .blog-cta-inner { padding: 0 20px; }
@@ -1726,9 +1731,7 @@
        RESPONSIVE
     ══════════════════════════════════════ */
     @media (max-width: 1280px) {
-      .nav-links { display: none; }
-      .nav-menu-btn { display: flex; }
-      .nav-inner { max-width: 100%; }
+
     }
     @media (max-width: 1280px) {
       .hero { min-height: max(520px, 65vh); }
