@@ -1753,6 +1753,44 @@
       -webkit-mask-image: linear-gradient(to top, black 0%, transparent 100%);
       mask-image: linear-gradient(to top, black 0%, transparent 100%);
     }
+
+    /* ── BACK TO TOP ── */
+    .back-to-top {
+      position: fixed;
+      bottom: 28px;
+      right: 24px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 20px;
+      background: rgba(34,34,34,0.85);
+      border: 1px solid #3b3b3b;
+      border-radius: 26px;
+      color: #fff;
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+      cursor: pointer;
+      z-index: 89;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px);
+      transition: opacity 0.25s var(--ease-out), transform 0.25s var(--ease-out);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      text-decoration: none;
+    }
+    .back-to-top.btt-visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+    .back-to-top:hover {
+      background: rgba(55,55,55,0.9);
+      border-color: #555;
+    }
+    .back-to-top svg { flex-shrink: 0; }
   </style>
 </head>
 <body>
@@ -2590,5 +2628,25 @@
     }, { passive: true });
   })();
   </script>
+<button class="back-to-top" id="backToTop" aria-label="返回頂部">
+  返回上層
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M17 11l-5-5-5 5"/><path d="M17 18l-5-5-5 5"/>
+  </svg>
+</button>
+<script>
+(function(){
+  var btn = document.getElementById('backToTop');
+  if (!btn) return;
+  window.addEventListener('scroll', function(){
+    var scrolled = window.scrollY;
+    var total = document.documentElement.scrollHeight - window.innerHeight;
+    btn.classList.toggle('btt-visible', total > 0 && scrolled / total > 0.5);
+  }, { passive: true });
+  btn.addEventListener('click', function(){
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
+</script>
 </body>
 </html>
