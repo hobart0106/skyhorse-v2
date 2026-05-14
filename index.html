@@ -3225,20 +3225,35 @@
   var links = Array.from(sw.querySelectorAll('.nav-business-link'));
   if (!pill || !active) return;
 
-  // Base = first link's offsetLeft (pill CSS left:4px ≈ links[0].offsetLeft)
-  var base = links[0].offsetLeft;
+  function initPill(animated) {
+    var base = links[0].offsetLeft;
+    if (!animated) {
+      pill.style.transition = 'none';
+      pill.style.width = active.offsetWidth + 'px';
+      pill.style.transform = 'translateX(' + (active.offsetLeft - base) + 'px)';
+      requestAnimationFrame(function(){ requestAnimationFrame(function(){ pill.style.transition = ''; }); });
+    } else {
+      pill.style.width = active.offsetWidth + 'px';
+      pill.style.transform = 'translateX(' + (active.offsetLeft - base) + 'px)';
+    }
+  }
 
-  // Init pill without transition (prevent load animation)
-  pill.style.transition = 'none';
-  pill.style.width = active.offsetWidth + 'px';
-  pill.style.transform = 'translateX(' + (active.offsetLeft - base) + 'px)';
-  requestAnimationFrame(function(){ requestAnimationFrame(function(){ pill.style.transition = ''; }); });
+  // Init on load (no animation)
+  initPill(false);
+
+  // Re-init on resize (no animation, debounced)
+  var resizeTimer;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() { initPill(false); }, 80);
+  });
 
   links.forEach(function(link) {
     link.addEventListener('click', function(e) {
       if (link === active) return;
       e.preventDefault();
       var href = link.href;
+      var base = links[0].offsetLeft;
       pill.style.width = link.offsetWidth + 'px';
       pill.style.transform = 'translateX(' + (link.offsetLeft - base) + 'px)';
       active.classList.remove('is-active');
