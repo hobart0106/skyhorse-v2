@@ -1064,12 +1064,7 @@
       text-align: center;
       position: relative;
     }
-    .stat-item + .stat-item::before {
-      content: ''; position: absolute; left: -20px; top: 50%;
-      transform: translateY(-50%);
-      width: 1px; height: 40px;
-      background: var(--border);
-    }
+
     .stat-num {
       font-family: var(--font-zh);
       font-size: 40px; font-weight: 700;
@@ -1901,7 +1896,6 @@
       .footer-top { grid-template-columns: 1fr; gap: 32px; }
       .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
       .stats-inner { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; padding: 0 20px; }
-      .stat-item + .stat-item::before { left: -6px; height: 32px; }
       .stat-num { font-size: 22px; letter-spacing: -1px; }
       .cat-card-price {
         display: none;
