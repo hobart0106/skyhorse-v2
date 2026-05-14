@@ -1,0 +1,286 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #060606; color: #F2F2F2; font-family: 'Space Grotesk', sans-serif; padding: 40px; }
+  h1 { color: #FFDC22; font-size: 18px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 6px; }
+  .subtitle { color: #8A8A8A; font-size: 13px; margin-bottom: 32px; }
+  .component { background: #0e0e0e; border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 24px; margin-bottom: 24px; }
+  .comp-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+  .comp-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #4A4A4A; background: #161616; border-radius: 6px; padding: 3px 8px; }
+  .comp-name { font-size: 15px; font-weight: 600; color: #F2F2F2; }
+  .comp-class { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #FFDC22; }
+  .preview { display: flex; flex-wrap: wrap; gap: 20px; padding: 28px; background: #060606; border-radius: 10px; margin-bottom: 4px; }
+  .spec { font-size: 12px; color: #8A8A8A; line-height: 1.9; margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.05); }
+  .spec b { color: #F2F2F2; font-weight: 500; }
+  .note { font-size: 11px; background: rgba(255,220,34,0.06); border: 1px solid rgba(255,220,34,0.15); border-radius: 6px; padding: 8px 12px; color: #8A8A8A; margin-top: 10px; }
+  .note b { color: #FFDC22; }
+
+  /* ═══ TOUR CARD (.tour-card) ═══ */
+  .tour-card {
+    background: #111; border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px; overflow: hidden; width: 300px;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+  }
+  .tour-card:hover {
+    border-color: rgba(255,255,255,0.12);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,220,34,0.08);
+  }
+  .tour-card__img {
+    position: relative; aspect-ratio: 16/9;
+    background: linear-gradient(135deg, #1a2a3a, #0a1520); overflow: hidden;
+  }
+  .tour-card__img-placeholder {
+    width: 100%; height: 100%;
+    background: linear-gradient(160deg, #1a3040 0%, #0d1e2a 50%, #1a2a1a 100%);
+    display: flex; align-items: center; justify-content: center;
+    color: #2a3a4a; font-size: 12px;
+  }
+  .tour-card:hover .tour-card__img img { transform: scale(1.04); }
+  .tour-card__badge {
+    position: absolute; top: 14px; left: 14px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 9px; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase;
+    border-radius: 4px; padding: 4px 8px;
+  }
+  .tour-card__badge--hot {
+    background: rgba(255,220,34,0.12);
+    border: 1px solid rgba(255,220,34,0.4);
+    color: #FFDC22;
+  }
+  .tour-card__badge--new {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #fff;
+  }
+  .tour-card__body { padding: 22px; }
+  .tour-card__tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 500;
+    color: #8A8A8A; margin-bottom: 8px; letter-spacing: 0.5px;
+  }
+  .tour-card__title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px; font-weight: 700;
+    color: #F2F2F2; line-height: 1.35;
+    margin-bottom: 10px; letter-spacing: -0.3px;
+  }
+  .tour-card__desc {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 13px; font-weight: 300;
+    color: #8A8A8A; line-height: 1.6;
+    margin-bottom: 14px;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .tour-card__highlights {
+    display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 18px;
+  }
+  .tour-card__highlights span {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px; font-weight: 500;
+    color: #8A8A8A; background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px; padding: 3px 12px;
+  }
+  .tour-card__footer {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .tour-card__duration {
+    display: flex; align-items: center; gap: 5px;
+    font-size: 12px; color: #8A8A8A;
+  }
+  .tour-card__duration svg { width: 13px; height: 13px; }
+  .tour-card__price { font-size: 12px; color: #8A8A8A; }
+  .tour-card__price strong {
+    font-size: 18px; font-weight: 800;
+    color: #FFDC22; letter-spacing: -0.5px;
+  }
+
+  /* ═══ FOOTER (.footer) ═══ */
+  .footer { background: #060606; border-top: 1px solid rgba(255,255,255,0.06); padding: 64px 0 32px; width: 100%; }
+  .footer-inner { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px; padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    margin-bottom: 28px;
+  }
+  .footer-logo {
+    display: flex; align-items: center; gap: 8px;
+    text-decoration: none; margin-bottom: 14px;
+  }
+  .footer-logo-mark {
+    width: 32px; height: 32px;
+    background: #FFDC22; border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900; color: #060606; font-size: 14px;
+  }
+  .footer-logo-text {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px; font-weight: 600; color: #F2F2F2;
+  }
+  .footer-logo-text span { color: #FFDC22; }
+  .footer-desc {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 13px; font-weight: 300;
+    color: #4A4A4A; line-height: 1.7; max-width: 240px;
+  }
+  .footer-social { display: flex; gap: 8px; margin-top: 18px; }
+  .footer-social a {
+    width: 34px; height: 34px; background: #161616;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 6px; display: flex; align-items: center;
+    justify-content: center; color: #8A8A8A; text-decoration: none;
+    font-size: 14px; transition: border-color 0.15s, color 0.15s;
+  }
+  .footer-social a:hover { border-color: #FFDC22; color: #FFDC22; }
+  .footer-col-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px; font-weight: 600;
+    color: #8A8A8A; letter-spacing: 1px;
+    text-transform: uppercase; margin-bottom: 14px;
+  }
+  .footer-links { display: flex; flex-direction: column; gap: 10px; }
+  .footer-links a {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 13px; color: #4A4A4A;
+    text-decoration: none; transition: color 0.15s;
+  }
+  .footer-links a:hover { color: #F2F2F2; }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 12px; color: #4A4A4A;
+  }
+  .footer-bottom-links { display: flex; gap: 16px; }
+  .footer-bottom a { color: #4A4A4A; text-decoration: none; }
+  .footer-bottom a:hover { color: #8A8A8A; }
+</style>
+
+<h1>Section 2 — 元件 #11 & #12</h1>
+<p class="subtitle">Tour Card + Footer — 從現有 ak_index.html / index.html 標準化</p>
+
+<!-- Tour Card -->
+<div class="component">
+  <div class="comp-header">
+    <span class="comp-num">11</span>
+    <span class="comp-name">Tour Card</span>
+    <span class="comp-class">.tour-card（現為 .ft-card）</span>
+  </div>
+  <div class="preview">
+    <div class="tour-card">
+      <div class="tour-card__img">
+        <div class="tour-card__img-placeholder">[ 封面圖 16:9 ]</div>
+        <span class="tour-card__badge tour-card__badge--hot">夏季主打</span>
+      </div>
+      <div class="tour-card__body">
+        <div class="tour-card__tag">6–8月出發</div>
+        <div class="tour-card__title">2026 阿拉斯加 夏季日不落<br>5日冰川・峽灣・野生自然之旅</div>
+        <div class="tour-card__desc">五天四夜全包，從安克拉治出發，波蒂奇冰川遊船、馬塔努斯卡冰川健行、基奈峽灣賞鯨。</div>
+        <div class="tour-card__highlights">
+          <span>5天4夜</span><span>冰川健行</span><span>峽灣遊船</span><span>賞鯨</span>
+        </div>
+        <div class="tour-card__footer">
+          <div class="tour-card__duration">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6.5"/><path d="M8 5v3.5l2 1.5"/></svg>
+            5 天
+          </div>
+          <div class="tour-card__price">From <strong>US$2,800</strong></div>
+        </div>
+      </div>
+    </div>
+    <div class="tour-card">
+      <div class="tour-card__img">
+        <div class="tour-card__img-placeholder" style="background:linear-gradient(160deg,#1a1a3a,#0d0d20)">[ 封面圖 16:9 ]</div>
+        <span class="tour-card__badge tour-card__badge--new">新上架</span>
+      </div>
+      <div class="tour-card__body">
+        <div class="tour-card__tag">11月–2月出發</div>
+        <div class="tour-card__title">2026 阿拉斯加 冬季極光<br>7日極地追光之旅</div>
+        <div class="tour-card__desc">費爾班克斯極光觀測、狗拉雪橇、冰釣體驗，深入阿拉斯加冬日。</div>
+        <div class="tour-card__highlights">
+          <span>7天6夜</span><span>極光觀測</span><span>雪橇</span>
+        </div>
+        <div class="tour-card__footer">
+          <div class="tour-card__duration">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6.5"/><path d="M8 5v3.5l2 1.5"/></svg>
+            7 天
+          </div>
+          <div class="tour-card__price">From <strong>US$3,200</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="spec">
+    <b>結構：</b>封面圖（16:9）+ badge overlay + body（tag / title / desc / highlights / footer）<br>
+    <b>badge 類型：</b><b style="color:#FFDC22">--hot</b>（gold）、<b>--new</b>（white）<br>
+    <b>highlights：</b>使用 .chip-tag，限 4 個以內<br>
+    <b>footer：</b>左側時鐘 icon + 天數，右側 "From" + 金色價格<br>
+    <b>hover：</b>translateY(-4px) + gold glow shadow，與其他卡片一致
+  </div>
+  <div class="note"><b>命名更新：</b>現有 <code>.ft-card</code> 統一改為 <code>.tour-card</code>，語義更清晰</div>
+</div>
+
+<!-- Footer -->
+<div class="component">
+  <div class="comp-header">
+    <span class="comp-num">12</span>
+    <span class="comp-name">Footer</span>
+    <span class="comp-class">.footer</span>
+  </div>
+  <div class="preview" style="padding:0; display:block;">
+    <div class="footer">
+      <div class="footer-inner">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <a class="footer-logo">
+              <div class="footer-logo-mark">S</div>
+              <span class="footer-logo-text">Sky<span>Horse</span></span>
+            </a>
+            <p class="footer-desc">加州自駕租車首選。2015 年成立，深耕美西機場租車市場，以中文服務與透明價格著稱。</p>
+            <div class="footer-social">
+              <a title="Facebook">f</a>
+              <a title="Instagram">ig</a>
+              <a title="小紅書">小</a>
+              <a title="TikTok">tt</a>
+            </div>
+          </div>
+          <div>
+            <div class="footer-col-title">美國租車</div>
+            <div class="footer-links">
+              <a>機場取還車</a><a>單程異地還車</a><a>保險加購</a><a>GPS / 兒童安全座椅</a><a>司機服務</a>
+            </div>
+          </div>
+          <div>
+            <div class="footer-col-title">阿拉斯加</div>
+            <div class="footer-links">
+              <a>夏季日不落</a><a>冬季極光</a><a>單日體驗</a><a>為什麼選 Sky Horse</a><a>常見問題</a>
+            </div>
+          </div>
+          <div>
+            <div class="footer-col-title">聯絡我們</div>
+            <div class="footer-links">
+              <a>LINE @skyhorse</a><a>contact@skyhorseauto.com</a><a>+1-949-439-7432</a><a>常見問題</a><a>使用條款</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© 2025 SkyHorse Auto LLC. All rights reserved.</span>
+          <div class="footer-bottom-links">
+            <a>隱私權政策</a>
+            <a>服務條款</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="spec">
+    <b>版面：</b>4 欄 grid（2fr 1fr 1fr 1fr），左欄品牌 + 社交，右三欄導航<br>
+    <b>mobile：</b>單欄堆疊，footer-bottom 置中<br>
+    <b>social icons：</b>36px 方形 --r-sm，hover 亮 gold border<br>
+    <b>links：</b>預設 --ink-tertiary，hover --ink-primary<br>
+    <b>底部版權列：</b>左側版權文字，右側隱私 / 條款連結
+  </div>
+</div>

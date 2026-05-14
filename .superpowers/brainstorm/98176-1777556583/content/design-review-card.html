@@ -1,0 +1,195 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #060606; color: #F2F2F2; font-family: 'Space Grotesk', sans-serif; padding: 40px; }
+  h1 { color: #FFDC22; font-size: 18px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 6px; }
+  .subtitle { color: #8A8A8A; font-size: 13px; margin-bottom: 32px; }
+  .component { background: #0e0e0e; border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 24px; margin-bottom: 20px; }
+  .comp-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+  .comp-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #4A4A4A; background: #161616; border-radius: 6px; padding: 3px 8px; }
+  .comp-name { font-size: 15px; font-weight: 600; color: #F2F2F2; }
+  .comp-class { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #FFDC22; }
+  .variants-label { font-size: 11px; color: #4A4A4A; text-transform: uppercase; letter-spacing: 0.5px; margin: 20px 0 14px; }
+  .preview { display: flex; flex-wrap: wrap; gap: 16px; padding: 32px; background: #060606; border-radius: 10px; }
+  .spec { font-size: 12px; color: #8A8A8A; line-height: 1.9; margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.06); }
+  .spec b { color: #F2F2F2; font-weight: 500; }
+
+  /* === Review Card === */
+  .review-card {
+    background: #111;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    padding: 28px 28px 24px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: default;
+  }
+  .review-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+  }
+
+  /* Quote mark */
+  .review-quote-mark {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 64px;
+    font-weight: 700;
+    color: rgba(255,220,34,0.12);
+    line-height: 0.8;
+    margin-bottom: 16px;
+    user-select: none;
+    letter-spacing: -2px;
+  }
+
+  /* Quote text */
+  .review-text {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #F2F2F2;
+    line-height: 1.7;
+    margin-bottom: 24px;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Attribution */
+  .review-attr {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .review-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+    border: 1px solid rgba(255,255,255,0.08);
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    color: #4A4A4A; font-size: 18px;
+  }
+  .review-attr-text {}
+  .review-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #F2F2F2;
+    margin-bottom: 3px;
+  }
+  .review-meta {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 12px;
+    color: #4A4A4A;
+  }
+  .review-meta .sep { margin: 0 4px; }
+
+  /* === Rating stars variant === */
+  .review-stars {
+    display: flex; gap: 3px;
+    margin-bottom: 14px;
+  }
+  .star { color: #FFDC22; font-size: 13px; }
+  .star.empty { color: #2a2a2a; }
+
+  /* === Large / featured variant === */
+  .review-card-lg {
+    background: #111;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    padding: 40px;
+    width: 100%;
+  }
+  .review-card-lg .review-quote-mark { font-size: 96px; }
+  .review-card-lg .review-text {
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -0.3px;
+    -webkit-line-clamp: unset;
+  }
+  .review-card-lg .review-avatar { width: 48px; height: 48px; }
+  .review-card-lg .review-name { font-size: 15px; }
+</style>
+
+<h1>Section 2 — 元件 #10</h1>
+<p class="subtitle">Review Card（用戶評論卡）— 從 .celeb-quote-panel 標準化為獨立卡片</p>
+
+<div class="component">
+  <div class="comp-header">
+    <span class="comp-num">10</span>
+    <span class="comp-name">Review Card</span>
+    <span class="comp-class">.review-card</span>
+  </div>
+
+  <!-- Standard cards -->
+  <div class="variants-label">變體 A — 標準卡片（網格列表用）</div>
+  <div class="preview">
+    <div class="review-card">
+      <div class="review-quote-mark">"</div>
+      <div class="review-text">看到了美麗的極光，讓我們留下美好的回憶！導遊非常專業，解說...</div>
+      <div class="review-attr">
+        <div class="review-avatar">👤</div>
+        <div class="review-attr-text">
+          <div class="review-name">林先生</div>
+          <div class="review-meta">冬季行程<span class="sep">·</span>2025年12月</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      </div>
+      <div class="review-text">落地就看到車，完全不用等。LINE 回覆超快，有問題直接解決，這就是我想要的租車服務。</div>
+      <div class="review-attr">
+        <div class="review-avatar">👤</div>
+        <div class="review-attr-text">
+          <div class="review-name">陳小姐</div>
+          <div class="review-meta">LAX 取車<span class="sep">·</span>2025年8月</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-quote-mark">"</div>
+      <div class="review-text">中文客服真的差很多，一個 LINE 訊息就解決問題，不用到處找人問。下次去美國還會再租。</div>
+      <div class="review-attr">
+        <div class="review-avatar">👤</div>
+        <div class="review-attr-text">
+          <div class="review-name">王先生</div>
+          <div class="review-meta">SFO 取車<span class="sep">·</span>2025年6月</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Large/featured -->
+  <div class="variants-label">變體 B — 精選大型（section 主角，對應現有 .celeb-quote-panel）</div>
+  <div class="preview">
+    <div class="review-card-lg">
+      <div class="review-quote-mark">"</div>
+      <div class="review-text">落地就看到車，完全不用等。LINE 回覆超快，有問題直接解決，這就是我想要的租車服務。從 LAX 取車到還車整個流程零壓力，下次還會再選 SkyHorse。</div>
+      <div class="review-attr" style="margin-top:28px">
+        <div class="review-avatar" style="width:48px;height:48px">👤</div>
+        <div class="review-attr-text">
+          <div class="review-name" style="font-size:15px">Joeman</div>
+          <div class="review-meta">LAX 公路旅行<span class="sep">·</span>2025年4月</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="spec">
+    <b>quote mark：</b>Space Grotesk 64px，color: --gold-dim（rgba 0.12）— 裝飾性，不可選取<br>
+    <b>text：</b>Noto Sans TC 16px，預設 4 行截斷（-webkit-line-clamp: 4），大型版不截<br>
+    <b>attribution：</b>40px 圓形頭像 + 姓名 + 「行程類型 · 日期」<br>
+    <b>stars 變體：</b>可替換 quote mark，用於強調評分<br>
+    <b>hover：</b>translateY(-3px)，無 gold glow（評論卡比車輛卡低調）<br>
+    <b>與現有 .celeb-quote-panel 的關係：</b>大型變體（B）直接取代之，小型（A）為新增
+  </div>
+</div>

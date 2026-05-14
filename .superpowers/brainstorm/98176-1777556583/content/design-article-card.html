@@ -1,0 +1,197 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #060606; color: #F2F2F2; font-family: 'Space Grotesk', sans-serif; padding: 40px; }
+  h1 { color: #FFDC22; font-size: 18px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 6px; }
+  .subtitle { color: #8A8A8A; font-size: 13px; margin-bottom: 32px; }
+  .component { background: #0e0e0e; border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 24px; margin-bottom: 20px; }
+  .comp-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+  .comp-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #4A4A4A; background: #161616; border-radius: 6px; padding: 3px 8px; }
+  .comp-name { font-size: 15px; font-weight: 600; color: #F2F2F2; }
+  .comp-class { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #FFDC22; }
+  .spec { font-size: 12px; color: #8A8A8A; line-height: 1.8; margin-top: 16px; }
+  .spec b { color: #F2F2F2; font-weight: 500; }
+  .variants-label { font-size: 11px; color: #4A4A4A; text-transform: uppercase; letter-spacing: 0.5px; margin: 16px 0 10px; }
+  .preview { display: flex; flex-wrap: wrap; gap: 20px; padding: 24px; background: #060606; border-radius: 10px; align-items: flex-start; }
+
+  /* === Article Card === */
+  .article-card {
+    background: #111;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: 300px;
+  }
+  .article-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,220,34,0.08);
+  }
+  .article-card-cover {
+    width: 100%;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: #161616;
+  }
+  .article-card-cover img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .article-card:hover .article-card-cover img {
+    transform: scale(1.04);
+  }
+  /* placeholder when no image */
+  .article-card-cover-placeholder {
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, #1a1a1a, #111);
+    display: flex; align-items: center; justify-content: center;
+    color: #2a2a2a; font-size: 13px;
+  }
+  .article-card-body { padding: 20px; }
+  .article-card-category {
+    font-size: 12px;
+    font-weight: 500;
+    color: #8A8A8A;
+    margin-bottom: 10px;
+    font-family: 'Noto Sans TC', sans-serif;
+  }
+  .article-card-title {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: -0.3px;
+    color: #F2F2F2;
+    margin-bottom: 12px;
+  }
+  .article-card-excerpt {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 14px;
+    color: #8A8A8A;
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+  .article-card-date {
+    font-size: 13px;
+    color: #4A4A4A;
+    font-family: 'Noto Sans TC', sans-serif;
+  }
+
+  /* Horizontal variant */
+  .article-card-h {
+    background: #111;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    width: 500px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .article-card-h:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,220,34,0.08);
+  }
+  .article-card-h .article-card-cover {
+    aspect-ratio: unset;
+    height: 100%;
+  }
+  .article-card-h .article-card-title { font-size: 16px; }
+  .article-card-h .article-card-excerpt { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+  /* Featured (large) variant */
+  .article-card-featured {
+    background: #111;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    width: 100%;
+    max-width: 640px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .article-card-featured:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,220,34,0.1);
+  }
+  .article-card-featured .article-card-cover { aspect-ratio: 2/1; }
+  .article-card-featured .article-card-title { font-size: 22px; }
+</style>
+
+<h1>Section 2 — 元件 #08</h1>
+<p class="subtitle">Article Card — 三種尺寸變體</p>
+
+<div class="component">
+  <div class="comp-header">
+    <span class="comp-num">08</span>
+    <span class="comp-name">Article Card</span>
+    <span class="comp-class">.article-card</span>
+  </div>
+
+  <div class="variants-label">變體 A — 標準版（垂直）</div>
+  <div class="preview">
+    <div class="article-card">
+      <div class="article-card-cover">
+        <div class="article-card-cover-placeholder">[ 封面圖片 16:9 ]</div>
+      </div>
+      <div class="article-card-body">
+        <div class="article-card-category">名人推薦</div>
+        <div class="article-card-title">Joeman 實測：我開著 SkyHorse 跑了 2000 公里的真實感想</div>
+        <div class="article-card-excerpt">從 LAX 取車一路向北到舊金山，Joeman 分享這次公路旅行的租車體驗與沿途風景。</div>
+        <div class="article-card-date">2024 年 4 月 25 日</div>
+      </div>
+    </div>
+    <div class="article-card">
+      <div class="article-card-cover">
+        <div class="article-card-cover-placeholder">[ 封面圖片 16:9 ]</div>
+      </div>
+      <div class="article-card-body">
+        <div class="article-card-category">旅遊攻略</div>
+        <div class="article-card-title">阿拉斯加自駕必讀：租車前你需要知道的 10 件事</div>
+        <div class="article-card-excerpt">Denali、Kenai Fjords、冰河灣…阿拉斯加的壯闊風景等著你。</div>
+        <div class="article-card-date">2024 年 3 月 12 日</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="variants-label">變體 B — 橫向版（列表用）</div>
+  <div class="preview">
+    <div class="article-card-h">
+      <div class="article-card-cover">
+        <div class="article-card-cover-placeholder">[ 圖片 ]</div>
+      </div>
+      <div class="article-card-body">
+        <div class="article-card-category">租車指南</div>
+        <div class="article-card-title">美國租車保險完全解析</div>
+        <div class="article-card-excerpt">CDW、LDW、責任險怎麼選？台灣信用卡能否替代？本文完整說明。</div>
+        <div class="article-card-date">2024 年 2 月 8 日</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="variants-label">變體 C — 精選大圖版（首頁主打）</div>
+  <div class="preview">
+    <div class="article-card-featured">
+      <div class="article-card-cover">
+        <div class="article-card-cover-placeholder" style="height:280px">[ 封面圖片 2:1 ]</div>
+      </div>
+      <div class="article-card-body">
+        <div class="article-card-category">精選報導</div>
+        <div class="article-card-title">Route 66 全程自駕：從芝加哥到洛杉磯的 4000 公里公路史詩</div>
+        <div class="article-card-excerpt">美國最傳奇的公路旅程，完整路線規劃、住宿推薦與租車建議。</div>
+        <div class="article-card-date">2024 年 5 月 1 日</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="spec">
+    <b>結構：</b>封面圖（cover）+ 卡片內容（category / title / excerpt / date）<br>
+    <b>cover:</b> 16:9（標準）、2:1（精選），圖片 hover 時輕微放大 scale(1.04)<br>
+    <b>hover:</b> translateY(-4px) + gold glow shadow — 與 vehicle card 一致<br>
+    <b>變體 B</b> 用 CSS grid 橫排，適合文章列表頁<br>
+    <b>變體 C</b> 用 max-width: 640px，作為首頁 featured section 主卡
+  </div>
+</div>

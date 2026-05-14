@@ -1,0 +1,208 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #060606; color: #F2F2F2; font-family: 'Space Grotesk', sans-serif; padding: 40px; }
+  h1 { color: #FFDC22; font-size: 18px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 6px; }
+  .subtitle { color: #8A8A8A; font-size: 13px; margin-bottom: 32px; }
+  .section { margin-bottom: 40px; }
+  .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #4A4A4A; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+
+  /* Architecture diagram */
+  .arch { display: grid; grid-template-columns: 1fr 40px 1fr 40px 1fr; gap: 0; align-items: center; margin-bottom: 32px; }
+  .arch-box { background: #111; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 16px 20px; }
+  .arch-box.gold { border-color: rgba(255,220,34,0.3); background: rgba(255,220,34,0.04); }
+  .arch-title { font-size: 13px; font-weight: 600; color: #F2F2F2; margin-bottom: 6px; }
+  .arch-sub { font-size: 12px; color: #8A8A8A; line-height: 1.5; }
+  .arch-arrow { text-align: center; color: #4A4A4A; font-size: 18px; }
+
+  /* Primitive palette */
+  .palette-row { display: flex; gap: 6px; margin-bottom: 10px; }
+  .swatch { flex: 1; height: 48px; border-radius: 8px; position: relative; }
+  .swatch-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: #4A4A4A; margin-top: 4px; text-align: center; }
+
+  /* Semantic token table */
+  .token-table { width: 100%; border-collapse: collapse; }
+  .token-table th { text-align: left; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #4A4A4A; padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .token-table td { padding: 9px 12px; border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: middle; }
+  .token-table tr:last-child td { border-bottom: none; }
+  .tok-name { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #FFDC22; }
+  .tok-dark, .tok-light { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #8A8A8A; display: flex; align-items: center; gap: 8px; }
+  .dot { width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0; border: 1px solid rgba(255,255,255,0.08); }
+  .tok-usage { font-size: 11px; color: #4A4A4A; }
+  .group-row td { background: #0e0e0e; padding: 6px 12px; }
+  .group-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #4A4A4A; }
+
+  /* Side-by-side preview */
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .theme-card { border-radius: 12px; padding: 24px; border: 1px solid rgba(255,255,255,0.06); }
+  .theme-card.dark { background: #060606; }
+  .theme-card.light { background: #F7F5F0; border-color: rgba(0,0,0,0.08); }
+  .theme-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; }
+  .dark .theme-label { color: #4A4A4A; }
+  .light .theme-label { color: #AAAAAA; font-family: 'Space Grotesk', sans-serif; }
+  .sample-eyebrow-d { font-size: 10px; color: #FFDC22; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+  .sample-eyebrow-l { font-size: 10px; color: #B8860B; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+  .sample-title-d { font-size: 20px; font-weight: 700; color: #F2F2F2; letter-spacing: -0.5px; margin-bottom: 8px; }
+  .sample-title-l { font-size: 20px; font-weight: 700; color: #111111; letter-spacing: -0.5px; margin-bottom: 8px; }
+  .sample-body-d { font-size: 13px; color: #8A8A8A; line-height: 1.6; margin-bottom: 16px; }
+  .sample-body-l { font-size: 13px; color: #666666; line-height: 1.6; margin-bottom: 16px; }
+  .btn-d { background: #FFDC22; color: #060606; font-weight: 700; font-size: 13px; padding: 9px 18px; border-radius: 6px; border: none; display: inline-block; }
+  .btn-l { background: #D4A800; color: #FFFFFF; font-weight: 700; font-size: 13px; padding: 9px 18px; border-radius: 6px; border: none; display: inline-block; }
+  .sample-card-d { background: #111; border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 14px; margin-top: 12px; font-size: 12px; color: #8A8A8A; }
+  .sample-card-l { background: #FFFFFF; border: 1px solid rgba(0,0,0,0.08); border-radius: 10px; padding: 14px; margin-top: 12px; font-size: 12px; color: #666; }
+</style>
+
+<h1>Color Token 架構 — Dark / Light Mode 支援</h1>
+<p class="subtitle">三層架構：原色盤 → Semantic Token → 元件</p>
+
+<!-- Architecture -->
+<div class="section">
+  <div class="section-label">架構設計</div>
+  <div class="arch">
+    <div class="arch-box">
+      <div class="arch-title">Layer 1 — Primitive</div>
+      <div class="arch-sub">原始色值，不直接用於元件<br><code style="color:#FFDC22;font-size:11px">--primitive-gold-400: #FFDC22</code></div>
+    </div>
+    <div class="arch-arrow">→</div>
+    <div class="arch-box gold">
+      <div class="arch-title">Layer 2 — Semantic</div>
+      <div class="arch-sub">有意義的角色名，theme 切換在這層<br><code style="color:#FFDC22;font-size:11px">--color-accent: var(--primitive-gold-400)</code></div>
+    </div>
+    <div class="arch-arrow">→</div>
+    <div class="arch-box">
+      <div class="arch-title">Layer 3 — Component</div>
+      <div class="arch-sub">元件只引用 semantic token<br><code style="color:#FFDC22;font-size:11px">.btn-primary { background: var(--color-accent) }</code></div>
+    </div>
+  </div>
+</div>
+
+<!-- Semantic tokens table -->
+<div class="section">
+  <div class="section-label">Semantic Color Tokens（Dark ↔ Light 對照）</div>
+  <table class="token-table">
+    <tr><th>Token</th><th>Dark Mode</th><th>Light Mode</th><th>用途</th></tr>
+
+    <tr class="group-row"><td colspan="4"><span class="group-label">背景層</span></td></tr>
+    <tr>
+      <td class="tok-name">--color-bg-base</td>
+      <td><div class="tok-dark"><div class="dot" style="background:#060606"></div>#060606</div></td>
+      <td><div class="tok-light"><div class="dot" style="background:#F7F5F0;border-color:rgba(0,0,0,0.1)"></div>#F7F5F0</div></td>
+      <td class="tok-usage">頁面底色</td>
+    </tr>
+    <tr>
+      <td class="tok-name">--color-bg-surface</td>
+      <td><div class="tok-dark"><div class="dot" style="background:#0e0e0e"></div>#0e0e0e</div></td>
+      <td><div class="tok-light"><div class="dot" style="background:#F0EDE6;border-color:rgba(0,0,0,0.1)"></div>#F0EDE6</div></td>
+      <td class="tok-usage">Section 背景</td>
+    </tr>
+    <tr>
+      <td class="tok-name">--color-bg-elevated</td>
+      <td><div class="tok-dark"><div class="dot" style="background:#161616"></div>#161616</div></td>
+      <td><div class="tok-light"><div class="dot" style="background:#E8E4DC;border-color:rgba(0,0,0,0.1)"></div>#E8E4DC</div></td>
+      <td class="tok-usage">Input、hover 背景</td>
+    </tr>
+    <tr>
+      <td class="tok-name">--color-bg-card</td>
+      <td><div class="tok-dark"><div class="dot" style="background:#111111"></div>#111111</div></td>
+      <td><div class="tok-light"><div class="dot" style="background:#FFFFFF;border-color:rgba(0,0,0,0.1)"></div>#FFFFFF</div></td>
+      <td class="tok-usage">Card 底色</td>
+    </tr>
+
+    <tr class="group-row"><td colspan="4"><span class="group-label">文字層</span></td></tr>
+    <tr>
+      <td class="tok-name">--color-ink-primary</td>
+      <td><div class="tok-dark"><div class="dot" style="background:#F2F2F2"></div>#F2F2F2</div></td>
+      <td><div class="tok-light"><div class="dot" style="background:#111111;border-color:rgba(0,0,0,0.2)"></div>#111111</div></td>
+      <td class="tok-usage">主要文字</td>
+    </tr>
+    <tr>
+      <td class="tok-name">--color-ink-secondary</td>
+      <td><div class="tok-dark"><div class="dot" style="background:#8A8A8A"></div>#8A8A8A</div></td>
+      <td><div class="tok-light"><div class="dot" style="background:#555555;border-color:rgba(0,0,0,0.2)"></div>#555555</div></td>
+      <td class="tok-usage">副標、說明文字</td>
+    </tr>
+    <tr>
+      <td class="tok-name">--color-ink-tertiary</td>
+      <td><div class="tok-dark"><div class="dot" style="background:#4A4A4A"></div>#4A4A4A</div></td>
+      <td><div class="tok-light"><div class="dot" style="background:#999999;border-color:rgba(0,0,0,0.1)"></div>#999999</div></td>
+      <td class="tok-usage">時間、meta、placeholder</td>
+    </tr>
+
+    <tr class="group-row"><td colspan="4"><span class="group-label">品牌 / 強調</span></td></tr>
+    <tr>
+      <td class="tok-name">--color-accent</td>
+      <td><div class="tok-dark"><div class="dot" style="background:#FFDC22"></div>#FFDC22</div></td>
+      <td><div class="tok-light"><div class="dot" style="background:#D4A800;border-color:rgba(0,0,0,0.1)"></div>#D4A800</div></td>
+      <td class="tok-usage">CTA、eyebrow、icon（light 加深確保對比）</td>
+    </tr>
+    <tr>
+      <td class="tok-name">--color-accent-dim</td>
+      <td><div class="tok-dark"><div class="dot" style="background:rgba(255,220,34,0.12)"></div>gold 12%</div></td>
+      <td><div class="tok-light"><div class="dot" style="background:rgba(212,168,0,0.12);border-color:rgba(0,0,0,0.06)"></div>gold 12%</div></td>
+      <td class="tok-usage">badge 背景、chip active</td>
+    </tr>
+    <tr>
+      <td class="tok-name">--color-accent-on</td>
+      <td><div class="tok-dark"><div class="dot" style="background:#060606"></div>#060606</div></td>
+      <td><div class="tok-light"><div class="dot" style="background:#FFFFFF;border-color:rgba(0,0,0,0.1)"></div>#FFFFFF</div></td>
+      <td class="tok-usage">accent 按鈕上的文字色</td>
+    </tr>
+
+    <tr class="group-row"><td colspan="4"><span class="group-label">邊框</span></td></tr>
+    <tr>
+      <td class="tok-name">--color-border</td>
+      <td><div class="tok-dark"><div class="dot" style="background:rgba(255,255,255,0.06)"></div>white 6%</div></td>
+      <td><div class="tok-light"><div class="dot" style="background:rgba(0,0,0,0.08);border-color:rgba(0,0,0,0.1)"></div>black 8%</div></td>
+      <td class="tok-usage">card、input 預設邊框</td>
+    </tr>
+    <tr>
+      <td class="tok-name">--color-border-mid</td>
+      <td><div class="tok-dark"><div class="dot" style="background:rgba(255,255,255,0.12)"></div>white 12%</div></td>
+      <td><div class="tok-light"><div class="dot" style="background:rgba(0,0,0,0.15);border-color:rgba(0,0,0,0.15)"></div>black 15%</div></td>
+      <td class="tok-usage">hover 時邊框</td>
+    </tr>
+
+    <tr class="group-row"><td colspan="4"><span class="group-label">狀態色</span></td></tr>
+    <tr>
+      <td class="tok-name">--color-success</td>
+      <td><div class="tok-dark"><div class="dot" style="background:#34C759"></div>#34C759</div></td>
+      <td><div class="tok-light"><div class="dot" style="background:#248A3D;border-color:rgba(0,0,0,0.1)"></div>#248A3D</div></td>
+      <td class="tok-usage">成功狀態</td>
+    </tr>
+    <tr>
+      <td class="tok-name">--color-error</td>
+      <td><div class="tok-dark"><div class="dot" style="background:#FF453A"></div>#FF453A</div></td>
+      <td><div class="tok-light"><div class="dot" style="background:#C0392B;border-color:rgba(0,0,0,0.1)"></div>#C0392B</div></td>
+      <td class="tok-usage">錯誤、警告</td>
+    </tr>
+    <tr>
+      <td class="tok-name">--color-info</td>
+      <td><div class="tok-dark"><div class="dot" style="background:#0A84FF"></div>#0A84FF</div></td>
+      <td><div class="tok-light"><div class="dot" style="background:#0055CC;border-color:rgba(0,0,0,0.1)"></div>#0055CC</div></td>
+      <td class="tok-usage">資訊提示</td>
+    </tr>
+  </table>
+</div>
+
+<!-- Side by side preview -->
+<div class="section">
+  <div class="section-label">Dark vs Light 實際效果預覽</div>
+  <div class="split">
+    <div class="theme-card dark">
+      <div class="theme-label">Dark Mode（預設）</div>
+      <div class="sample-eyebrow-d">精選車款</div>
+      <div class="sample-title-d">四大車型，對應<br>不同旅程需求</div>
+      <div class="sample-body-d">我們了解旅人在異地需要的那份安心感。每一個細節，都是為了讓你的旅程更順暢。</div>
+      <div class="btn-d">立即預約</div>
+      <div class="sample-card-d">Toyota Camry · $45/天 · SFO 可取車</div>
+    </div>
+    <div class="theme-card light">
+      <div class="theme-label" style="color:#AAAAAA">Light Mode</div>
+      <div class="sample-eyebrow-l">精選車款</div>
+      <div class="sample-title-l">四大車型，對應<br>不同旅程需求</div>
+      <div class="sample-body-l">我們了解旅人在異地需要的那份安心感。每一個細節，都是為了讓你的旅程更順暢。</div>
+      <div class="btn-l">立即預約</div>
+      <div class="sample-card-l" style="color:#555">Toyota Camry · $45/天 · SFO 可取車</div>
+    </div>
+  </div>
+</div>

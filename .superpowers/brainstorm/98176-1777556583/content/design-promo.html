@@ -1,0 +1,170 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #060606; color: #F2F2F2; font-family: 'Space Grotesk', sans-serif; padding: 40px; }
+  h1 { color: #FFDC22; font-size: 18px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 6px; }
+  .subtitle { color: #8A8A8A; font-size: 13px; margin-bottom: 32px; }
+  .component { background: #0e0e0e; border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 24px; margin-bottom: 20px; }
+  .comp-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+  .comp-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #4A4A4A; background: #161616; border-radius: 6px; padding: 3px 8px; }
+  .comp-name { font-size: 15px; font-weight: 600; color: #F2F2F2; }
+  .comp-class { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #FFDC22; }
+  .spec { font-size: 12px; color: #8A8A8A; line-height: 1.8; margin-top: 16px; }
+  .spec b { color: #F2F2F2; font-weight: 500; }
+  .variants-label { font-size: 11px; color: #4A4A4A; text-transform: uppercase; letter-spacing: 0.5px; margin: 16px 0 10px; }
+
+  /* === Promo Section Preview === */
+  .promo-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    padding: 56px 40px;
+    background: #0a0a0a;
+    border-radius: 12px;
+  }
+  .promo-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #FFDC22;
+    margin-bottom: 16px;
+  }
+  .promo-eyebrow::before { content: ''; display: block; width: 20px; height: 2px; background: #FFDC22; border-radius: 1px; }
+  .promo-headline {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -1px;
+    color: #F2F2F2;
+    margin-bottom: 16px;
+  }
+  .promo-headline .highlight { color: #FFDC22; }
+  .promo-body {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 14px;
+    color: #8A8A8A;
+    line-height: 1.8;
+    margin-bottom: 28px;
+    max-width: 420px;
+  }
+  .promo-actions { display: flex; align-items: center; gap: 16px; }
+  .btn-primary { background: #FFDC22; color: #060606; font-weight: 700; font-size: 14px; padding: 12px 24px; border-radius: 6px; border: none; cursor: pointer; font-family: 'Space Grotesk', sans-serif; display: inline-flex; align-items: center; gap: 8px; }
+  .promo-nav { display: flex; gap: 8px; }
+  .nav-arrow { width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.12); background: transparent; color: #F2F2F2; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 14px; }
+  .nav-arrow:hover { border-color: rgba(255,220,34,0.4); color: #FFDC22; }
+
+  /* Media card (right side) */
+  .promo-media { position: relative; border-radius: 16px; overflow: hidden; aspect-ratio: 4/3; }
+  .promo-media-inner {
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, #1a1040 0%, #0d0820 40%, #1a0a30 100%);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .media-globe {
+    width: 85%; height: 85%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 40%, #3b2a7a, #1a0f3d 60%, #0a0520);
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 60px rgba(80, 40, 180, 0.3);
+  }
+  .media-text { text-align: center; z-index: 1; }
+  .media-title { font-size: 18px; font-weight: 700; color: #F2F2F2; letter-spacing: -0.5px; margin-bottom: 6px; }
+  .media-sub { font-family: 'Noto Sans TC', sans-serif; font-size: 12px; color: rgba(255,255,255,0.6); }
+  .media-badge {
+    position: absolute;
+    bottom: 16px; left: 16px;
+    background: rgba(6,6,6,0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 9999px;
+    padding: 8px 16px;
+    display: flex; align-items: center; gap: 8px;
+    font-size: 13px; font-weight: 600; color: #F2F2F2;
+  }
+  .media-badge-icon { font-size: 14px; }
+  .media-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: #FFDC22; }
+
+  /* Variant 2: text-only (no media) */
+  .promo-compact {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: center;
+    padding: 32px 36px;
+    background: linear-gradient(135deg, rgba(255,220,34,0.05) 0%, rgba(255,220,34,0.02) 100%);
+    border: 1px solid rgba(255,220,34,0.15);
+    border-radius: 16px;
+  }
+  .promo-compact-title { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; color: #F2F2F2; margin-bottom: 6px; }
+  .promo-compact-sub { font-size: 14px; color: #8A8A8A; }
+
+  .slot-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #4A4A4A; background: #161616; border: 1px dashed rgba(255,255,255,0.08); border-radius: 4px; padding: 2px 6px; }
+</style>
+
+<h1>Section 2 — 元件 #07</h1>
+<p class="subtitle">Promotion Section — 兩種變體</p>
+
+<!-- Variant A: Full (text + media) -->
+<div class="component">
+  <div class="comp-header">
+    <span class="comp-num">07</span>
+    <span class="comp-name">Promotion Section</span>
+    <span class="comp-class">.promo-section</span>
+  </div>
+
+  <div class="variants-label">變體 A — 完整版（文字 + 媒體卡）</div>
+  <div class="promo-section">
+    <div class="promo-left">
+      <div class="promo-eyebrow">合作優惠</div>
+      <h2 class="promo-headline">中華航空合作優惠｜<br>搭機租車 <span class="highlight">85折</span></h2>
+      <p class="promo-body">SkyHorse 與中華航空合作推出旅客專屬租車優惠，搭乘華航前往美國，即可享租車 85 折起。</p>
+      <div class="promo-actions">
+        <button class="btn-primary">立即查看優惠 →</button>
+        <div class="promo-nav">
+          <button class="nav-arrow">‹</button>
+          <button class="nav-arrow">›</button>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="promo-media">
+        <div class="promo-media-inner">
+          <div class="media-globe">
+            <div class="media-text">
+              <div class="media-title">華航結盟西南</div>
+              <div class="media-sub">一票暢行全美</div>
+            </div>
+          </div>
+        </div>
+        <div class="media-badge">
+          <span class="media-badge-icon">✈️</span>
+          <span>合作優惠</span>
+          <div class="media-badge-dot"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="variants-label" style="margin-top:24px">變體 B — 精簡版（橫幅，無媒體）</div>
+  <div class="promo-compact">
+    <div>
+      <div class="promo-compact-title">華航旅客專屬 85折優惠</div>
+      <div class="promo-compact-sub">搭乘華航前往美國，出示機票即享折扣</div>
+    </div>
+    <button class="btn-primary">查看優惠</button>
+  </div>
+
+  <div class="spec">
+    <b>結構：</b>兩欄 grid（1:1），左欄固定包含 eyebrow label + headline + body + actions；右欄為 <b>slot</b>（可放圖片、地圖、輪播）<br>
+    <b>媒體 slot：</b>固定 4:3 比例，badge overlay 位置固定在左下角<br>
+    <b>導覽箭頭：</b>只在有多張輪播時顯示<br>
+    <b>精簡版：</b>用於無視覺素材的促銷，gold border 暗示重要性
+  </div>
+</div>

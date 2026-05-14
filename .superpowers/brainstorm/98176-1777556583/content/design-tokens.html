@@ -1,0 +1,111 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #060606; color: #F2F2F2; font-family: 'Space Grotesk', sans-serif; padding: 40px; }
+  h1 { color: #FFDC22; font-size: 18px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 8px; }
+  .subtitle { color: #8A8A8A; font-size: 13px; margin-bottom: 32px; }
+  .section { margin-bottom: 36px; }
+  .section-title { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #4A4A4A; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .token-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
+  .token { background: #111; border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 12px; }
+  .swatch { width: 100%; height: 36px; border-radius: 6px; margin-bottom: 10px; }
+  .token-name { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #FFDC22; margin-bottom: 2px; }
+  .token-value { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #4A4A4A; }
+  .type-row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .type-sample { background: #111; border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 16px 20px; flex: 1; min-width: 200px; }
+  .type-label { font-size: 11px; color: #4A4A4A; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+  .spacing-row { display: flex; align-items: flex-end; gap: 12px; flex-wrap: wrap; }
+  .sp-item { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .sp-bar { background: rgba(255,220,34,0.3); border-radius: 2px; width: 20px; }
+  .sp-name { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #4A4A4A; }
+  .sp-val { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: #FFDC22; }
+  .file-box { background: #0e0e0e; border: 1px solid rgba(255,220,34,0.2); border-radius: 10px; padding: 20px 24px; font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 2; color: #8A8A8A; }
+  .file-box .gold { color: #FFDC22; }
+  .file-box .dim { color: #4A4A4A; }
+</style>
+
+<h1>Section 1 — Token 系統</h1>
+<p class="subtitle">design-system.css 的第一層：CSS 自訂變數，所有元件規則都引用這些值</p>
+
+<!-- Colors -->
+<div class="section">
+  <div class="section-title">顏色 Tokens</div>
+  <div class="token-grid">
+    <div class="token"><div class="swatch" style="background:#060606;border:1px solid rgba(255,255,255,0.1)"></div><div class="token-name">--bg-base</div><div class="token-value">#060606</div></div>
+    <div class="token"><div class="swatch" style="background:#0e0e0e"></div><div class="token-name">--bg-surface</div><div class="token-value">#0e0e0e</div></div>
+    <div class="token"><div class="swatch" style="background:#161616"></div><div class="token-name">--bg-elevated</div><div class="token-value">#161616</div></div>
+    <div class="token"><div class="swatch" style="background:#111111"></div><div class="token-name">--bg-card</div><div class="token-value">#111111</div></div>
+    <div class="token"><div class="swatch" style="background:#FFDC22"></div><div class="token-name">--gold</div><div class="token-value">#FFDC22</div></div>
+    <div class="token"><div class="swatch" style="background:#F5C94E"></div><div class="token-name">--gold-bright</div><div class="token-value">#F5C94E</div></div>
+    <div class="token"><div class="swatch" style="background:rgba(255,220,34,0.12)"></div><div class="token-name">--gold-dim</div><div class="token-value">rgba(255,220,34,.12)</div></div>
+    <div class="token"><div class="swatch" style="background:#F2F2F2"></div><div class="token-name">--ink-primary</div><div class="token-value">#F2F2F2</div></div>
+    <div class="token"><div class="swatch" style="background:#8A8A8A"></div><div class="token-name">--ink-secondary</div><div class="token-value">#8A8A8A</div></div>
+    <div class="token"><div class="swatch" style="background:#4A4A4A"></div><div class="token-name">--ink-tertiary</div><div class="token-value">#4A4A4A</div></div>
+    <div class="token"><div class="swatch" style="background:#34C759"></div><div class="token-name">--success</div><div class="token-value">#34C759</div></div>
+    <div class="token"><div class="swatch" style="background:#0A84FF"></div><div class="token-name">--info</div><div class="token-value">#0A84FF</div></div>
+  </div>
+</div>
+
+<!-- Typography -->
+<div class="section">
+  <div class="section-title">字型 Tokens</div>
+  <div class="type-row">
+    <div class="type-sample">
+      <div class="type-label">--font-display · Space Grotesk 700</div>
+      <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:36px;letter-spacing:-2px;line-height:1.1;color:#F2F2F2">天馬租車</div>
+    </div>
+    <div class="type-sample">
+      <div class="type-label">--font-body · Noto Sans TC 400</div>
+      <div style="font-family:'Noto Sans TC',sans-serif;font-weight:400;font-size:16px;line-height:1.7;color:#8A8A8A">提供優質美國租車體驗，服務您的每一段旅程。</div>
+    </div>
+    <div class="type-sample">
+      <div class="type-label">--font-mono · JetBrains Mono</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:14px;color:#FFDC22;letter-spacing:0.5px">SFO · LAX · JFK</div>
+    </div>
+  </div>
+</div>
+
+<!-- Spacing -->
+<div class="section">
+  <div class="section-title">間距 Tokens（4px 基底）</div>
+  <div class="spacing-row">
+    <div class="sp-item"><div class="sp-bar" style="height:4px"></div><div class="sp-name">--sp-1</div><div class="sp-val">4px</div></div>
+    <div class="sp-item"><div class="sp-bar" style="height:8px"></div><div class="sp-name">--sp-2</div><div class="sp-val">8px</div></div>
+    <div class="sp-item"><div class="sp-bar" style="height:12px"></div><div class="sp-name">--sp-3</div><div class="sp-val">12px</div></div>
+    <div class="sp-item"><div class="sp-bar" style="height:16px"></div><div class="sp-name">--sp-4</div><div class="sp-val">16px</div></div>
+    <div class="sp-item"><div class="sp-bar" style="height:20px"></div><div class="sp-name">--sp-5</div><div class="sp-val">20px</div></div>
+    <div class="sp-item"><div class="sp-bar" style="height:24px"></div><div class="sp-name">--sp-6</div><div class="sp-val">24px</div></div>
+    <div class="sp-item"><div class="sp-bar" style="height:32px"></div><div class="sp-name">--sp-8</div><div class="sp-val">32px</div></div>
+    <div class="sp-item"><div class="sp-bar" style="height:40px"></div><div class="sp-name">--sp-10</div><div class="sp-val">40px</div></div>
+    <div class="sp-item"><div class="sp-bar" style="height:48px"></div><div class="sp-name">--sp-12</div><div class="sp-val">48px</div></div>
+    <div class="sp-item"><div class="sp-bar" style="height:64px"></div><div class="sp-name">--sp-16</div><div class="sp-val">64px</div></div>
+    <div class="sp-item"><div class="sp-bar" style="height:80px"></div><div class="sp-name">--sp-20</div><div class="sp-val">80px</div></div>
+  </div>
+</div>
+
+<!-- Border Radius -->
+<div class="section">
+  <div class="section-title">圓角 Tokens</div>
+  <div class="token-grid" style="grid-template-columns:repeat(5,1fr)">
+    <div class="token" style="text-align:center"><div style="height:40px;background:#161616;border-radius:4px;margin-bottom:10px"></div><div class="token-name">--r-xs</div><div class="token-value">4px</div></div>
+    <div class="token" style="text-align:center"><div style="height:40px;background:#161616;border-radius:6px;margin-bottom:10px"></div><div class="token-name">--r-sm</div><div class="token-value">6px</div></div>
+    <div class="token" style="text-align:center"><div style="height:40px;background:#161616;border-radius:10px;margin-bottom:10px"></div><div class="token-name">--r-md</div><div class="token-value">10px</div></div>
+    <div class="token" style="text-align:center"><div style="height:40px;background:#161616;border-radius:16px;margin-bottom:10px"></div><div class="token-name">--r-lg</div><div class="token-value">16px</div></div>
+    <div class="token" style="text-align:center"><div style="height:40px;background:#161616;border-radius:9999px;margin-bottom:10px"></div><div class="token-name">--r-pill</div><div class="token-value">9999px</div></div>
+  </div>
+</div>
+
+<!-- File structure -->
+<div class="section">
+  <div class="section-title">檔案結構</div>
+  <div class="file-box">
+    <span class="gold">design-system.css</span><br>
+    <span class="dim">  ├─ </span>Layer 1: :root { CSS 變數 }<span class="dim">  ← token 全在這</span><br>
+    <span class="dim">  ├─ </span>Layer 2: Reset & base<br>
+    <span class="dim">  ├─ </span>Layer 3: Typography classes<br>
+    <span class="dim">  └─ </span>Layer 4: 元件 classes (.btn, .card, .chip…)<br>
+    <br>
+    <span class="gold">design-system-preview.html</span><br>
+    <span class="dim">  └─ </span>所有元件的視覺展示頁
+  </div>
+</div>

@@ -1,0 +1,126 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #060606; color: #F2F2F2; font-family: 'Space Grotesk', sans-serif; padding: 40px; }
+  h1 { color: #FFDC22; font-size: 18px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 6px; }
+  .subtitle { color: #8A8A8A; font-size: 13px; margin-bottom: 32px; }
+  .component { background: #0e0e0e; border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 24px; margin-bottom: 20px; }
+  .comp-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+  .comp-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #4A4A4A; background: #161616; border-radius: 6px; padding: 3px 8px; }
+  .comp-name { font-size: 15px; font-weight: 600; color: #F2F2F2; }
+  .comp-class { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #FFDC22; }
+  .variants-label { font-size: 11px; color: #4A4A4A; text-transform: uppercase; letter-spacing: 0.5px; margin: 20px 0 16px; }
+  .preview { padding: 32px 40px; background: #060606; border-radius: 10px; margin-bottom: 4px; }
+  .preview.center { display: flex; justify-content: center; }
+  .spec-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 12px; }
+  .spec-table th { text-align: left; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #4A4A4A; padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .spec-table td { padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,0.04); color: #8A8A8A; vertical-align: top; }
+  .spec-table td:first-child { font-family: 'JetBrains Mono', monospace; color: #FFDC22; font-size: 11px; }
+  .spec-table td b { color: #F2F2F2; font-weight: 500; }
+
+  /* === Section Header — from index.html (standardised) === */
+  .section-header { margin-bottom: 56px; }
+  .section-header.centered { text-align: center; }
+  .section-header.centered .section-eyebrow { justify-content: center; }
+  .section-header.centered .section-sub { margin-left: auto; margin-right: auto; }
+
+  .section-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 3.5px; text-transform: uppercase;
+    color: #FFDC22; margin-bottom: 16px;
+  }
+  .section-eyebrow::before {
+    content: ''; display: block;
+    width: 28px; height: 1px; background: #FFDC22;
+    border-radius: 1px;
+  }
+  .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(30px, 4vw, 48px);
+    font-weight: 700; line-height: 1.1;
+    letter-spacing: -1.5px;
+    color: #F2F2F2;
+    margin-bottom: 12px;
+  }
+  .section-sub {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 15px; font-weight: 300;
+    color: #8A8A8A;
+    max-width: 480px; line-height: 1.75;
+  }
+
+  /* Compact variant */
+  .section-header.compact { margin-bottom: 32px; }
+  .section-header.compact .section-title { font-size: clamp(22px, 3vw, 32px); letter-spacing: -1px; }
+</style>
+
+<h1>Section 2 — 元件 #09</h1>
+<p class="subtitle">Section Header — 從現有頁面萃取並標準化</p>
+
+<div class="component">
+  <div class="comp-header">
+    <span class="comp-num">09</span>
+    <span class="comp-name">Section Header</span>
+    <span class="comp-class">.section-header</span>
+  </div>
+
+  <!-- Variant A: Left aligned (standard) -->
+  <div class="variants-label">變體 A — 左對齊（預設，用於大多數 section）</div>
+  <div class="preview">
+    <div class="section-header">
+      <div class="section-eyebrow">精選車款</div>
+      <h2 class="section-title">四大車型，對應不同旅程需求</h2>
+    </div>
+    <div class="section-header">
+      <div class="section-eyebrow">Why SkyHorse</div>
+      <h2 class="section-title">為什麼大家都選擇我們</h2>
+      <p class="section-sub">我們了解旅人在異地需要的那份安心感。每一個細節，都是為了讓你的旅程更順暢。</p>
+    </div>
+  </div>
+
+  <!-- Variant B: Centered -->
+  <div class="variants-label">變體 B — 置中（用於全寬或對稱 section）</div>
+  <div class="preview center">
+    <div class="section-header centered">
+      <div class="section-eyebrow">Testimonials</div>
+      <h2 class="section-title">名人與旅人推薦</h2>
+      <p class="section-sub">真實旅客的真實體驗，讓我們用成果說話。</p>
+    </div>
+  </div>
+
+  <!-- Variant C: Compact -->
+  <div class="variants-label">變體 C — 精簡版（子 section 或卡片內部）</div>
+  <div class="preview">
+    <div class="section-header compact">
+      <div class="section-eyebrow">常見問題</div>
+      <h2 class="section-title">出發前你想知道的</h2>
+    </div>
+  </div>
+
+  <!-- Spec table -->
+  <table class="spec-table">
+    <tr><th>元素</th><th>規格</th><th>備註</th></tr>
+    <tr>
+      <td>.section-eyebrow</td>
+      <td>JetBrains Mono · 11px · 500 · 3.5px letter-spacing · uppercase · <b>--gold</b></td>
+      <td>前面有 28px 金色橫線（::before）</td>
+    </tr>
+    <tr>
+      <td>.section-title</td>
+      <td>Space Grotesk · clamp(30px, 4vw, 48px) · 700 · -1.5px tracking</td>
+      <td>響應式字型大小</td>
+    </tr>
+    <tr>
+      <td>.section-sub</td>
+      <td>Noto Sans TC · 15px · 300 · max-width 480px · line-height 1.75</td>
+      <td>可選，非每個 section 都需要</td>
+    </tr>
+    <tr>
+      <td>.section-header</td>
+      <td>margin-bottom: 56px（mobile: 36px）</td>
+      <td>加 <b>.centered</b> 置中，加 <b>.compact</b> 縮小</td>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,179 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #060606; color: #F2F2F2; font-family: 'Space Grotesk', sans-serif; padding: 40px; }
+  h1 { color: #FFDC22; font-size: 18px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 6px; }
+  .subtitle { color: #8A8A8A; font-size: 13px; margin-bottom: 32px; }
+  .component { background: #0e0e0e; border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 24px; margin-bottom: 20px; }
+  .comp-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+  .comp-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #4A4A4A; background: #161616; border-radius: 6px; padding: 3px 8px; }
+  .comp-name { font-size: 15px; font-weight: 600; color: #F2F2F2; }
+  .comp-class { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #FFDC22; }
+  .preview { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 20px; background: #060606; border-radius: 10px; margin-bottom: 16px; }
+  .spec { font-size: 12px; color: #8A8A8A; line-height: 1.8; }
+  .spec b { color: #F2F2F2; font-weight: 500; }
+
+  /* --- Live component previews --- */
+
+  /* Nav */
+  .demo-nav { display: flex; align-items: center; justify-content: space-between; background: rgba(6,6,6,0.92); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 0 24px; height: 64px; border-radius: 10px; width: 100%; backdrop-filter: blur(20px); }
+  .demo-nav .logo { font-weight: 700; font-size: 16px; letter-spacing: -0.5px; color: #F2F2F2; }
+  .demo-nav .logo span { color: #FFDC22; }
+  .demo-nav .links { display: flex; gap: 24px; font-size: 14px; color: #8A8A8A; }
+  .demo-nav .links a { color: #8A8A8A; text-decoration: none; }
+  .demo-nav .links a:hover { color: #F2F2F2; }
+  .demo-nav .cta { background: #FFDC22; color: #060606; font-weight: 700; font-size: 13px; padding: 8px 18px; border-radius: 6px; border: none; cursor: pointer; }
+
+  /* Buttons */
+  .btn-primary { background: #FFDC22; color: #060606; font-weight: 700; font-size: 14px; padding: 12px 24px; border-radius: 6px; border: none; cursor: pointer; font-family: 'Space Grotesk', sans-serif; }
+  .btn-secondary { background: transparent; color: #F2F2F2; font-weight: 600; font-size: 14px; padding: 11px 23px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.12); cursor: pointer; font-family: 'Space Grotesk', sans-serif; }
+  .btn-ghost { background: transparent; color: #8A8A8A; font-weight: 500; font-size: 14px; padding: 11px 23px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.06); cursor: pointer; font-family: 'Space Grotesk', sans-serif; }
+  .btn-sm { padding: 7px 14px; font-size: 12px; }
+
+  /* Card */
+  .demo-card { background: #111; border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; overflow: hidden; width: 220px; }
+  .demo-card-img { height: 120px; background: linear-gradient(135deg, #161616, #0e0e0e); display: flex; align-items: center; justify-content: center; color: #4A4A4A; font-size: 12px; }
+  .demo-card-body { padding: 16px; }
+  .demo-card-title { font-weight: 600; font-size: 15px; color: #F2F2F2; margin-bottom: 6px; }
+  .demo-card-sub { font-size: 13px; color: #8A8A8A; margin-bottom: 14px; line-height: 1.5; }
+  .demo-card-footer { display: flex; justify-content: space-between; align-items: center; }
+  .demo-card-price { font-weight: 700; font-size: 16px; color: #FFDC22; }
+  .demo-card-price span { font-size: 12px; font-weight: 400; color: #4A4A4A; }
+
+  /* Chip */
+  .chip { display: inline-flex; align-items: center; font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; padding: 5px 12px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); color: #8A8A8A; background: transparent; cursor: pointer; }
+  .chip.active { border-color: rgba(255,220,34,0.4); color: #F2F2F2; background: rgba(255,220,34,0.08); }
+  .chip-tag { font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 500; padding: 4px 10px; border-radius: 9999px; border: 1px solid rgba(255,255,255,0.08); color: #8A8A8A; background: rgba(255,255,255,0.03); }
+
+  /* Form Input */
+  .form-group { display: flex; flex-direction: column; gap: 6px; min-width: 220px; }
+  .form-label { font-size: 12px; font-weight: 600; color: #8A8A8A; letter-spacing: 0.3px; }
+  .form-input { background: #161616; border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 11px 14px; font-size: 14px; color: #F2F2F2; font-family: 'Space Grotesk', sans-serif; outline: none; width: 100%; }
+  .form-input:focus { border-color: #FFDC22; }
+  .form-input.error { border-color: rgba(255,69,58,0.5); }
+  .form-hint { font-size: 12px; color: #4A4A4A; }
+  .form-hint.error { color: #FF453A; }
+
+  /* Badge */
+  .badge { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 9999px; }
+  .badge-gold { background: rgba(255,220,34,0.12); color: #FFDC22; border: 1px solid rgba(255,220,34,0.25); }
+  .badge-success { background: rgba(52,199,89,0.12); color: #34C759; border: 1px solid rgba(52,199,89,0.25); }
+  .badge-info { background: rgba(10,132,255,0.12); color: #0A84FF; border: 1px solid rgba(10,132,255,0.25); }
+</style>
+
+<h1>Section 2 — 核心元件</h1>
+<p class="subtitle">6 個元件 + 1 個 Badge utility，全部使用 token 變數</p>
+
+<!-- 1. Nav -->
+<div class="component">
+  <div class="comp-header">
+    <span class="comp-num">01</span>
+    <span class="comp-name">Navigation</span>
+    <span class="comp-class">.nav</span>
+  </div>
+  <div class="preview">
+    <div class="demo-nav" style="width:100%">
+      <div class="logo">Sky<span>Horse</span></div>
+      <div class="links"><a>車隊</a><a>服務範圍</a><a>關於我們</a></div>
+      <button class="cta">立即預約</button>
+    </div>
+  </div>
+  <div class="spec">半透明黑底 + blur(20px)，高度 <b>64px</b>，CTA 使用 <b>--gold</b>，scroll 後加底部邊框</div>
+</div>
+
+<!-- 2. Button -->
+<div class="component">
+  <div class="comp-header">
+    <span class="comp-num">02</span>
+    <span class="comp-name">Button</span>
+    <span class="comp-class">.btn .btn-primary / .btn-secondary / .btn-ghost</span>
+  </div>
+  <div class="preview">
+    <button class="btn-primary">立即預約</button>
+    <button class="btn-secondary">查看車隊</button>
+    <button class="btn-ghost">了解更多</button>
+    <button class="btn-primary btn-sm">預約</button>
+    <button class="btn-secondary btn-sm">查看</button>
+  </div>
+  <div class="spec">Primary: <b>--gold</b> 底色，Secondary: 透明 + border，Ghost: 最低調。加 <b>.btn-sm</b> 縮小版</div>
+</div>
+
+<!-- 3. Card -->
+<div class="component">
+  <div class="comp-header">
+    <span class="comp-num">03</span>
+    <span class="comp-name">Card</span>
+    <span class="comp-class">.card</span>
+  </div>
+  <div class="preview">
+    <div class="demo-card">
+      <div class="demo-card-img">[ 車輛圖片 ]</div>
+      <div class="demo-card-body">
+        <div class="demo-card-title">Toyota Camry</div>
+        <div class="demo-card-sub">中型轎車 · 5人座 · 自動</div>
+        <div class="demo-card-footer">
+          <div class="demo-card-price">$45<span>/天</span></div>
+          <button class="btn-primary btn-sm">預約</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="spec">hover: translateY(-4px) + gold glow shadow，圓角 <b>--r-lg (16px)</b>，底色 <b>--bg-card</b></div>
+</div>
+
+<!-- 4. Chip / Tag -->
+<div class="component">
+  <div class="comp-header">
+    <span class="comp-num">04</span>
+    <span class="comp-name">Chip & Tag</span>
+    <span class="comp-class">.chip / .chip-tag</span>
+  </div>
+  <div class="preview">
+    <span class="chip active">全部</span>
+    <span class="chip">轎車</span>
+    <span class="chip">SUV</span>
+    <span class="chip">豪華</span>
+    &nbsp;&nbsp;
+    <span class="chip-tag">自動擋</span>
+    <span class="chip-tag">5人座</span>
+    <span class="chip-tag">SFO可取車</span>
+  </div>
+  <div class="spec">Chip 用於篩選器（可選中狀態 <b>.active</b>），Tag 用於車輛屬性標籤，圓角 <b>--r-pill</b></div>
+</div>
+
+<!-- 5. Form Input -->
+<div class="component">
+  <div class="comp-header">
+    <span class="comp-num">05</span>
+    <span class="comp-name">Form Input</span>
+    <span class="comp-class">.form-group .form-label .form-input</span>
+  </div>
+  <div class="preview">
+    <div class="form-group">
+      <label class="form-label">取車地點</label>
+      <input class="form-input" placeholder="輸入城市或機場代號">
+      <span class="form-hint">例：SFO、LAX、JFK</span>
+    </div>
+    <div class="form-group">
+      <label class="form-label">取車日期</label>
+      <input class="form-input error" placeholder="2026-05-15">
+      <span class="form-hint error">請選擇有效日期</span>
+    </div>
+  </div>
+  <div class="spec">focus: <b>--gold</b> 邊框，error: 紅色邊框 + hint，底色 <b>--bg-elevated</b>，圓角 <b>--r-md (10px)</b></div>
+</div>
+
+<!-- 6. Badge -->
+<div class="component">
+  <div class="comp-header">
+    <span class="comp-num">06</span>
+    <span class="comp-name">Badge</span>
+    <span class="comp-class">.badge .badge-gold / .badge-success / .badge-info</span>
+  </div>
+  <div class="preview">
+    <span class="badge badge-gold">熱門</span>
+    <span class="badge badge-success">有庫存</span>
+    <span class="badge badge-info">新上架</span>
+  </div>
+  <div class="spec">狀態標記用，三種語義色，可嵌入 Card 或列表中</div>
+</div>

@@ -1,0 +1,114 @@
+<style>
+  body { background: #060606; color: #F2F2F2; font-family: 'Space Grotesk', sans-serif; padding: 40px; }
+  h1 { color: #FFDC22; font-size: 20px; margin-bottom: 32px; letter-spacing: -0.5px; }
+  .options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .card { background: #111; border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 12px; }
+  .card.recommended { border-color: rgba(255,220,34,0.4); }
+  .badge { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; width: fit-content; }
+  .badge.rec { background: rgba(255,220,34,0.12); color: #FFDC22; border: 1px solid rgba(255,220,34,0.3); }
+  .badge.opt { background: rgba(255,255,255,0.05); color: #8A8A8A; border: 1px solid rgba(255,255,255,0.08); }
+  h2 { font-size: 16px; font-weight: 600; color: #F2F2F2; margin: 0; }
+  p { font-size: 14px; color: #8A8A8A; line-height: 1.6; margin: 0; }
+  .scope { margin-top: 8px; }
+  .scope-label { font-size: 11px; color: #4A4A4A; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+  .pill { display: inline-block; font-size: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 3px 8px; margin: 2px; color: #8A8A8A; }
+  .pill.gold { background: rgba(255,220,34,0.08); border-color: rgba(255,220,34,0.2); color: #FFDC22; }
+  .tradeoff { margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06); }
+  .pro { font-size: 13px; color: #34C759; margin: 2px 0; }
+  .con { font-size: 13px; color: #8A8A8A; margin: 2px 0; }
+  .pro::before { content: '+ '; }
+  .con::before { content: '- '; }
+  .effort { display: flex; gap: 4px; margin-top: 8px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.1); }
+  .dot.fill { background: #FFDC22; }
+  .effort-label { font-size: 11px; color: #4A4A4A; text-transform: uppercase; letter-spacing: 0.5px; margin-right: 4px; }
+</style>
+
+<h1>設計系統方案比較</h1>
+
+<div class="options">
+  <!-- Option A -->
+  <div class="card">
+    <div class="badge opt">方案 A</div>
+    <h2>Token Only</h2>
+    <p>只建立 CSS 變數（design token），不寫元件規則。頁面 import 後自行使用變數。</p>
+    <div class="scope">
+      <div class="scope-label">包含</div>
+      <span class="pill gold">CSS 變數</span>
+      <span class="pill gold">顏色 token</span>
+      <span class="pill gold">字型 token</span>
+      <span class="pill gold">間距 token</span>
+      <span class="pill">元件規則 ✗</span>
+    </div>
+    <div class="tradeoff">
+      <div class="pro">最快完成（1-2天）</div>
+      <div class="pro">現有頁面改動最小</div>
+      <div class="con">元件樣式仍然重複</div>
+      <div class="con">新頁面還是要寫大量 CSS</div>
+    </div>
+    <div>
+      <div class="effort-label">工程量</div>
+      <div class="effort">
+        <div class="dot fill"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Option B — Recommended -->
+  <div class="card recommended">
+    <div class="badge rec">⭐ 推薦 · 方案 B</div>
+    <h2>Token + 核心元件</h2>
+    <p>建立 token 系統，加上 6 個最常用元件。平衡速度和覆蓋率，立即可用於新頁面。</p>
+    <div class="scope">
+      <div class="scope-label">包含</div>
+      <span class="pill gold">CSS 變數</span>
+      <span class="pill gold">Nav</span>
+      <span class="pill gold">Button</span>
+      <span class="pill gold">Card</span>
+      <span class="pill gold">Chip/Tag</span>
+      <span class="pill gold">Form Input</span>
+      <span class="pill gold">展示頁</span>
+    </div>
+    <div class="tradeoff">
+      <div class="pro">新頁面可快速組裝</div>
+      <div class="pro">token 改一次全部元件更新</div>
+      <div class="pro">展示頁讓維護更直觀</div>
+      <div class="con">需要 3-4 天</div>
+    </div>
+    <div>
+      <div class="effort-label">工程量</div>
+      <div class="effort">
+        <div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div><div class="dot"></div><div class="dot"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Option C -->
+  <div class="card">
+    <div class="badge opt">方案 C</div>
+    <h2>完整萃取</h2>
+    <p>掃描全部 7 個頁面，把所有現有 pattern 都抽出來，同步重構現有頁面使用新系統。</p>
+    <div class="scope">
+      <div class="scope-label">包含</div>
+      <span class="pill gold">CSS 變數</span>
+      <span class="pill gold">全部元件</span>
+      <span class="pill gold">展示頁</span>
+      <span class="pill gold">重構現有頁面</span>
+      <span class="pill gold">Hero section</span>
+      <span class="pill gold">Stats bar</span>
+      <span class="pill gold">Blog card</span>
+    </div>
+    <div class="tradeoff">
+      <div class="pro">最一致，技術債最少</div>
+      <div class="pro">現有頁面全部受益</div>
+      <div class="con">工程量大，風險高</div>
+      <div class="con">改動現有頁面可能引入 bug</div>
+    </div>
+    <div>
+      <div class="effort-label">工程量</div>
+      <div class="effort">
+        <div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div>
+      </div>
+    </div>
+  </div>
+</div>
