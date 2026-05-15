@@ -53,21 +53,21 @@ nav {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  padding: 4px;
+  padding: 3px;
   border-radius: 999px;
   background: rgba(255,255,255,0.10);
-  width: 184px;
-  flex-shrink: 0;
+  width: 138px;
+  flex-shrink: 0; flex-grow: 0;
   position: relative;
 }
 .nav-business-link {
   font-family: var(--font-zh);
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 700;
   color: rgba(255,255,255,0.55);
   text-decoration: none;
   line-height: 1;
-  padding: 7px 16px;
+  padding: 8px 10px;
   border-radius: 999px;
   transition: color 0.2s;
   white-space: nowrap;
@@ -284,6 +284,6 @@ nav {
   .nav-inner { padding: 0 20px; }
   .nav-menu-btn.is-open { right: 20px; }
   .nav-left { gap: 10px; }
-  .nav-business-switch { padding: 3px 4px 3px 3px; width: max-content; }
+  .nav-business-switch { padding: 3px; width: 138px; }
   .date-display { font-size: 12px; }
 }
