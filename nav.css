@@ -286,7 +286,7 @@ nav {
 @media (max-width: 900px) {
   .nav-links { display: none; }
   .nav-menu-btn { display: flex; }
-  .nav-inner { max-width: 100%; }
+  .nav-inner { max-width: 100%; padding: 0 20px; }
 }
 
 @media (max-width: 768px) {
