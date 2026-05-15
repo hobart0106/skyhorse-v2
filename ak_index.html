@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Stack+Sans+Headline:wght@400;700&family=Noto+Sans+TC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preload" href="image/Alaska_1.jpg" as="image">
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -1825,7 +1826,7 @@
   <div class="nav-mobile-links">
     <a href="ak_index.html#pricing">推薦行程</a>
     <a href="blog_ak.html">旅遊攻略</a>
-    <a href="faq.html">常見問題</a>
+    <a href="faq-ak.html">常見問題</a>
     <a href="javascript:void(0)">行程修改</a>
   </div>
   <div class="nav-mobile-cta">
@@ -1840,14 +1841,8 @@
   <section class="hero">
     <!-- ── Image Carousel ── -->
     <div class="hero-carousel" id="heroCarousel">
-      <div class="hero-carousel__slide active"><img src="image/Alaska_1.png" alt="Alaska scenery 1"></div>
-      <div class="hero-carousel__slide"><img src="image/Alaska_2.png" alt="Alaska scenery 2"></div>
-      <div class="hero-carousel__slide"><img src="image/Alaska_3.png" alt="Alaska scenery 3"></div>
-      <div class="hero-carousel__slide"><img src="image/Alaska_4.png" alt="Alaska scenery 4"></div>
-      <div class="hero-carousel__slide"><img src="image/Alaska_5.png" alt="Alaska scenery 5"></div>
-      <div class="hero-carousel__slide"><img src="image/Alaska_6.png" alt="Alaska scenery 6"></div>
-      <div class="hero-carousel__slide"><img src="image/Alaska_7.png" alt="Alaska scenery 7"></div>
-      <div class="hero-carousel__slide"><img src="image/Alaska_8.png" alt="Alaska scenery 8"></div>
+      <div class="hero-carousel__slide active"><img src="image/Alaska_1.jpg" alt="Alaska scenery 1" fetchpriority="high" decoding="async"></div>
+      <div class="hero-carousel__slide"><img src="image/Alaska_2.jpg" alt="Alaska scenery 2" loading="lazy" decoding="async"></div>
     </div>
     <div class="hero-carousel__dots" id="heroCarouselDots"></div>
     <!-- ── ── ── -->
@@ -1948,7 +1943,7 @@
         <!-- Card 1: Summer -->
         <div class="ft-card ft-card--featured" data-category="summer">
           <div class="ft-card__img">
-            <img src="image/Alaska_3.png" alt="夏季冰川" onerror="this.parentElement.style.background='#161616';this.remove()">
+            <img src="image/Alaska_3.jpg" alt="夏季冰川" loading="lazy" decoding="async" onerror="this.parentElement.style.background='#161616';this.remove()">
             <span class="ft-card__badge ft-card__badge--hot">夏季主打</span>
           </div>
           <div class="ft-card__body">
@@ -1969,7 +1964,7 @@
         <!-- Card 2: Winter Aurora -->
         <div class="ft-card" data-category="winter">
           <div class="ft-card__img">
-            <img src="image/Alaska_6.png" alt="極光" onerror="this.parentElement.style.background='#161616';this.remove()">
+            <img src="image/Alaska_6.jpg" alt="極光" loading="lazy" decoding="async" onerror="this.parentElement.style.background='#161616';this.remove()">
             <span class="ft-card__badge ft-card__badge--new">冬季行程</span>
           </div>
           <div class="ft-card__body">
@@ -1990,7 +1985,7 @@
         <!-- Card 3: Day Trip -->
         <div class="ft-card" data-category="daytrip">
           <div class="ft-card__img">
-            <img src="image/Alaska_1.png" alt="單日行程" onerror="this.parentElement.style.background='#161616';this.remove()">
+            <img src="image/Alaska_1.jpg" alt="單日行程" loading="lazy" decoding="async" onerror="this.parentElement.style.background='#161616';this.remove()">
             <span class="ft-card__badge ft-card__badge--new">一日行程</span>
           </div>
           <div class="ft-card__body">
@@ -2012,7 +2007,7 @@
         <!-- Card 4: Spring Wildlife -->
         <div class="ft-card" data-category="spring">
           <div class="ft-card__img">
-            <img src="image/Alaska_2.png" alt="春季野生動物" onerror="this.parentElement.style.background='#161616';this.remove()">
+            <img src="image/Alaska_2.jpg" alt="春季野生動物" loading="lazy" decoding="async" onerror="this.parentElement.style.background='#161616';this.remove()">
             <span class="ft-card__badge ft-card__badge--hot">春季主打</span>
           </div>
           <div class="ft-card__body">
@@ -2033,7 +2028,7 @@
         <!-- Card 5: Denali Trekking -->
         <div class="ft-card" data-category="summer">
           <div class="ft-card__img">
-            <img src="image/Alaska_4.png" alt="迪納利健行" onerror="this.parentElement.style.background='#161616';this.remove()">
+            <img src="image/Alaska_4.jpg" alt="迪納利健行" loading="lazy" decoding="async" onerror="this.parentElement.style.background='#161616';this.remove()">
             <span class="ft-card__badge ft-card__badge--new">限量名額</span>
           </div>
           <div class="ft-card__body">
@@ -2054,7 +2049,7 @@
         <!-- Card 6: Aurora Winter Short -->
         <div class="ft-card" data-category="winter">
           <div class="ft-card__img">
-            <img src="image/Alaska_5.png" alt="極光短途" onerror="this.parentElement.style.background='#161616';this.remove()">
+            <img src="image/Alaska_5.jpg" alt="極光短途" loading="lazy" decoding="async" onerror="this.parentElement.style.background='#161616';this.remove()">
             <span class="ft-card__badge ft-card__badge--new">冬季行程</span>
           </div>
           <div class="ft-card__body">
@@ -2289,7 +2284,7 @@
       <a href="#" class="btn-dark">
         <i data-lucide="message-circle"></i>LINE 預訂
       </a>
-      <a href="faq.html" class="btn-outline-dark">
+      <a href="faq-ak.html" class="btn-outline-dark">
         <i data-lucide="calendar-check"></i>立即預定
       </a>
     </div>
@@ -2325,7 +2320,7 @@
         <div class="footer-links">
           <a href="fleet.html">全部車型</a>
           <a href="blog.html">自駕攻略</a>
-          <a href="faq.html">常見問題</a>
+          <a href="faq-ak.html">常見問題</a>
           <a href="article.html">關於我們</a>
         </div>
       </div>
@@ -2335,7 +2330,7 @@
           <a href="ak_index.html">阿拉斯加旅遊</a>
           <a href="ak_index.html#pricing">主打行程</a>
           <a href="blog_ak.html">旅遊攻略</a>
-          <a href="faq.html#ak">常見問題</a>
+          <a href="faq-ak.html">常見問題</a>
         </div>
       </div>
       <div>
@@ -2445,7 +2440,7 @@
         buttonHref: '#itinerary',
         count: '阿拉斯加主打行程',
         mediaHref: '#itinerary',
-        image: 'image/Alaska_5.png',
+        image: 'image/Alaska_5.jpg',
         imageAlt: '阿拉斯加夏季主打行程山景照片',
         mediaLabel: '主打行程',
         mediaIcon: 'map',
@@ -2653,12 +2648,12 @@
     var base = links[0].offsetLeft;
     if (!animated) {
       pill.style.transition = 'none';
-      pill.style.width = active.offsetWidth + 'px';
-      pill.style.transform = 'translateX(' + (active.offsetLeft - base) + 'px)';
+      pill.style.width = (active.offsetWidth - 2) + 'px';
+      pill.style.transform = 'translateX(' + (active.offsetLeft - base + 1) + 'px)';
       requestAnimationFrame(function(){ requestAnimationFrame(function(){ pill.style.transition = ''; }); });
     } else {
-      pill.style.width = active.offsetWidth + 'px';
-      pill.style.transform = 'translateX(' + (active.offsetLeft - base) + 'px)';
+      pill.style.width = (active.offsetWidth - 2) + 'px';
+      pill.style.transform = 'translateX(' + (active.offsetLeft - base + 1) + 'px)';
     }
   }
 
@@ -2678,12 +2673,12 @@
       e.preventDefault();
       var href = link.href;
       var base = links[0].offsetLeft;
-      pill.style.width = link.offsetWidth + 'px';
-      pill.style.transform = 'translateX(' + (link.offsetLeft - base) + 'px)';
+      pill.style.width = (link.offsetWidth - 2) + 'px';
+      pill.style.transform = 'translateX(' + (link.offsetLeft - base + 1) + 'px)';
       active.classList.remove('is-active');
       link.classList.add('is-active');
       active = link;
-      setTimeout(function(){ window.location.href = href; }, 300);
+      window.location.href = href;
     });
   });
 })();

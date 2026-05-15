@@ -2763,7 +2763,7 @@
           <a href="ak_index.html">阿拉斯加旅遊</a>
           <a href="ak_index.html#pricing">主打行程</a>
           <a href="blog_ak.html">旅遊攻略</a>
-          <a href="faq.html#ak">常見問題</a>
+          <a href="faq-ak.html">常見問題</a>
         </div>
       </div>
       <div>
@@ -3230,12 +3230,12 @@
     var base = links[0].offsetLeft;
     if (!animated) {
       pill.style.transition = 'none';
-      pill.style.width = active.offsetWidth + 'px';
-      pill.style.transform = 'translateX(' + (active.offsetLeft - base) + 'px)';
+      pill.style.width = (active.offsetWidth - 2) + 'px';
+      pill.style.transform = 'translateX(' + (active.offsetLeft - base + 1) + 'px)';
       requestAnimationFrame(function(){ requestAnimationFrame(function(){ pill.style.transition = ''; }); });
     } else {
-      pill.style.width = active.offsetWidth + 'px';
-      pill.style.transform = 'translateX(' + (active.offsetLeft - base) + 'px)';
+      pill.style.width = (active.offsetWidth - 2) + 'px';
+      pill.style.transform = 'translateX(' + (active.offsetLeft - base + 1) + 'px)';
     }
   }
 
@@ -3255,12 +3255,12 @@
       e.preventDefault();
       var href = link.href;
       var base = links[0].offsetLeft;
-      pill.style.width = link.offsetWidth + 'px';
-      pill.style.transform = 'translateX(' + (link.offsetLeft - base) + 'px)';
+      pill.style.width = (link.offsetWidth - 2) + 'px';
+      pill.style.transform = 'translateX(' + (link.offsetLeft - base + 1) + 'px)';
       active.classList.remove('is-active');
       link.classList.add('is-active');
       active = link;
-      setTimeout(function(){ window.location.href = href; }, 300);
+      window.location.href = href;
     });
   });
 })();
