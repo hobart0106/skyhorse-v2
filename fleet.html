@@ -28,9 +28,9 @@
       --ink-secondary: #B8B8B8;
       --ink-tertiary:  #8A8A8A;
       --font-display: 'Space Grotesk', 'Noto Sans TC', sans-serif;
-      --font-body:    'Noto Sans TC', sans-serif;
+      --font-body:    'Space Grotesk', 'Noto Sans TC', sans-serif;
       --font-zh:      'Space Grotesk', 'Noto Sans TC', sans-serif;
-      --font-mono:    'JetBrains Mono', monospace;
+      --font-mono:    'JetBrains Mono', 'Space Grotesk', monospace;
       --r-sm: 6px; --r-md: 10px; --r-lg: 16px; --r-xl: 24px;
       --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
     }
@@ -92,18 +92,19 @@
     .nav-links a:hover { color: var(--ink-primary); background: rgba(255,255,255,0.04); }
     .nav-links a.active { color: var(--ink-primary); background: rgba(255,255,255,0.06); }
     .nav-cta {
-      background: none !important;
-      color: var(--gold) !important;
+      background: var(--gold) !important;
+      color: #060606 !important;
       font-family: var(--font-zh) !important;
-      font-weight: 400 !important;
+      font-weight: 700 !important;
       font-size: 14px !important;
-      padding: 6px 14px !important;
+      height: 36px !important;
+      padding: 0 20px !important;
       display: inline-flex !important;
       align-items: center !important;
       border-radius: var(--r-sm) !important;
-      transition: opacity 0.15s !important;
+      transition: background 0.15s !important;
     }
-    .nav-cta:hover { opacity: 0.75 !important; background: none !important; }
+    .nav-cta:hover { background: var(--gold-bright) !important; }
     .nav-menu-btn {
       width: 44px;
       height: 44px;
@@ -585,7 +586,7 @@
     .footer-logo img { height: 34px; width: auto; display: block; }
     .footer-desc {
       font-size: 13px;
-      color: #fff;
+      color: var(--ink-secondary);
       line-height: 1.7;
       white-space: nowrap;
     }
@@ -598,9 +599,9 @@
     .footer-copy, .footer-legal {
       font-family: var(--font-zh);
       font-size: 12px;
-      color: var(--ink-primary);
+      color: var(--ink-tertiary);
     }
-    .footer-legal a { color: var(--ink-primary); text-decoration: none; transition: color 0.15s; }
+    .footer-legal a { color: var(--ink-tertiary); text-decoration: none; transition: color 0.15s; }
     .footer-legal a:hover { color: var(--ink-secondary); }
     @media (max-width: 640px) {
       footer { padding: 40px 0 32px; }
